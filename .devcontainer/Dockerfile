@@ -6,8 +6,9 @@
 
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/main/containers/typescript-node/.devcontainer/base.Dockerfile
 # [Choice] Node.js version (use -bullseye variants on local arm64/Apple Silicon): 18, 16, 14, 18-bullseye, 16-bullseye, 14-bullseye, 18-buster, 16-buster, 14-buster
-ARG VARIANT="14-buster"
-FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT}
+ARG VARIANT=16-buster
+
+FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:${VARIANT}
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
@@ -25,7 +26,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT}
 # Install EMSDK to /emsdk just like the EMSDK Dockerfile: https://github.com/emscripten-core/emsdk/blob/master/docker/Dockerfile
 ENV EMSDK /emsdk
 # We pin the EMSDK version rather than 'latest' so that everyone is using the same compiler version
-ENV EMSCRIPTEN_VERSION 3.1.15
+ENV EMSCRIPTEN_VERSION 3.1.17
 
 RUN git clone https://github.com/emscripten-core/emsdk.git $EMSDK
 
@@ -35,31 +36,34 @@ RUN echo "## Install Emscripten" \
   && echo "## Done"
 
 # Copied directly from https://github.com/emscripten-core/emsdk/blob/master/docker/Dockerfile
+# This generates configuration that contains all valid paths according to installed SDK
+# TODO(sbc): We should be able to use just emcc -v here but it doesn't
+# currently create the sanity file.
 RUN cd ${EMSDK} \
-  && echo "## Generate standard configuration" \
-  && ./emsdk activate ${EMSCRIPTEN_VERSION} \
-  && chmod 777 ${EMSDK}/upstream/emscripten \
-  && chmod -R 777 ${EMSDK}/upstream/emscripten/cache \
-  && echo "int main() { return 0; }" > hello.c \
-  && ${EMSDK}/upstream/emscripten/emcc -c hello.c \
-  && cat ${EMSDK}/upstream/emscripten/cache/sanity.txt \
-  && echo "## Done"
+    && echo "## Generate standard configuration" \
+    && ./emsdk activate ${EMSCRIPTEN_VERSION} \
+    && chmod 777 ${EMSDK}/upstream/emscripten \
+    && chmod -R 777 ${EMSDK}/upstream/emscripten/cache \
+    && echo "int main() { return 0; }" > hello.c \
+    && ${EMSDK}/upstream/emscripten/emcc -c hello.c \
+    && cat ${EMSDK}/upstream/emscripten/cache/sanity.txt \
+    && echo "## Done"
 
 ENV PATH $EMSDK:$EMSDK/upstream/emscripten/:$PATH
 
-# Cleanup Emscripten installation and strip some symbols
 # Copied directly from https://github.com/emscripten-core/emsdk/blob/master/docker/Dockerfile
+# Cleanup Emscripten installation and strip some symbols
 RUN echo "## Aggressive optimization: Remove debug symbols" \
-  && cd ${EMSDK} && . ./emsdk_env.sh \
-  # Remove debugging symbols from embedded node (extra 7MB)
-  && strip -s `which node` \
-  # Tests consume ~80MB disc space
-  && rm -fr ${EMSDK}/upstream/emscripten/tests \
-  # Fastcomp is not supported
-  && rm -fr ${EMSDK}/upstream/fastcomp \
-  # strip out symbols from clang (~extra 50MB disc space)
-  && find ${EMSDK}/upstream/bin -type f -exec strip -s {} + || true \
-  && echo "## Done"
+    && cd ${EMSDK} && . ./emsdk_env.sh \
+    # Remove debugging symbols from embedded node (extra 7MB)
+    && strip -s `which node` \
+    # Tests consume ~80MB disc space
+    && rm -fr ${EMSDK}/upstream/emscripten/tests \
+    # Fastcomp is not supported
+    && rm -fr ${EMSDK}/upstream/fastcomp \
+    # strip out symbols from clang (~extra 50MB disc space)
+    && find ${EMSDK}/upstream/bin -type f -exec strip -s {} + || true \
+    && echo "## Done"
 
 RUN echo ". /emsdk/emsdk_env.sh" >> /etc/bash.bashrc
 # We must set the EM_NODE_JS environment variable for a somewhat silly reason
@@ -71,7 +75,8 @@ RUN echo 'export EM_NODE_JS="$EMSDK_NODE"' >> /etc/bash.bashrc
 # END EMSDK
 # --------------------------------------------------------------------
 
-RUN apt-get update -y \
-  && apt-get update \
-  && apt-get install cmake \
-  && npm install yarn -g
+RUN apt-get update \
+     && apt-get install -y \
+     cmake
+
+RUN npm install --global yarn

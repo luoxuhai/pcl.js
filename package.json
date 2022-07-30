@@ -4,10 +4,13 @@
   "description": "PCL for browser and node, powered by WebAssembly.",
   "main": "src/index.js",
   "scripts": {
-    "build": "",
+    "dev": "rollup -c -w",
+    "build": "rollup -c",
+    "build:types": "tsc",
     "test": "jest",
     "lint": "eslint .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "release-it"
   },
   "lint-staged": {
     "*.{js,ts}": [
@@ -38,6 +41,7 @@
     "@typescript-eslint/parser": "^5.30.6",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.4",
     "eslint-plugin-node": "^11.1.0",
@@ -47,6 +51,9 @@
     "jest": "^28.1.2",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
+    "rollup": "^2.77.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.32.1",
     "ts-jest": "^28.0.7",
     "typescript": "^4.7.4"
   }
