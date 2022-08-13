@@ -24,6 +24,6 @@ set(CMAKE_EXECUTABLE_SUFFIX ".html")
 include_directories(${PCL_INCLUDE} ${BOOST_INCLUDE} ${EIGEN_INCLUDE} ${FLANN_INCLUDE})
 link_directories(${PCL_LIB} ${BOOST_LIB} ${FLANN_LIB})
 
-add_executable(${MODULE_NAME} ./io.cpp)
-target_link_libraries(${MODULE_NAME} pcl_common pcl_io pcl_kdtree flann_cpp_s boost_filesystem boost_regex boost_system boost_date_time boost_iostreams)
+add_executable(${MODULE_NAME} ./test.cpp)
+target_link_libraries(${MODULE_NAME} pcl_common pcl_io flann_cpp_s boost_filesystem boost_regex boost_system boost_date_time boost_iostreams)
 set_target_properties(${MODULE_NAME} PROPERTIES LINK_FLAGS "-G -lembind -s EXPORTED_RUNTIME_METHODS=FS -s ALLOW_MEMORY_GROWTH=1 -fno-builtin")
