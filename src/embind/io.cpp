@@ -2,58 +2,27 @@
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 #include <emscripten/bind.h>
-// #include <fstream>
 
 using namespace emscripten;
 
-static char VERSION[] = "1.12.1";
-
-auto runTest(int width = 5)
+int loadPCDFile(const std::string &file_name, pcl::PCLPointCloud2 &cloud)
 {
-  pcl::PointCloud<pcl::PointXYZ> cloud;
-
-  cloud.width = width;
-  cloud.height = 1;
-  cloud.is_dense = false;
-  cloud.resize(cloud.width * cloud.height);
-
-  for (auto &point : cloud)
-  {
-    point.x = 1024 * rand() / (RAND_MAX + 1.0f);
-    point.y = 1024 * rand() / (RAND_MAX + 1.0f);
-    point.z = 1024 * rand() / (RAND_MAX + 1.0f);
-  }
-
-  std::cout << "Saved " << cloud.size() << " data points to test_pcd.pcd." << std::endl;
-
-  for (const auto &point : cloud)
-    std::cout << "    " << point.x << " " << point.y << " " << point.z << std::endl;
-
-  // std::ofstream out("out.txt");
-  // if (out.is_open())
-  // {
-  //   out << "This is a line.\n";
-  //   out << "This is another line.\n";
-  //   out.close();
-  // }
-
-  pcl::io::savePCDFile("./test_pcd.pcd", cloud);
-  return 0;
+  return pcl::io::loadPCDFile(file_name, cloud);
 }
 
-int main()
+int savePCDFile(const std::string &file_name, const pcl::PointCloud<pcl::PointXYZ> &cloud, bool binary_mode = false)
 {
-  std::cout << "init" << std::endl;
-  return 0;
+  return pcl::io::savePCDFile(file_name, cloud, binary_mode);
 }
 
-int savePCDFile(const std::string &file_name, const pcl::PointCloud<pcl::PointXYZ> &cloud)
+int savePCDFileBinaryCompressed(const std::string &file_name, const pcl::PointCloud<pcl::PointXYZ> &cloud)
 {
-  return pcl::io::savePCDFile(file_name, cloud);
+  return pcl::io::savePCDFileBinaryCompressed(file_name, cloud);
 }
 
 EMSCRIPTEN_BINDINGS(io)
 {
-  function("runTest", &runTest);
-  function("io.savePCDFile", savePCDFile);
+  function("io.loadPCDFile", &loadPCDFile);
+  function("io.savePCDFile", &savePCDFile);
+  function("io.savePCDFileBinaryCompressed", &savePCDFileBinaryCompressed);
 }

@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.22)
 
 # Base
-set(MODULE_NAME pcljs-io)
-project(${MODULE_NAME})
+set(PROJECT_NAME pcl-core)
+set(CMAKE_INSTALL_BINDIR ../../dist)
+project(${PROJECT_NAME})
 set(CMAKE_CXX_STANDARD 14)
 
 # Directory
@@ -24,6 +25,11 @@ set(CMAKE_EXECUTABLE_SUFFIX ".html")
 include_directories(${PCL_INCLUDE} ${BOOST_INCLUDE} ${EIGEN_INCLUDE} ${FLANN_INCLUDE})
 link_directories(${PCL_LIB} ${BOOST_LIB} ${FLANN_LIB})
 
-add_executable(${MODULE_NAME} ./test.cpp)
-target_link_libraries(${MODULE_NAME} pcl_common pcl_io flann_cpp_s boost_filesystem boost_regex boost_system boost_date_time boost_iostreams)
-set_target_properties(${MODULE_NAME} PROPERTIES LINK_FLAGS "-G -lembind -s EXPORTED_RUNTIME_METHODS=FS -s ALLOW_MEMORY_GROWTH=1 -fno-builtin")
+set(PCL_LINK_LIBS pcl_common pcl_io pcl_features pcl_filters pcl_kdtree pcl_stereo pcl_keypoints pcl_octree pcl_search pcl_segmentation pcl_surface pcl_tracking pcl_ml)
+set(SRCS main.cpp io.cpp filters.cpp kdtree.cpp octree.cpp keypoints.cpp registration.cpp point_types.cpp)
+
+add_executable(${PROJECT_NAME} ${SRCS})
+target_link_libraries(${PROJECT_NAME} ${PCL_LINK_LIBS} flann_cpp_s boost_filesystem boost_regex boost_system boost_date_time boost_iostreams)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-g -lembind -s STRICT=1 -s EXPORTED_RUNTIME_METHODS=FS -s ALLOW_MEMORY_GROWTH=1 -s MODULARIZE=1 -s EXPORT_ES6=1")
+
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

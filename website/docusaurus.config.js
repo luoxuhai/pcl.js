@@ -17,7 +17,7 @@ const config = {
   tagline: '☁️ Point Cloud Library (PCL) for browser, powered by WebAssembly.',
   url,
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'luoxuhai',

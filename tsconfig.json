@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "module": "esnext",
-    "target": "es6",
-    "lib": ["es2015", "es2016", "es2017"],
+    "module": "ES2015",
+    "target": "ES2015",
+    "lib": ["ES2015", "ES2016", "ES2017"],
     "types": ["jest", "node"],
-    "sourceMap": true,
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "declarationDir": "dist/types",
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

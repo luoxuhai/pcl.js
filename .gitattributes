@@ -1,0 +1,4 @@
+website/* -linguist-detectable
+data/* -linguist-detectable
+.devcontainer/* -linguist-detectable
+.github/* -linguist-detectable

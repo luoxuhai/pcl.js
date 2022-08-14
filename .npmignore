@@ -1,5 +1,6 @@
-pcl
-examples
+core
+data
+website
 .git
 .github
 .husky
