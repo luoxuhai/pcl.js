@@ -1,0 +1,90 @@
+---
+sidebar_position: 2
+---
+
+# 使用
+
+## NPM
+
+```typescript showLineNumbers
+import PCL from 'pcl.js';
+
+async function main() {
+  // Initialization
+  const pcl = await PCL.init({
+    // Recommend, optional configuration, custom WebAssembly file link.
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
+    // You can also pass an ArrayBuffer of WebAssembly files.
+    // arrayBuffer: ArrayBuffer
+  });
+}
+
+main();
+```
+
+## CDN
+
+```typescript showLineNumbers
+<script>
+async function main() {
+  // Initialization, PCL is a global object.
+  const pcl = await PCL.init({
+    // Recommend, optional configuration, custom WebAssembly file link.
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
+    // You can also pass an ArrayBuffer of WebAssembly files.
+    // arrayBuffer: ArrayBuffer
+  });
+
+  // ...
+}
+
+main();
+</script>
+```
+
+:::tip 提示
+
+推荐使用CDN加载`pcl-core.wasm`
+
+:::
+
+## 简单示例
+
+使用 PassThrough 过滤器过滤点云。
+参考: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
+
+```typescript showLineNumbers
+import PCL from 'pcl.js';
+
+async function main() {
+  const pcl = await PCL.init({
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
+  });
+
+  // 获取 PCD 文件
+  const pcd = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
+  // 写入 PCD 文件
+  pcl.fs.writeFile('/test.pcd', pcd);
+  // 加载 PCD 文件，返回点云对象
+  const pointCloud = pcl.io.loadPCDFile('/test.pcd');
+
+  // 使用 PassThrough 过滤器过滤点云
+  const pass = new pcl.filters.PassThrough();
+  pass.setInputCloud(pointCloud);
+  pass.setFilterFieldName('z');
+  pass.setFilterLimits(0.0, 1.0);
+  pass.filter(pointCloud);
+
+  // 将过滤后的点云对象保存为 PCD 文件
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', pointCloud);
+  // 读取 PCD 文件内容， 内容为 ArrayBuffer
+  const pcd = pcl.fs.readFile('/test-filtered.pcd');
+
+  // 删除所有 PCD 文件
+  pcl.fs.unlink('/test.pcd')
+  pcl.fs.unlink('/test-filtered.pcd')
+  // ...
+}
+
+main();
+```

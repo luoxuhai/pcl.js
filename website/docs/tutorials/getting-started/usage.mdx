@@ -1,0 +1,91 @@
+---
+sidebar_position: 2
+---
+
+# Usage
+
+
+## NPM
+
+```typescript showLineNumbers
+import PCL from 'pcl.js';
+
+async function main() {
+  // Initialization
+  const pcl = await PCL.init({
+    // Recommend, optional configuration, custom WebAssembly file link.
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
+    // You can also pass an ArrayBuffer of WebAssembly files.
+    // arrayBuffer: ArrayBuffer
+  });
+}
+
+main();
+```
+
+## CDN
+
+```typescript showLineNumbers
+<script>
+async function main() {
+  // Initialization, PCL is a global object.
+  const pcl = await PCL.init({
+    // Recommend, optional configuration, custom WebAssembly file link.
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
+    // You can also pass an ArrayBuffer of WebAssembly files.
+    // arrayBuffer: ArrayBuffer
+  });
+
+  // ...
+}
+
+main();
+</script>
+```
+
+:::tip TIP
+
+It is recommended to use CDN to load `pcl-core.wasm`
+
+:::
+
+## Simple Example
+
+Filtering a PointCloud using a PassThrough filter.  
+See: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
+
+```typescript showLineNumbers
+import PCL from 'pcl.js';
+
+async function main() {
+  const pcl = await PCL.init({
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
+  });
+
+  // Get PCD file
+  const pcd = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
+  // Write a PCD file
+  pcl.fs.writeFile('/test.pcd', pcd);
+  // Load PCD file, return point cloud object
+  const pointCloud = pcl.io.loadPCDFile('/test.pcd');
+
+  // Filtering a PointCloud using a PassThrough filter
+  const pass = new pcl.filters.PassThrough();
+  pass.setInputCloud(pointCloud);
+  pass.setFilterFieldName('z');
+  pass.setFilterLimits(0.0, 1.0);
+  pass.filter(pointCloud);
+
+  // Save filtered point cloud objects as PCD files
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', pointCloud);
+  // Read PCD file content, the content is ArrayBuffer
+  const pcd = pcl.fs.readFile('/test-filtered.pcd');
+
+  // Delete all PCD files
+  pcl.fs.unlink('/test.pcd')
+  pcl.fs.unlink('/test-filtered.pcd')
+  // ...
+}
+
+main();
+```
