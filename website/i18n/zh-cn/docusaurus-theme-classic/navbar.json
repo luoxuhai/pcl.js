@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "PCL.js",
+    "description": "The title in the navbar"
+  },
+  "item.label.Documentation": {
+    "message": "文档",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Examples": {
+    "message": "示例",
+    "description": "Navbar item with label Newsletter"
+  }
+}

@@ -37,6 +37,8 @@ const config = {
     },
   },
 
+  plugins: ['docusaurus-plugin-sass'],
+
   presets: [
     [
       'classic',
@@ -44,17 +46,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/luoxuhai/pcl.js/tree/master/website',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -67,28 +59,28 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title,
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Logo',
+          src: 'img/pcljs.png',
         },
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'tutorials/intro',
             position: 'left',
             label: 'Documentation',
           },
           {
-            label: 'API',
+            type: 'doc',
+            docId: 'api/intro',
             position: 'left',
-            to: '/api',
+            label: 'API',
           },
           { label: 'Examples', position: 'left', to: '/examples' },
           {
             href: github,
-            label: 'GitHub',
             position: 'right',
+            className: 'header-github-link',
           },
           {
             type: 'localeDropdown',
@@ -160,6 +152,12 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      docs: {
+        sidebar: {
+          hideable: true,
+          autoCollapseCategories: true,
+        },
       },
     }),
 };

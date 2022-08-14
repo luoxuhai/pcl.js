@@ -4,6 +4,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
+    "start:zh": "npm run start -- --locale zh-cn",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -25,6 +26,8 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.0.1",
     "@tsconfig/docusaurus": "^1.0.6",
+    "docusaurus-plugin-sass": "^0.2.2",
+    "sass": "^1.54.5",
     "typescript": "^4.7.4"
   },
   "browserslist": {

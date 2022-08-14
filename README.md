@@ -1,6 +1,7 @@
 <p align="center">
-  <h1 align="center" >PCL.js</h1>
-  <p align="center">Point Cloud Library (<a href="https://github.com/PointCloudLibrary/pcl" target="_blank">PCL</a>) for browser, powered by WebAssembly.</p>
+  <img style="height: 100px" src="./pcljs.png" >
+  <h1 align="center">PCL.js</h1>
+  <p align="center"><a href="https://github.com/PointCloudLibrary/pcl" target="_blank">Point Cloud Library (PCL)</a> for browser, powered by WebAssembly.</p>
 </p>
 
 <p align="center">
@@ -36,23 +37,24 @@
 
 ## Overview
 
-***pcl.js***  is a [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/). [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) is a standalone, large scale, open project for 2D/3D image and point cloud processing. 
+**pcl.js** is a [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/). [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) is a standalone, large scale, open project for 2D/3D image and point cloud processing. 
 
 ## Resources
 
 - [Documentation](https://pcljs.org/docs)
 - [API Reference](https://pcljs.org/api)
 - [Examples](https://pcljs.org/examples)
+- [Discussions](https://github.com/luoxuhai/pcl.js/discussions)
 
 ## Installation
 
 ### NPM
 
 ```bash
+# NPM
 npm install pcl.js
 
-or
-
+# Yarn
 yarn add pcl.js
 ```
 
@@ -180,15 +182,9 @@ main();
 ## Environment Support
 > https://developer.mozilla.org/en-US/docs/WebAssembly#browser_compatibility
 
-- Chrome 57+
-- Edge 16+
-- Firefox 52+
-- Safari 11+
-- Opera 44+
-- Safari on iOS 11+
-- Chrome for Android 57+
-- Node.js 11.0.0+
-- Deno 1.0+
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/node.js/node.js_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Node.js | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/deno/deno_128x128.png" alt="Deno" width="48px" height="48px" /> <br/> Deno |
+| --------- | --------- | --------- | --------- | --------- | --------- | --------- |
+| 16+ | 52+ | 57+ | 11+ | 44+ | 11.0.0+| 1.0+
 
 ## License
 
