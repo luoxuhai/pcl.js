@@ -18,9 +18,6 @@ set(PCL_LIB ${ROOT}/build/lib)
 set(BOOST_LIB ${ROOT}/wasm/deps/boost/build/lib)
 set(FLANN_LIB ${ROOT}/wasm/deps/flann/build/lib)
 
-# wasm
-set(CMAKE_EXECUTABLE_SUFFIX ".html")
-
 # Link library
 include_directories(${PCL_INCLUDE} ${BOOST_INCLUDE} ${EIGEN_INCLUDE} ${FLANN_INCLUDE})
 link_directories(${PCL_LIB} ${BOOST_LIB} ${FLANN_LIB})
@@ -30,6 +27,16 @@ set(SRCS main.cpp io.cpp filters.cpp kdtree.cpp octree.cpp keypoints.cpp registr
 
 add_executable(${PROJECT_NAME} ${SRCS})
 target_link_libraries(${PROJECT_NAME} ${PCL_LINK_LIBS} flann_cpp_s boost_filesystem boost_regex boost_system boost_date_time boost_iostreams)
-set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-g -lembind -s STRICT=1 -s EXPORTED_RUNTIME_METHODS=FS -s ALLOW_MEMORY_GROWTH=1 -s MODULARIZE=1 -s EXPORT_ES6=1")
+
+option(CMAKE_BUILD_TYPE "This is a option for build type" "Debug")
+
+set(COMMON_LINK_FLAGS "-lembind -sSTRICT=1 -sALLOW_MEMORY_GROWTH=1 -sMODULARIZE=1 -sEXPORT_ES6=1 -sENVIRONMENT=web,webview,worker")
+
+set(EM_LINK_FLAGS "${COMMON_LINK_FLAGS} -g -sEXPORTED_RUNTIME_METHODS=FS")
+if (${CMAKE_BUILD_TYPE} STREQUAL "Release")
+  set(EM_LINK_FLAGS "${COMMON_LINK_FLAGS} -O3")
+endif()
+
+set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS ${EM_LINK_FLAGS})
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

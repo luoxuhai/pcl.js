@@ -1,3 +1,3 @@
-import * as core from './core/index';
+import core from './core/index';
 
 export default core;

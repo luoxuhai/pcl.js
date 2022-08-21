@@ -28,6 +28,12 @@
   English | <a href="./README-zh_CN.md">简体中文</a>
 </p>
 
+## Resources
+
+- [Documentation](https://pcljs.org/docs)
+- [API Reference](https://pcljs.org/api)
+- [Examples](https://pcljs.org/examples)
+
 ## Overview
 
 ## Installation

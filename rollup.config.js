@@ -33,21 +33,21 @@ const config = [
         format: 'esm',
       },
       {
-        file: pkg.browser,
-        format: 'umd',
+        file: `dist/pcl.js`,
+        format: 'iife',
         name: 'PCL',
+      },
+      {
+        file: `dist/pcl.min.js`,
+        format: 'iife',
+        name: 'PCL',
+        plugins: [terser()],
       },
     ],
     plugins: [
       typescript({
         useTsconfigDeclarationDir: true,
         tsconfig: './tsconfig.json',
-      }),
-      terser({
-        compress: false,
-        format: {
-          comments: false,
-        },
       }),
       bundleSize(),
       banner(),

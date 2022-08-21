@@ -4,14 +4,16 @@
   "description": "PCL for browser and node, powered by WebAssembly.",
   "types": "dist/pcl.d.ts",
   "main": "dist/pcl.cjs.js",
-  "browser": "dist/pcl.umd.js",
   "module": "dist/pcl.esm.js",
   "scripts": {
-    "dev": "rollup -c -w",
-    "build": "rollup -c",
+    "dev:js": "rollup -c -w",
+    "dev:wasm": "sh scripts/build.sh",
+    "dev": "npm run dev:wasm && npm run dev:js",
+    "build:js": "rollup -c --environment BUILD_TYPE:release",
+    "build:wasm": "sh scripts/build.sh Release",
+    "build:pcl": "sh scripts/build-pcl.sh",
+    "build": "npm run build:wasm && npm run build:js",
     "postbuild": "rimraf dist/types",
-    "build:wasm": "sh scripts/build.sh",
-    "build:types": "tsc",
     "clean": "rimraf dist/*",
     "test": "jest",
     "lint": "eslint .",
@@ -32,6 +34,10 @@
     "PCL",
     "Point Cloud Library",
     "WebAssembly"
+  ],
+  "files": [
+    "dist",
+    "src"
   ],
   "author": "luoxuhai <darkce97@gmail.com> (https://github.com/luoxuhai)",
   "license": "MIT",

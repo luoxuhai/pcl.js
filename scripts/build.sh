@@ -16,8 +16,15 @@ echo $(pwd)
 mkdir -p ${EMBIND_BUILD_DIR}
 cd ${EMBIND_BUILD_DIR}
 
-emcmake cmake ..
-emmake make
+if [ $1 == Release ]
+  then
+    BUILD_TYPE=Release
+  else
+    BUILD_TYPE=Debug
+fi
+
+emcmake cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} ..
+emmake make -j
 
 mkdir -p ${WASM_OUT_DIR}
 cp pcl-core.wasm ${WASM_OUT_DIR}

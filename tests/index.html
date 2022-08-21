@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" id="file" />
+
+    <script type="text/javascript" src="../dist/pcl.js"></script>
+    <script>
+      PCL.init().then((pcl) => {
+        window.pcl = pcl;
+
+        const fileInput = document.getElementById('file');
+        fileInput.onchange = (e) => {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const arrayBuffer = new Uint8Array(reader.result);
+            pcl.Module.FS.writeFile('test.pcd', arrayBuffer);
+            console.log(pcl.Module.FS.readdir('/'));
+            console.log(pcl.Module['io.loadPCDFile']('test.pcd'));
+          };
+          reader.readAsArrayBuffer(e.target.files[0]);
+        };
+      });
+    </script>
+  </body>
+</html>

@@ -1,5 +1,5 @@
-function loadPCDFile(filename: string): PointCloud {
-  return pcl.Module['io.loadPCDFile'](filename);
+function loadPCDFile(filename: string) {
+  return filename;
 }
 
 // function savePCDFile() {}
