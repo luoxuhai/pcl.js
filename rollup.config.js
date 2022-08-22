@@ -2,6 +2,7 @@ import typescript from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
 import dts from 'rollup-plugin-dts';
 import bundleSize from 'rollup-plugin-bundle-size';
+import copy from 'rollup-plugin-copy';
 
 import pkg from './package.json';
 
@@ -16,6 +17,14 @@ function banner() {
  * SPDX-License-Identifier: MIT
  */
 ${code}`;
+    },
+  };
+}
+
+function replaceCode() {
+  return {
+    renderChunk(code) {
+      return code.replace('assert(!flags, flags);', '');
     },
   };
 }
@@ -41,16 +50,25 @@ const config = [
         file: `dist/pcl.min.js`,
         format: 'iife',
         name: 'PCL',
-        plugins: [terser()],
+        plugins: [replaceCode(), terser()],
       },
     ],
     plugins: [
+      replaceCode(),
       typescript({
         useTsconfigDeclarationDir: true,
         tsconfig: './tsconfig.json',
       }),
       bundleSize(),
       banner(),
+      copy({
+        targets: [
+          {
+            src: 'src/embind/build/pcl-core.wasm',
+            dest: 'dist',
+          },
+        ],
+      }),
     ],
   },
   {
