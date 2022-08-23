@@ -2,7 +2,7 @@ class PassThrough {
   public native: any;
 
   constructor(extractRemovedIndices = false) {
-    this.native = new pcl.Module.PassThrough(extractRemovedIndices);
+    this.native = new Module.PassThrough(extractRemovedIndices);
   }
 
   public setInputCloud(cloud: PointCloud) {

@@ -34,7 +34,9 @@
   "keywords": [
     "PCL",
     "Point Cloud Library",
-    "WebAssembly"
+    "WebAssembly",
+    "JavaScript",
+    "TypeScript"
   ],
   "files": [
     "dist",
@@ -46,6 +48,9 @@
     "url": "https://github.com/luoxuhai/pcl.js/issues"
   },
   "homepage": "https://github.com/luoxuhai/pcl.js#readme",
+  "engines": {
+    "node": ">=11.0.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",

@@ -1,9 +1,9 @@
 function loadPCDFile(filename: string): PointCloud {
-  return pcl.Module['io.loadPCDFile'](filename);
+  return Module['io.loadPCDFile'](filename);
 }
 
 function savePCDFile(filename: string, cloud: PointCloud, binaryMode = false) {
-  return pcl.Module['io.savePCDFile'](filename, cloud, binaryMode);
+  return Module['io.savePCDFile'](filename, cloud, binaryMode);
 }
 
 function savePCDFileASCII(filename: string, cloud: PointCloud) {
@@ -15,7 +15,7 @@ function savePCDFileBinary(filename: string, cloud: PointCloud) {
 }
 
 function savePCDFileBinaryCompressed(filename: string, cloud: PointCloud) {
-  return pcl.Module['io.savePCDFileBinaryCompressed'](filename, cloud);
+  return Module['io.savePCDFileBinaryCompressed'](filename, cloud);
 }
 
 export default {

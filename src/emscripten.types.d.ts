@@ -12,6 +12,7 @@ declare namespace EmscriptenWasm {
   }
 
   interface Module {
+    [key: string]: any;
     print(str: string): void;
     printErr(str: string): void;
     arguments: string[];

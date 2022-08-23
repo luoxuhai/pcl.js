@@ -1,14 +1,17 @@
 #include <iostream>
 #include <pcl/point_types.h>
 #include <pcl/filters/passthrough.h>
+#include <pcl/filters/voxel_grid.h>
 #include <emscripten/bind.h>
 
 typedef pcl::PointXYZ PointCloudXYZ;
 
 using namespace emscripten;
 
-EMSCRIPTEN_BINDINGS(Filter)
+EMSCRIPTEN_BINDINGS(Filters)
 {
+    // PassThrough
+
     class_<pcl::PassThrough<PointCloudXYZ>, base<pcl::FilterIndices<PointCloudXYZ>>>("PassThrough")
         .constructor<bool>()
         .function("setFilterFieldName", &pcl::PassThrough<PointCloudXYZ>::setFilterFieldName)
@@ -32,4 +35,11 @@ EMSCRIPTEN_BINDINGS(Filter)
     class_<pcl::PCLBase<PointCloudXYZ>>("PCLBase")
         .function("setInputCloud", &pcl::PCLBase<PointCloudXYZ>::setInputCloud)
         .function("getInputCloud", &pcl::PCLBase<PointCloudXYZ>::getInputCloud);
+
+    // VoxelGrid
+
+    class_<pcl::VoxelGrid<PointCloudXYZ>, base<pcl::Filter<PointCloudXYZ>>>("VoxelGrid")
+        .constructor()
+        .function("setLeafSize",
+                  select_overload<void(float, float, float)>(&pcl::VoxelGrid<PointCloudXYZ>::setLeafSize));
 }

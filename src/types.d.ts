@@ -3,6 +3,4 @@ interface PointCloud {
   height: number;
 }
 
-declare const pcl: {
-  Module: EmscriptenWasm.Module;
-};
+declare const Module: EmscriptenWasm.Module;

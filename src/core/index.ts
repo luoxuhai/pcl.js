@@ -23,7 +23,10 @@ async function init(options?: InitOptions) {
     options?.onsuccess?.(Module);
   } catch (error) {
     options?.onerror?.(error);
+    return;
   }
+
+  console.log('PCL initialized successfully.');
 
   const info = {
     version: Module.PCL_VERSION,
