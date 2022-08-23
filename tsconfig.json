@@ -17,5 +17,5 @@
     "outDir": "dist"
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "rollup.config.js", "tests", "website"]
+  "exclude": ["node_modules", "build", "dist", "tests", "website"]
 }
