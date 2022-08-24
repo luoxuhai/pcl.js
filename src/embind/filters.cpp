@@ -52,4 +52,13 @@ EMSCRIPTEN_BINDINGS(Filters)
         .function("getMeanK", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::getMeanK)
         .function("setStddevMulThresh", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::setStddevMulThresh)
         .function("getStddevMulThresh", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::getStddevMulThresh);
+
+    // RadiusOutlierRemoval
+
+    class_<pcl::RadiusOutlierRemoval<PointCloudXYZ>, base<pcl::FilterIndices<PointCloudXYZ>>>("RadiusOutlierRemoval")
+        .constructor<bool>()
+        .function("setRadiusSearch", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::setRadiusSearch)
+        .function("getRadiusSearch", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::getRadiusSearch)
+        .function("setMinNeighborsInRadius", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::setMinNeighborsInRadius)
+        .function("getMinNeighborsInRadius", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::getMinNeighborsInRadius);
 }

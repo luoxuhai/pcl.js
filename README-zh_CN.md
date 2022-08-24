@@ -1,6 +1,6 @@
 <p align="center">
-  <h3 align="center" style="font-size:24px" >PCL.js</h3>
-  <p align="center">P用于浏览器的点云库 (<a href="https://github.com/PointCloudLibrary/pcl">PCL</a>)，由 WebAssembly 提供支持。</p>
+  <h1 align="center">PCL.js</h1>
+  <p align="center">用于浏览器的点云库 (<a href="https://github.com/PointCloudLibrary/pcl">PCL</a>)，由 WebAssembly 提供支持。</p>
 </p>
 <p align="center">
  <a href="https://github.com/FoalTS/foal/blob/master/LICENSE">
@@ -37,7 +37,71 @@
 
 ## 安装
 
+### NPM
+
+```bash
+npm install pcl.js
+
+or
+
+yarn add pcl.js
+```
+
+### CDN
+
+#### 开发环境
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js"><script>
+```
+
+#### 生产环境
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js"><script>
+```
+
 ## 使用
+
+### NPM
+
+```typescript
+import PCL from 'pcl.js';
+
+async function main() {
+  // 初始化
+  const pcl = await PCL.init({
+    // 可选配置，自定义 WebAssembly 文件链接
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm',
+    // 也可以传人 WebAssembly 文件的 ArrayBuffer
+    // arrayBuffer: ArrayBuffer
+  });
+
+  // ...
+}
+
+main();
+```
+
+### CDN
+
+```html
+<script>
+async function main() {
+  // 初始化
+  const pcl = await PCL.init({
+    // 可选配置，自定义 WebAssembly 文件链接
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm',
+    // 也可以传人 WebAssembly 文件的 ArrayBuffer
+    // arrayBuffer: ArrayBuffer
+  });
+
+  // ...
+}
+
+main();
+</script>
+```
 
 ## 模块
 
@@ -55,6 +119,19 @@
 - [ ] search
 - [ ] segmentation
 - [ ] surface
+
+## 支持的环境
+
+- Chrome 57+
+- Edge 16+
+- Firefox 52+
+- Safari 11+
+- Opera 44+
+- Safari on iOS 11+
+- Chrome for Android 57+
+- Node.js 11.0.0+
+- Deno 1.0+
+
 
 ## 协议
 

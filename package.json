@@ -14,7 +14,7 @@
     "build:pcl": "sh scripts/build-pcl.sh",
     "build": "npm run build:wasm && npm run build:js",
     "prebuild": "npm run clean",
-    "postbuild": "rimraf dist/types",
+    "postbuild": "rimraf dist/types/.temp",
     "clean": "rimraf dist/*",
     "test": "jest",
     "lint": "eslint .",

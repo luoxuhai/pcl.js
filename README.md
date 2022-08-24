@@ -1,5 +1,5 @@
 <p align="center">
-  <h3 align="center" style="font-size:24px" >PCL.js</h3>
+  <h1 align="center" >PCL.js</h1>
   <p align="center">Point Cloud Library (<a href="https://github.com/PointCloudLibrary/pcl">PCL</a>) for browser, powered by WebAssembly.</p>
 </p>
 
@@ -40,6 +40,20 @@
 
 ## Usage
 
+### Basic Usage Example
+
+```typescript
+import PCL from 'pcl.js';
+
+async function main() {
+  const pcl = await PCL.init();
+
+  // ...
+}
+
+main();
+```
+
 ## Modules
 
 - [ ] features
@@ -56,6 +70,18 @@
 - [ ] search
 - [ ] segmentation
 - [ ] surface
+
+## Environment Support
+
+- Chrome 57+
+- Edge 16+
+- Firefox 52+
+- Safari 11+
+- Opera 44+
+- Safari on iOS 11+
+- Chrome for Android 57+
+- Node.js 11.0.0+
+- Deno 1.0+
 
 ## License
 
