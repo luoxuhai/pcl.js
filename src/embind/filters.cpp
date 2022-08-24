@@ -2,6 +2,7 @@
 #include <pcl/point_types.h>
 #include <pcl/filters/passthrough.h>
 #include <pcl/filters/voxel_grid.h>
+#include <pcl/filters/statistical_outlier_removal.h>
 #include <emscripten/bind.h>
 
 typedef pcl::PointXYZ PointCloudXYZ;
@@ -42,4 +43,13 @@ EMSCRIPTEN_BINDINGS(Filters)
         .constructor()
         .function("setLeafSize",
                   select_overload<void(float, float, float)>(&pcl::VoxelGrid<PointCloudXYZ>::setLeafSize));
+
+    // StatisticalOutlierRemoval
+
+    class_<pcl::StatisticalOutlierRemoval<PointCloudXYZ>, base<pcl::FilterIndices<PointCloudXYZ>>>("StatisticalOutlierRemoval")
+        .constructor<bool>()
+        .function("setMeanK", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::setMeanK)
+        .function("getMeanK", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::getMeanK)
+        .function("setStddevMulThresh", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::setStddevMulThresh)
+        .function("getStddevMulThresh", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::getStddevMulThresh);
 }

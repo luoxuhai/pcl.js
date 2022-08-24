@@ -5,7 +5,7 @@
     "lib": ["ES2015", "ES2016", "ES2017"],
     "types": ["jest", "node"],
     "declaration": true,
-    "declarationDir": "dist/types",
+    "declarationDir": "dist/types/temp",
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

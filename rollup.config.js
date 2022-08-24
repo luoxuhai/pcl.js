@@ -67,13 +67,17 @@ const config = [
             src: 'src/embind/build/pcl-core.wasm',
             dest: 'dist',
           },
+          {
+            src: 'src/emscripten.types.d.ts',
+            dest: 'dist/types',
+          },
         ],
       }),
     ],
   },
   {
-    input: './dist/types/index.d.ts',
-    output: [{ file: 'dist/pcl.d.ts', format: 'es' }],
+    input: './dist/types/temp/index.d.ts',
+    output: [{ file: 'dist/types/pcl.d.ts', format: 'es' }],
     plugins: [dts()],
   },
 ];

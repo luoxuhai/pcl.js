@@ -1,16 +1,8 @@
-class PassThrough {
-  public native: any;
+import FilterBase from './FilterBase';
 
+class PassThrough extends FilterBase {
   constructor(extractRemovedIndices = false) {
-    this.native = new Module.PassThrough(extractRemovedIndices);
-  }
-
-  public setInputCloud(cloud: PointCloud) {
-    return this.native.setInputCloud(cloud);
-  }
-
-  public getInputCloud(): PointCloud | null {
-    return this.native.getInputCloud() as PointCloud | null;
+    super(new Module.PassThrough(extractRemovedIndices));
   }
 
   public setFilterFieldName(fieldName: string) {

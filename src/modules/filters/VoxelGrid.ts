@@ -1,20 +1,12 @@
-class VoxelGrid {
-  public native: any;
+import FilterBase from './FilterBase';
 
+class VoxelGrid extends FilterBase {
   constructor() {
-    this.native = new Module.VoxelGrid();
+    super(new Module.VoxelGrid());
   }
 
   public setLeafSize(lx: number, ly: number, lz: number) {
     return this.native.setLeafSize(lx, ly, lz);
-  }
-
-  public setInputCloud(cloud: PointCloud) {
-    return this.native.setInputCloud(cloud);
-  }
-
-  public getInputCloud(): PointCloud | null {
-    return this.native.getInputCloud() as PointCloud | null;
   }
 
   public filter(output: PointCloud) {

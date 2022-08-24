@@ -1,6 +1,6 @@
 <p align="center">
   <h3 align="center" style="font-size:24px" >PCL.js</h3>
-  <p align="center">Point Cloud Library (PCL) for browser, powered by WebAssembly.</p>
+  <p align="center">Point Cloud Library (<a href="https://github.com/PointCloudLibrary/pcl">PCL</a>) for browser, powered by WebAssembly.</p>
 </p>
 
 <p align="center">
