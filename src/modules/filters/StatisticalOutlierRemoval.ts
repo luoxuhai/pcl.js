@@ -2,7 +2,7 @@ import FilterBase from './FilterBase';
 
 class StatisticalOutlierRemoval extends FilterBase {
   constructor(extractRemovedIndices = false) {
-    super(new Module.StatisticalOutlierRemoval(extractRemovedIndices));
+    super(new __PCLCore__.StatisticalOutlierRemoval(extractRemovedIndices));
   }
 
   public setMeanK(nrK: number) {

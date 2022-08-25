@@ -1,6 +1,5 @@
 website/* -linguist-detectable
 .devcontainer/* -linguist-detectable
 .github/* -linguist-detectable
-*.js -linguist-detectable
 *.css -linguist-detectable
 *.html -linguist-detectable

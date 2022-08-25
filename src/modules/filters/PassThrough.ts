@@ -2,7 +2,7 @@ import FilterBase from './FilterBase';
 
 class PassThrough extends FilterBase {
   constructor(extractRemovedIndices = false) {
-    super(new Module.PassThrough(extractRemovedIndices));
+    super(new __PCLCore__.PassThrough(extractRemovedIndices));
   }
 
   public setFilterFieldName(fieldName: string) {

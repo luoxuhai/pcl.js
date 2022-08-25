@@ -106,15 +106,15 @@ main();
 ## 模块
 
 - [ ] features
-- [ ] filters
+- [x] filters 50%
 - [ ] geometry
-- [ ] io
+- [x] io 50%
 - [ ] kdtree
 - [ ] keypoints
 - [ ] octree
 - [ ] outofcore
 - [ ] recognition
-- [ ] registration
+- [x] registration 10%
 - [ ] sample_consensus
 - [ ] search
 - [ ] segmentation

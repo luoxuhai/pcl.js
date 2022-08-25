@@ -3,4 +3,8 @@ interface PointCloud {
   height: number;
 }
 
-declare const Module: EmscriptenWasm.Module;
+declare const __PCLCore__: EmscriptenWasm.Module;
+
+interface Window {
+  __PCLCore__: Module;
+}

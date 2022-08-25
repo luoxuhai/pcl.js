@@ -38,7 +38,71 @@
 
 ## Installation
 
+### NPM
+
+```bash
+npm install pcl.js
+
+or
+
+yarn add pcl.js
+```
+
+### CDN
+
+#### Development
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js"><script>
+```
+
+#### Production
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js"><script>
+```
+
 ## Usage
+
+### NPM
+
+```typescript
+import PCL from 'pcl.js';
+
+async function main() {
+  // Initialization
+  const pcl = await PCL.init({
+    // Optional configuration, custom WebAssembly file link.
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm',
+    // You can also pass an ArrayBuffer of WebAssembly files.
+    // arrayBuffer: ArrayBuffer
+  });
+
+  // ...
+}
+
+main();
+```
+
+### CDN
+
+```html
+<script>
+async function main() {
+  // Initialization
+  const pcl = await PCL.init({
+    // Optional configuration, custom WebAssembly file link.
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm',
+    // You can also pass an ArrayBuffer of WebAssembly files.
+    // arrayBuffer: ArrayBuffer
+  });
+
+  // ...
+}
+
+main();
+</script>
+```
 
 ### Basic Usage Example
 
@@ -57,15 +121,15 @@ main();
 ## Modules
 
 - [ ] features
-- [ ] filters
+- [x] filters 50%
 - [ ] geometry
-- [ ] io
+- [x] io 50%
 - [ ] kdtree
 - [ ] keypoints
 - [ ] octree
 - [ ] outofcore
 - [ ] recognition
-- [ ] registration
+- [x] registration 10%
 - [ ] sample_consensus
 - [ ] search
 - [ ] segmentation

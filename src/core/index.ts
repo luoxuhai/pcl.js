@@ -3,23 +3,31 @@ import io from '../modules/io';
 import filters from '../modules/filters';
 
 interface InitOptions {
-  url?: string;
   arrayBuffer?: ArrayBuffer;
+  url?: string;
+  /**
+   * @default { credentials: 'same-origin' }
+   */
+  fetchOptions?: RequestInit;
   onsuccess?: (module: any) => void;
   onerror?: (error: unknown) => void;
+  // TODO
   // onprogress?: () => void;
 }
 
 async function init(options?: InitOptions) {
-  const moduleOptions: any = {
-    locateFile: (path: string, scriptDirectory: string) =>
-      options?.url || scriptDirectory + path,
+  const { arrayBuffer, url, fetchOptions } = options ?? {};
+
+  const moduleOptions: EmscriptenWasm.ModuleOpts = {
+    locateFile: (path, scriptDirectory) =>
+      arrayBuffer || url || scriptDirectory + path,
+    fetchSettings: fetchOptions,
   };
 
-  let Module: any;
+  let Module: EmscriptenWasm.Module;
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     Module = await initPCLCore(moduleOptions);
+    window.__PCLCore__ = Module;
     options?.onsuccess?.(Module);
   } catch (error) {
     options?.onerror?.(error);

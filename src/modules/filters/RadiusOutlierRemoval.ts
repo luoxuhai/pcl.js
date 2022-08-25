@@ -2,7 +2,7 @@ import FilterBase from './FilterBase';
 
 class RadiusOutlierRemoval extends FilterBase {
   constructor(extractRemovedIndices = false) {
-    super(new Module.RadiusOutlierRemoval(extractRemovedIndices));
+    super(new __PCLCore__.RadiusOutlierRemoval(extractRemovedIndices));
   }
 
   public setRadiusSearch(radius: number) {

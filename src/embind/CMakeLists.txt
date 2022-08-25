@@ -30,9 +30,9 @@ target_link_libraries(${PROJECT_NAME} ${PCL_LINK_LIBS} flann_cpp_s boost_filesys
 
 option(CMAKE_BUILD_TYPE "This is a option for build type" "Debug")
 
-set(COMMON_LINK_FLAGS "-lembind -sSTRICT=1 -sALLOW_MEMORY_GROWTH=1 -sMODULARIZE=1 -sEXPORT_ES6=1 -sENVIRONMENT=web,webview,worker")
+set(COMMON_LINK_FLAGS "-lembind -sSTRICT=1 -sALLOW_MEMORY_GROWTH=1 -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=PCLCore -sENVIRONMENT=web,webview,worker -sINCOMING_MODULE_JS_API=fetchSettings,locateFile")
 
-set(EM_LINK_FLAGS "${COMMON_LINK_FLAGS} -g -sEXPORTED_RUNTIME_METHODS=FS")
+set(EM_LINK_FLAGS "${COMMON_LINK_FLAGS} -g")
 if (${CMAKE_BUILD_TYPE} STREQUAL "Release")
   set(EM_LINK_FLAGS "${COMMON_LINK_FLAGS} -O3")
 endif()

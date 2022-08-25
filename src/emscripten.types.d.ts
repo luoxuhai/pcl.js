@@ -7,7 +7,11 @@ declare namespace EmscriptenWasm {
   interface ModuleOpts {
     mainScriptUrlOrBlob?: string;
     noInitialRun?: boolean;
-    locateFile?: (url: string) => string;
+    fetchSettings?: RequestInit;
+    locateFile?: (
+      path: string,
+      scriptDirectory: string,
+    ) => string | ArrayBuffer;
     onRuntimeInitialized?: () => void;
   }
 

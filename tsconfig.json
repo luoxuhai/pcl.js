@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "ES2015",
     "target": "ES2015",
-    "lib": ["ES2015", "ES2016", "ES2017"],
+    "lib": ["ES2015", "ES2016", "ES2017", "DOM"],
     "types": ["jest", "node"],
     "declaration": true,
     "declarationDir": "dist/types/.temp",

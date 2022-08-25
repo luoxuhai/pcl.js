@@ -2,7 +2,7 @@ import FilterBase from './FilterBase';
 
 class VoxelGrid extends FilterBase {
   constructor() {
-    super(new Module.VoxelGrid());
+    super(new __PCLCore__.VoxelGrid());
   }
 
   public setLeafSize(lx: number, ly: number, lz: number) {

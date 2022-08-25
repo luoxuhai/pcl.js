@@ -13,7 +13,6 @@ EMSCRIPTEN_BINDINGS(registration)
       .constructor<>()
       .function("setInputSource", &pcl::IterativeClosestPoint<PointCloudXYZ, PointCloudXYZ>::setInputSource)
       .function("setInputTarget", &pcl::IterativeClosestPoint<PointCloudXYZ, PointCloudXYZ>::setInputTarget)
-      .function("getFitnessScore", &pcl::IterativeClosestPoint<PointCloudXYZ, PointCloudXYZ>::getFitnessScore)
       .function("hasConverged", &pcl::IterativeClosestPoint<PointCloudXYZ, PointCloudXYZ>::hasConverged)
       .function("getFinalTransformation", &pcl::IterativeClosestPoint<PointCloudXYZ, PointCloudXYZ>::getFinalTransformation);
 }

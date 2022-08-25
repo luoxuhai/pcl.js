@@ -3,6 +3,7 @@
 #include <pcl/filters/passthrough.h>
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/filters/statistical_outlier_removal.h>
+#include <pcl/filters/radius_outlier_removal.h>
 #include <emscripten/bind.h>
 
 typedef pcl::PointXYZ PointCloudXYZ;
@@ -57,8 +58,8 @@ EMSCRIPTEN_BINDINGS(filters)
 
     class_<pcl::RadiusOutlierRemoval<PointCloudXYZ>, base<pcl::FilterIndices<PointCloudXYZ>>>("RadiusOutlierRemoval")
         .constructor<bool>()
-        .function("setRadiusSearch", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::setRadiusSearch)
-        .function("getRadiusSearch", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::getRadiusSearch)
-        .function("setMinNeighborsInRadius", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::setMinNeighborsInRadius)
-        .function("getMinNeighborsInRadius", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::getMinNeighborsInRadius);
+        .function("setRadiusSearch", &pcl::RadiusOutlierRemoval<PointCloudXYZ>::setRadiusSearch)
+        .function("getRadiusSearch", &pcl::RadiusOutlierRemoval<PointCloudXYZ>::getRadiusSearch)
+        .function("setMinNeighborsInRadius", &pcl::RadiusOutlierRemoval<PointCloudXYZ>::setMinNeighborsInRadius)
+        .function("getMinNeighborsInRadius", &pcl::RadiusOutlierRemoval<PointCloudXYZ>::getMinNeighborsInRadius);
 }
