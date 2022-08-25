@@ -9,7 +9,7 @@ typedef pcl::PointXYZ PointCloudXYZ;
 
 using namespace emscripten;
 
-EMSCRIPTEN_BINDINGS(Filters)
+EMSCRIPTEN_BINDINGS(filters)
 {
     // PassThrough
 
