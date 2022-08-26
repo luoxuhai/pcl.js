@@ -3,7 +3,6 @@
 PROJECT_ROOT=$(pwd)
 WASM_OUT_DIR=${PROJECT_ROOT}/dist
 
-
 # Build embind
 
 EMBIND_BUILD_DIR=${PROJECT_ROOT}/src/bind/build
@@ -13,14 +12,19 @@ echo $(pwd)
 mkdir -p ${EMBIND_BUILD_DIR}
 cd ${EMBIND_BUILD_DIR}
 
-if [ $1 == Release ]
-  then
-    BUILD_TYPE=Release
-  else
-    BUILD_TYPE=Debug
+if [ $1 == Release ]; then
+  BUILD_TYPE=Release
+else
+  BUILD_TYPE=Debug
 fi
 
-emcmake cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} ..
+EMFLAGS=(
+  -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
+  # PCL Directory
+  -DPCL_ROOT=/Users/luoxuhai/Desktop/repo/pcl.js/core/pcl
+)
+
+emcmake cmake ${EMFLAGS[@]} ..
 emmake make -j
 
 mkdir -p ${WASM_OUT_DIR}

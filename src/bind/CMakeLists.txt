@@ -2,21 +2,17 @@ cmake_minimum_required(VERSION 3.22)
 
 # Base
 set(PROJECT_NAME pcl-core)
-set(CMAKE_INSTALL_BINDIR ../../dist)
 project(${PROJECT_NAME})
 set(CMAKE_CXX_STANDARD 14)
 
-# Directory
-set(ROOT /Users/luoxuhai/Desktop/repo/pcl.js/core/pcl)
+set(PCL_INCLUDE ${PCL_ROOT}/build/include/pcl-1.12)
+set(BOOST_INCLUDE ${PCL_ROOT}/wasm/deps/boost/build/include)
+set(EIGEN_INCLUDE ${PCL_ROOT}/wasm/deps/eigen)
+set(FLANN_INCLUDE ${PCL_ROOT}/wasm/deps/flann/build/include)
 
-set(PCL_INCLUDE ${ROOT}/build/include/pcl-1.12)
-set(BOOST_INCLUDE ${ROOT}/wasm/deps/boost/build/include)
-set(EIGEN_INCLUDE ${ROOT}/wasm/deps/eigen)
-set(FLANN_INCLUDE ${ROOT}/wasm/deps/flann/build/include)
-
-set(PCL_LIB ${ROOT}/build/lib)
-set(BOOST_LIB ${ROOT}/wasm/deps/boost/build/lib)
-set(FLANN_LIB ${ROOT}/wasm/deps/flann/build/lib)
+set(PCL_LIB ${PCL_ROOT}/build/lib)
+set(BOOST_LIB ${PCL_ROOT}/wasm/deps/boost/build/lib)
+set(FLANN_LIB ${PCL_ROOT}/wasm/deps/flann/build/lib)
 
 # Link library
 include_directories(${PCL_INCLUDE} ${BOOST_INCLUDE} ${EIGEN_INCLUDE} ${FLANN_INCLUDE})
@@ -30,7 +26,7 @@ target_link_libraries(${PROJECT_NAME} ${PCL_LINK_LIBS} flann_cpp_s boost_filesys
 
 option(CMAKE_BUILD_TYPE "This is a option for build type" "Debug")
 
-set(COMMON_LINK_FLAGS "-lembind -sSTRICT=1 -sALLOW_MEMORY_GROWTH=1 -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=PCLCore -sENVIRONMENT=web,webview,worker -sINCOMING_MODULE_JS_API=fetchSettings,locateFile")
+set(COMMON_LINK_FLAGS "-lembind -sSTRICT=1 -sALLOW_MEMORY_GROWTH=1 -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=PCLCore -sENVIRONMENT=web,webview,worker -sINCOMING_MODULE_JS_API=fetchSettings,locateFile -sEXPORTED_RUNTIME_METHODS=FS")
 
 set(EM_LINK_FLAGS "${COMMON_LINK_FLAGS} -g")
 if (${CMAKE_BUILD_TYPE} STREQUAL "Release")
