@@ -101,6 +101,41 @@ main();
 </script>
 ```
 
+### Simple Example
+```typescript
+import PCL from 'pcl.js';
+
+async function main() {
+  const pcl = await PCL.init({
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
+  });
+  // Write a PCD file
+  pcl.Module.FS.writeFile('/test.pcd', ArrayBuffer);
+  // Load PCD file, return point cloud object
+  const pointCloud = pcl.io.loadPCDFile('/test.pcd');
+
+  // Filtering a PointCloud using a PassThrough filter, see: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
+  const pass = new pcl.filters.PassThrough();
+  pass.setInputCloud(pointCloud);
+  pass.setFilterFieldName('z');
+  pass.setFilterLimits(0.0, 1.0);
+  pass.filter(pointCloud);
+
+  // Save filtered point cloud objects as PCD files
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', pointCloud);
+  // Read PCD file content, the content is ArrayBuffer
+  const pcd = pcl.Module.FS.readFile('/test-filtered.pcd');
+
+  // Delete all PCD files
+  pcl.Module.FS.unlink('/test.pcd')
+  pcl.Module.FS.unlink('/test-filtered.pcd')
+  // ...
+}
+
+main();
+```
+
+
 ## Bundle Size
 
 > PCL.js Version: 0.2.0  
