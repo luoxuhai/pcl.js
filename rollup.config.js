@@ -64,7 +64,7 @@ const config = [
       copy({
         targets: [
           {
-            src: 'src/embind/build/pcl-core.wasm',
+            src: 'src/bind/build/pcl-core.wasm',
             dest: 'dist',
           },
           {

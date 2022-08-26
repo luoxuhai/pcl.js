@@ -1,4 +1,4 @@
-import initPCLCore from '../embind/build/pcl-core';
+import initPCLCore from '../bind/build/pcl-core';
 import io from '../modules/io';
 import filters from '../modules/filters';
 

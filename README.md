@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center" >PCL.js</h1>
-  <p align="center">Point Cloud Library (<a href="https://github.com/PointCloudLibrary/pcl">PCL</a>) for browser, powered by WebAssembly.</p>
+  <p align="center">Point Cloud Library (<a href="https://github.com/PointCloudLibrary/pcl" target="_blank">PCL</a>) for browser, powered by WebAssembly.</p>
 </p>
 
 <p align="center">
@@ -12,9 +12,6 @@
   </a>
     <a href="https://badge.fury.io/js/pcl.js">
     <img src="https://badge.fury.io/js/pcl.js.svg" alt="npm version">
-  </a>
-  <a href="https://www.npmjs.com/package/pcl.js">
-    <img src="https://img.shields.io/github/v/release/luoxuhai/pcl.js?label=latest" alt="Github Stable Release" />
   </a>
   <a href="https://www.npmtrends.com/pcl.js">
     <img src="https://img.shields.io/npm/dm/pcl.js" alt="Downloads" />
@@ -72,8 +69,8 @@ import PCL from 'pcl.js';
 async function main() {
   // Initialization
   const pcl = await PCL.init({
-    // Optional configuration, custom WebAssembly file link.
-    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm',
+    // Recommend, optional configuration, custom WebAssembly file link.
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
     // You can also pass an ArrayBuffer of WebAssembly files.
     // arrayBuffer: ArrayBuffer
   });
@@ -89,10 +86,10 @@ main();
 ```html
 <script>
 async function main() {
-  // Initialization
+  // Initialization, PCL is a global object.
   const pcl = await PCL.init({
-    // Optional configuration, custom WebAssembly file link.
-    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm',
+    // Recommend, optional configuration, custom WebAssembly file link.
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
     // You can also pass an ArrayBuffer of WebAssembly files.
     // arrayBuffer: ArrayBuffer
   });
@@ -104,19 +101,16 @@ main();
 </script>
 ```
 
-### Basic Usage Example
+## Bundle Size
 
-```typescript
-import PCL from 'pcl.js';
+> PCL.js Version: 0.2.0  
+> PCL Version: [1.12.1](https://github.com/PointCloudLibrary/pcl/releases/tag/pcl-1.12.1)
 
-async function main() {
-  const pcl = await PCL.init();
-
-  // ...
-}
-
-main();
-```
+| Source        |                                                    Link                                                     |     Size      |
+| :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |
+| pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~32.3k gzip’d |
+| pcl.min.js    | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js)  | ~23.5k gzip’d |
+| pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm) | ~198k gzip’d  |
 
 ## Modules
 

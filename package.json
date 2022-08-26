@@ -40,7 +40,8 @@
   ],
   "files": [
     "dist",
-    "src"
+    "src",
+    "!src/bind"
   ],
   "author": "luoxuhai <darkce97@gmail.com> (https://github.com/luoxuhai)",
   "license": "MIT",

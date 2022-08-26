@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">PCL.js</h1>
-  <p align="center">用于浏览器的点云库 (<a href="https://github.com/PointCloudLibrary/pcl">PCL</a>)，由 WebAssembly 提供支持。</p>
+  <p align="center">用于浏览器的点云库 (<a href="https://github.com/PointCloudLibrary/pcl" target="_blank">PCL</a>)，由 WebAssembly 提供支持。</p>
 </p>
 <p align="center">
  <a href="https://github.com/FoalTS/foal/blob/master/LICENSE">
@@ -11,9 +11,6 @@
   </a>
     <a href="https://badge.fury.io/js/pcl.js">
     <img src="https://badge.fury.io/js/pcl.js.svg" alt="npm version">
-  </a>
-  <a href="https://www.npmjs.com/package/pcl.js">
-    <img src="https://img.shields.io/github/v/release/luoxuhai/pcl.js?label=latest" alt="Github Stable Release" />
   </a>
   <a href="https://www.npmtrends.com/pcl.js">
     <img src="https://img.shields.io/npm/dm/pcl.js" alt="Downloads" />
@@ -71,8 +68,8 @@ import PCL from 'pcl.js';
 async function main() {
   // 初始化
   const pcl = await PCL.init({
-    // 可选配置，自定义 WebAssembly 文件链接
-    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm',
+    // 推荐，可选配置，自定义 WebAssembly 文件链接
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
     // 也可以传人 WebAssembly 文件的 ArrayBuffer
     // arrayBuffer: ArrayBuffer
   });
@@ -88,10 +85,10 @@ main();
 ```html
 <script>
 async function main() {
-  // 初始化
+  // 初始化，PCL 是全局对象
   const pcl = await PCL.init({
-    // 可选配置，自定义 WebAssembly 文件链接
-    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm',
+    // 推荐，可选配置，自定义 WebAssembly 文件链接
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
     // 也可以传人 WebAssembly 文件的 ArrayBuffer
     // arrayBuffer: ArrayBuffer
   });
@@ -102,6 +99,17 @@ async function main() {
 main();
 </script>
 ```
+
+## 资源大小
+
+> PCL.js Version: 0.2.0  
+> PCL Version: [1.12.1](https://github.com/PointCloudLibrary/pcl/releases/tag/pcl-1.12.1)
+
+| 资源          |                                                    链接                                                     |     大小      |
+| :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |
+| pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~32.3k gzip’d |
+| pcl.min.js    | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js)  | ~23.5k gzip’d |
+| pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm) | ~198k gzip’d  |
 
 ## 模块
 
