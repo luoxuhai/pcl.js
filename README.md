@@ -19,21 +19,27 @@
   <a href="https://github.com/luoxuhai/pcl.js/stargazers">
     <img src="https://img.shields.io/github/stars/luoxuhai/pcl.js" alt="Github Stars" />
   </a>
+  <a href="https://www.jsdelivr.com/package/npm/pcl.js">
+    <img src="https://data.jsdelivr.com/v1/package/npm/pcl.js/badge?style=rounded" alt="jsDelivr" />
+  </a>
+  <a href="https://openbase.com/js/pcl.js?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge">
+    <img src="https://badges.openbase.com/js/rating/pcl.js.svg?token=nF4Z9XUsUhOe5yeVDZTPwpdoKqqamFbVBoVA5zbU5iM=" alt="Rate this package" />
+  </a>
 </p>
 
 <p align="center">
   English | <a href="./README-zh_CN.md">简体中文</a>
 </p>
 
+## Overview
+
+***pcl.js***  is a [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/). [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) is a standalone, large scale, open project for 2D/3D image and point cloud processing. 
+
 ## Resources
 
 - [Documentation](https://pcljs.org/docs)
 - [API Reference](https://pcljs.org/api)
 - [Examples](https://pcljs.org/examples)
-
-## Overview
-
-pcl.js is a [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/). [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) is a standalone, large scale, open project for 2D/3D image and point cloud processing. 
 
 ## Installation
 
@@ -116,7 +122,8 @@ async function main() {
   // Load PCD file, return point cloud object
   const pointCloud = pcl.io.loadPCDFile('/test.pcd');
 
-  // Filtering a PointCloud using a PassThrough filter, see: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
+  // Filtering a PointCloud using a PassThrough filter
+  // See: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
   const pass = new pcl.filters.PassThrough();
   pass.setInputCloud(pointCloud);
   pass.setFilterFieldName('z');
@@ -140,13 +147,11 @@ main();
 
 ## Bundle Size
 
-> PCL.js Version: 0.2.0  
-> PCL Version: [1.12.1](https://github.com/PointCloudLibrary/pcl/releases/tag/pcl-1.12.1)
+> PCL.js Version: latest
 
 | Source        |                                                    Link                                                     |     Size      |
 | :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |
 | pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~32.3k gzip’d |
-| pcl.min.js    | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js)  | ~23.5k gzip’d |
 | pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm) | ~198k gzip’d  |
 
 ## Modules

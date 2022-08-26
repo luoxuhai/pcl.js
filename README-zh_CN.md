@@ -18,21 +18,27 @@
   <a href="https://github.com/luoxuhai/pcl.js/stargazers">
     <img src="https://img.shields.io/github/stars/luoxuhai/pcl.js" alt="Github Stars" />
   </a>
+  <a href="https://www.jsdelivr.com/package/npm/pcl.js">
+    <img src="https://data.jsdelivr.com/v1/package/npm/pcl.js/badge?style=rounded" alt="jsDelivr" />
+  </a>
+  <a href="https://openbase.com/js/pcl.js?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge">
+    <img src="https://badges.openbase.com/js/rating/pcl.js.svg?token=nF4Z9XUsUhOe5yeVDZTPwpdoKqqamFbVBoVA5zbU5iM=" alt="Rate this package" />
+  </a>
 </p>
 
 <p align="center">
   <a href="./README.md">English</a> | 简体中文
 </p>
 
-## 资源
-
-- [Documentation](https://pcljs.org/docs)
-- [API Reference](https://pcljs.org/api)
-- [Examples](https://pcljs.org/examples)
-
 ## 简介
 
-pcl.js 是在浏览器中运行的 [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。[Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) 是一个独立、大型、开源的 2D/3D 图像和点云处理库。
+***pcl.js*** 是在浏览器中运行的 [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。[Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) 是一个独立、大型、开源的 2D/3D 图像和点云处理库。
+
+## 资源
+
+- [文档](https://pcljs.org/docs)
+- [API 参考](https://pcljs.org/api)
+- [示例](https://pcljs.org/examples)
 
 ## 安装
 
@@ -114,7 +120,8 @@ async function main() {
   // 加载 PCD 文件，返回点云对象
   const pointCloud = pcl.io.loadPCDFile('/test.pcd');
 
-  // 使用 PassThrough 过滤器过滤点云, 参考: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
+  // 使用 PassThrough 过滤器过滤点云
+  // 参考: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
   const pass = new pcl.filters.PassThrough();
   pass.setInputCloud(pointCloud);
   pass.setFilterFieldName('z');
@@ -137,13 +144,11 @@ main();
 
 ## 资源大小
 
-> PCL.js Version: 0.2.0  
-> PCL Version: [1.12.1](https://github.com/PointCloudLibrary/pcl/releases/tag/pcl-1.12.1)
+> PCL.js Version: latest
 
 | 资源          |                                                    链接                                                     |     大小      |
 | :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |
 | pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~32.3k gzip’d |
-| pcl.min.js    | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js)  | ~23.5k gzip’d |
 | pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm) | ~198k gzip’d  |
 
 ## 模块
