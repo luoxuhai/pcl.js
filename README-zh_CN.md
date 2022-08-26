@@ -32,6 +32,8 @@
 
 ## 简介
 
+pcl.js 是在浏览器中运行的 [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。[Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) 是一个独立、大型、开源的 2D/3D 图像和点云处理库。
+
 ## 安装
 
 ### NPM
@@ -98,6 +100,39 @@ async function main() {
 
 main();
 </script>
+```
+### 简单示例
+```typescript
+import PCL from 'pcl.js';
+
+async function main() {
+  const pcl = await PCL.init({
+    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
+  });
+  // 写入 PCD 文件
+  pcl.Module.FS.writeFile('/test.pcd', ArrayBuffer);
+  // 加载 PCD 文件，返回点云对象
+  const pointCloud = pcl.io.loadPCDFile('/test.pcd');
+
+  // 使用 PassThrough 过滤器过滤点云, 参考: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
+  const pass = new pcl.filters.PassThrough();
+  pass.setInputCloud(pointCloud);
+  pass.setFilterFieldName('z');
+  pass.setFilterLimits(0.0, 1.0);
+  pass.filter(pointCloud);
+
+  // 将过滤后的点云对象保存为 PCD 文件
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', pointCloud);
+  // 读取 PCD 文件内容， 内容为 ArrayBuffer
+  const pcd = pcl.Module.FS.readFile('/test-filtered.pcd');
+
+  // 删除所有 PCD 文件
+  pcl.Module.FS.unlink('/test.pcd')
+  pcl.Module.FS.unlink('/test-filtered.pcd')
+  // ...
+}
+
+main();
 ```
 
 ## 资源大小
