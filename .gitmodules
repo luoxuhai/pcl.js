@@ -1,3 +1,4 @@
 [submodule "core/pcl"]
 	path = core/pcl
 	url = https://github.com/luoxuhai/pcl.git
+	branch = wasm
