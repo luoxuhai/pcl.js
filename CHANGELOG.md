@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/luoxuhai/pcl.js/compare/v1.0.0...v1.0.1) (2022-08-27)
+
+
+### Bug Fixes
+
+* fix npm package invalid ([8795e8b](https://github.com/luoxuhai/pcl.js/commit/8795e8b46b1c087fa0de6e52553d5a7cf79c3721))
+
 # 1.0.0 (2022-08-27)
 
 
