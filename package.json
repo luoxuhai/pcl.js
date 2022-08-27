@@ -19,8 +19,7 @@
     "test": "jest",
     "lint": "eslint .",
     "prepare": "husky install",
-    "ci:install": "rm -rf ./node_modules && yarn install --frozen-lockfile",
-    "ci:release": "semantic-release"
+    "release": "yarn build && semantic-release"
   },
   "lint-staged": {
     "*.{js,ts}": [
