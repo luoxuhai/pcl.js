@@ -175,6 +175,7 @@ main();
 - [ ] surface
 
 ## 支持的环境
+> https://developer.mozilla.org/zh-CN/docs/WebAssembly#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7
 
 - Chrome 57+
 - Edge 16+

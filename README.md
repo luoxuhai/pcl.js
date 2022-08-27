@@ -178,6 +178,7 @@ main();
 - [ ] surface
 
 ## Environment Support
+> https://developer.mozilla.org/en-US/docs/WebAssembly#browser_compatibility
 
 - Chrome 57+
 - Edge 16+
