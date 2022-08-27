@@ -115,8 +115,11 @@ async function main() {
   const pcl = await PCL.init({
     url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
   });
+
+  // 获取 PCD 文件
+  const pcd = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
   // 写入 PCD 文件
-  pcl.Module.FS.writeFile('/test.pcd', ArrayBuffer);
+  pcl.fs.writeFile('/test.pcd', pcd);
   // 加载 PCD 文件，返回点云对象
   const pointCloud = pcl.io.loadPCDFile('/test.pcd');
 
@@ -131,11 +134,11 @@ async function main() {
   // 将过滤后的点云对象保存为 PCD 文件
   pcl.io.savePCDFileASCII('/test-filtered.pcd', pointCloud);
   // 读取 PCD 文件内容， 内容为 ArrayBuffer
-  const pcd = pcl.Module.FS.readFile('/test-filtered.pcd');
+  const pcd = pcl.fs.readFile('/test-filtered.pcd');
 
   // 删除所有 PCD 文件
-  pcl.Module.FS.unlink('/test.pcd')
-  pcl.Module.FS.unlink('/test-filtered.pcd')
+  pcl.fs.unlink('/test.pcd')
+  pcl.fs.unlink('/test-filtered.pcd')
   // ...
 }
 

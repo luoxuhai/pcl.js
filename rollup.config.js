@@ -67,10 +67,6 @@ const config = [
             src: 'src/bind/build/pcl-core.wasm',
             dest: 'dist',
           },
-          {
-            src: 'src/emscripten.types.d.ts',
-            dest: 'dist/types',
-          },
         ],
       }),
     ],

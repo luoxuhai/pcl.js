@@ -117,8 +117,11 @@ async function main() {
   const pcl = await PCL.init({
     url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
   });
+
+  // Get PCD file
+  const pcd = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
   // Write a PCD file
-  pcl.Module.FS.writeFile('/test.pcd', ArrayBuffer);
+  pcl.fs.writeFile('/test.pcd', pcd);
   // Load PCD file, return point cloud object
   const pointCloud = pcl.io.loadPCDFile('/test.pcd');
 
@@ -133,11 +136,11 @@ async function main() {
   // Save filtered point cloud objects as PCD files
   pcl.io.savePCDFileASCII('/test-filtered.pcd', pointCloud);
   // Read PCD file content, the content is ArrayBuffer
-  const pcd = pcl.Module.FS.readFile('/test-filtered.pcd');
+  const pcd = pcl.fs.readFile('/test-filtered.pcd');
 
   // Delete all PCD files
-  pcl.Module.FS.unlink('/test.pcd')
-  pcl.Module.FS.unlink('/test-filtered.pcd')
+  pcl.fs.unlink('/test.pcd')
+  pcl.fs.unlink('/test-filtered.pcd')
   // ...
 }
 
