@@ -1,6 +1,5 @@
 <p align="center">
-  <img style="height: 100px" src="./pcljs.png" >
-  <h1 align="center">PCL.js</h1>
+  <a href="https://pcljs.org" target="_blank"><img style="width: 90%" src="./pcljs.png" title="pcl.js" alt="title="pcl.js"></a>
   <p align="center">用于浏览器的<a href="https://github.com/PointCloudLibrary/pcl" target="_blank">点云库 (PCL)</a>，由 WebAssembly 提供支持。</p>
 </p>
 <p align="center">
@@ -40,9 +39,17 @@
 
 ## 资源
 
-- [文档](https://pcljs.org/docs)
-- [API 参考](https://pcljs.org/api)
-- [示例](https://pcljs.org/examples)
+- [文档](https://pcljs.org/zh-cn/docs/tutorials/intro)
+- [API](https://pcljs.org/zh-cn/docs/api/intro)
+- [示例](https://pcljs.org/zh-cn/examples)
+- [讨论](https://github.com/luoxuhai/pcl.js/discussions)
+
+## 支持的环境
+> https://developer.mozilla.org/en-US/docs/WebAssembly#browser_compatibility
+
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/node.js/node.js_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Node.js | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/deno/deno_128x128.png" alt="Deno" width="48px" height="48px" /> <br/> Deno |
+| --------- | --------- | --------- | --------- | --------- | --------- | --------- |
+| 16+ | 52+ | 57+ | 11+ | 44+ | 11.0.0+| 1.0+
 
 ## 安装
 
@@ -174,14 +181,6 @@ main();
 - [ ] search
 - [ ] segmentation
 - [ ] surface
-
-## 支持的环境
-> https://developer.mozilla.org/en-US/docs/WebAssembly#browser_compatibility
-
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/> Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/> Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/> Opera | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/node.js/node.js_128x128.png" alt="Opera" width="48px" height="48px" /><br/> Node.js | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/deno/deno_128x128.png" alt="Deno" width="48px" height="48px" /> <br/> Deno |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 16+                                                                                                                                                | 52+                                                                                                                                                            | 57+                                                                                                                                                       | 11+                                                                                                                                                        | 44+                                                                                                                                                    | 11.0.0+                                                                                                                                                      | 1.0+                                                                                                                                                |
-
 
 ## 协议
 

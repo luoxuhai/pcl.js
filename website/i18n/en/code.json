@@ -1,5 +1,11 @@
 {
   "examples.statistical-outlier-removal": {
     "message": "Removing Sparse Outliers"
+  },
+  "home.getting-started": {
+    "message": "Getting Started"
+  },
+  "home.tagline": {
+    "message": "☁️ Point Cloud Library (PCL) for browser, powered by WebAssembly."
   }
 }

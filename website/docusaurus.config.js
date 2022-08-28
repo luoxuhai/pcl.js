@@ -61,8 +61,9 @@ const config = {
       navbar: {
         logo: {
           alt: 'Logo',
-          src: 'img/pcljs.png',
+          src: 'img/pcljs-logo.png',
         },
+        title: 'pcl.js',
         items: [
           {
             type: 'doc',
