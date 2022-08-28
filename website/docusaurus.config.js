@@ -9,7 +9,7 @@ const url =
   process.env.NODE_ENV !== 'development'
     ? 'https://pcljs.org'
     : 'http://localhost:3000';
-const title = 'PCL.js';
+const title = 'pcl.js';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -63,7 +63,7 @@ const config = {
           alt: 'Logo',
           src: 'img/pcljs-logo.png',
         },
-        title: 'pcl.js',
+        title,
         items: [
           {
             type: 'doc',

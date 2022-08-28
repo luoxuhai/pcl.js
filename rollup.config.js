@@ -11,9 +11,7 @@ function banner() {
     renderChunk(code) {
       return `/**
  * @license
- * PCL.js v${pkg.version} Copyright ${new Date().getFullYear()} ${
-        pkg.author
-      } and contributors
+ * pcl.js Copyright ${new Date().getFullYear()} ${pkg.author} and contributors
  * SPDX-License-Identifier: MIT
  */
 ${code}`;
