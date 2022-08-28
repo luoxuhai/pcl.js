@@ -1,4 +1,4 @@
-## [1.0.1](https://github.com/luoxuhai/pcl.js/compare/v1.0.0...v1.0.1) (2022-08-27)
+## [1.0.2](2022-08-27)
 
 
 ### Bug Fixes
