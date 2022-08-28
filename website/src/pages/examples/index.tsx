@@ -14,7 +14,8 @@ const exampleList = [
     title: translate({
       message: 'examples.statistical-outlier-removal',
     }),
-    cover: require('@site/static/img/filters_small.jpg').default,
+    cover: require('@site/static/img/examples/StatisticalOutlierRemoval.gif')
+      .default,
     code_url: 'https://stackblitz.com/edit/web-platform-ugzuzp?embed=1',
   },
 ];
