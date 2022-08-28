@@ -1,5 +1,11 @@
 {
   "examples.statistical-outlier-removal": {
     "message": "离群点移除"
+  },
+  "home.getting-started": {
+    "message": "开始"
+  },
+  "home.tagline": {
+    "message": "运行在浏览器中的点云库 (PCL)，由 WebAssembly 提供支持。"
   }
 }
