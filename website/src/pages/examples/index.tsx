@@ -7,8 +7,7 @@ import clsx from 'clsx';
 
 import styles from './index.module.scss';
 
-const commonOptions =
-  'file=page2.html&hideExplorer=1&hideNavigation=1&view=preview';
+const commonOptions = 'file=main.js&hideNavigation=1&view=preview';
 
 const exampleList = [
   {

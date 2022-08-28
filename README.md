@@ -132,7 +132,7 @@ async function main() {
   // Get PCD file
   const pcd = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
   // Write a PCD file
-  pcl.fs.writeFile('/test.pcd', pcd);
+  pcl.fs.writeFile('/test.pcd', new Uint8Array(pcd));
   // Load PCD file, return point cloud object
   const pointCloud = pcl.io.loadPCDFile('/test.pcd');
 

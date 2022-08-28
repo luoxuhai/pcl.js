@@ -8,10 +8,6 @@ class VoxelGrid extends FilterBase {
   public setLeafSize(lx: number, ly: number, lz: number) {
     return this.native.setLeafSize(lx, ly, lz);
   }
-
-  public filter(output: PointCloud) {
-    return this.native.filter(output);
-  }
 }
 
 export default VoxelGrid;

@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://pcljs.org" target="_blank"><img style="height: 100px" src="./pcljs.png" title="pcl.js" alt="title="pcl.js"></a>
+  <a href="https://pcljs.org/zh-cn" target="_blank"><img style="height: 100px" src="./pcljs.png" title="pcl.js" alt="title="pcl.js"></a>
   <p align="center">用于浏览器的<a href="https://github.com/PointCloudLibrary/pcl" target="_blank">点云库 (PCL)</a>，由 WebAssembly 提供支持。</p>
 </p>
 <p align="center">
@@ -45,7 +45,7 @@
 - [讨论](https://github.com/luoxuhai/pcl.js/discussions)
 
 ## 支持的环境
-> https://developer.mozilla.org/en-US/docs/WebAssembly#browser_compatibility
+> https://developer.mozilla.org/zh-CN/docs/WebAssembly#browser_compatibility
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/node.js/node.js_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Node.js | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/deno/deno_128x128.png" alt="Deno" width="48px" height="48px" /> <br/> Deno |
 | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
@@ -130,7 +130,7 @@ async function main() {
   // 获取 PCD 文件
   const pcd = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
   // 写入 PCD 文件
-  pcl.fs.writeFile('/test.pcd', pcd);
+  pcl.fs.writeFile('/test.pcd', new Uint8Array(pcd));
   // 加载 PCD 文件，返回点云对象
   const pointCloud = pcl.io.loadPCDFile('/test.pcd');
 

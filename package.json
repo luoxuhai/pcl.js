@@ -19,7 +19,7 @@
     "test": "jest",
     "lint": "eslint .",
     "prepare": "husky install",
-    "release": "yarn build && semantic-release"
+    "release": "yarn build && dotenv -e .env -- semantic-release --no-ci"
   },
   "lint-staged": {
     "*.{js,ts}": [

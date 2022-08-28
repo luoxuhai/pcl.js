@@ -12,6 +12,10 @@ class FilterBase {
   public getInputCloud(): PointCloud | null {
     return this.native.getInputCloud() as PointCloud | null;
   }
+
+  public filter(output: PointCloud) {
+    return this.native.filter(output);
+  }
 }
 
 export default FilterBase;

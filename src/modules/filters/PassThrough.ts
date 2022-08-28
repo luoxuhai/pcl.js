@@ -40,10 +40,6 @@ class PassThrough extends FilterBase {
   public setUserFilterValue(value: number) {
     return this.native.setNegative(value);
   }
-
-  public filter(output: PointCloud) {
-    return this.native.filter(output);
-  }
 }
 
 export default PassThrough;
