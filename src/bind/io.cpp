@@ -30,6 +30,7 @@ EMSCRIPTEN_BINDINGS(io)
       .property("width", &pcl::PointCloud<pcl::PointXYZ>::width)
       .property("height", &pcl::PointCloud<pcl::PointXYZ>::height)
       .property("points", &pcl::PointCloud<pcl::PointXYZ>::points)
+      .property("is_dense", &pcl::PointCloud<pcl::PointXYZ>::is_dense)
       .function("isOrganized", &pcl::PointCloud<pcl::PointXYZ>::isOrganized)
       .smart_ptr<pcl::PointCloud<pcl::PointXYZ>::ConstPtr>("PointCloudXYZ")
       .smart_ptr<pcl::PointCloud<pcl::PointXYZ>::Ptr>("PointCloudXYZ");

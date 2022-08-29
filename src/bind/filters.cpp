@@ -10,6 +10,31 @@ typedef pcl::PointXYZ PointCloudXYZ;
 
 using namespace emscripten;
 
+struct FilterLimits
+{
+    float min;
+    float max;
+};
+
+FilterLimits getFilterLimits(pcl::PassThrough<PointCloudXYZ> &passThrough)
+{
+    float limit_min;
+    float limit_max;
+    passThrough.getFilterLimits(limit_min, limit_max);
+
+    FilterLimits limits = {.min = limit_min, .max = limit_max};
+
+    return limits;
+}
+
+pcl::PointCloud<PointCloudXYZ> filter(pcl::Filter<PointCloudXYZ> &filter)
+{
+    pcl::PointCloud<PointCloudXYZ> cloud;
+    filter.filter(cloud);
+
+    return cloud;
+}
+
 EMSCRIPTEN_BINDINGS(filters)
 {
     // PassThrough
@@ -19,10 +44,7 @@ EMSCRIPTEN_BINDINGS(filters)
         .function("setFilterFieldName", &pcl::PassThrough<PointCloudXYZ>::setFilterFieldName)
         .function("getFilterFieldName", &pcl::PassThrough<PointCloudXYZ>::getFilterFieldName)
         .function("setFilterLimits", &pcl::PassThrough<PointCloudXYZ>::setFilterLimits)
-        .function("getFilterLimits",
-                  reinterpret_cast<void (pcl::PassThrough<PointCloudXYZ>::*)(const float &, const float &) const>(&pcl::PassThrough<PointCloudXYZ>::getFilterLimits));
-    // TODO: getFilterLimits
-    // .function("getFilterLimits", &pcl::PassThrough<PointCloudXYZ>::setFilterLimits);
+        .function("getFilterLimits", &getFilterLimits);
 
     class_<pcl::FilterIndices<PointCloudXYZ>, base<pcl::Filter<PointCloudXYZ>>>("FilterIndices")
         .function("setNegative", &pcl::FilterIndices<PointCloudXYZ>::setNegative)
@@ -32,7 +54,7 @@ EMSCRIPTEN_BINDINGS(filters)
         .function("setUserFilterValue", &pcl::FilterIndices<PointCloudXYZ>::setUserFilterValue);
 
     class_<pcl::Filter<PointCloudXYZ>, base<pcl::PCLBase<PointCloudXYZ>>>("Filter")
-        .function("filter", &pcl::Filter<PointCloudXYZ>::filter);
+        .function("filter", &filter);
 
     class_<pcl::PCLBase<PointCloudXYZ>>("PCLBase")
         .function("setInputCloud", &pcl::PCLBase<PointCloudXYZ>::setInputCloud)
@@ -62,4 +84,8 @@ EMSCRIPTEN_BINDINGS(filters)
         .function("getRadiusSearch", &pcl::RadiusOutlierRemoval<PointCloudXYZ>::getRadiusSearch)
         .function("setMinNeighborsInRadius", &pcl::RadiusOutlierRemoval<PointCloudXYZ>::setMinNeighborsInRadius)
         .function("getMinNeighborsInRadius", &pcl::RadiusOutlierRemoval<PointCloudXYZ>::getMinNeighborsInRadius);
+
+    value_array<FilterLimits>("FilterLimits")
+        .element(&FilterLimits::min)
+        .element(&FilterLimits::max);
 }

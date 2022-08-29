@@ -74,10 +74,10 @@ async function main() {
   pass.setInputCloud(pointCloud);
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
-  pass.filter(pointCloud);
+  const filteredPointCloud = pass.filter(pointCloud);
 
   // Save filtered point cloud objects as PCD files
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', pointCloud);
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', filteredPointCloud);
   // Read PCD file content, the content is ArrayBuffer
   const pcd = pcl.fs.readFile('/test-filtered.pcd');
 
