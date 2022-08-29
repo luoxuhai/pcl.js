@@ -1,6 +1,6 @@
-import FilterBase from './FilterBase';
+import FilterIndices from './FilterIndices';
 
-class PassThrough extends FilterBase {
+class PassThrough extends FilterIndices {
   constructor(extractRemovedIndices = false) {
     super(new __PCLCore__.PassThrough(extractRemovedIndices));
   }
@@ -20,26 +20,6 @@ class PassThrough extends FilterBase {
   // public getFilterLimits() {
   //   this.native.getFilterLimits(min, max)
   // }
-
-  public setNegative(negative: boolean) {
-    return this.native.setNegative(negative);
-  }
-
-  public getNegative(): boolean {
-    return this.native.getNegative();
-  }
-
-  public setKeepOrganized(keepOrganized: boolean) {
-    return this.native.setNegative(keepOrganized);
-  }
-
-  public getKeepOrganized(): boolean {
-    return this.native.getKeepOrganized();
-  }
-
-  public setUserFilterValue(value: number) {
-    return this.native.setNegative(value);
-  }
 }
 
 export default PassThrough;

@@ -2,6 +2,7 @@ import initPCLCore from '../bind/build/pcl-core';
 import fs from '../modules/fs';
 import io from '../modules/io';
 import filters from '../modules/filters';
+import registration from '../modules/registration';
 
 interface InitOptions {
   /**
@@ -66,6 +67,7 @@ async function init(options?: InitOptions) {
     fs: fs(),
     io,
     filters,
+    registration,
   };
 }
 

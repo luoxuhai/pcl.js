@@ -37,10 +37,10 @@
 
 **pcl.js** 是在浏览器中运行的 [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。[Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) 是一个独立、大型、开源的 2D/3D 图像和点云处理库。
 
-**使用 StatisticalOutlierRemoval 过滤器去除异常值演示**
+**使用 [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) 过滤器去除点云数据中的异常值演示**
 <p align="center">
   <a href="https://pcljs.org/zh-cn/examples/detail?code_url=https%3A%2F%2Fstackblitz.com%2Fedit%2Fweb-platform-ugzuzp%3Fembed%3D1%26file%3Dmain.js%26hideNavigation%3D1%26view%3Dpreview">
-    <img style="width: 80%" src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
+    <img style="width: 90%" src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
   </a>
 </p>
 

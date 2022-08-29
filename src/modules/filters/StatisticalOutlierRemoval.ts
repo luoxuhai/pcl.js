@@ -1,6 +1,6 @@
-import FilterBase from './FilterBase';
+import FilterIndices from './FilterIndices';
 
-class StatisticalOutlierRemoval extends FilterBase {
+class StatisticalOutlierRemoval extends FilterIndices {
   constructor(extractRemovedIndices = false) {
     super(new __PCLCore__.StatisticalOutlierRemoval(extractRemovedIndices));
   }
