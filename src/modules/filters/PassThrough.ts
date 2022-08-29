@@ -17,9 +17,9 @@ class PassThrough extends FilterIndices {
     return this.native.setFilterLimits(min, max);
   }
 
-  // public getFilterLimits() {
-  //   this.native.getFilterLimits(min, max)
-  // }
+  public getFilterLimits(): [number, number] {
+    return this.native.getFilterLimits();
+  }
 }
 
 export default PassThrough;

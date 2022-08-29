@@ -17,8 +17,22 @@ class IterativeClosestPoint {
     return this.native.getFinalTransformation() as string | null;
   }
 
+  public getFitnessScore(): number {
+    return this.native.getFitnessScore();
+  }
+
   public hasConverged() {
     return this.native.hasConverged();
+  }
+
+  public setUseReciprocalCorrespondences(useReciprocalCorrespondence: boolean) {
+    return this.native.setUseReciprocalCorrespondences(
+      useReciprocalCorrespondence,
+    );
+  }
+
+  public getUseReciprocalCorrespondences(): boolean {
+    return this.native.getUseReciprocalCorrespondences();
   }
 
   public align() {

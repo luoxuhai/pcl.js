@@ -73,10 +73,10 @@ async function main() {
   pass.setInputCloud(pointCloud);
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
-  pass.filter(pointCloud);
+  const filteredPointCloud = pass.filter(pointCloud);
 
   // 将过滤后的点云对象保存为 PCD 文件
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', pointCloud);
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', filteredPointCloud);
   // 读取 PCD 文件内容， 内容为 ArrayBuffer
   const pcd = pcl.fs.readFile('/test-filtered.pcd');
 

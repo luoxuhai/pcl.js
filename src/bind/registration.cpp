@@ -7,12 +7,27 @@ using namespace emscripten;
 
 typedef pcl::PointXYZ PointCloudXYZ;
 
+double getFitnessScore(pcl::Registration<PointCloudXYZ, PointCloudXYZ> &registration)
+{
+  return registration.getFitnessScore();
+}
+
+pcl::PointCloud<PointCloudXYZ> align(pcl::Registration<PointCloudXYZ, PointCloudXYZ> &registration)
+{
+  pcl::PointCloud<PointCloudXYZ> cloud;
+
+  registration.align(cloud);
+
+  return cloud;
+}
+
 EMSCRIPTEN_BINDINGS(registration)
 {
   class_<pcl::Registration<PointCloudXYZ, PointCloudXYZ>>("Registration")
       .function("hasConverged", &pcl::Registration<PointCloudXYZ, PointCloudXYZ>::hasConverged)
-      .function("getFinalTransformation", &pcl::Registration<PointCloudXYZ, PointCloudXYZ>::getFinalTransformation);
-      .function("align", &pcl::Registration<PointCloudXYZ, PointCloudXYZ>::align);
+      .function("getFinalTransformation", &pcl::Registration<PointCloudXYZ, PointCloudXYZ>::getFinalTransformation)
+      .function("getFitnessScore", &getFitnessScore)
+      .function("align", &align);
 
   // IterativeClosestPoint
 
