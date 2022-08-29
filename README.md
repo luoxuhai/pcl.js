@@ -38,10 +38,10 @@
 
 **pcl.js** is a [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/). [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) is a standalone, large scale, open project for 2D/3D image and point cloud processing. 
 
-**Removing outliers using a StatisticalOutlierRemoval filter demo**
+**Removing outliers from point cloud data using a [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) filter demo**
 <p align="center">
   <a href="https://pcljs.org/examples/detail?code_url=https%3A%2F%2Fstackblitz.com%2Fedit%2Fweb-platform-ugzuzp%3Fembed%3D1%26file%3Dmain.js%26hideNavigation%3D1%26view%3Dpreview">
-    <img style="width: 80%" src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
+    <img style="width: 90%" src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
   </a>
 </p>
 

@@ -1,6 +1,6 @@
-import FilterBase from './FilterBase';
+import FilterIndices from './FilterIndices';
 
-class RadiusOutlierRemoval extends FilterBase {
+class RadiusOutlierRemoval extends FilterIndices {
   constructor(extractRemovedIndices = false) {
     super(new __PCLCore__.RadiusOutlierRemoval(extractRemovedIndices));
   }
