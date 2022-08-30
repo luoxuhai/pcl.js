@@ -9,11 +9,13 @@ import pkg from './package.json';
 function banner() {
   return {
     renderChunk(code) {
-      return `/**
- * @license
- * pcl.js Copyright ${new Date().getFullYear()} ${pkg.author} and contributors
- * SPDX-License-Identifier: MIT
- */
+      return `/*!
+* pcl.js - v${pkg.version}
+*
+* Copyright (c) ${new Date().getFullYear()} pcl.js Authors
+* SPDX-License-Identifier: MIT
+*/
+
 ${code}`;
     },
   };
