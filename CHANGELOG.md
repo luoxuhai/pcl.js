@@ -1,4 +1,12 @@
-## [1.0.2](2022-08-27)
+# 1.0.3 (2022-08-30)
+
+
+### Features
+
+* Add getFilterLimits methods to PassThrough ([2351435](https://github.com/luoxuhai/pcl.js/commit/23514350a5f4fc2ec6aa5ba822eb7cd5ec49fe3f))
+* Bind IterativeClosestPoint of PCL to javascript ([c90df44](https://github.com/luoxuhai/pcl.js/commit/c90df444a1dfce3844b984e4bf986f8b94a2accd))
+
+# 1.0.2 (2022-08-27)
 
 
 ### Bug Fixes
