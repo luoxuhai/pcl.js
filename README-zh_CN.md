@@ -72,15 +72,11 @@ yarn add pcl.js
 
 ### CDN
 
-#### 开发环境
-
 ```html
+<!-- 开发环境 -->
 <script src="https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js"><script>
-```
 
-#### 生产环境
-
-```html
+<!-- 生产环境 -->
 <script src="https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js"><script>
 ```
 
@@ -165,7 +161,7 @@ main();
 
 ## 资源大小
 
-> PCL.js Version: latest
+> pcl.js version: latest
 
 | 资源          |                                                    链接                                                     |     大小      |
 | :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |

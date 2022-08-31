@@ -74,7 +74,7 @@ async function main() {
   pass.setInputCloud(pointCloud);
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
-  const filteredPointCloud = pass.filter(pointCloud);
+  const filteredPointCloud = pass.filter();
 
   // Save filtered point cloud objects as PCD files
   pcl.io.savePCDFileASCII('/test-filtered.pcd', filteredPointCloud);

@@ -73,15 +73,11 @@ yarn add pcl.js
 
 ### CDN
 
-#### Development
-
 ```html
+<!-- Development -->
 <script src="https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js"><script>
-```
 
-#### Production
-
-```html
+<!-- Production -->
 <script src="https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.min.js"><script>
 ```
 
@@ -168,7 +164,7 @@ main();
 
 ## Bundle Size
 
-> PCL.js Version: latest
+> pcl.js version: latest
 
 | Source        |                                                    Link                                                     |     Size      |
 | :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |
