@@ -10,6 +10,7 @@
  <a href="https://packagephobia.com/result?p=pcl.js">
     <img src="https://packagephobia.com/badge?p=pcl.js" alt="Bundle Size">
   </a>
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fluoxuhai%2Fpcl.js?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fluoxuhai%2Fpcl.js.svg?type=shield"/></a>
     <a href="https://badge.fury.io/js/pcl.js">
     <img src="https://badge.fury.io/js/pcl.js.svg" alt="npm version">
   </a>
@@ -33,6 +34,9 @@
 <p align="center">
   English | <a href="./README-zh_CN.md">简体中文</a>
 </p>
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fluoxuhai%2Fpcl.js.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fluoxuhai%2Fpcl.js?ref=badge_large)
 
 ## Overview
 
