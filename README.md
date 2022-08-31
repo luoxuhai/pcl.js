@@ -188,6 +188,18 @@ main();
 - [ ] segmentation
 - [ ] surface
 
+## Roadmap
+
+Check out our [roadmap](https://github.com/users/luoxuhai/projects/3) to get informed of the latest features released and the upcoming ones.
+
+## Contributing
+
+Please make sure to read the [Contributing Guide](CONTRIBUTING.md) before making a pull request.
+
+Thank you to all the people who already contributed to pcl.js!
+
+[![Contributors](https://contrib.rocks/image?repo=luoxuhai/pcl.js)](https://github.com/luoxuhai/pcl.js/graphs/contributors)
+
 ## License
 
 [MIT](https://github.com/luoxuhai/pcl.js/blob/master/LICENSE)

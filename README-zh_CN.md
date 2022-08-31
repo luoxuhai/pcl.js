@@ -185,6 +185,19 @@ main();
 - [ ] segmentation
 - [ ] surface
 
+## 路线图
+
+查看我们的 [Roadmap](https://github.com/users/luoxuhai/projects/3) 以了解最新发布的功能和即将推出的功能。
+
+## 贡献
+
+请阅读我们的 [贡献指南](CONTRIBUTING-zh_CN.md) 以了解我们的开发过程。
+
+感谢所有为 pcl.js 做出贡献的人！
+
+[![贡献者](https://contrib.rocks/image?repo=luoxuhai/pcl.js)](https://github.com/luoxuhai/pcl.js/graphs/contributors)
+
+
 ## 协议
 
 [MIT](https://github.com/luoxuhai/pcl.js/blob/master/LICENSE)
