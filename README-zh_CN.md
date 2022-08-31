@@ -51,6 +51,11 @@
 - [示例](https://pcljs.org/zh-cn/examples)
 - [讨论](https://github.com/luoxuhai/pcl.js/discussions)
 
+## 特性
+
+- 用 TypeScript 编写，具有可预测的静态类型
+- 还有很多很多！🚀
+
 ## 支持的环境
 > https://developer.mozilla.org/zh-CN/docs/WebAssembly#browser_compatibility
 

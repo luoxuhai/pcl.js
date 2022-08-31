@@ -52,6 +52,11 @@
 - [Examples](https://pcljs.org/examples)
 - [Discussions](https://github.com/luoxuhai/pcl.js/discussions)
 
+## Features
+
+- Written in TypeScript, with predictable static typing
+- And many, many more! 🚀
+
 ## Environment Support
 > https://developer.mozilla.org/en-US/docs/WebAssembly#browser_compatibility
 
