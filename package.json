@@ -57,6 +57,7 @@
     "@commitlint/config-conventional": "^17.0.3",
     "@release-it/conventional-changelog": "^5.1.0",
     "@types/jest": "^28.1.6",
+    "@types/three": "^0.143.2",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "dotenv-cli": "^6.0.0",
@@ -82,5 +83,8 @@
     "rollup-plugin-typescript2": "^0.32.1",
     "ts-jest": "^28.0.7",
     "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "three": "^0.144.0"
   }
 }
