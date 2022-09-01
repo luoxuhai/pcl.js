@@ -3,18 +3,19 @@ import { terser } from 'rollup-plugin-terser';
 import dts from 'rollup-plugin-dts';
 import bundleSize from 'rollup-plugin-bundle-size';
 import copy from 'rollup-plugin-copy';
+import replace from '@rollup/plugin-replace';
 
 import pkg from './package.json';
 
 function banner() {
   return {
     renderChunk(code) {
-      return `/*!
-* pcl.js - v${pkg.version}
-*
-* Copyright (c) ${new Date().getFullYear()} pcl.js Authors
-* SPDX-License-Identifier: MIT
-*/
+      return `/**
+ * pcl.js - v${pkg.version}
+ *
+ * Copyright (c) ${new Date().getFullYear()} pcl.js Authors
+ * SPDX-License-Identifier: MIT
+ */
 
 ${code}`;
     },
@@ -50,11 +51,21 @@ const config = [
         file: `dist/pcl.min.js`,
         format: 'iife',
         name: 'PCL',
-        plugins: [replaceCode(), terser()],
+        plugins: [
+          replaceCode(),
+          terser({
+            compress: {
+              drop_console: true,
+            },
+          }),
+        ],
       },
     ],
     plugins: [
       replaceCode(),
+      replace({
+        __version__: pkg.version,
+      }),
       typescript({
         useTsconfigDeclarationDir: true,
         tsconfig: './tsconfig.json',

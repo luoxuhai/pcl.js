@@ -4,16 +4,18 @@
  */
 
 export default () => {
-  const writeFile = __PCLCore__.FS.writeFile;
-  const readFile = __PCLCore__.FS.readFile;
-  const unlink = __PCLCore__.FS.unlink;
-  const rename = __PCLCore__.FS.rename;
-  const mkdir = __PCLCore__.FS.mkdir;
-  const rmdir = __PCLCore__.FS.rmdir;
-  const readdir = __PCLCore__.FS.readdir;
-  const stat = __PCLCore__.FS.stat;
-  const isFile = __PCLCore__.FS.isFile;
-  const isDir = __PCLCore__.FS.isDir;
+  const { FS } = __PCLCore__;
+
+  const writeFile = FS.writeFile;
+  const readFile = FS.readFile;
+  const unlink = FS.unlink;
+  const rename = FS.rename;
+  const mkdir = FS.mkdir;
+  const rmdir = FS.rmdir;
+  const readdir = FS.readdir;
+  const stat = FS.stat;
+  const isFile = FS.isFile;
+  const isDir = FS.isDir;
 
   return {
     mkdir,
