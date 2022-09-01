@@ -19,7 +19,7 @@
     "test": "jest",
     "lint": "eslint .",
     "prepare": "husky install",
-    "release": "dotenv -e .env -- release-it"
+    "release": "release-it"
   },
   "lint-staged": {
     "*.{js,ts}": [
@@ -56,10 +56,10 @@
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@release-it/conventional-changelog": "^5.1.0",
+    "@rollup/plugin-replace": "^4.0.0",
     "@types/jest": "^28.1.6",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
-    "dotenv-cli": "^6.0.0",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",

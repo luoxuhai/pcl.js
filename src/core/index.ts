@@ -44,10 +44,12 @@ async function init(options?: InitOptions) {
     return;
   }
 
-  console.log('PCL initialized successfully.');
+  const PCL_VERSION = Module.PCL_VERSION;
+  console.log('pcl.js version: __version__');
+  console.log(`PCL version: ${PCL_VERSION}`);
 
   const info = {
-    version: Module.PCL_VERSION,
+    PCL_VERSION,
   };
 
   return {
