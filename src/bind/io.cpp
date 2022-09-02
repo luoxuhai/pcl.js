@@ -3,25 +3,22 @@
 #include <pcl/point_types.h>
 #include <emscripten/bind.h>
 
-using namespace emscripten;
+using namespace pcl;
 
-pcl::PointCloud<pcl::PointXYZ>::Ptr loadPCDFile(const std::string &file_name)
+PointCloud<PointXYZ>::Ptr loadPCDFile(const std::string &file_name)
 {
-  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_ptr(new pcl::PointCloud<pcl::PointXYZ>);
+  PointCloud<PointXYZ>::Ptr cloud_ptr(new PointCloud<PointXYZ>);
 
-  int flag = pcl::io::loadPCDFile(file_name, *cloud_ptr);
+  int flag = io::loadPCDFile(file_name, *cloud_ptr);
 
   return cloud_ptr;
 }
 
-int savePCDFile(const std::string &file_name, const pcl::PointCloud<pcl::PointXYZ> &cloud, bool binary_mode = false)
-{
-  return pcl::io::savePCDFile(file_name, cloud, binary_mode);
-}
+using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(io)
 {
   function("io.loadPCDFile", &loadPCDFile);
-  function("io.savePCDFile", &savePCDFile);
-  function("io.savePCDFileBinaryCompressed", &pcl::io::savePCDFileBinaryCompressed<pcl::PointXYZ>);
+  function("io.savePCDFile", select_overload<int(const std::string &, const PointCloud<PointXYZ> &, bool)>(&io::savePCDFile));
+  function("io.savePCDFileBinaryCompressed", &io::savePCDFileBinaryCompressed<PointXYZ>);
 }

@@ -19,7 +19,11 @@ include_directories(${PCL_INCLUDE} ${BOOST_INCLUDE} ${EIGEN_INCLUDE} ${FLANN_INC
 link_directories(${PCL_LIB} ${BOOST_LIB} ${FLANN_LIB})
 
 set(PCL_LINK_LIBS pcl_common pcl_io pcl_features pcl_filters pcl_kdtree pcl_stereo pcl_keypoints pcl_octree pcl_search pcl_segmentation pcl_surface pcl_tracking pcl_ml)
-set(SRCS main.cpp io.cpp filters.cpp kdtree.cpp octree.cpp keypoints.cpp registration.cpp point_types.cpp)
+file(GLOB SRCS *.cpp)
+
+foreach(SRC IN LISTS SRCS)
+    message(STATUS ${SRC})
+endforeach(SRC)
 
 add_executable(${PROJECT_NAME} ${SRCS})
 target_link_libraries(${PROJECT_NAME} ${PCL_LINK_LIBS} flann_cpp_s boost_filesystem boost_regex boost_system boost_date_time boost_iostreams)

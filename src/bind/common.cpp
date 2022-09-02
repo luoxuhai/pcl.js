@@ -1,7 +1,7 @@
-#include <iostream>
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 #include <emscripten/bind.h>
+#include "embind.cpp"
 
 using namespace emscripten;
 
@@ -17,5 +17,5 @@ EMSCRIPTEN_BINDINGS(common)
       .smart_ptr<pcl::PointCloud<pcl::PointXYZ>::ConstPtr>("PointCloudXYZ")
       .smart_ptr<pcl::PointCloud<pcl::PointXYZ>::Ptr>("PointCloudXYZ");
 
-  register_vector<pcl::PointXYZ, Eigen::aligned_allocator<pcl::PointXYZ>>("Points");
+  register_vector_plus<pcl::PointXYZ, Eigen::aligned_allocator<pcl::PointXYZ>>("Points");
 }
