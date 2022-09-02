@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://pcljs.org" target="_blank"><img style="height: 100px" src="./pcljs.png" title="pcl.js" alt="title="pcl.js"></a>
+  <a href="https://pcljs.org" target="_blank"><img style="max-height: 100px" src="./pcljs.png" title="pcl.js" alt="title="pcl.js"></a>
   <p align="center"><a href="https://github.com/PointCloudLibrary/pcl" target="_blank">Point Cloud Library (PCL)</a> for browser, powered by WebAssembly.</p>
 </p>
 
@@ -41,7 +41,7 @@
 **Removing outliers from point cloud data using a [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) filter demo**
 <p align="center">
   <a href="https://pcljs.org/examples/detail?code_url=https%3A%2F%2Fstackblitz.com%2Fedit%2Fweb-platform-ugzuzp%3Fembed%3D1%26file%3Dmain.js%26hideNavigation%3D1%26view%3Dpreview">
-    <img style="width: 90%" src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
+    <img src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
   </a>
 </p>
 
