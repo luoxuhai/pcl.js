@@ -1,8 +1,11 @@
 import FilterIndices from './FilterIndices';
+import { PointTypesUnion, PointTypes, PointTypesMerge } from '../point-types';
 
-class PassThrough extends FilterIndices {
-  constructor(extractRemovedIndices = false) {
-    super(new __PCLCore__.PassThrough(extractRemovedIndices));
+class PassThrough<
+  T extends Partial<PointTypesUnion> = Partial<PointTypesMerge>,
+> extends FilterIndices<T> {
+  constructor(pointType = PointTypes.PointXYZ, extractRemovedIndices = false) {
+    super(new __PCLCore__[`PassThrough${pointType}`](extractRemovedIndices));
   }
 
   public setFilterFieldName(fieldName: string) {

@@ -3,6 +3,7 @@ import fs from '../modules/fs';
 import io from '../modules/io';
 import filters from '../modules/filters';
 import registration from '../modules/registration';
+import common from '../modules/common';
 
 interface InitOptions {
   /**
@@ -44,7 +45,7 @@ async function init(options?: InitOptions) {
     return;
   }
 
-  const PCL_VERSION = Module.PCL_VERSION;
+  const PCL_VERSION: string = Module.PCL_VERSION;
   console.log('pcl.js version: __version__');
   console.log(`PCL version: ${PCL_VERSION}`);
 
@@ -70,11 +71,11 @@ async function init(options?: InitOptions) {
     io,
     filters,
     registration,
+    common,
   };
 }
 
-const PCL = {
-  init,
-};
+const VERSION = '__version__';
 
-export default PCL;
+export { init, VERSION };
+export * from '../modules/point-types/type';

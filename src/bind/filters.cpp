@@ -6,9 +6,59 @@
 #include <pcl/filters/radius_outlier_removal.h>
 #include <emscripten/bind.h>
 
-typedef pcl::PointXYZ PointCloudXYZ;
+// define PassThrough
+#define BIND_PASS_THROUGH(PointT)                                                             \
+    class_<pcl::PassThrough<PointT>, base<pcl::FilterIndices<PointT>>>("PassThrough" #PointT) \
+        .constructor<bool>()                                                                  \
+        .function("setFilterFieldName", &pcl::PassThrough<PointT>::setFilterFieldName)        \
+        .function("getFilterFieldName", &pcl::PassThrough<PointT>::getFilterFieldName)        \
+        .function("setFilterLimits", &pcl::PassThrough<PointT>::setFilterLimits)              \
+        .function("getFilterLimits", &getFilterLimits<PointT>);
 
-using namespace emscripten;
+// define FilterIndices
+#define BIND_FILTER_INDICES(PointT)                                                        \
+    class_<pcl::FilterIndices<PointT>, base<pcl::Filter<PointT>>>("FilterIndices" #PointT) \
+        .function("setNegative", &pcl::FilterIndices<PointT>::setNegative)                 \
+        .function("getNegative", &pcl::FilterIndices<PointT>::getNegative)                 \
+        .function("setKeepOrganized", &pcl::FilterIndices<PointT>::setKeepOrganized)       \
+        .function("getKeepOrganized", &pcl::FilterIndices<PointT>::getKeepOrganized)       \
+        .function("setUserFilterValue", &pcl::FilterIndices<PointT>::setUserFilterValue);
+
+// define Filter
+#define BIND_FILTER(PointT)                                                   \
+    class_<pcl::Filter<PointT>, base<pcl::PCLBase<PointT>>>("Filter" #PointT) \
+        .function("filter", &filter<PointT>);
+
+// define PCLBase
+#define BIND_PCL_BASE(PointT)                                            \
+    class_<pcl::PCLBase<PointT>>("PCLBase" #PointT)                      \
+        .function("setInputCloud", &pcl::PCLBase<PointT>::setInputCloud) \
+        .function("getInputCloud", &pcl::PCLBase<PointT>::getInputCloud);
+
+// define VoxelGrid
+#define BIND_VOXEL_GRID(PointT)                                                    \
+    class_<pcl::VoxelGrid<PointT>, base<pcl::Filter<PointT>>>("VoxelGrid" #PointT) \
+        .constructor()                                                             \
+        .function("setLeafSize",                                                   \
+                  select_overload<void(float, float, float)>(&pcl::VoxelGrid<PointT>::setLeafSize));
+
+// define StatisticalOutlierRemoval
+#define BIND_SOR(PointT)                                                                                                  \
+    class_<pcl::StatisticalOutlierRemoval<PointT>, base<pcl::FilterIndices<PointT>>>("StatisticalOutlierRemoval" #PointT) \
+        .constructor<bool>()                                                                                              \
+        .function("setMeanK", &pcl::StatisticalOutlierRemoval<PointT>::setMeanK)                                          \
+        .function("getMeanK", &pcl::StatisticalOutlierRemoval<PointT>::getMeanK)                                          \
+        .function("setStddevMulThresh", &pcl::StatisticalOutlierRemoval<PointT>::setStddevMulThresh)                      \
+        .function("getStddevMulThresh", &pcl::StatisticalOutlierRemoval<PointT>::getStddevMulThresh);
+
+// define RadiusOutlierRemoval
+#define BIND_ROR(PointT)                                                                                        \
+    class_<pcl::RadiusOutlierRemoval<PointT>, base<pcl::FilterIndices<PointT>>>("RadiusOutlierRemoval" #PointT) \
+        .constructor<bool>()                                                                                    \
+        .function("setRadiusSearch", &pcl::RadiusOutlierRemoval<PointT>::setRadiusSearch)                       \
+        .function("getRadiusSearch", &pcl::RadiusOutlierRemoval<PointT>::getRadiusSearch)                       \
+        .function("setMinNeighborsInRadius", &pcl::RadiusOutlierRemoval<PointT>::setMinNeighborsInRadius)       \
+        .function("getMinNeighborsInRadius", &pcl::RadiusOutlierRemoval<PointT>::getMinNeighborsInRadius);
 
 struct FilterLimits
 {
@@ -16,7 +66,8 @@ struct FilterLimits
     float max;
 };
 
-FilterLimits getFilterLimits(pcl::PassThrough<PointCloudXYZ> &passThrough)
+template <typename PointT>
+FilterLimits getFilterLimits(pcl::PassThrough<PointT> &passThrough)
 {
     float limit_min;
     float limit_max;
@@ -27,63 +78,54 @@ FilterLimits getFilterLimits(pcl::PassThrough<PointCloudXYZ> &passThrough)
     return limits;
 }
 
-pcl::PointCloud<PointCloudXYZ> filter(pcl::Filter<PointCloudXYZ> &filter)
+template <typename PointT>
+typename pcl::PointCloud<PointT>::Ptr filter(pcl::Filter<PointT> &filter, typename pcl::PointCloud<PointT>::Ptr &output)
 {
-    pcl::PointCloud<PointCloudXYZ> cloud;
-    filter.filter(cloud);
-
-    return cloud;
+    if (output == nullptr)
+    {
+        pcl::PointCloud<PointT> cloud;
+        filter.filter(cloud);
+        return cloud.makeShared();
+    }
+    else
+    {
+        filter.filter(*output);
+        return output;
+    }
 }
+
+using namespace pcl;
+using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(filters)
 {
-    // PassThrough
+    // Bind PassThrough
+    BIND_PASS_THROUGH(PointXYZ);
+    BIND_PASS_THROUGH(PointXYZI);
 
-    class_<pcl::PassThrough<PointCloudXYZ>, base<pcl::FilterIndices<PointCloudXYZ>>>("PassThrough")
-        .constructor<bool>()
-        .function("setFilterFieldName", &pcl::PassThrough<PointCloudXYZ>::setFilterFieldName)
-        .function("getFilterFieldName", &pcl::PassThrough<PointCloudXYZ>::getFilterFieldName)
-        .function("setFilterLimits", &pcl::PassThrough<PointCloudXYZ>::setFilterLimits)
-        .function("getFilterLimits", &getFilterLimits);
+    // Bind FilterIndices
+    BIND_FILTER_INDICES(PointXYZ);
+    BIND_FILTER_INDICES(PointXYZI);
 
-    class_<pcl::FilterIndices<PointCloudXYZ>, base<pcl::Filter<PointCloudXYZ>>>("FilterIndices")
-        .function("setNegative", &pcl::FilterIndices<PointCloudXYZ>::setNegative)
-        .function("getNegative", &pcl::FilterIndices<PointCloudXYZ>::getNegative)
-        .function("setKeepOrganized", &pcl::FilterIndices<PointCloudXYZ>::setKeepOrganized)
-        .function("getKeepOrganized", &pcl::FilterIndices<PointCloudXYZ>::getKeepOrganized)
-        .function("setUserFilterValue", &pcl::FilterIndices<PointCloudXYZ>::setUserFilterValue);
+    // Bind Filter
+    BIND_FILTER(PointXYZ);
+    BIND_FILTER(PointXYZI);
 
-    class_<pcl::Filter<PointCloudXYZ>, base<pcl::PCLBase<PointCloudXYZ>>>("Filter")
-        .function("filter", &filter);
+    // Bind PCLBase
+    BIND_PCL_BASE(PointXYZ);
+    BIND_PCL_BASE(PointXYZI);
 
-    class_<pcl::PCLBase<PointCloudXYZ>>("PCLBase")
-        .function("setInputCloud", &pcl::PCLBase<PointCloudXYZ>::setInputCloud)
-        .function("getInputCloud", &pcl::PCLBase<PointCloudXYZ>::getInputCloud);
+    // Bind VoxelGrid
+    BIND_VOXEL_GRID(PointXYZ);
+    BIND_VOXEL_GRID(PointXYZI);
 
-    // VoxelGrid
+    // Bind StatisticalOutlierRemoval
+    BIND_SOR(PointXYZ);
+    BIND_SOR(PointXYZI);
 
-    class_<pcl::VoxelGrid<PointCloudXYZ>, base<pcl::Filter<PointCloudXYZ>>>("VoxelGrid")
-        .constructor()
-        .function("setLeafSize",
-                  select_overload<void(float, float, float)>(&pcl::VoxelGrid<PointCloudXYZ>::setLeafSize));
-
-    // StatisticalOutlierRemoval
-
-    class_<pcl::StatisticalOutlierRemoval<PointCloudXYZ>, base<pcl::FilterIndices<PointCloudXYZ>>>("StatisticalOutlierRemoval")
-        .constructor<bool>()
-        .function("setMeanK", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::setMeanK)
-        .function("getMeanK", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::getMeanK)
-        .function("setStddevMulThresh", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::setStddevMulThresh)
-        .function("getStddevMulThresh", &pcl::StatisticalOutlierRemoval<PointCloudXYZ>::getStddevMulThresh);
-
-    // RadiusOutlierRemoval
-
-    class_<pcl::RadiusOutlierRemoval<PointCloudXYZ>, base<pcl::FilterIndices<PointCloudXYZ>>>("RadiusOutlierRemoval")
-        .constructor<bool>()
-        .function("setRadiusSearch", &pcl::RadiusOutlierRemoval<PointCloudXYZ>::setRadiusSearch)
-        .function("getRadiusSearch", &pcl::RadiusOutlierRemoval<PointCloudXYZ>::getRadiusSearch)
-        .function("setMinNeighborsInRadius", &pcl::RadiusOutlierRemoval<PointCloudXYZ>::setMinNeighborsInRadius)
-        .function("getMinNeighborsInRadius", &pcl::RadiusOutlierRemoval<PointCloudXYZ>::getMinNeighborsInRadius);
+    // Bind RadiusOutlierRemoval
+    BIND_ROR(PointXYZ);
+    BIND_ROR(PointXYZI);
 
     value_array<FilterLimits>("FilterLimits")
         .element(&FilterLimits::min)

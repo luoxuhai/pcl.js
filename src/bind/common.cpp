@@ -3,19 +3,37 @@
 #include <emscripten/bind.h>
 #include "embind.cpp"
 
+#define BIND_POINT_CLOUD(PointT)                                   \
+  class_<PointCloud<PointT>>("PointCloud" #PointT)                 \
+      .constructor<>()                                             \
+      .property("width", &PointCloud<PointT>::width)               \
+      .property("height", &PointCloud<PointT>::height)             \
+      .property("points", &PointCloud<PointT>::points)             \
+      .property("is_dense", &PointCloud<PointT>::is_dense)         \
+      .function("isOrganized", &PointCloud<PointT>::isOrganized)   \
+      .function("clear", &PointCloud<PointT>::clear)               \
+      .function("makeShared", &PointCloud<PointT>::makeShared)     \
+      .smart_ptr<PointCloud<PointT>::ConstPtr>("ConstPtr" #PointT) \
+      .smart_ptr<PointCloud<PointT>::Ptr>("Ptr" #PointT);
+
+#define BIND_POINTS(PointT) register_vector_plus<PointT, Eigen::aligned_allocator<PointT>>("Points" #PointT);
+
+using namespace pcl;
 using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(common)
 {
-  class_<pcl::PointCloud<pcl::PointXYZ>>("PointCloudXYZ")
-      .constructor<>()
-      .property("width", &pcl::PointCloud<pcl::PointXYZ>::width)
-      .property("height", &pcl::PointCloud<pcl::PointXYZ>::height)
-      .property("points", &pcl::PointCloud<pcl::PointXYZ>::points)
-      .property("is_dense", &pcl::PointCloud<pcl::PointXYZ>::is_dense)
-      .function("isOrganized", &pcl::PointCloud<pcl::PointXYZ>::isOrganized)
-      .smart_ptr<pcl::PointCloud<pcl::PointXYZ>::ConstPtr>("PointCloudXYZ")
-      .smart_ptr<pcl::PointCloud<pcl::PointXYZ>::Ptr>("PointCloudXYZ");
+  BIND_POINT_CLOUD(PointXYZ);
+  BIND_POINT_CLOUD(PointXYZI);
+  BIND_POINT_CLOUD(PointXYZRGB);
+  BIND_POINT_CLOUD(PointXYZRGBA);
+  BIND_POINT_CLOUD(Normal);
+  BIND_POINT_CLOUD(PointNormal);
 
-  register_vector_plus<pcl::PointXYZ, Eigen::aligned_allocator<pcl::PointXYZ>>("Points");
+  BIND_POINTS(PointXYZ);
+  BIND_POINTS(PointXYZI);
+  BIND_POINTS(PointXYZRGB);
+  BIND_POINTS(PointXYZRGBA);
+  BIND_POINTS(Normal);
+  BIND_POINTS(PointNormal);
 }
