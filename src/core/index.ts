@@ -1,3 +1,6 @@
+/// <reference path="../emscripten.d.ts" />
+/// <reference path="../typings.d.ts" />
+
 import initPCLCore from '../bind/build/pcl-core';
 import fs from '../modules/fs';
 import io from '../modules/io';
@@ -26,7 +29,41 @@ interface InitOptions {
   // onprogress?: () => void;
 }
 
-async function init(options?: InitOptions) {
+interface PCLInstance {
+  /**
+   * Emscripten Module
+   * {@link https://emscripten.org/docs/api_reference/module.html}
+   */
+  Module: Emscripten.Module;
+  /**
+   * File system
+   * {@link https://emscripten.org/docs/api_reference/Filesystem-API.html}
+   */
+  fs: Pick<
+    Emscripten.FS,
+    | 'readdir'
+    | 'readFile'
+    | 'writeFile'
+    | 'stat'
+    | 'mkdir'
+    | 'rmdir'
+    | 'rename'
+    | 'unlink'
+  >;
+  /**
+   * Base info
+   */
+  info: {
+    PCL_VERSION: string;
+  };
+  common: typeof common;
+
+  io: typeof io;
+  filters: typeof filters;
+  registration: typeof registration;
+}
+
+async function init(options?: InitOptions): Promise<PCLInstance | null> {
   const { arrayBuffer, url, fetchOptions } = options ?? {};
 
   const moduleOptions: Emscripten.ModuleOpts = {
@@ -42,7 +79,7 @@ async function init(options?: InitOptions) {
     options?.onsuccess?.(Module);
   } catch (error) {
     options?.onerror?.(error);
-    return;
+    return null;
   }
 
   const PCL_VERSION: string = Module.PCL_VERSION;
@@ -54,19 +91,8 @@ async function init(options?: InitOptions) {
   };
 
   return {
-    /**
-     * Emscripten Module
-     * {@link https://emscripten.org/docs/api_reference/module.html}
-     */
     Module,
-    /**
-     * Base info
-     */
     info,
-    /**
-     * File system
-     * {@link https://emscripten.org/docs/api_reference/Filesystem-API.html}
-     */
     fs: fs(),
     io,
     filters,
@@ -77,5 +103,5 @@ async function init(options?: InitOptions) {
 
 const VERSION = '__version__';
 
-export { init, VERSION };
+export { init, VERSION, PCLInstance, InitOptions };
 export * from '../modules/point-types/type';

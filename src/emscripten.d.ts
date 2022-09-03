@@ -32,7 +32,24 @@ declare namespace Emscripten {
     readdir(path: string): any;
     rename(oldPath: string, newPath: string): any;
     unlink(path: string): any;
-    stat(path: string, dontFollow?: boolean): any;
+    stat(
+      path: string,
+      dontFollow?: boolean,
+    ): {
+      blksize: number;
+      blocks: number;
+      dev: number;
+      gid: number;
+      ino: number;
+      mode: 33206;
+      nlink: number;
+      rdev: number;
+      size: number;
+      uid: number;
+      atime: Date;
+      mtime: Date;
+      ctime: Date;
+    };
     readFile(
       path: string,
       opts: { encoding?: 'binary'; flags?: string | undefined },
@@ -162,6 +179,31 @@ declare namespace Emscripten {
     onRuntimeInitialized: () => void | null;
 
     FS: FS;
+  }
+
+  interface PtrType {
+    isConst: boolean;
+    isReference: boolean;
+    isSmartPointer: boolean;
+    name: string;
+    registeredClass: {
+      name: string;
+    };
+  }
+
+  interface NativeAPI {
+    [key: string]: any;
+    $$: {
+      count: { value: number };
+      ptr: number;
+      ptrType: PtrType;
+      smartPtr?: number;
+      smartPtrType?: PtrType;
+    };
+    clone: () => void;
+    delete: () => void;
+    deleteLater: () => void;
+    isDeleted: () => boolean;
   }
 
   type ModuleFactory<T extends Module = Module> = (

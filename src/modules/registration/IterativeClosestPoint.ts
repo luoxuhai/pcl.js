@@ -9,7 +9,7 @@ import {
 class IterativeClosestPoint<
   T extends Partial<PointTypesUnion> = Partial<PointTypesMerge>,
 > {
-  public native: any;
+  public native: Emscripten.NativeAPI;
 
   constructor(pointType = PointTypes.PointXYZ) {
     this.native = new __PCLCore__[`IterativeClosestPoint${pointType}`]();

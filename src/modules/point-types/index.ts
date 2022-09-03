@@ -3,16 +3,16 @@ import { PointTypesUnion, PointTypesMerge, PointTypes, Points } from './type';
 class PointCloud<
   T extends Partial<PointTypesUnion> = Partial<PointTypesMerge>,
 > {
-  public native: any;
+  public native: Emscripten.NativeAPI;
   public readonly type: PointTypes;
 
-  constructor(pointType = PointTypes.PointXYZ, native?: any) {
+  constructor(pointType = PointTypes.PointXYZ, native?: Emscripten.NativeAPI) {
     const name = `PointCloud${pointType}`;
     this.native = native ?? new __PCLCore__[name]().makeShared();
     this.type = this.native.$$.ptrType.registeredClass.name.replace(
       'PointCloud',
       '',
-    );
+    ) as PointTypes;
   }
 
   public isOrganized(): boolean {
@@ -52,11 +52,11 @@ class PointCloud<
   }
 }
 
-function createPointCloud<T>(native: any) {
+function createPointCloud<T>(native: Emscripten.NativeAPI) {
   const pointType = native.$$.ptrType.registeredClass.name.replace(
     'PointCloud',
     '',
-  );
+  ) as PointTypes;
   return new PointCloud<T>(pointType, native);
 }
 
