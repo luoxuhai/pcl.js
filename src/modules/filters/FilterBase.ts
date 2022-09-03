@@ -1,9 +1,9 @@
 import { PointCloud, createPointCloud } from '../point-types';
 
 class FilterBase<T> {
-  public native: any;
+  public native: Emscripten.NativeAPI;
 
-  constructor(native: any) {
+  constructor(native: Emscripten.NativeAPI) {
     this.native = native;
   }
 

@@ -18,5 +18,6 @@ module.exports = {
   ],
   rules: {
     'prettier/prettier': 'error',
+    '@typescript-eslint/triple-slash-reference': 'off',
   },
 };

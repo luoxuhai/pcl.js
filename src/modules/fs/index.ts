@@ -14,8 +14,6 @@ export default () => {
   const rmdir = FS.rmdir;
   const readdir = FS.readdir;
   const stat = FS.stat;
-  const isFile = FS.isFile;
-  const isDir = FS.isDir;
 
   return {
     mkdir,
@@ -25,8 +23,6 @@ export default () => {
     stat,
     writeFile,
     readFile,
-    isFile,
-    isDir,
     readdir,
   };
 };

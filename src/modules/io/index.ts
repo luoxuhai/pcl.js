@@ -33,6 +33,7 @@ function loadPCDFile<
 
   if (!pointType) {
     console.error('pointType cannot be empty');
+    return;
   }
 
   const native = PCLCore[`loadPCDFile${pointType}`](filename);
