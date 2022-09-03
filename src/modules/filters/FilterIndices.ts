@@ -1,6 +1,6 @@
 import FilterBase from './FilterBase';
 
-class FilterIndices extends FilterBase {
+class FilterIndices<T> extends FilterBase<T> {
   public setNegative(negative: boolean) {
     return this.native.setNegative(negative);
   }

@@ -1,16 +1,26 @@
-class IterativeClosestPoint {
+import {
+  PointCloud,
+  createPointCloud,
+  PointTypes,
+  PointTypesMerge,
+  PointTypesUnion,
+} from '../point-types';
+
+class IterativeClosestPoint<
+  T extends Partial<PointTypesUnion> = Partial<PointTypesMerge>,
+> {
   public native: any;
 
-  constructor() {
-    this.native = new __PCLCore__.IterativeClosestPoint();
+  constructor(pointType = PointTypes.PointXYZ) {
+    this.native = new __PCLCore__[`IterativeClosestPoint${pointType}`]();
   }
 
-  public setInputSource(fieldName: string) {
-    return this.native.setInputSource(fieldName);
+  public setInputSource(cloud: PointCloud<T>) {
+    return this.native.setInputSource(cloud.native);
   }
 
-  public setInputTarget(fieldName: string) {
-    return this.native.setInputTarget(fieldName);
+  public setInputTarget(cloud: PointCloud<T>) {
+    return this.native.setInputTarget(cloud.native);
   }
 
   public getFinalTransformation(): string | null {
@@ -36,7 +46,7 @@ class IterativeClosestPoint {
   }
 
   public align() {
-    return this.native.align();
+    return createPointCloud<T>(this.native.align());
   }
 }
 

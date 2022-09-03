@@ -1,3 +1,2 @@
-import core from './core/index';
-
-export default core;
+// import d from './types/point-types.d';
+export * from './core/index';

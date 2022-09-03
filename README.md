@@ -142,11 +142,11 @@ async function main() {
   // Write a PCD file
   pcl.fs.writeFile('/test.pcd', new Uint8Array(pcd));
   // Load PCD file, return point cloud object
-  const pointCloud = pcl.io.loadPCDFile('/test.pcd');
+  const pointCloud = pcl.io.loadPCDFile('/test.pcd', 'PointXYZ');
 
   // Filtering a PointCloud using a PassThrough filter
   // See: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
-  const pass = new pcl.filters.PassThrough();
+  const pass = new pcl.filters.PassThrough('PointXYZ');
   pass.setInputCloud(pointCloud);
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);

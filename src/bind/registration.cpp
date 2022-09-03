@@ -3,38 +3,49 @@
 #include <pcl/registration/icp.h>
 #include <emscripten/bind.h>
 
-using namespace emscripten;
+// define Registration
+#define BIND_REGISTRATION(PointT)                                                                     \
+  class_<pcl::Registration<PointT, PointT>>("Registration" #PointT)                                   \
+      .function("hasConverged", &pcl::Registration<PointT, PointT>::hasConverged)                     \
+      .function("getFinalTransformation", &pcl::Registration<PointT, PointT>::getFinalTransformation) \
+      .function("getFitnessScore", &getFitnessScore<PointT>)       \
+      .function("align", &align<PointT>);
 
-typedef pcl::PointXYZ PointCloudXYZ;
+// define IterativeClosestPoint
+#define BIND_ICP(PointT)                                                                                                         \
+  class_<pcl::IterativeClosestPoint<PointT, PointT>, base<pcl::Registration<PointT, PointT>>>("IterativeClosestPoint" #PointT)   \
+      .constructor<>()                                                                                                           \
+      .function("setInputSource", &pcl::IterativeClosestPoint<PointT, PointT>::setInputSource)                                   \
+      .function("setInputTarget", &pcl::IterativeClosestPoint<PointT, PointT>::setInputTarget)                                   \
+      .function("setUseReciprocalCorrespondences", &pcl::IterativeClosestPoint<PointT, PointT>::setUseReciprocalCorrespondences) \
+      .function("getUseReciprocalCorrespondences", &pcl::IterativeClosestPoint<PointT, PointT>::getUseReciprocalCorrespondences);
 
-double getFitnessScore(pcl::Registration<PointCloudXYZ, PointCloudXYZ> &registration)
+template <typename PointT>
+pcl::PointCloud<PointT> align(pcl::Registration<PointT, PointT> &registration)
 {
-  return registration.getFitnessScore();
-}
-
-pcl::PointCloud<PointCloudXYZ> align(pcl::Registration<PointCloudXYZ, PointCloudXYZ> &registration)
-{
-  pcl::PointCloud<PointCloudXYZ> cloud;
+  pcl::PointCloud<PointT> cloud;
 
   registration.align(cloud);
 
   return cloud;
 }
 
+template <typename PointT>
+double getFitnessScore(pcl::Registration<PointT, PointT> &registration)
+{
+  return registration.getFitnessScore();
+}
+
+using namespace pcl;
+using namespace emscripten;
+
 EMSCRIPTEN_BINDINGS(registration)
 {
-  class_<pcl::Registration<PointCloudXYZ, PointCloudXYZ>>("Registration")
-      .function("hasConverged", &pcl::Registration<PointCloudXYZ, PointCloudXYZ>::hasConverged)
-      .function("getFinalTransformation", &pcl::Registration<PointCloudXYZ, PointCloudXYZ>::getFinalTransformation)
-      .function("getFitnessScore", &getFitnessScore)
-      .function("align", &align);
+  // Bind Registration
+  BIND_REGISTRATION(PointXYZ);
+  BIND_REGISTRATION(PointXYZI);
 
-  // IterativeClosestPoint
-
-  class_<pcl::IterativeClosestPoint<PointCloudXYZ, PointCloudXYZ>, base<pcl::Registration<PointCloudXYZ, PointCloudXYZ>>>("IterativeClosestPoint")
-      .constructor<>()
-      .function("setInputSource", &pcl::IterativeClosestPoint<PointCloudXYZ, PointCloudXYZ>::setInputSource)
-      .function("setInputTarget", &pcl::IterativeClosestPoint<PointCloudXYZ, PointCloudXYZ>::setInputTarget)
-      .function("setUseReciprocalCorrespondences", &pcl::IterativeClosestPoint<PointCloudXYZ, PointCloudXYZ>::setUseReciprocalCorrespondences)
-      .function("getUseReciprocalCorrespondences", &pcl::IterativeClosestPoint<PointCloudXYZ, PointCloudXYZ>::getUseReciprocalCorrespondences);
+  // Bind IterativeClosestPoint
+  BIND_ICP(PointXYZ);
+  BIND_ICP(PointXYZI);
 }

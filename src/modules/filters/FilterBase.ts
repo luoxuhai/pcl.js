@@ -1,20 +1,22 @@
-class FilterBase {
+import { PointCloud, createPointCloud } from '../point-types';
+
+class FilterBase<T> {
   public native: any;
 
   constructor(native: any) {
     this.native = native;
   }
 
-  public setInputCloud(cloud: PointCloud): null {
-    return this.native.setInputCloud(cloud);
+  public setInputCloud(cloud: PointCloud<T>): null {
+    return this.native.setInputCloud(cloud.native);
   }
 
-  public getInputCloud(): PointCloud | null {
-    return this.native.getInputCloud() as PointCloud | null;
+  public getInputCloud() {
+    return createPointCloud<T>(this.native.getInputCloud());
   }
 
-  public filter(): PointCloud {
-    return this.native.filter();
+  public filter(cloud?: PointCloud<T>) {
+    return createPointCloud<T>(this.native.filter(cloud?.native ?? null));
   }
 }
 

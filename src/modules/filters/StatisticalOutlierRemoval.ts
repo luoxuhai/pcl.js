@@ -1,8 +1,15 @@
 import FilterIndices from './FilterIndices';
+import { PointTypesUnion, PointTypes, PointTypesMerge } from '../point-types';
 
-class StatisticalOutlierRemoval extends FilterIndices {
-  constructor(extractRemovedIndices = false) {
-    super(new __PCLCore__.StatisticalOutlierRemoval(extractRemovedIndices));
+class StatisticalOutlierRemoval<
+  T extends Partial<PointTypesUnion> = Partial<PointTypesMerge>,
+> extends FilterIndices<T> {
+  constructor(pointType = PointTypes.PointXYZ, extractRemovedIndices = false) {
+    super(
+      new __PCLCore__[`StatisticalOutlierRemoval${pointType}`](
+        extractRemovedIndices,
+      ),
+    );
   }
 
   public setMeanK(nrK: number) {
