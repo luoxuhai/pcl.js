@@ -1,6 +1,9 @@
 import FilterBase from './FilterBase';
+import { PointTypesUnion, PointTypesIntersection } from '../point-types';
 
-class FilterIndices<T> extends FilterBase<T> {
+class FilterIndices<
+  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
+> extends FilterBase<T> {
   public setNegative(negative: boolean) {
     return this.native.setNegative(negative);
   }

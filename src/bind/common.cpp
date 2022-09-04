@@ -6,17 +6,25 @@
 
 const std::string VERSION = PCL_VERSION_PRETTY;
 
-#define BIND_POINT_CLOUD(PointT)                                   \
-  class_<PointCloud<PointT>>("PointCloud" #PointT)                 \
-      .constructor<>()                                             \
-      .property("width", &PointCloud<PointT>::width)               \
-      .property("height", &PointCloud<PointT>::height)             \
-      .property("points", &PointCloud<PointT>::points)             \
-      .property("is_dense", &PointCloud<PointT>::is_dense)         \
-      .function("isOrganized", &PointCloud<PointT>::isOrganized)   \
-      .function("clear", &PointCloud<PointT>::clear)               \
-      .function("makeShared", &PointCloud<PointT>::makeShared)     \
-      .smart_ptr<PointCloud<PointT>::ConstPtr>("ConstPtr" #PointT) \
+std::vector<int> returnVectorData()
+{
+  std::vector<int> v(10, 1);
+  return v;
+}
+// select_overload<int(const std::string &, const PointCloud<PointT> &, bool)>(&io::savePCDFile)
+#define BIND_POINT_CLOUD(PointT)                                                                       \
+  class_<PointCloud<PointT>>("PointCloud" #PointT)                                                     \
+      .constructor<>()                                                                                 \
+      .property("width", &PointCloud<PointT>::width)                                                   \
+      .property("height", &PointCloud<PointT>::height)                                                 \
+      .property("points", &PointCloud<PointT>::points)                                                 \
+      .property("is_dense", &PointCloud<PointT>::is_dense)                                             \
+      .function("isOrganized", &PointCloud<PointT>::isOrganized)                                       \
+      .function("resize", select_overload<void(index_t, const PointT &)>(&PointCloud<PointT>::resize)) \
+      .function("push_back", &PointCloud<PointT>::push_back)                                           \
+      .function("clear", &PointCloud<PointT>::clear)                                                   \
+      .function("makeShared", &PointCloud<PointT>::makeShared)                                         \
+      .smart_ptr<PointCloud<PointT>::ConstPtr>("ConstPtr" #PointT)                                     \
       .smart_ptr<PointCloud<PointT>::Ptr>("Ptr" #PointT);
 
 #define BIND_POINTS(PointT) register_vector_plus<PointT, Eigen::aligned_allocator<PointT>>("Points" #PointT);
@@ -41,4 +49,7 @@ EMSCRIPTEN_BINDINGS(common)
   BIND_POINTS(PointXYZRGBA);
   BIND_POINTS(Normal);
   BIND_POINTS(PointNormal);
+
+  function("returnVectorData", &returnVectorData);
+  register_vector<int>("vector<int>");
 }

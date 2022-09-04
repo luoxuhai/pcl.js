@@ -1,18 +1,19 @@
 import {
   PointCloud,
-  createPointCloud,
-  PointTypes,
-  PointTypesMerge,
+  wrapPointCloud,
+  PointXYZ,
+  PointTypesIntersection,
   PointTypesUnion,
+  TPointTypesUnion,
 } from '../point-types';
 
 class IterativeClosestPoint<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesMerge>,
+  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > {
   public native: Emscripten.NativeAPI;
 
-  constructor(pointType = PointTypes.PointXYZ) {
-    this.native = new __PCLCore__[`IterativeClosestPoint${pointType}`]();
+  constructor(PT: TPointTypesUnion = PointXYZ) {
+    this.native = new __PCLCore__[`IterativeClosestPoint${PT.name}`]();
   }
 
   public setInputSource(cloud: PointCloud<T>) {
@@ -46,7 +47,7 @@ class IterativeClosestPoint<
   }
 
   public align() {
-    return createPointCloud<T>(this.native.align());
+    return wrapPointCloud<T>(this.native.align());
   }
 }
 
