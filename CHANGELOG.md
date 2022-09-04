@@ -1,3 +1,21 @@
+# Changelog
+
+# [1.1.0-alpha.0](https://github.com/luoxuhai/pcl.js/compare/v1.0.3...v1.1.0-alpha.0) (2022-09-04)
+
+
+### Bug Fixes
+
+* correct typescript type hints ([d2e952f](https://github.com/luoxuhai/pcl.js/commit/d2e952fbe0f0d79cec1530752015088499328649))
+
+
+### Features
+
+* add point types ([7d392e4](https://github.com/luoxuhai/pcl.js/commit/7d392e4eefd50f4d9f7b3d6f10518be2d2c58e7d))
+* add point_types ([41a7882](https://github.com/luoxuhai/pcl.js/commit/41a78823f21b3282996104ff59ad98d82cf0323d))
+* add points types ([7fbfcad](https://github.com/luoxuhai/pcl.js/commit/7fbfcad42fc988b262e9de632f0170daa137456b))
+* add print version ([5af8c10](https://github.com/luoxuhai/pcl.js/commit/5af8c105dc190d632cc386cef0214ae9ceb3819a))
+* get points of point cloud ([a62d6fe](https://github.com/luoxuhai/pcl.js/commit/a62d6fecb6df20d2abbb1768c04aaef77cfe3fa3))
+
 # 1.0.3 (2022-08-30)
 
 
