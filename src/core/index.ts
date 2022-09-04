@@ -1,5 +1,5 @@
 /// <reference path="../emscripten.d.ts" />
-/// <reference path="../typings.d.ts" />
+/// <reference path="../global.d.ts" />
 
 import initPCLCore from '../bind/build/pcl-core';
 import fs from '../modules/fs';
@@ -12,7 +12,7 @@ interface InitOptions {
   /**
    * ArrayBuffer for pcl-core.wasm file.
    */
-  arrayBuffer?: ArrayBuffer;
+  arrayBuffer?: Emscripten.ModuleOpts['wasmBinary'];
   /**
    * URL for pcl-core.wasm file.
    */
@@ -22,11 +22,9 @@ interface InitOptions {
    *
    * @default { credentials: 'same-origin' }
    */
-  fetchOptions?: RequestInit;
+  fetchOptions?: Emscripten.ModuleOpts['fetchSettings'];
   onsuccess?: (module: Emscripten.Module) => void;
   onerror?: (error: unknown) => void;
-  // TODO
-  // onprogress?: () => void;
 }
 
 interface PCLInstance {
@@ -57,19 +55,18 @@ interface PCLInstance {
     PCL_VERSION: string;
   };
   common: typeof common;
-
   io: typeof io;
   filters: typeof filters;
   registration: typeof registration;
 }
 
 async function init(options?: InitOptions): Promise<PCLInstance | null> {
-  const { arrayBuffer, url, fetchOptions } = options ?? {};
+  const { arrayBuffer, url, fetchOptions: fetchSettings } = options ?? {};
 
   const moduleOptions: Emscripten.ModuleOpts = {
     wasmBinary: arrayBuffer,
     locateFile: (path, scriptDirectory) => url || scriptDirectory + path,
-    fetchSettings: fetchOptions,
+    fetchSettings,
   };
 
   let Module: Emscripten.Module;
@@ -79,7 +76,7 @@ async function init(options?: InitOptions): Promise<PCLInstance | null> {
     options?.onsuccess?.(Module);
   } catch (error) {
     options?.onerror?.(error);
-    return null;
+    throw error;
   }
 
   const PCL_VERSION: string = Module.PCL_VERSION;

@@ -54,15 +54,16 @@
 
 ## Features
 
+- Provides the same API as C++, easy to use
+- Supports all modern browsers, will improve Nodejs support
 - Written in TypeScript, with predictable static typing
 - And many, many more! 🚀
 
 ## Environment Support
-> https://developer.mozilla.org/en-US/docs/WebAssembly#browser_compatibility
 
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/node.js/node.js_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Node.js | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/deno/deno_128x128.png" alt="Deno" width="48px" height="48px" /> <br/> Deno |
-| --------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| 16+ | 52+ | 57+ | 11+ | 44+ | 11.0.0+| 1.0+
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera |
+| --------- | --------- | --------- | --------- | --------- |
+| 16+ | 52+ | 57+ | 11+ | 44+ 
 
 ## Installation
 
@@ -91,12 +92,15 @@ yarn add pcl.js
 ### NPM
 
 ```typescript
-import PCL from 'pcl.js';
+import * as PCL from 'pcl.js';
 
 async function main() {
   // Initialization
   const pcl = await PCL.init({
-    // Recommend, optional configuration, custom WebAssembly file link.
+    /**
+     * Recommend, optional configuration, custom WebAssembly file link.
+     * @default js file dir + pcl-core.wasm
+     */
     url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
     // You can also pass an ArrayBuffer of WebAssembly files.
     // arrayBuffer: ArrayBuffer
@@ -114,13 +118,7 @@ main();
 <script>
 async function main() {
   // Initialization, PCL is a global object.
-  const pcl = await PCL.init({
-    // Recommend, optional configuration, custom WebAssembly file link.
-    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
-    // You can also pass an ArrayBuffer of WebAssembly files.
-    // arrayBuffer: ArrayBuffer
-  });
-
+  const pcl = await PCL.init();
   // ...
 }
 
@@ -128,9 +126,10 @@ main();
 </script>
 ```
 
-### Simple Example
+### Basic Usage Example
+
 ```typescript
-import PCL from 'pcl.js';
+import * as PCL from 'pcl.js';
 
 async function main() {
   const pcl = await PCL.init({
@@ -142,18 +141,21 @@ async function main() {
   // Write a PCD file
   pcl.fs.writeFile('/test.pcd', new Uint8Array(pcd));
   // Load PCD file, return point cloud object
-  const pointCloud = pcl.io.loadPCDFile('/test.pcd', 'PointXYZ');
+  const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>('/test.pcd', PCL.PointTypes.PointXYZ);
 
   // Filtering a PointCloud using a PassThrough filter
   // See: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
-  const pass = new pcl.filters.PassThrough('PointXYZ');
-  pass.setInputCloud(pointCloud);
+  const pass = new pcl.filters.PassThrough<PCL.PointXYZ>(PCL.PointTypes.PointXYZ);
+  pass.setInputCloud(cloud);
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
-  const filteredPointCloud = pass.filter();
+  const filteredCloud = pass.filter();
+  // It can also be saved in the same way as in C++:
+  // const filteredCloud = pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointTypes.PointXYZ);
+  // pass.filter(filteredCloud);
 
   // Save filtered point cloud objects as PCD files
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', filteredPointCloud);
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', filteredCloud);
   // Read PCD file content, the content is ArrayBuffer
   const pcd = pcl.fs.readFile('/test-filtered.pcd');
 
@@ -176,10 +178,10 @@ main();
 | pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~32.3k gzip’d |
 | pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm) | ~198k gzip’d  |
 
-## Modules
+## Roadmap
 
 - [ ] features
-- [x] filters 50%
+- [x] filters 70%
 - [ ] geometry
 - [x] io 50%
 - [ ] kdtree
@@ -192,10 +194,7 @@ main();
 - [ ] search
 - [ ] segmentation
 - [ ] surface
-
-## Roadmap
-
-Check out our [roadmap](https://github.com/users/luoxuhai/projects/3) to get informed of the latest features released and the upcoming ones.
+- [ ] common 20%
 
 ## Contributing
 

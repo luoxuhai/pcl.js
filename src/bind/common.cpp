@@ -1,7 +1,10 @@
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
+#include <pcl/pcl_config.h>
 #include <emscripten/bind.h>
 #include "embind.cpp"
+
+const std::string VERSION = PCL_VERSION_PRETTY;
 
 #define BIND_POINT_CLOUD(PointT)                                   \
   class_<PointCloud<PointT>>("PointCloud" #PointT)                 \
@@ -23,6 +26,8 @@ using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(common)
 {
+  constant("PCL_VERSION", VERSION);
+
   BIND_POINT_CLOUD(PointXYZ);
   BIND_POINT_CLOUD(PointXYZI);
   BIND_POINT_CLOUD(PointXYZRGB);

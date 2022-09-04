@@ -53,15 +53,16 @@
 
 ## 特性
 
+- 提供与 C++ 相同的API，简单易用
+- 支持所有现代浏览器，未来将提供对 Nodejs 的支持
 - 用 TypeScript 编写，具有可预测的静态类型
 - 还有很多很多！🚀
 
 ## 支持的环境
-> https://developer.mozilla.org/zh-CN/docs/WebAssembly#browser_compatibility
 
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/node.js/node.js_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Node.js | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/deno/deno_128x128.png" alt="Deno" width="48px" height="48px" /> <br/> Deno |
-| --------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| 16+ | 52+ | 57+ | 11+ | 44+ | 11.0.0+| 1.0+
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera |
+| --------- | --------- | --------- | --------- | --------- |
+| 16+ | 52+ | 57+ | 11+ | 44+ 
 
 ## 安装
 
@@ -90,15 +91,16 @@ yarn add pcl.js
 ### NPM
 
 ```typescript
-import PCL from 'pcl.js';
+import * as PCL from 'pcl.js';
 
 async function main() {
   // 初始化
   const pcl = await PCL.init({
-    // 推荐，可选配置，自定义 WebAssembly 文件链接
+    /**
+     * 推荐，可选配置，自定义 WebAssembly 文件链接
+     * @default js 文件所在目录 + pcl-core.wasm
+     */
     url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
-    // 也可以传人 WebAssembly 文件的 ArrayBuffer
-    // arrayBuffer: ArrayBuffer
   });
 
   // ...
@@ -113,13 +115,7 @@ main();
 <script>
 async function main() {
   // 初始化，PCL 是全局对象
-  const pcl = await PCL.init({
-    // 推荐，可选配置，自定义 WebAssembly 文件链接
-    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
-    // 也可以传人 WebAssembly 文件的 ArrayBuffer
-    // arrayBuffer: ArrayBuffer
-  });
-
+  const pcl = await PCL.init();
   // ...
 }
 
@@ -128,7 +124,7 @@ main();
 ```
 ### 简单示例
 ```typescript
-import PCL from 'pcl.js';
+import * as PCL from 'pcl.js';
 
 async function main() {
   const pcl = await PCL.init({
@@ -140,18 +136,21 @@ async function main() {
   // 写入 PCD 文件
   pcl.fs.writeFile('/test.pcd', new Uint8Array(pcd));
   // 加载 PCD 文件，返回点云对象
-  const pointCloud = pcl.io.loadPCDFile('/test.pcd');
+  const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>('/test.pcd', PCL.PointTypes.PointXYZ);
 
   // 使用 PassThrough 过滤器过滤点云
   // 参考: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
-  const pass = new pcl.filters.PassThrough();
-  pass.setInputCloud(pointCloud);
+  const pass = new pcl.filters.PassThrough<PCL.PointXYZ>(PCL.PointTypes.PointXYZ);
+  pass.setInputCloud(cloud);
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
-  const filteredPointCloud = pass.filter();
+  const filteredCloud = pass.filter();
+  // 也可以和 C++ 中写法保存一致
+  // const filteredCloud = pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointTypes.PointXYZ);
+  // pass.filter(filteredCloud);
 
   // 将过滤后的点云对象保存为 PCD 文件
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', filteredPointCloud);
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', filteredCloud);
   // 读取 PCD 文件内容， 内容为 ArrayBuffer
   const pcd = pcl.fs.readFile('/test-filtered.pcd');
 
@@ -173,10 +172,10 @@ main();
 | pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~32.3k gzip’d |
 | pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm) | ~198k gzip’d  |
 
-## 模块
+## 路线图
 
 - [ ] features
-- [x] filters 50%
+- [x] filters 70%
 - [ ] geometry
 - [x] io 50%
 - [ ] kdtree
@@ -189,10 +188,7 @@ main();
 - [ ] search
 - [ ] segmentation
 - [ ] surface
-
-## 路线图
-
-查看我们的 [Roadmap](https://github.com/users/luoxuhai/projects/3) 以了解最新发布的功能和即将推出的功能。
+- [ ] common 20%
 
 ## 贡献
 
