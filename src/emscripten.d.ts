@@ -4,7 +4,7 @@ declare namespace Emscripten {
   type EnvironmentType = 'WEB' | 'NODE' | 'SHELL' | 'WORKER';
 
   interface ModuleOpts {
-    wasmBinary?: any;
+    wasmBinary?: ArrayBuffer | Uint8Array | Int8Array;
     mainScriptUrlOrBlob?: string;
     noInitialRun?: boolean;
     fetchSettings?: RequestInit;
