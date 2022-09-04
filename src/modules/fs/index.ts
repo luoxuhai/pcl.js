@@ -13,7 +13,15 @@ export default () => {
   const mkdir = FS.mkdir;
   const rmdir = FS.rmdir;
   const readdir = FS.readdir;
-  const stat = FS.stat;
+
+  function stat(path: string, dontFollow?: boolean) {
+    const info = FS.stat(path, dontFollow);
+    return {
+      ...info,
+      isDir: FS.isDir(info.mode),
+      isFile: FS.isFile(info.mode),
+    };
+  }
 
   return {
     mkdir,

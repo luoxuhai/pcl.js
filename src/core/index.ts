@@ -23,6 +23,12 @@ interface InitOptions {
    * @default { credentials: 'same-origin' }
    */
   fetchOptions?: Emscripten.ModuleOpts['fetchSettings'];
+  /**
+   * Show log in console
+   *
+   * @default true
+   */
+  log?: boolean;
   onsuccess?: (module: Emscripten.Module) => void;
   onerror?: (error: unknown) => void;
 }
@@ -61,7 +67,12 @@ interface PCLInstance {
 }
 
 async function init(options?: InitOptions): Promise<PCLInstance | null> {
-  const { arrayBuffer, url, fetchOptions: fetchSettings } = options ?? {};
+  const {
+    arrayBuffer,
+    url,
+    fetchOptions: fetchSettings = { credentials: 'same-origin' },
+    log = true,
+  } = options ?? {};
 
   const moduleOptions: Emscripten.ModuleOpts = {
     wasmBinary: arrayBuffer,
@@ -80,8 +91,11 @@ async function init(options?: InitOptions): Promise<PCLInstance | null> {
   }
 
   const PCL_VERSION: string = Module.PCL_VERSION;
-  console.log('pcl.js version: __version__');
-  console.log(`PCL version: ${PCL_VERSION}`);
+
+  if (log) {
+    console.log('pcl.js version: __version__');
+    console.log(`PCL version: ${PCL_VERSION}`);
+  }
 
   const info = {
     PCL_VERSION,
