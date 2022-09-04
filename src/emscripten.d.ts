@@ -49,14 +49,16 @@ declare namespace Emscripten {
       atime: Date;
       mtime: Date;
       ctime: Date;
+      isDir: boolean;
+      isFile: boolean;
     };
     readFile(
       path: string,
-      opts: { encoding?: 'binary'; flags?: string | undefined },
+      opts?: { encoding?: 'binary'; flags?: string | undefined },
     ): Uint8Array;
     readFile(
       path: string,
-      opts: { encoding: 'utf8'; flags?: string | undefined },
+      opts?: { encoding: 'utf8'; flags?: string | undefined },
     ): string;
     writeFile(
       path: string,

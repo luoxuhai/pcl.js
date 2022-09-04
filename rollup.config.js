@@ -4,6 +4,7 @@ import dts from 'rollup-plugin-dts';
 import bundleSize from 'rollup-plugin-bundle-size';
 import copy from 'rollup-plugin-copy';
 import replace from '@rollup/plugin-replace';
+import serve from 'rollup-plugin-serve';
 
 import pkg from './package.json';
 
@@ -79,6 +80,13 @@ const config = [
             dest: 'dist',
           },
         ],
+      }),
+      serve({
+        contentBase: 'dist',
+        port: 4321,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
       }),
     ],
   },
