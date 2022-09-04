@@ -1,26 +1,30 @@
 import {
   PointCloud,
-  createPointCloud,
+  wrapPointCloud,
   PointTypesUnion,
-  PointTypesMerge,
-  PointTypes,
+  TPointTypesUnion,
+  PointTypesIntersection,
+  PointXYZ,
+  PointXYZI,
+  PointXYZRGB,
+  PointXYZRGBA,
 } from '../point-types';
 
 const pointTypeMap: {
-  [key: string]: PointTypes;
+  [key: string]: TPointTypesUnion;
 } = {
-  xyz: PointTypes.PointXYZ,
-  xyzintensity: PointTypes.PointXYZI,
-  xyzrgb: PointTypes.PointXYZRGB,
-  xyzrgba: PointTypes.PointXYZRGBA,
+  xyz: PointXYZ,
+  xyzintensity: PointXYZI,
+  xyzrgb: PointXYZRGB,
+  xyzrgba: PointXYZRGBA,
 };
 
 function loadPCDFile<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesMerge>,
->(filename: string, pointType = PointTypes.PointXYZ) {
+  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
+>(filename: string, PT: TPointTypesUnion = PointXYZ) {
   const PCLCore = __PCLCore__;
 
-  if (!pointType) {
+  if (!PT) {
     let fieldNames = '';
     const fields = PCLCore.readPCDHeader(filename);
     for (let i = 0; i < fields.size(); i++) {
@@ -28,20 +32,20 @@ function loadPCDFile<
     }
     fields.delete();
 
-    pointType = pointTypeMap[fieldNames];
+    PT = pointTypeMap[fieldNames];
   }
 
-  if (!pointType) {
-    console.error('pointType cannot be empty');
+  if (!PT) {
+    console.error('PointType cannot be empty');
     return;
   }
 
-  const native = PCLCore[`loadPCDFile${pointType}`](filename);
-  return createPointCloud<T>(native);
+  const native = PCLCore[`loadPCDFile${PT.name}`](filename);
+  return wrapPointCloud<T>(native);
 }
 
 function savePCDFile(filename: string, cloud: PointCloud, binaryMode = false) {
-  return __PCLCore__[`savePCDFile${cloud.type}`](
+  return __PCLCore__[`savePCDFile${cloud.PT.name}`](
     filename,
     cloud.native,
     binaryMode,
@@ -57,7 +61,7 @@ function savePCDFileBinary(filename: string, cloud: PointCloud) {
 }
 
 function savePCDFileBinaryCompressed(filename: string, cloud: PointCloud) {
-  return __PCLCore__[`savePCDFileBinaryCompressed${cloud.type}`](
+  return __PCLCore__[`savePCDFileBinaryCompressed${cloud.PT.name}`](
     filename,
     cloud.native,
   );

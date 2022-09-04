@@ -1,12 +1,17 @@
 import FilterIndices from './FilterIndices';
-import { PointTypesUnion, PointTypes, PointTypesMerge } from '../point-types';
+import {
+  PointTypesUnion,
+  PointXYZ,
+  PointTypesIntersection,
+  TPointTypesUnion,
+} from '../point-types';
 
 class StatisticalOutlierRemoval<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesMerge>,
+  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterIndices<T> {
-  constructor(pointType = PointTypes.PointXYZ, extractRemovedIndices = false) {
+  constructor(PT: TPointTypesUnion = PointXYZ, extractRemovedIndices = false) {
     super(
-      new __PCLCore__[`StatisticalOutlierRemoval${pointType}`](
+      new __PCLCore__[`StatisticalOutlierRemoval${PT.name}`](
         extractRemovedIndices,
       ),
     );

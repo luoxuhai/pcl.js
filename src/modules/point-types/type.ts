@@ -1,39 +1,55 @@
-export interface Point {
-  x: number;
-  y: number;
-  z: number;
+export class Point {
+  constructor(public x: number, public y: number, public z: number) {}
 }
 
-export type PointXYZ = Point;
-
-export interface PointXYZI extends Point {
-  intensity: number;
+export class PointXYZ extends Point {
+  constructor(x = 0, y = 0, z = 0) {
+    super(x, y, z);
+  }
 }
 
-export interface PointXYZRGB extends Point {
-  rgb: number;
+export class PointXYZI extends Point {
+  constructor(x = 0, y = 0, z = 0, public intensity = 0) {
+    super(x, y, z);
+  }
 }
 
-export interface PointXYZRGBA extends Point {
-  rgba: number;
+export class PointXYZRGB extends Point {
+  constructor(x = 0, y = 0, z = 0, public rgb = 0) {
+    super(x, y, z);
+  }
+}
+export class PointXYZRGBA extends Point {
+  constructor(x = 0, y = 0, z = 0, public rgba = 0) {
+    super(x, y, z);
+  }
 }
 
-export interface Normal {
-  normal_x: number;
-  normal_y: number;
-  normal_z: number;
-  curvature: number;
+export class Normal {
+  constructor(
+    public normalX = 0,
+    public normalY = 0,
+    public normalZ = 0,
+    public curvature = 0,
+  ) {}
 }
 
-export interface PointNormal extends Point {
-  normal_x: number;
-  normal_y: number;
-  normal_z: number;
-  curvature: number;
+export class PointNormal extends Point {
+  constructor(
+    x = 0,
+    y = 0,
+    z = 0,
+    public normalX = 0,
+    public normalY = 0,
+    public normalZ = 0,
+    public curvature = 0,
+  ) {
+    super(x, y, z);
+  }
 }
 
 export interface Points<T> {
-  get(): T;
+  get(index: number): T;
   set(index: number, value: T): boolean;
   push_back(value: T): void;
   size(): number;
@@ -49,18 +65,33 @@ export type PointTypesUnion =
   | Normal
   | PointNormal;
 
-export type PointTypesMerge = PointXYZ &
+export type TPointTypesUnion =
+  | typeof PointXYZ
+  | typeof PointXYZI
+  | typeof PointXYZRGB
+  | typeof PointXYZRGBA
+  | typeof Normal
+  | typeof PointNormal;
+
+export type PointTypesIntersection = PointXYZ &
   PointXYZI &
   PointXYZRGB &
   PointXYZRGBA &
   Normal &
   PointNormal;
 
-export enum PointTypes {
-  PointXYZ = 'PointXYZ',
-  PointXYZI = 'PointXYZI',
-  PointXYZRGB = 'PointXYZRGB',
-  PointXYZRGBA = 'PointXYZRGBA',
-  Normal = 'Normal',
-  PointNormal = 'PointNormal',
-}
+export type TPointTypesIntersection = typeof PointXYZ &
+  typeof PointXYZI &
+  typeof PointXYZRGB &
+  typeof PointXYZRGBA &
+  typeof Normal &
+  typeof PointNormal;
+
+export const pointTypeMap = {
+  PointXYZ,
+  PointXYZI,
+  PointXYZRGB,
+  PointXYZRGBA,
+  Normal,
+  PointNormal,
+};
