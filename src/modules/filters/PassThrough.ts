@@ -14,7 +14,7 @@ class PassThrough<
   }
 
   public setFilterFieldName(fieldName: string) {
-    return this.native.getInputCloud(fieldName);
+    return this.native.setFilterFieldName(fieldName);
   }
 
   public getFilterFieldName(): string | null {
