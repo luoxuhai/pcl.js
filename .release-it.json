@@ -1,6 +1,6 @@
 {
   "git": {
-    "commitMessage": "chore: release ${version}",
+    "commitMessage": "chore: release v${version}",
     "tagName": "v${version}",
     "tagAnnotation": "Release ${version}"
   },
@@ -16,7 +16,8 @@
     "@release-it/conventional-changelog": {
       "preset": "angular",
       "infile": "CHANGELOG.md",
-      "header": "# Changelog"
+      "header": "# Changelog",
+      "ignoreRecommendedBump": true
     }
   },
   "hooks": {

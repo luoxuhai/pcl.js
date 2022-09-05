@@ -31,7 +31,7 @@ declare namespace Emscripten {
     rmdir(path: string): void;
     readdir(path: string): any;
     rename(oldPath: string, newPath: string): any;
-    unlink(path: string): any;
+    unlink(path: string): void;
     stat(
       path: string,
       dontFollow?: boolean,

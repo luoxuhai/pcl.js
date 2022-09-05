@@ -6,12 +6,6 @@
 
 const std::string VERSION = PCL_VERSION_PRETTY;
 
-std::vector<int> returnVectorData()
-{
-  std::vector<int> v(10, 1);
-  return v;
-}
-// select_overload<int(const std::string &, const PointCloud<PointT> &, bool)>(&io::savePCDFile)
 #define BIND_POINT_CLOUD(PointT)                                                                       \
   class_<PointCloud<PointT>>("PointCloud" #PointT)                                                     \
       .constructor<>()                                                                                 \
@@ -49,7 +43,4 @@ EMSCRIPTEN_BINDINGS(common)
   BIND_POINTS(PointXYZRGBA);
   BIND_POINTS(Normal);
   BIND_POINTS(PointNormal);
-
-  function("returnVectorData", &returnVectorData);
-  register_vector<int>("vector<int>");
 }
