@@ -48,7 +48,7 @@ export class PointNormal extends Point {
   }
 }
 
-export interface Points<T> {
+export interface Vector<T> extends Emscripten.NativeAPI {
   get(index: number): T;
   set(index: number, value: T): boolean;
   push_back(value: T): void;
