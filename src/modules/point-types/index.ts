@@ -3,9 +3,8 @@ import {
   TPointTypesUnion,
   PointTypesIntersection,
   pointTypeMap,
-  Points,
   PointXYZ,
-  PointXYZI,
+  Vector,
 } from './type';
 
 class PointCloud<
@@ -29,7 +28,7 @@ class PointCloud<
   }
 
   get points(): Points<T> {
-    return this.native.points;
+    return wrapPoints(this.native.points);
   }
 
   set width(v: number) {
@@ -78,6 +77,41 @@ class PointCloud<
   }
 }
 
+class Points<T> {
+  constructor(public native: Vector<T>) {}
+
+  public set(index: number, value: T) {
+    return this.native.set(index, value);
+  }
+
+  public get(index: number) {
+    const pointType = this.native.$$.ptrType.registeredClass.name.replace(
+      'Points',
+      '',
+    );
+
+    const args = Object.values(this.native.get(index) ?? {});
+
+    return new pointTypeMap[pointType](...args);
+  }
+
+  public push(value: T) {
+    this.native.push_back(value);
+  }
+
+  public size() {
+    return this.native.size();
+  }
+
+  public empty() {
+    return this.native.empty();
+  }
+
+  public clear() {
+    return this.native.clear();
+  }
+}
+
 function wrapPointCloud<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 >(native: Emscripten.NativeAPI) {
@@ -88,5 +122,11 @@ function wrapPointCloud<
   return new PointCloud<T>(pointTypeMap[pointType], native);
 }
 
-export { PointCloud, wrapPointCloud };
+function wrapPoints<
+  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
+>(native: Vector<T>) {
+  return new Points<T>(native);
+}
+
+export { PointCloud, Points, wrapPointCloud, wrapPoints };
 export * from './type';
