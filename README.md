@@ -45,19 +45,19 @@
   </a>
 </p>
 
+## Features
+
+- Provides an API similar to PCL(C++), easy to use
+- Supports all modern browsers, will improve Nodejs support
+- Written in TypeScript, with predictable static typing
+- And many, many more! 🚀
+
 ## Resources
 
 - [Documentation](https://pcljs.org/docs/tutorials/intro)
 - [API Reference](https://pcljs.org/docs/api/intro)
 - [Examples](https://pcljs.org/examples)
 - [Discussions](https://github.com/luoxuhai/pcl.js/discussions)
-
-## Features
-
-- Provides the same API as C++, easy to use
-- Supports all modern browsers, will improve Nodejs support
-- Written in TypeScript, with predictable static typing
-- And many, many more! 🚀
 
 ## Environment Support
 

@@ -32,7 +32,7 @@ class IterativeClosestPoint<
     return this.native.getFitnessScore();
   }
 
-  public hasConverged() {
+  public hasConverged(): boolean {
     return this.native.hasConverged();
   }
 
@@ -46,8 +46,8 @@ class IterativeClosestPoint<
     return this.native.getUseReciprocalCorrespondences();
   }
 
-  public align() {
-    return wrapPointCloud<T>(this.native.align());
+  public align(output?: PointCloud<T>) {
+    return wrapPointCloud<T>(this.native.align(output?.native ?? null));
   }
 }
 
