@@ -26,7 +26,15 @@ ${code}`;
 function replaceCode() {
   return {
     renderChunk(code) {
-      return code.replace('assert(!flags, flags);', '');
+      return (
+        code
+          .replace('assert(!flags, flags);', '')
+          // test environment
+          .replace(
+            "ENVIRONMENT_IS_NODE = typeof process == 'object' && typeof process.versions == 'object' && typeof process.versions.node == 'string'",
+            'ENVIRONMENT_IS_NODE = false',
+          )
+      );
     },
   };
 }

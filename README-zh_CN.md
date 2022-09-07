@@ -44,19 +44,19 @@
   </a>
 </p>
 
+## 特性
+
+- 提供与 PCL(C++) 相似的 API，简单易用
+- 支持所有现代浏览器，未来将提供对 Nodejs 的支持
+- 用 TypeScript 编写，具有可预测的静态类型
+- 还有很多很多！🚀
+
 ## 资源
 
 - [文档](https://pcljs.org/zh-cn/docs/tutorials/intro)
 - [API](https://pcljs.org/zh-cn/docs/api/intro)
 - [示例](https://pcljs.org/zh-cn/examples)
 - [讨论](https://github.com/luoxuhai/pcl.js/discussions)
-
-## 特性
-
-- 提供与 C++ 相同的API，简单易用
-- 支持所有现代浏览器，未来将提供对 Nodejs 的支持
-- 用 TypeScript 编写，具有可预测的静态类型
-- 还有很多很多！🚀
 
 ## 支持的环境
 

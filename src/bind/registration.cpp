@@ -8,7 +8,7 @@
   class_<pcl::Registration<PointT, PointT>>("Registration" #PointT)                                   \
       .function("hasConverged", &pcl::Registration<PointT, PointT>::hasConverged)                     \
       .function("getFinalTransformation", &pcl::Registration<PointT, PointT>::getFinalTransformation) \
-      .function("getFitnessScore", &getFitnessScore<PointT>)       \
+      .function("getFitnessScore", &getFitnessScore<PointT>)                                          \
       .function("align", &align<PointT>);
 
 // define IterativeClosestPoint
@@ -21,13 +21,19 @@
       .function("getUseReciprocalCorrespondences", &pcl::IterativeClosestPoint<PointT, PointT>::getUseReciprocalCorrespondences);
 
 template <typename PointT>
-pcl::PointCloud<PointT> align(pcl::Registration<PointT, PointT> &registration)
+typename pcl::PointCloud<PointT>::Ptr align(pcl::Registration<PointT, PointT> &registration, typename pcl::PointCloud<PointT>::Ptr &output)
 {
-  pcl::PointCloud<PointT> cloud;
-
-  registration.align(cloud);
-
-  return cloud;
+  if (output == nullptr)
+  {
+    pcl::PointCloud<PointT> cloud;
+    registration.align(cloud);
+    return cloud.makeShared();
+  }
+  else
+  {
+    registration.align(*output);
+    return output;
+  }
 }
 
 template <typename PointT>
