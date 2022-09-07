@@ -1,5 +1,13 @@
 # Changelog
 
+# [1.1.0-alpha.1](https://github.com/luoxuhai/pcl.js/compare/v1.1.0-alpha.0...v1.1.0-alpha.1) (2022-09-07)
+
+
+### Features
+
+* allow Registration.align method to carry parameters ([e6514cd](https://github.com/luoxuhai/pcl.js/commit/e6514cd5ec1badd68a7411511148c7347c34093a))
+* use `Class` to define `PointType` ([ec57cc2](https://github.com/luoxuhai/pcl.js/commit/ec57cc23f843a0eb6af8d1c8c2652538c602452a))
+
 # [1.1.0-alpha.0](https://github.com/luoxuhai/pcl.js/compare/v1.0.3...v1.1.0-alpha.0) (2022-09-04)
 
 
