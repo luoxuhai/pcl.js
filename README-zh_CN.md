@@ -174,21 +174,7 @@ main();
 
 ## 路线图
 
-- [ ] features
-- [x] filters 70%
-- [ ] geometry
-- [x] io 50%
-- [ ] kdtree
-- [ ] keypoints
-- [ ] octree
-- [ ] outofcore
-- [ ] recognition
-- [x] registration 10%
-- [ ] sample_consensus
-- [ ] search
-- [ ] segmentation
-- [ ] surface
-- [ ] common 20%
+查看完整的[路线图](ROADMAP-zh_CN.md)。
 
 ## 贡献
 

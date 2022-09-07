@@ -2,14 +2,40 @@
 
 ## API
 
-### common
+### I/O - 60%
 
-### 输入输出(I/O)
+- [x] loadPCDFile
+- [x] savePCDFile
+- [x] savePCDFileASCII
+- [x] savePCDFileBinary
+- [x] savePCDFileBinaryCompressed
+- [ ] loadPLYFile
 
-### 滤波(filters)
+### Filters - 70%
 
-### 配准(registration)
+- [x] PassThrough
+- [x] VoxelGrid
+- [x] RadiusOutlierRemoval
+- [x] StatisticalOutlierRemoval
+- [ ] BilateralFilter
+- [ ] FastBilateralFilter
+- [ ] UniformSampling
 
-### 关键点(keypoints)
+### Registration - 20%
+
+- [x] IterativeClosestPoint
+- [ ] NormalDistributionsTransform
+
+### Keypoints
+
+### Recognition
+
+### Segmentation
+
+### Surface
+
+### Sample Consensus
 
 ## Performance
+
+*Todo*
