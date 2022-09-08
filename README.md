@@ -65,6 +65,15 @@
 | --------- | --------- | --------- | --------- | --------- |
 | 16+ | 52+ | 57+ | 11+ | 44+ 
 
+## Bundle Size
+
+> pcl.js version: latest
+
+| Source        |                                                    Link                                                     |     Size      |
+| :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |
+| pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~33k gzip’d |
+| pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm) | ~199k gzip’d  |
+
 ## Installation
 
 ### NPM
@@ -141,21 +150,21 @@ async function main() {
   // Write a PCD file
   pcl.fs.writeFile('/test.pcd', new Uint8Array(pcd));
   // Load PCD file, return point cloud object
-  const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>('/test.pcd', PCL.PointTypes.PointXYZ);
+  const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>('/test.pcd', PCL.PointXYZ);
 
   // Filtering a PointCloud using a PassThrough filter
   // See: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
-  const pass = new pcl.filters.PassThrough<PCL.PointXYZ>(PCL.PointTypes.PointXYZ);
+  const pass = new pcl.filters.PassThrough<PCL.PointXYZ>(PCL.PointXYZ);
   pass.setInputCloud(cloud);
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
-  const filteredCloud = pass.filter();
+  const cloudFiltered = pass.filter();
   // It can also be saved in the same way as in C++:
-  // const filteredCloud = pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointTypes.PointXYZ);
-  // pass.filter(filteredCloud);
+  // const cloudFiltered = pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+  // pass.filter(cloudFiltered);
 
   // Save filtered point cloud objects as PCD files
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', filteredCloud);
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', cloudFiltered);
   // Read PCD file content, the content is ArrayBuffer
   const pcd = pcl.fs.readFile('/test-filtered.pcd');
 
@@ -167,16 +176,6 @@ async function main() {
 
 main();
 ```
-
-
-## Bundle Size
-
-> pcl.js version: latest
-
-| Source        |                                                    Link                                                     |     Size      |
-| :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |
-| pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~32.3k gzip’d |
-| pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm) | ~198k gzip’d  |
 
 ## Roadmap
 

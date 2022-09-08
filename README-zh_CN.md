@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://pcljs.org/zh-cn" target="_blank"><img style="max-height: 100px" src="./pcljs.png" title="pcl.js" alt="title="pcl.js"></a>
-  <p align="center">用于浏览器的<a href="https://github.com/PointCloudLibrary/pcl" target="_blank">点云库 (PCL)</a>，由 WebAssembly 提供支持。</p>
+  <p align="center">在浏览器运行的<a href="https://github.com/PointCloudLibrary/pcl" target="_blank">点云库 (PCL)</a>，由 WebAssembly 提供支持。</p>
 </p>
 <p align="center">
  <a href="https://github.com/FoalTS/foal/blob/master/LICENSE">
@@ -63,6 +63,15 @@
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera |
 | --------- | --------- | --------- | --------- | --------- |
 | 16+ | 52+ | 57+ | 11+ | 44+ 
+
+## 资源大小
+
+> pcl.js version: latest
+
+| 资源          |                                                    链接                                                     |     大小      |
+| :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |
+| pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~33k gzip’d |
+| pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm) | ~199k gzip’d  |
 
 ## 安装
 
@@ -136,21 +145,21 @@ async function main() {
   // 写入 PCD 文件
   pcl.fs.writeFile('/test.pcd', new Uint8Array(pcd));
   // 加载 PCD 文件，返回点云对象
-  const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>('/test.pcd', PCL.PointTypes.PointXYZ);
+  const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>('/test.pcd', PCL.PointXYZ);
 
   // 使用 PassThrough 过滤器过滤点云
   // 参考: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
-  const pass = new pcl.filters.PassThrough<PCL.PointXYZ>(PCL.PointTypes.PointXYZ);
+  const pass = new pcl.filters.PassThrough<PCL.PointXYZ>(PCL.PointXYZ);
   pass.setInputCloud(cloud);
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
-  const filteredCloud = pass.filter();
+  const cloudFiltered = pass.filter();
   // 也可以和 C++ 中写法保存一致
-  // const filteredCloud = pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointTypes.PointXYZ);
-  // pass.filter(filteredCloud);
+  // const cloudFiltered = pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+  // pass.filter(cloudFiltered);
 
   // 将过滤后的点云对象保存为 PCD 文件
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', filteredCloud);
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', cloudFiltered);
   // 读取 PCD 文件内容， 内容为 ArrayBuffer
   const pcd = pcl.fs.readFile('/test-filtered.pcd');
 
@@ -162,15 +171,6 @@ async function main() {
 
 main();
 ```
-
-## 资源大小
-
-> pcl.js version: latest
-
-| 资源          |                                                    链接                                                     |     大小      |
-| :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |
-| pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~32.3k gzip’d |
-| pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm) | ~198k gzip’d  |
 
 ## 路线图
 
