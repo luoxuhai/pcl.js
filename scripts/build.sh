@@ -21,7 +21,7 @@ fi
 EMFLAGS=(
   -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
   # PCL Directory
-  -DPCL_ROOT=/Users/luoxuhai/Desktop/repo/pcl.js/core/pcl
+  -DPCL_ROOT=${PROJECT_ROOT}/core/pcl
 )
 
 emcmake cmake ${EMFLAGS[@]} ..
