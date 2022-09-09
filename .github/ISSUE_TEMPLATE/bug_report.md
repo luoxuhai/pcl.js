@@ -7,26 +7,29 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+<!--
+Thank you for reporting an issue!
+Before opening an issue _please_ check if a similar issue exists by
+searching existing issues (https://github.com/luoxuhai/pcl.js/issues).
+If possible, please provide code that demonstrates the problem.
+Links to a running example of the problem are best!
+Before submitting please read:
+Contributors guide: https://github.com/luoxuhai/pcl.js/blob/master/CONTRIBUTING.md
+Code of Conduct: https://github.com/luoxuhai/pcl.js/blob/master/CODE_OF_CONDUCT.md
+-->
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+<!-- Bug Report (delete if not applicable) -->
+### Expected Behavior
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+### Current Behavior
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+### Possible Solution
 
-** Environment (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+### Steps to Reproduce
 
-**Additional context**
-Add any other context about the problem here.
+### Environment
+
+- **`pcl.js` version**: _e.g. 1.1.0_
+- **Browser & Version**: _e.g. Chrome 67_
+- **OS & Version**: _e.g. Ubuntu 18.04_
+- **Running Example**: _url_
