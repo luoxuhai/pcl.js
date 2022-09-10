@@ -1,5 +1,24 @@
 # Changelog
 
+# [1.1.0](https://github.com/luoxuhai/pcl.js/compare/v1.0.3...v1.1.0) (2022-09-10)
+
+
+### Bug Fixes
+
+* correct typescript type hints ([95de0d3](https://github.com/luoxuhai/pcl.js/commit/95de0d3f7dc274681d97d7d17ac3953a34369a93))
+
+
+### Features
+
+* add point types ([769f029](https://github.com/luoxuhai/pcl.js/commit/769f0290d090d600131edd7b9b396038895e75d5))
+* add point_types ([c5fc1ca](https://github.com/luoxuhai/pcl.js/commit/c5fc1caba2ce10e0088ec369585d07c1a485bd2c))
+* add points types ([deb9e7c](https://github.com/luoxuhai/pcl.js/commit/deb9e7c896e34aa24f6ed278efaf293cc480d21f))
+* add print version ([0f1c799](https://github.com/luoxuhai/pcl.js/commit/0f1c799d2c1d55ec8387f62c2b22528b66e95691))
+* add readPCDHeader method ([4d5d16b](https://github.com/luoxuhai/pcl.js/commit/4d5d16ba9594043ab36089dc1dd3bf194210447a))
+* allow Registration.align method to carry parameters ([738b915](https://github.com/luoxuhai/pcl.js/commit/738b9153dbd86f87ffe359253252f441fc7f8f2c))
+* get points of point cloud ([c492ac2](https://github.com/luoxuhai/pcl.js/commit/c492ac23f913be491c93aa2585fab31713591550))
+* use `Class` to define `PointType` ([51c11ea](https://github.com/luoxuhai/pcl.js/commit/51c11ea6f71c38028dd662bb1bfdfdfd9fc2e9e8))
+
 # [1.1.0-alpha.1](https://github.com/luoxuhai/pcl.js/compare/v1.1.0-alpha.0...v1.1.0-alpha.1) (2022-09-07)
 
 
