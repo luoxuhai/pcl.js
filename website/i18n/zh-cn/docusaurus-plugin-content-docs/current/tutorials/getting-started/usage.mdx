@@ -7,7 +7,7 @@ sidebar_position: 2
 ## NPM
 
 ```typescript showLineNumbers
-import PCL from 'pcl.js';
+import * as PCL from 'pcl.js';
 
 async function main() {
   // Initialization
@@ -28,13 +28,7 @@ main();
 <script>
 async function main() {
   // Initialization, PCL is a global object.
-  const pcl = await PCL.init({
-    // Recommend, optional configuration, custom WebAssembly file link.
-    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
-    // You can also pass an ArrayBuffer of WebAssembly files.
-    // arrayBuffer: ArrayBuffer
-  });
-
+  const pcl = await PCL.init();
   // ...
 }
 
@@ -54,7 +48,7 @@ main();
 参考: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
 
 ```typescript showLineNumbers
-import PCL from 'pcl.js';
+import * as PCL from 'pcl.js';
 
 async function main() {
   const pcl = await PCL.init({
@@ -66,17 +60,17 @@ async function main() {
   // 写入 PCD 文件
   pcl.fs.writeFile('/test.pcd', pcd);
   // 加载 PCD 文件，返回点云对象
-  const pointCloud = pcl.io.loadPCDFile('/test.pcd');
+  const cloud = pcl.io.loadPCDFile('/test.pcd', PCL.PointXYZ);
 
   // 使用 PassThrough 过滤器过滤点云
-  const pass = new pcl.filters.PassThrough();
-  pass.setInputCloud(pointCloud);
+  const pass = new pcl.filters.PassThrough<PCL.PointXYZ>(PCL.PointXYZ);
+  pass.setInputCloud(cloud);
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
-  const filteredPointCloud = pass.filter();
+  const cloudFiltered = pass.filter();
 
   // 将过滤后的点云对象保存为 PCD 文件
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', filteredPointCloud);
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', cloudFiltered);
   // 读取 PCD 文件内容， 内容为 ArrayBuffer
   const pcd = pcl.fs.readFile('/test-filtered.pcd');
 

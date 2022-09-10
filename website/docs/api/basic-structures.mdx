@@ -1,0 +1,123 @@
+---
+sidebar_position: 2
+---
+
+# Basic Structures
+
+## PointCloud
+
+> https://pointclouds.org/documentation/classpcl_1_1_point_cloud.html
+
+```ts
+new pcl.common.PointCloud();
+```
+
+### Members
+
+#### isDense
+
+#### points
+
+#### width
+
+#### height
+
+### Methods
+
+#### isOrganized()
+
+#### clear()
+
+#### resize()
+
+#### push()
+
+#### delete()
+
+## PointType
+
+### PointXYZ
+
+```ts
+new PointXYZ();
+
+// Type
+interface PointXYZ {
+  x: number;
+  y: number;
+  z: number;
+}
+```
+
+### PointXYZI
+
+```ts
+new PointXYZI();
+
+// Type
+interface PointXYZI {
+  x: number;
+  y: number;
+  z: number;
+  intensity: number;
+}
+```
+
+### PointXYZRGB
+
+```ts
+new PointXYZRGB();
+
+// Type
+interface PointXYZRGB {
+  x: number;
+  y: number;
+  z: number;
+  rgb: number;
+}
+```
+
+### PointXYZRGBA
+
+```ts
+new PointXYZRGBA();
+
+// Type
+interface PointXYZRGBA {
+  x: number;
+  y: number;
+  z: number;
+  rgba: number;
+}
+```
+
+### Normal
+
+```ts
+new Normal();
+
+// Type
+interface Normal {
+  normalX: number;
+  normalY: number;
+  normalZ: number;
+  curvature: number;
+}
+```
+
+### PointNormal
+
+```ts
+new PointNormal();
+
+// Type
+interface PointNormal {
+  x: number;
+  y: number;
+  z: number;
+  normalX: number;
+  normalY: number;
+  normalZ: number;
+  curvature: number;
+}
+```

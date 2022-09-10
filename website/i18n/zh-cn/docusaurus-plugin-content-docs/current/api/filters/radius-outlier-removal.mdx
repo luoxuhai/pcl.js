@@ -1,0 +1,92 @@
+# RadiusOutlierRemoval
+
+> https://pointclouds.org/documentation/classpcl_1_1_radius_outlier_removal.html
+
+`RadiusOutlierRemoval` 根据他们拥有的邻居数量过滤云中的点。
+
+## 构造函数
+
+```ts
+new pcl.filters.RadiusOutlierRemoval(pointType, removed);
+```
+
+**参数:**
+
+| 名称                  | 类型                                              | 默认值    | 描述                                                          |
+| --------------------- | ------------------------------------------------- | ---------- | -------------------------------------------------------------------- |
+| pointType             | [PointType](/docs/api/basic-structures#pointtype) | `PointXYZ` | The point cloud type.                                                |
+| extractRemovedIndices | `boolean`                                         | `false`    | Initializing with true will allow us to extract the removed indices. |
+
+## 方法
+
+### setRadiusSearch
+
+```ts
+setRadiusSearch(radius);
+```
+
+设置将确定哪些点是邻居的球体的半径。
+
+**参数:**
+
+| 名称   | 类型     | 默认值 | 描述                                              |
+| ------ | -------- | ------- | -------------------------------------------------------- |
+| radius | `number` |         | The radius of the sphere for nearest neighbor searching. |
+
+### getRadiusSearch
+
+```ts
+getRadiusSearch();
+```
+
+### setMinNeighborsInRadius
+
+```ts
+setMinNeighborsInRadius(minPts);
+```
+
+设置需要存在的邻居数量才能被分类为内点。
+
+**参数:**
+
+| 名称   | 类型     | 默认值 | 描述                      |
+| ------ | -------- | ------- | -------------------------------- |
+| minPts | `number` | `1`     | The minimum number of neighbors. |
+
+### getMinNeighborsInRadius
+
+```ts
+getMinNeighborsInRadius();
+```
+
+### setNegative
+
+See [PassThrough.setNegative](/docs/api/filters/pass-through#setnegative)
+
+### getNegative
+
+See [PassThrough.getNegative](/docs/api/filters/pass-through#getnegative)
+
+### setKeepOrganized
+
+See [PassThrough.setKeepOrganized](/docs/api/filters/pass-through#setkeeporganized)
+
+### getKeepOrganized
+
+See [PassThrough.getKeepOrganized](/docs/api/filters/pass-through#getkeeporganized)
+
+### setUserFilterValue
+
+See [PassThrough.setUserFilterValue](/docs/api/filters/pass-through#setuserfiltervalue)
+
+### setInputCloud
+
+See [PassThrough.setInputCloud](/docs/api/filters/pass-through#setinputcloud)
+
+### getInputCloud
+
+See [PassThrough.getInputCloud](/docs/api/filters/pass-through#getinputcloud)
+
+### filter
+
+See [PassThrough.filter](/docs/api/filters/pass-through#filter)

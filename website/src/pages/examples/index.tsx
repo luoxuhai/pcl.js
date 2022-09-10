@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Link from '@docusaurus/Link';
-import Translate, { translate } from '@docusaurus/Translate';
+import { translate } from '@docusaurus/Translate';
 import clsx from 'clsx';
 
 import styles from './index.module.scss';
 
-const commonOptions = 'file=main.js&hideNavigation=1&view=preview';
+const commonOptions =
+  'autoresize=1&codemirror=1&fontsize=14&hidenavigation=1&theme=light';
 
 const exampleList = [
   {
@@ -16,7 +17,8 @@ const exampleList = [
     }),
     cover: require('@site/static/img/examples/StatisticalOutlierRemoval.gif')
       .default,
-    code_url: 'https://stackblitz.com/edit/web-platform-ugzuzp?embed=1',
+    code_url:
+      'https://codesandbox.io/embed/pcl-js-examples-statisticaloutlierremoval-ys43o3',
   },
 ];
 
@@ -31,7 +33,7 @@ export default function Examples() {
       <div className={styles.list}>
         {exampleList.map((example) => {
           const url = example.code_url
-            ? encodeURIComponent(`${example.code_url}&${commonOptions}`)
+            ? encodeURIComponent(`${example.code_url}?${commonOptions}`)
             : '';
 
           return (

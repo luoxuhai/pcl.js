@@ -1,0 +1,92 @@
+# RadiusOutlierRemoval
+
+> https://pointclouds.org/documentation/classpcl_1_1_radius_outlier_removal.html
+
+`RadiusOutlierRemoval` filters points in a cloud based on the number of neighbors they have.
+
+## Constructor
+
+```ts
+new pcl.filters.RadiusOutlierRemoval(pointType, removed);
+```
+
+**Parameters:**
+
+| Name                  | Type                                              | Default    | Description                                                          |
+| --------------------- | ------------------------------------------------- | ---------- | -------------------------------------------------------------------- |
+| pointType             | [PointType](/docs/api/basic-structures#pointtype) | `PointXYZ` | The point cloud type.                                                |
+| extractRemovedIndices | `boolean`                                         | `false`    | Initializing with true will allow us to extract the removed indices. |
+
+## Methods
+
+### setRadiusSearch
+
+```ts
+setRadiusSearch(radius);
+```
+
+Set the radius of the sphere that will determine which points are neighbors.
+
+**Parameters:**
+
+| Name   | Type     | Default | Description                                              |
+| ------ | -------- | ------- | -------------------------------------------------------- |
+| radius | `number` |         | The radius of the sphere for nearest neighbor searching. |
+
+### getRadiusSearch
+
+```ts
+getRadiusSearch();
+```
+
+### setMinNeighborsInRadius
+
+```ts
+setMinNeighborsInRadius(minPts);
+```
+
+Set the number of neighbors that need to be present in order to be classified as an inlier.
+
+**Parameters:**
+
+| Name   | Type     | Default | Description                      |
+| ------ | -------- | ------- | -------------------------------- |
+| minPts | `number` | `1`     | The minimum number of neighbors. |
+
+### getMinNeighborsInRadius
+
+```ts
+getMinNeighborsInRadius();
+```
+
+### setNegative
+
+See [PassThrough.setNegative](/docs/api/filters/pass-through#setnegative)
+
+### getNegative
+
+See [PassThrough.getNegative](/docs/api/filters/pass-through#getnegative)
+
+### setKeepOrganized
+
+See [PassThrough.setKeepOrganized](/docs/api/filters/pass-through#setkeeporganized)
+
+### getKeepOrganized
+
+See [PassThrough.getKeepOrganized](/docs/api/filters/pass-through#getkeeporganized)
+
+### setUserFilterValue
+
+See [PassThrough.setUserFilterValue](/docs/api/filters/pass-through#setuserfiltervalue)
+
+### setInputCloud
+
+See [PassThrough.setInputCloud](/docs/api/filters/pass-through#setinputcloud)
+
+### getInputCloud
+
+See [PassThrough.getInputCloud](/docs/api/filters/pass-through#getinputcloud)
+
+### filter
+
+See [PassThrough.filter](/docs/api/filters/pass-through#filter)

@@ -54,7 +54,7 @@
 ## 资源
 
 - [文档](https://pcljs.org/zh-cn/docs/tutorials/intro)
-- [API](https://pcljs.org/zh-cn/docs/api/intro)
+- [API](https://pcljs.org/zh-cn/docs/api/about)
 - [示例](https://pcljs.org/zh-cn/examples)
 - [讨论](https://github.com/luoxuhai/pcl.js/discussions)
 

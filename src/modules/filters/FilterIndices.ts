@@ -4,7 +4,7 @@ import { PointTypesUnion, PointTypesIntersection } from '../point-types';
 class FilterIndices<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterBase<T> {
-  public setNegative(negative: boolean) {
+  public setNegative(negative = false) {
     this.native.setNegative(negative);
   }
 
@@ -12,7 +12,7 @@ class FilterIndices<
     return this.native.getNegative();
   }
 
-  public setKeepOrganized(keepOrganized: boolean) {
+  public setKeepOrganized(keepOrganized = false) {
     this.native.setNegative(keepOrganized);
   }
 

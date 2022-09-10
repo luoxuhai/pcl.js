@@ -15,11 +15,12 @@ function loadPCDFile<
 }
 
 function savePCDFile(filename: string, cloud: PointCloud, binaryMode = false) {
-  return __PCLCore__[`savePCDFile${cloud.PT.name}`](
+  const flag = __PCLCore__[`savePCDFile${cloud.PT.name}`](
     filename,
     cloud.native,
     binaryMode,
-  ) as PointCloud;
+  );
+  return flag === 0;
 }
 
 function savePCDFileASCII(filename: string, cloud: PointCloud) {
@@ -31,10 +32,11 @@ function savePCDFileBinary(filename: string, cloud: PointCloud) {
 }
 
 function savePCDFileBinaryCompressed(filename: string, cloud: PointCloud) {
-  return __PCLCore__[`savePCDFileBinaryCompressed${cloud.PT.name}`](
+  const flag = __PCLCore__[`savePCDFileBinaryCompressed${cloud.PT.name}`](
     filename,
     cloud.native,
   );
+  return flag === 0;
 }
 
 function readPCDHeader(filename: string) {

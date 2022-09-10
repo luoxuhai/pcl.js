@@ -4,7 +4,6 @@
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/filters/statistical_outlier_removal.h>
 #include <pcl/filters/radius_outlier_removal.h>
-#include <pcl/filters/radius_outlier_removal.h>
 #include <emscripten/bind.h>
 #include "embind.cpp"
 

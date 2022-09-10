@@ -55,7 +55,7 @@
 ## Resources
 
 - [Documentation](https://pcljs.org/docs/tutorials/intro)
-- [API Reference](https://pcljs.org/docs/api/intro)
+- [API Reference](https://pcljs.org/docs/api/about)
 - [Examples](https://pcljs.org/examples)
 - [Discussions](https://github.com/luoxuhai/pcl.js/discussions)
 
