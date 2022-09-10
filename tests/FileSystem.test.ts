@@ -44,7 +44,7 @@ describe('FileSystem', () => {
   it('should delete a file', () => {
     const filename = 'test-write-file-1.pcd';
     pcl?.fs.writeFile(filename, 'text');
-    pcl.fs.unlink(filename);
+    pcl?.fs.unlink(filename);
     let result: any = null;
     try {
       result = pcl?.fs.stat(filename);

@@ -1,0 +1,80 @@
+---
+sidebar_position: 3
+---
+
+# 文件系统
+
+> https://emscripten.org/docs/api_reference/Filesystem-API.html#id2
+
+## 方法
+
+### writeFile
+
+```ts
+writeFile(path, data, options);
+```
+
+将数据的全部内容写入路径中的文件。 例如：
+
+```ts showLineNumbers
+pcl.fs.writeFile('file', 'foobar');
+```
+
+### readFile
+
+```ts
+readFile(path, options);
+```
+
+读取 `path` 处的整个文件并将其作为字符串（编码为 utf8）或作为新的 `Uint8Array` 缓冲区（编码为二进制）返回。
+
+**返回:**
+
+| Type                      | Description                |
+| ------------------------- | -------------------------- |
+| `string` or `ArrayBuffer` | The contents of the file.. |
+
+### unlink
+
+```ts
+unlink(path);
+```
+
+这会从文件系统中删除一个名称。 如果该名称是文件的最后一个链接（并且没有进程打开该文件），则该文件将被删除。
+
+### rename
+
+```ts
+rename(oldPath, newPath);
+```
+
+将 `oldpath` 处的节点重命名为 `newpath。`
+
+### mkdir
+
+```ts
+mkdir(path, mode);
+```
+
+在文件系统中创建一个新的目录节点。
+
+### rmdir
+
+```ts
+rmdir(path);
+```
+
+删除位于 `path` 的空目录。
+
+### readdir
+
+```ts
+readdir(path);
+```
+
+读取 `path` 处的整个文件并将其作为数组返回。 例如：
+
+```ts showLineNumbers
+const result = pcl.fs.readdir('/)
+console.log(result) // ['dev', 'temp']
+```

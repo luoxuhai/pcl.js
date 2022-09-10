@@ -23,7 +23,7 @@ class RadiusOutlierRemoval<
     return this.native.getRadiusSearch();
   }
 
-  public setMinNeighborsInRadius(minPts: number) {
+  public setMinNeighborsInRadius(minPts = 1) {
     return this.native.setMinNeighborsInRadius(minPts);
   }
 

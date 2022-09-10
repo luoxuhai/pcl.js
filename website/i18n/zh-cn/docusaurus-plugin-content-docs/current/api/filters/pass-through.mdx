@@ -1,0 +1,194 @@
+# PassThrough
+
+> https://pointclouds.org/documentation/classpcl_1_1_pass_through.html
+
+遍历整个输入一次，自动过滤非有限点和 `setFilterLimits()` 指定的区间之外的点，这仅适用于 `setFilterFieldName()` 指定的字段。
+
+## Constructor
+
+```ts
+new pcl.filters.PassThrough(removed, pointType);
+```
+
+示例:
+
+```ts
+import * as PCL from 'pcl.js';
+
+const pcl = await PCL.init();
+
+new pcl.filters.PassThrough(PCL.PointXYZ, true);
+```
+
+**参数:**
+
+| 名称                  | 类型                                              | 默认值     | 描述                                                                 |
+| --------------------- | ------------------------------------------------- | ---------- | -------------------------------------------------------------------- |
+| pointType             | [PointType](/docs/api/basic-structures#pointtype) | `PointXYZ` | The point cloud type.                                                |
+| extractRemovedIndices | `boolean`                                         | `false`    | Initializing with true will allow us to extract the removed indices. |
+
+## 方法
+
+### setFilterFieldName()
+
+```ts
+setFilterFieldName(fieldName);
+```
+
+提供要用于过滤数据的字段的名称。
+与 `setFilterLimits()` 结合使用，该字段的值超出此区间的点将被丢弃。
+
+**参数:**
+
+| 名称      | 类型     | 默认值 | 描述                                                                         |
+| --------- | -------- | ------ | ---------------------------------------------------------------------------- |
+| fieldName | `string` |        | Path to the blog content directory on the file system, relative to site dir. |
+
+### getFilterFieldName()
+
+```ts
+getFilterFieldName();
+```
+
+**返回:**
+
+| 类型     | 描述                                                                         |
+| -------- | ---------------------------------------------------------------------------- |
+| `string` | Path to the blog content directory on the file system, relative to site dir. |
+
+### setFilterLimits()
+
+```ts
+setFilterLimits(min, max);
+```
+
+为过滤数据的字段设置数值限制。
+与 `setFilterFieldName()` 结合使用，该字段的值超出此区间的点将被丢弃。
+
+**参数:**
+
+| 名称 | 类型   | 默认值 | 描述                                                                         |
+| ---- | ------ | ------ | ---------------------------------------------------------------------------- |
+| min  | number | `0`    | Path to the blog content directory on the file system, relative to site dir. |
+| max  | number | `0`    | Path to the blog content directory on the file system, relative to site dir. |
+
+### getFilterLimits()
+
+```ts
+getFilterLimits();
+```
+
+**返回:**
+
+| 名称   | 类型                          |
+| ------ | ----------------------------- |
+| limits | [FilterLimits](#filterlimits) |
+
+### setNegative
+
+```ts
+setNegative(negative);
+```
+
+设置是应用点过滤的常规条件，还是应用倒置条件。
+
+**参数:**
+
+| 名称     | 类型      | 默认值  | 描述                                                        |
+| -------- | --------- | ------- | ----------------------------------------------------------- |
+| negative | `boolean` | `false` | `false`: normal filter behavior, `true`: inverted behavior. |
+
+### getNegative
+
+```ts
+getNegative();
+```
+
+### setKeepOrganized
+
+```ts
+setKeepOrganized(keepOrganized);
+```
+
+设置过滤后的点是否应保留并设置为通过 `setUserFilterValue` 给出的值（默认值：NaN），或者从 `PointCloud` 中删除，从而可能破坏其组织结构。
+
+**参数:**
+
+| 名称          | 类型      | 默认值  | 描述                                                             |
+| ------------- | --------- | ------- | ---------------------------------------------------------------- |
+| keepOrganized | `boolean` | `false` | `false`: remove points, `true`: redefine points, keep structure. |
+
+### getKeepOrganized
+
+```ts
+getKeepOrganized(keepOrganized);
+```
+
+### setUserFilterValue
+
+```ts
+setUserFilterValue(value);
+```
+
+提供一个值，过滤点应设置为而不是删除它们。
+
+与`setKeepOrganized()`一起使用。
+
+**参数:**
+
+| 名称  | 类型     | 默认值 | 描述   |
+| ----- | -------- | ------ | ------ | ------------------------------------------------------------------------- |
+| value | `number` | `null` | `null` | The user given value that the filtered point dimensions should be set to. |
+
+### setInputCloud
+
+```ts
+setInputCloud(cloud);
+```
+
+**参数:**
+
+| 名称  | 类型                                                | 默认值 | 描述                         |
+| ----- | --------------------------------------------------- | ------ | ---------------------------- |
+| cloud | [PointCloud](/docs/api/basic-structures#pointcloud) |        | The point cloud data message |
+
+### getInputCloud
+
+```ts
+getInputCloud();
+```
+
+**返回:**
+
+| 名称  | 类型                                                | 描述                         |
+| ----- | --------------------------------------------------- | ---------------------------- |
+| cloud | [PointCloud](/docs/api/basic-structures#pointcloud) | The point cloud data message |
+
+### filter
+
+```ts
+filter(cloud);
+```
+
+**参数:**
+
+| 名称             | 类型                                                | 默认值 | 描述                         |
+| ---------------- | --------------------------------------------------- | ------ | ---------------------------- |
+| cloud (optional) | [PointCloud](/docs/api/basic-structures#pointcloud) |        | The point cloud data message |
+
+**返回:**
+
+| 名称  | 类型                                                | 描述                         |
+| ----- | --------------------------------------------------- | ---------------------------- |
+| cloud | [PointCloud](/docs/api/basic-structures#pointcloud) | The point cloud data message |
+
+## 类型定义
+
+### FilterLimits
+
+```ts
+interface FilterLimits {
+  min: number;
+  max: number;
+}
+```

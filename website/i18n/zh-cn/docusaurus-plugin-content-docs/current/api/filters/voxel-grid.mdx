@@ -1,0 +1,104 @@
+# VoxelGrid
+
+> https://pointclouds.org/documentation/classpcl_1_1_voxel_grid.html
+
+VoxelGrid 在给定的 PointCloud 上组装一个本地 3D 网格，并对数据进行下采样 + 过滤。
+
+VoxelGrid 类在输入点云数据上创建 3D 体素网格（将体素网格视为空间中的一组微小 3D 框）。 然后，在每个体素（即 3D 框）中，所有存在的点都将以其质心近似（即下采样）。 这种方法比用体素的中心近似它们要慢一些，但它更准确地表示了底层表面。
+
+## 构造函数
+
+```ts
+new pcl.filters.VoxelGrid(pointType);
+```
+
+**参数:**
+
+| Name      | Type                                              | Default    | 描述                  |
+| --------- | ------------------------------------------------- | ---------- | --------------------- |
+| pointType | [PointType](/docs/api/basic-structures#pointtype) | `PointXYZ` | The point cloud type. |
+
+## 方法
+
+### setLeafSize()
+
+```
+setLeafSize(lx, ly, lz)
+```
+
+**参数:**
+
+| Name | Type     | Default | 描述                 |
+| ---- | -------- | ------- | -------------------- |
+| lx   | `number` |         | the leaf size for X. |
+| ly   | `number` |         | the leaf size for Y. |
+| lz   | `number` |         | the leaf size for Z. |
+
+### setDownsampleAllData()
+
+```ts
+setLeafSize(downsample);
+```
+
+如果所有字段都需要下采样，则设置为 `true`，如果只是 `XYZ`，则设置为 `false`。
+
+**参数:**
+
+| Name       | Type      | Default | 描述                       |
+| ---------- | --------- | ------- | -------------------------- |
+| downsample | `boolean` |         | The new value (true/false) |
+| .          |
+
+### getDownsampleAllData()
+
+```ts
+getDownsampleAllData();
+```
+
+获取内部下采样参数的状态（如果所有字段都需要下采样，则为 `true`，如果只是 `XYZ`，则为 `false`）。
+
+**Returns:**
+
+| Name       | Type      |
+| ---------- | --------- |
+| downsample | `boolean` |
+
+### setMinimumPointsNumberPerVoxel()
+
+```ts
+setMinimumPointsNumberPerVoxel(minPointsPerVoxel);
+```
+
+设置要使用的体素所需的最小点数。
+
+**参数:**
+
+| Name              | Type     | Default | 描述                                                              |
+| ----------------- | -------- | ------- | ----------------------------------------------------------------- |
+| minPointsPerVoxel | `number` |         | The minimum number of points for required for a voxel to be used. |
+
+### getMinimumPointsNumberPerVoxel()
+
+```ts
+getMinimumPointsNumberPerVoxel();
+```
+
+返回要使用的体素所需的最小点数。
+
+**返回:**
+
+| Name              | Type     |
+| ----------------- | -------- |
+| minPointsPerVoxel | `number` |
+
+### setInputCloud
+
+See [PassThrough.setInputCloud](/docs/api/filters/pass-through#setinputcloud)
+
+### getInputCloud
+
+See [PassThrough.getInputCloud](/docs/api/filters/pass-through#getinputcloud)
+
+### filter
+
+See [PassThrough.filter](/docs/api/filters/pass-through#filter)

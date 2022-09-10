@@ -59,6 +59,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
+        hideOnScroll: true,
         logo: {
           alt: 'Logo',
           src: 'img/pcljs-logo.png',
@@ -73,7 +74,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'api/intro',
+            docId: 'api/about',
             position: 'left',
             label: 'API',
           },

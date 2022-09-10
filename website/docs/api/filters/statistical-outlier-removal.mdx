@@ -1,0 +1,92 @@
+# StatisticalOutlierRemoval
+
+> https://pointclouds.org/documentation/classpcl_1_1_statistical_outlier_removal.html
+
+`StatisticalOutlierRemoval` uses point neighborhood statistics to filter outlier data.
+
+## Constructor
+
+```ts
+new pcl.filters.StatisticalOutlierRemoval(pointType, removed);
+```
+
+**Parameters:**
+
+| Name                  | Type                                              | Default    | Description                                                          |
+| --------------------- | ------------------------------------------------- | ---------- | -------------------------------------------------------------------- |
+| pointType             | [PointType](/docs/api/basic-structures#pointtype) | `PointXYZ` | The point cloud type.                                                |
+| extractRemovedIndices | `boolean`                                         | `false`    | Initializing with true will allow us to extract the removed indices. |
+
+## Methods
+
+### setMeanK
+
+```ts
+setMeanK(nrK);
+```
+
+Set the number of nearest neighbors to use for mean distance estimation.
+
+**Parameters:**
+
+| Name | Type     | Default | Description                                               |
+| ---- | -------- | ------- | --------------------------------------------------------- |
+| nrK  | `number` |         | The number of points to use for mean distance estimation. |
+
+### getMeanK
+
+```ts
+getMeanK();
+```
+
+### setStddevMulThresh
+
+```ts
+setStddevMulThresh(stddevMult);
+```
+
+Set the standard deviation multiplier for the distance threshold calculation.
+
+**Parameters:**
+
+| Name   | Type     | Default | Description                        |
+| ------ | -------- | ------- | ---------------------------------- |
+| minPts | `number` |         | The standard deviation multiplier. |
+
+### getStddevMulThresh
+
+```ts
+getStddevMulThresh();
+```
+
+### setNegative
+
+See [PassThrough.setNegative](/docs/api/filters/pass-through#setnegative)
+
+### getNegative
+
+See [PassThrough.getNegative](/docs/api/filters/pass-through#getnegative)
+
+### setKeepOrganized
+
+See [PassThrough.setKeepOrganized](/docs/api/filters/pass-through#setkeeporganized)
+
+### getKeepOrganized
+
+See [PassThrough.getKeepOrganized](/docs/api/filters/pass-through#getkeeporganized)
+
+### setUserFilterValue
+
+See [PassThrough.setUserFilterValue](/docs/api/filters/pass-through#setuserfiltervalue)
+
+### setInputCloud
+
+See [PassThrough.setInputCloud](/docs/api/filters/pass-through#setinputcloud)
+
+### getInputCloud
+
+See [PassThrough.getInputCloud](/docs/api/filters/pass-through#getinputcloud)
+
+### filter
+
+See [PassThrough.filter](/docs/api/filters/pass-through#filter)

@@ -1,0 +1,196 @@
+# PassThrough
+
+> https://pointclouds.org/documentation/classpcl_1_1_pass_through.html
+
+Iterates through the entire input once, automatically filtering non-finite points and the points outside the interval specified by `setFilterLimits()`, which applies only to the field specified by `setFilterFieldName()`.
+
+## Constructor
+
+```ts
+new pcl.filters.PassThrough(removed, pointType);
+```
+
+For example:
+
+```ts
+import * as PCL from 'pcl.js';
+
+const pcl = await PCL.init();
+
+new pcl.filters.PassThrough(PCL.PointXYZ, true);
+```
+
+**Parameters:**
+
+| Name                  | Type                                              | Default    | Description                                                          |
+| --------------------- | ------------------------------------------------- | ---------- | -------------------------------------------------------------------- |
+| pointType             | [PointType](/docs/api/basic-structures#pointtype) | `PointXYZ` | The point cloud type.                                                |
+| extractRemovedIndices | `boolean`                                         | `false`    | Initializing with true will allow us to extract the removed indices. |
+
+## Methods
+
+### setFilterFieldName()
+
+```ts
+setFilterFieldName(fieldName);
+```
+
+Provide the name of the field to be used for filtering data.
+
+In conjunction with `setFilterLimits()`, points having values outside this interval for this field will be discarded.
+
+**Parameters:**
+
+| Name      | Type     | Default | Description                                                                  |
+| --------- | -------- | ------- | ---------------------------------------------------------------------------- |
+| fieldName | `string` |         | Path to the blog content directory on the file system, relative to site dir. |
+
+### getFilterFieldName()
+
+```ts
+getFilterFieldName();
+```
+
+**Returns:**
+
+| Type     | Description                                                                  |
+| -------- | ---------------------------------------------------------------------------- |
+| `string` | Path to the blog content directory on the file system, relative to site dir. |
+
+### setFilterLimits()
+
+```ts
+setFilterLimits(min, max);
+```
+
+Set the numerical limits for the field for filtering data.
+
+In conjunction with `setFilterFieldName()`, points having values outside this interval for this field will be discarded.
+
+**Parameters:**
+
+| Name | Type   | Default | Description                                                                  |
+| ---- | ------ | ------- | ---------------------------------------------------------------------------- |
+| min  | number | `0`     | Path to the blog content directory on the file system, relative to site dir. |
+| max  | number | `0`     | Path to the blog content directory on the file system, relative to site dir. |
+
+### getFilterLimits()
+
+```ts
+getFilterLimits();
+```
+
+**Returns:**
+
+| Name   | Type                          |
+| ------ | ----------------------------- |
+| limits | [FilterLimits](#filterlimits) |
+
+### setNegative
+
+```ts
+setNegative(negative);
+```
+
+Set whether the regular conditions for points filtering should apply, or the inverted conditions.
+
+**Parameters:**
+
+| Name     | Type      | Default | Description                                                 |
+| -------- | --------- | ------- | ----------------------------------------------------------- |
+| negative | `boolean` | `false` | `false`: normal filter behavior, `true`: inverted behavior. |
+
+### getNegative
+
+```ts
+getNegative();
+```
+
+### setKeepOrganized
+
+```ts
+setKeepOrganized(keepOrganized);
+```
+
+Set whether the filtered points should be kept and set to the value given through setUserFilterValue (default: NaN), or removed from the PointCloud, thus potentially breaking its organized structure.
+
+**Parameters:**
+
+| Name          | Type      | Default | Description                                                      |
+| ------------- | --------- | ------- | ---------------------------------------------------------------- |
+| keepOrganized | `boolean` | `false` | `false`: remove points, `true`: redefine points, keep structure. |
+
+### getKeepOrganized
+
+```ts
+getKeepOrganized(keepOrganized);
+```
+
+### setUserFilterValue
+
+```ts
+setUserFilterValue(value);
+```
+
+Provide a value that the filtered points should be set to instead of removing them.
+
+Used in conjunction with `setKeepOrganized ()`.
+
+**Parameters:**
+
+| Name  | Type     | Default | Description |
+| ----- | -------- | ------- | ----------- | ------------------------------------------------------------------------- |
+| value | `number` | `null`  | `null`      | The user given value that the filtered point dimensions should be set to. |
+
+### setInputCloud
+
+```ts
+setInputCloud(cloud);
+```
+
+**Parameters:**
+
+| Name  | Type                                                | Default | Description                  |
+| ----- | --------------------------------------------------- | ------- | ---------------------------- |
+| cloud | [PointCloud](/docs/api/basic-structures#pointcloud) |         | The point cloud data message |
+
+### getInputCloud
+
+```ts
+getInputCloud();
+```
+
+**Returns:**
+
+| Name  | Type                                                | Description                  |
+| ----- | --------------------------------------------------- | ---------------------------- |
+| cloud | [PointCloud](/docs/api/basic-structures#pointcloud) | The point cloud data message |
+
+### filter
+
+```ts
+filter(cloud);
+```
+
+**Parameters:**
+
+| Name             | Type                                                | Default | Description                  |
+| ---------------- | --------------------------------------------------- | ------- | ---------------------------- |
+| cloud (optional) | [PointCloud](/docs/api/basic-structures#pointcloud) |         | The point cloud data message |
+
+**Returns:**
+
+| Name  | Type                                                | Description                  |
+| ----- | --------------------------------------------------- | ---------------------------- |
+| cloud | [PointCloud](/docs/api/basic-structures#pointcloud) | The point cloud data message |
+
+## Type Definitions
+
+### FilterLimits
+
+```ts
+interface FilterLimits {
+  min: number;
+  max: number;
+}
+```

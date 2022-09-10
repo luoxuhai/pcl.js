@@ -1,0 +1,80 @@
+---
+sidebar_position: 3
+---
+
+# File System
+
+> https://emscripten.org/docs/api_reference/Filesystem-API.html#id2
+
+## Methods
+
+### writeFile
+
+```ts
+writeFile(path, data, options);
+```
+
+Writes the entire contents of data to the file at path. For example:
+
+```ts showLineNumbers
+pcl.fs.writeFile('file', 'foobar');
+```
+
+### readFile
+
+```ts
+readFile(path, options);
+```
+
+Reads the entire file at path and returns it as a string (encoding is utf8), or as a new Uint8Array buffer (encoding is binary).
+
+**Returns:**
+
+| Type                      | Description                |
+| ------------------------- | -------------------------- |
+| `string` or `ArrayBuffer` | The contents of the file.. |
+
+### unlink
+
+```ts
+unlink(path);
+```
+
+This removes a name from the file system. If that name was the last link to a file (and no processes have the file open) the file is deleted.
+
+### rename
+
+```ts
+rename(oldPath, newPath);
+```
+
+Renames the node at oldpath to newpath.
+
+### mkdir
+
+```ts
+mkdir(path, mode);
+```
+
+Creates a new directory node in the file system.
+
+### rmdir
+
+```ts
+rmdir(path);
+```
+
+Removes an empty directory located at path.
+
+### readdir
+
+```ts
+readdir(path);
+```
+
+Reads the entire files at path and returns it as a array. For example:
+
+```ts showLineNumbers
+const result = pcl.fs.readdir('/)
+console.log(result) // ['dev', 'temp']
+```
