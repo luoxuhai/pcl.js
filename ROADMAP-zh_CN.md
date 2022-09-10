@@ -4,6 +4,7 @@
 
 ### 输入输出(I/O) - 60%
 
+- [x] readPCDHeader
 - [x] loadPCDFile
 - [x] savePCDFile
 - [x] savePCDFileASCII

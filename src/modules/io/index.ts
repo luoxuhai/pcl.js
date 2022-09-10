@@ -5,42 +5,12 @@ import {
   TPointTypesUnion,
   PointTypesIntersection,
   PointXYZ,
-  PointXYZI,
-  PointXYZRGB,
-  PointXYZRGBA,
 } from '../point-types';
-
-const pointTypeMap: {
-  [key: string]: TPointTypesUnion;
-} = {
-  xyz: PointXYZ,
-  xyzintensity: PointXYZI,
-  xyzrgb: PointXYZRGB,
-  xyzrgba: PointXYZRGBA,
-};
 
 function loadPCDFile<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 >(filename: string, PT: TPointTypesUnion = PointXYZ) {
-  const PCLCore = __PCLCore__;
-
-  if (!PT) {
-    let fieldNames = '';
-    const fields = PCLCore.readPCDHeader(filename);
-    for (let i = 0; i < fields.size(); i++) {
-      fieldNames += fields.get(i).name;
-    }
-    fields.delete();
-
-    PT = pointTypeMap[fieldNames];
-  }
-
-  if (!PT) {
-    console.error('PointType cannot be empty');
-    return;
-  }
-
-  const native = PCLCore[`loadPCDFile${PT.name}`](filename);
+  const native = __PCLCore__[`loadPCDFile${PT.name}`](filename);
   return wrapPointCloud<T>(native);
 }
 
@@ -67,10 +37,25 @@ function savePCDFileBinaryCompressed(filename: string, cloud: PointCloud) {
   );
 }
 
+function readPCDHeader(filename: string) {
+  const header = __PCLCore__.readPCDHeader(filename) as Emscripten.NativeAPI;
+
+  const fields: string[] = [];
+  for (let i = 0; i < header.size(); i++) {
+    fields.push(header.get(i).name);
+  }
+  header.delete();
+
+  return {
+    fields,
+  };
+}
+
 export default {
   loadPCDFile,
   savePCDFile,
   savePCDFileASCII,
   savePCDFileBinary,
   savePCDFileBinaryCompressed,
+  readPCDHeader,
 };
