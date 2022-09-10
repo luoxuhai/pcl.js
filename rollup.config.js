@@ -89,13 +89,14 @@ const config = [
           },
         ],
       }),
-      serve({
-        contentBase: 'dist',
-        port: 4321,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
-      }),
+      process.env.ENV === 'development' &&
+        serve({
+          contentBase: 'dist',
+          port: 4321,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        }),
     ],
   },
   {
