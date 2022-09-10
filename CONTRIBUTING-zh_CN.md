@@ -26,7 +26,7 @@ cd pcl.js
 npm install
 ```
 
-## 更新代码
+## 编写代码
 
 1. 编译 PCL(C++)，[README](https://github.com/luoxuhai/pcl/tree/wasm/wasm/README.md)
 2. 编译 WebAssembly `npm run dev:wasm`
@@ -35,7 +35,7 @@ npm install
 ## 测试你的更改
 
 1. 在 `/tests` 目录下创建测试代码（如果该文件尚不存在，请使用 `*.test.ts` 扩展名创建它）
-2. 运行 `npm run dev` 用于构建测试运行的代码
+2. 运行 `npm run dev` 或 `npm run build` 用于构建测试运行的代码
 3. 运行 `npm run test`
 
 ## 更新文档

@@ -27,7 +27,7 @@ git clone https://github.com/luoxuhai/pcl.js --recursive --depth 1 --single-bran
 ## Testing Your Changes
 
 1. Create the test code in the `/tests` directory (if the file does not already exist, create it with the `*.test.ts` extension)
-2. Run `npm run dev` to build the test run code
+2. Run `npm run dev` or `npm run build` to build the test run code
 3. Run `npm run test`
 
 ## Updating Documentation

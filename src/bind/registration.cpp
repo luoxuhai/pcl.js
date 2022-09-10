@@ -21,7 +21,8 @@
       .function("getUseReciprocalCorrespondences", &pcl::IterativeClosestPoint<PointT, PointT>::getUseReciprocalCorrespondences);
 
 template <typename PointT>
-typename pcl::PointCloud<PointT>::Ptr align(pcl::Registration<PointT, PointT> &registration, typename pcl::PointCloud<PointT>::Ptr &output)
+typename pcl::PointCloud<PointT>::Ptr
+align(pcl::Registration<PointT, PointT> &registration, typename pcl::PointCloud<PointT>::Ptr &output)
 {
   if (output == nullptr)
   {
@@ -50,8 +51,14 @@ EMSCRIPTEN_BINDINGS(registration)
   // Bind Registration
   BIND_REGISTRATION(PointXYZ);
   BIND_REGISTRATION(PointXYZI);
+  BIND_REGISTRATION(PointXYZRGB);
+  BIND_REGISTRATION(PointXYZRGBA);
+  BIND_REGISTRATION(PointNormal);
 
   // Bind IterativeClosestPoint
   BIND_ICP(PointXYZ);
   BIND_ICP(PointXYZI);
+  BIND_ICP(PointXYZRGB);
+  BIND_ICP(PointXYZRGBA);
+  BIND_ICP(PointNormal);
 }

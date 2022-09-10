@@ -102,30 +102,54 @@ EMSCRIPTEN_BINDINGS(filters)
     // Bind PassThrough
     BIND_PASS_THROUGH(PointXYZ);
     BIND_PASS_THROUGH(PointXYZI);
+    BIND_PASS_THROUGH(PointXYZRGB);
+    BIND_PASS_THROUGH(PointXYZRGBA);
+    BIND_PASS_THROUGH(PointNormal);
 
     // Bind FilterIndices
     BIND_FILTER_INDICES(PointXYZ);
     BIND_FILTER_INDICES(PointXYZI);
+    BIND_FILTER_INDICES(PointXYZRGB);
+    BIND_FILTER_INDICES(PointXYZRGBA);
+    BIND_FILTER_INDICES(Normal);
+    BIND_FILTER_INDICES(PointNormal);
 
     // Bind Filter
     BIND_FILTER(PointXYZ);
     BIND_FILTER(PointXYZI);
+    BIND_FILTER(PointXYZRGB);
+    BIND_FILTER(PointXYZRGBA);
+    BIND_FILTER(Normal);
+    BIND_FILTER(PointNormal);
 
     // Bind PCLBase
     BIND_PCL_BASE(PointXYZ);
     BIND_PCL_BASE(PointXYZI);
+    BIND_PCL_BASE(PointXYZRGB);
+    BIND_PCL_BASE(PointXYZRGBA);
+    BIND_PCL_BASE(Normal);
+    BIND_PCL_BASE(PointNormal);
 
     // Bind VoxelGrid
     BIND_VOXEL_GRID(PointXYZ);
     BIND_VOXEL_GRID(PointXYZI);
+    BIND_VOXEL_GRID(PointXYZRGB);
+    BIND_VOXEL_GRID(PointXYZRGBA);
+    BIND_VOXEL_GRID(PointNormal);
 
     // Bind StatisticalOutlierRemoval
     BIND_SOR(PointXYZ);
     BIND_SOR(PointXYZI);
+    BIND_SOR(PointXYZRGB);
+    BIND_SOR(PointXYZRGBA);
+    BIND_SOR(PointNormal);
 
     // Bind RadiusOutlierRemoval
     BIND_ROR(PointXYZ);
     BIND_ROR(PointXYZI);
+    BIND_ROR(PointXYZRGB);
+    BIND_ROR(PointXYZRGBA);
+    BIND_ROR(PointNormal);
 
     value_array<FilterLimits>("FilterLimits")
         .element(&FilterLimits::min)
