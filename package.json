@@ -1,6 +1,10 @@
 {
   "name": "pcl.js",
+<<<<<<< HEAD
   "version": "1.2.0",
+=======
+  "version": "1.1.0",
+>>>>>>> chore: release v1.1.0
   "description": "PCL for browser and node, powered by WebAssembly.",
   "types": "dist/types/pcl.d.ts",
   "main": "dist/pcl.cjs.js",

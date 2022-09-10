@@ -1,5 +1,6 @@
 # Changelog
 
+<<<<<<< HEAD
 # [1.2.0](https://github.com/luoxuhai/pcl.js/compare/v1.1.1...v1.2.0) (2022-09-12)
 
 ### Features
@@ -16,6 +17,8 @@
 * filters and registration missing point type ([a611688](https://github.com/luoxuhai/pcl.js/commit/a611688291434a2aa2397071a55f4e38697cae88))
 
 
+=======
+>>>>>>> chore: release v1.1.0
 # [1.1.0](https://github.com/luoxuhai/pcl.js/compare/v1.0.3...v1.1.0) (2022-09-10)
 
 
