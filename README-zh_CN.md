@@ -9,8 +9,8 @@
  <a href="https://packagephobia.com/result?p=pcl.js">
     <img src="https://packagephobia.com/badge?p=pcl.js" alt="Bundle Size">
   </a>
-    <a href="https://badge.fury.io/js/pcl.js">
-    <img src="https://badge.fury.io/js/pcl.js.svg" alt="npm version">
+  <a href="https://www.npmjs.com/package/pcl.js">
+    <img src="https://img.shields.io/npm/v/pcl.js.svg" alt="npm version">
   </a>
   <a href="https://www.npmtrends.com/pcl.js">
     <img src="https://img.shields.io/npm/dm/pcl.js" alt="Downloads" />
