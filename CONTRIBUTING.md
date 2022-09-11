@@ -68,3 +68,13 @@ If you are interested in the detailed specification you can visit
 https://www.conventionalcommits.org/ or check out the
 [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
+## Command introduction
+
+- `npm run dev:js` to package a debug version of JavaScript code
+- `npm run dev:wasm` to compile PCL to WebAssembly debug build
+- `npm run dev` simultaneously packages JavaScript and compiles PCL for development use
+- `npm run build:js` to package the production version of JavaScript code
+- `npm run build:wasm` to compile PCL to WebAssembly production build
+- `npm run build` bundles JavaScript and compiles PCL at the same time, ready for production use
+- `npm run lint` to check code style
+- `npm run test` to run tests. (Be sure to run `npm run dev` or `npm run build` before running tests)
