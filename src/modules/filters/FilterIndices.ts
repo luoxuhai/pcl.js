@@ -5,7 +5,7 @@ class FilterIndices<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterBase<T> {
   public setNegative(negative: boolean) {
-    return this.native.setNegative(negative);
+    this.native.setNegative(negative);
   }
 
   public getNegative(): boolean {
@@ -13,7 +13,7 @@ class FilterIndices<
   }
 
   public setKeepOrganized(keepOrganized: boolean) {
-    return this.native.setNegative(keepOrganized);
+    this.native.setNegative(keepOrganized);
   }
 
   public getKeepOrganized(): boolean {
@@ -21,7 +21,7 @@ class FilterIndices<
   }
 
   public setUserFilterValue(value: number) {
-    return this.native.setNegative(value);
+    this.native.setNegative(value);
   }
 }
 

@@ -16,6 +16,22 @@ class VoxelGrid<
   public setLeafSize(lx: number, ly: number, lz: number) {
     return this.native.setLeafSize(lx, ly, lz);
   }
+
+  public setDownsampleAllData(downsample: boolean) {
+    return this.native.setDownsampleAllData(downsample);
+  }
+
+  public getDownsampleAllData(): boolean {
+    return this.native.getDownsampleAllData();
+  }
+
+  public setMinimumPointsNumberPerVoxel(minPointsPerVoxel: number) {
+    return this.native.setMinimumPointsNumberPerVoxel(minPointsPerVoxel);
+  }
+
+  public getMinimumPointsNumberPerVoxel(): number {
+    return this.native.getMinimumPointsNumberPerVoxel();
+  }
 }
 
 export default VoxelGrid;

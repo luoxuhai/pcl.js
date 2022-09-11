@@ -4,7 +4,9 @@
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/filters/statistical_outlier_removal.h>
 #include <pcl/filters/radius_outlier_removal.h>
+#include <pcl/filters/radius_outlier_removal.h>
 #include <emscripten/bind.h>
+#include "embind.cpp"
 
 // define PassThrough
 #define BIND_PASS_THROUGH(PointT)                                                             \
@@ -27,6 +29,7 @@
 // define Filter
 #define BIND_FILTER(PointT)                                                   \
     class_<pcl::Filter<PointT>, base<pcl::PCLBase<PointT>>>("Filter" #PointT) \
+        .function("getRemovedIndices", &getRemovedIndices<PointT>)            \
         .function("filter", &filter<PointT>);
 
 // define PCLBase
@@ -36,11 +39,15 @@
         .function("getInputCloud", &pcl::PCLBase<PointT>::getInputCloud);
 
 // define VoxelGrid
-#define BIND_VOXEL_GRID(PointT)                                                    \
-    class_<pcl::VoxelGrid<PointT>, base<pcl::Filter<PointT>>>("VoxelGrid" #PointT) \
-        .constructor()                                                             \
-        .function("setLeafSize",                                                   \
-                  select_overload<void(float, float, float)>(&pcl::VoxelGrid<PointT>::setLeafSize));
+#define BIND_VOXEL_GRID(PointT)                                                                              \
+    class_<pcl::VoxelGrid<PointT>, base<pcl::Filter<PointT>>>("VoxelGrid" #PointT)                           \
+        .constructor()                                                                                       \
+        .function("setLeafSize",                                                                             \
+                  select_overload<void(float, float, float)>(&pcl::VoxelGrid<PointT>::setLeafSize))          \
+        .function("setDownsampleAllData", &pcl::VoxelGrid<PointT>::setDownsampleAllData)                     \
+        .function("getDownsampleAllData", &pcl::VoxelGrid<PointT>::getDownsampleAllData)                     \
+        .function("setMinimumPointsNumberPerVoxel", &pcl::VoxelGrid<PointT>::setMinimumPointsNumberPerVoxel) \
+        .function("getMinimumPointsNumberPerVoxel", &pcl::VoxelGrid<PointT>::getMinimumPointsNumberPerVoxel);
 
 // define StatisticalOutlierRemoval
 #define BIND_SOR(PointT)                                                                                                  \
@@ -92,6 +99,14 @@ typename pcl::PointCloud<PointT>::Ptr filter(pcl::Filter<PointT> &filter, typena
         filter.filter(*output);
         return output;
     }
+}
+
+template <typename PointT>
+pcl::Indices getRemovedIndices(pcl::Filter<PointT> &filter)
+{
+    pcl::PointIndices pointIndices;
+    filter.getRemovedIndices(pointIndices);
+    return pointIndices.indices;
 }
 
 using namespace pcl;
@@ -154,4 +169,6 @@ EMSCRIPTEN_BINDINGS(filters)
     value_array<FilterLimits>("FilterLimits")
         .element(&FilterLimits::min)
         .element(&FilterLimits::max);
+
+    register_vector_plus<index_t>("Indices");
 }

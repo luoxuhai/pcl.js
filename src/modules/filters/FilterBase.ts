@@ -3,6 +3,7 @@ import {
   wrapPointCloud,
   PointTypesUnion,
   PointTypesIntersection,
+  Vector,
 } from '../point-types';
 
 class FilterBase<
@@ -24,6 +25,10 @@ class FilterBase<
 
   public filter(cloud?: PointCloud<T>) {
     return wrapPointCloud<T>(this.native.filter(cloud?.native ?? null));
+  }
+
+  public getRemovedIndices(): Vector<number> {
+    return this.native.getRemovedIndices();
   }
 }
 
