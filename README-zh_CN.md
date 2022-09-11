@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://pcljs.org/zh-cn" target="_blank"><img style="max-height: 100px" src="./pcljs.png" title="pcl.js" alt="title="pcl.js"></a>
+  <a href="https://pcljs.org/zh-cn" target="_blank"><img style="max-height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
   <p align="center">在浏览器运行的<a href="https://github.com/PointCloudLibrary/pcl" target="_blank">点云库 (PCL)</a>，由 WebAssembly 提供支持。</p>
 </p>
 <p align="center">
