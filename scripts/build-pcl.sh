@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-PCL_DIR=$(dirname $0)/core/pcl
+PCL_DIR=$(pwd)/core/pcl
 
-cd PCL_DIR
-sh build-wasm.sh
+cd $PCL_DIR
+bash build-wasm.sh
