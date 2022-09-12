@@ -7,6 +7,7 @@ import io from '../modules/io';
 import filters from '../modules/filters';
 import registration from '../modules/registration';
 import common from '../modules/common';
+import { ENVIRONMENT_IS_NODE } from '../utils';
 
 interface InitOptions {
   /**
@@ -83,7 +84,11 @@ async function init(options?: InitOptions): Promise<PCLInstance | null> {
   let Module: Emscripten.Module;
   try {
     Module = await initPCLCore(moduleOptions);
-    window.__PCLCore__ = Module;
+    if (ENVIRONMENT_IS_NODE) {
+      (global as any).__PCLCore__ = Module;
+    } else {
+      window.__PCLCore__ = Module;
+    }
     options?.onsuccess?.(Module);
   } catch (error) {
     options?.onerror?.(error);
