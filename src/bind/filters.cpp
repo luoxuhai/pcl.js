@@ -4,7 +4,9 @@
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/filters/statistical_outlier_removal.h>
 #include <pcl/filters/radius_outlier_removal.h>
+#include <pcl/filters/radius_outlier_removal.h>
 #include <emscripten/bind.h>
+#include "embind.cpp"
 
 // define PassThrough
 #define BIND_PASS_THROUGH(PointT)                                                             \
@@ -27,6 +29,7 @@
 // define Filter
 #define BIND_FILTER(PointT)                                                   \
     class_<pcl::Filter<PointT>, base<pcl::PCLBase<PointT>>>("Filter" #PointT) \
+        .function("getRemovedIndices", &getRemovedIndices<PointT>)            \
         .function("filter", &filter<PointT>);
 
 // define PCLBase
@@ -36,11 +39,15 @@
         .function("getInputCloud", &pcl::PCLBase<PointT>::getInputCloud);
 
 // define VoxelGrid
-#define BIND_VOXEL_GRID(PointT)                                                    \
-    class_<pcl::VoxelGrid<PointT>, base<pcl::Filter<PointT>>>("VoxelGrid" #PointT) \
-        .constructor()                                                             \
-        .function("setLeafSize",                                                   \
-                  select_overload<void(float, float, float)>(&pcl::VoxelGrid<PointT>::setLeafSize));
+#define BIND_VOXEL_GRID(PointT)                                                                              \
+    class_<pcl::VoxelGrid<PointT>, base<pcl::Filter<PointT>>>("VoxelGrid" #PointT)                           \
+        .constructor()                                                                                       \
+        .function("setLeafSize",                                                                             \
+                  select_overload<void(float, float, float)>(&pcl::VoxelGrid<PointT>::setLeafSize))          \
+        .function("setDownsampleAllData", &pcl::VoxelGrid<PointT>::setDownsampleAllData)                     \
+        .function("getDownsampleAllData", &pcl::VoxelGrid<PointT>::getDownsampleAllData)                     \
+        .function("setMinimumPointsNumberPerVoxel", &pcl::VoxelGrid<PointT>::setMinimumPointsNumberPerVoxel) \
+        .function("getMinimumPointsNumberPerVoxel", &pcl::VoxelGrid<PointT>::getMinimumPointsNumberPerVoxel);
 
 // define StatisticalOutlierRemoval
 #define BIND_SOR(PointT)                                                                                                  \
@@ -94,6 +101,14 @@ typename pcl::PointCloud<PointT>::Ptr filter(pcl::Filter<PointT> &filter, typena
     }
 }
 
+template <typename PointT>
+pcl::Indices getRemovedIndices(pcl::Filter<PointT> &filter)
+{
+    pcl::PointIndices pointIndices;
+    filter.getRemovedIndices(pointIndices);
+    return pointIndices.indices;
+}
+
 using namespace pcl;
 using namespace emscripten;
 
@@ -102,32 +117,58 @@ EMSCRIPTEN_BINDINGS(filters)
     // Bind PassThrough
     BIND_PASS_THROUGH(PointXYZ);
     BIND_PASS_THROUGH(PointXYZI);
+    BIND_PASS_THROUGH(PointXYZRGB);
+    BIND_PASS_THROUGH(PointXYZRGBA);
+    BIND_PASS_THROUGH(PointNormal);
 
     // Bind FilterIndices
     BIND_FILTER_INDICES(PointXYZ);
     BIND_FILTER_INDICES(PointXYZI);
+    BIND_FILTER_INDICES(PointXYZRGB);
+    BIND_FILTER_INDICES(PointXYZRGBA);
+    BIND_FILTER_INDICES(Normal);
+    BIND_FILTER_INDICES(PointNormal);
 
     // Bind Filter
     BIND_FILTER(PointXYZ);
     BIND_FILTER(PointXYZI);
+    BIND_FILTER(PointXYZRGB);
+    BIND_FILTER(PointXYZRGBA);
+    BIND_FILTER(Normal);
+    BIND_FILTER(PointNormal);
 
     // Bind PCLBase
     BIND_PCL_BASE(PointXYZ);
     BIND_PCL_BASE(PointXYZI);
+    BIND_PCL_BASE(PointXYZRGB);
+    BIND_PCL_BASE(PointXYZRGBA);
+    BIND_PCL_BASE(Normal);
+    BIND_PCL_BASE(PointNormal);
 
     // Bind VoxelGrid
     BIND_VOXEL_GRID(PointXYZ);
     BIND_VOXEL_GRID(PointXYZI);
+    BIND_VOXEL_GRID(PointXYZRGB);
+    BIND_VOXEL_GRID(PointXYZRGBA);
+    BIND_VOXEL_GRID(PointNormal);
 
     // Bind StatisticalOutlierRemoval
     BIND_SOR(PointXYZ);
     BIND_SOR(PointXYZI);
+    BIND_SOR(PointXYZRGB);
+    BIND_SOR(PointXYZRGBA);
+    BIND_SOR(PointNormal);
 
     // Bind RadiusOutlierRemoval
     BIND_ROR(PointXYZ);
     BIND_ROR(PointXYZI);
+    BIND_ROR(PointXYZRGB);
+    BIND_ROR(PointXYZRGBA);
+    BIND_ROR(PointNormal);
 
     value_array<FilterLimits>("FilterLimits")
         .element(&FilterLimits::min)
         .element(&FilterLimits::max);
+
+    register_vector_plus<index_t>("Indices");
 }

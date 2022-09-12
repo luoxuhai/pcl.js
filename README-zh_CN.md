@@ -1,16 +1,16 @@
 <p align="center">
-  <a href="https://pcljs.org/zh-cn" target="_blank"><img style="max-height: 100px" src="./pcljs.png" title="pcl.js" alt="title="pcl.js"></a>
+  <a href="https://pcljs.org/zh-cn" target="_blank"><img style="max-height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
   <p align="center">在浏览器运行的<a href="https://github.com/PointCloudLibrary/pcl" target="_blank">点云库 (PCL)</a>，由 WebAssembly 提供支持。</p>
 </p>
 <p align="center">
  <a href="https://github.com/FoalTS/foal/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
   </a>
- <a href="https://packagephobia.com/result?p=pcl.js">
-    <img src="https://packagephobia.com/badge?p=pcl.js" alt="Bundle Size">
-  </a>
-    <a href="https://badge.fury.io/js/pcl.js">
-    <img src="https://badge.fury.io/js/pcl.js.svg" alt="npm version">
+ <a href="https://bundlephobia.com/package/pcl.js">
+    <img src="https://img.shields.io/bundlephobia/min/pcl.js.svg" alt="Bundle Size">
+ </a>
+  <a href="https://www.npmjs.com/package/pcl.js">
+    <img src="https://img.shields.io/npm/v/pcl.js.svg" alt="npm version">
   </a>
   <a href="https://www.npmtrends.com/pcl.js">
     <img src="https://img.shields.io/npm/dm/pcl.js" alt="Downloads" />
@@ -172,11 +172,17 @@ async function main() {
 main();
 ```
 
+## 变更日志
+
+[更改日志](https://github.com/luoxuhai/pcl.js/releases) 会定期更新，以反映每个新版本中的更改内容。
+
 ## 路线图
 
-查看完整的[路线图](ROADMAP-zh_CN.md)。
+查看完整的 [路线图](ROADMAP-zh_CN.md)。
 
 ## 贡献
+
+pcl.js 已采用 [贡献者公约](https://www.contributor-covenant.org/) 作为其行为准则，我们希望项目参与者遵守它，请阅读 [全文](CODE_OF_CONDUCT-zh_CN.md) 以确保你能明白哪些是可以做的，哪些是不可以做的。
 
 请阅读我们的 [贡献指南](CONTRIBUTING-zh_CN.md) 以了解我们的开发过程。
 
@@ -187,4 +193,4 @@ main();
 
 ## 协议
 
-[MIT](https://github.com/luoxuhai/pcl.js/blob/master/LICENSE)
+这个项目是根据 [MIT](https://github.com/luoxuhai/pcl.js/blob/master/LICENSE) 条款获得许可的。

@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://pcljs.org" target="_blank"><img style="max-height: 100px" src="./pcljs.png" title="pcl.js" alt="title="pcl.js"></a>
+  <a href="https://pcljs.org" target="_blank"><img style="max-height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
   <p align="center"><a href="https://github.com/PointCloudLibrary/pcl" target="_blank">Point Cloud Library (PCL)</a> for browser, powered by WebAssembly.</p>
 </p>
 
@@ -7,11 +7,11 @@
  <a href="https://github.com/FoalTS/foal/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
   </a>
- <a href="https://packagephobia.com/result?p=pcl.js">
-    <img src="https://packagephobia.com/badge?p=pcl.js" alt="Bundle Size">
-  </a>
-    <a href="https://badge.fury.io/js/pcl.js">
-    <img src="https://badge.fury.io/js/pcl.js.svg" alt="npm version">
+ <a href="https://bundlephobia.com/package/pcl.js">
+    <img src="https://img.shields.io/bundlephobia/min/pcl.js.svg" alt="Bundle Size">
+ </a>
+  <a href="https://www.npmjs.com/package/pcl.js">
+    <img src="https://img.shields.io/npm/v/pcl.js.svg" alt="npm version">
   </a>
   <a href="https://www.npmtrends.com/pcl.js">
     <img src="https://img.shields.io/npm/dm/pcl.js" alt="Downloads" />
@@ -177,11 +177,17 @@ async function main() {
 main();
 ```
 
+## Changelog
+
+The [changelog](https://github.com/luoxuhai/pcl.js/releases) is regularly updated to reflect what's changed in each new release.
+
 ## Roadmap
 
 Checkout the full roadmap [here](ROADMAP.md).
 
 ## Contributing
+
+pcl.js has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
 
 Please make sure to read the [Contributing Guide](CONTRIBUTING.md) before making a pull request.
 
@@ -191,4 +197,4 @@ Thank you to all the people who already contributed to pcl.js!
 
 ## License
 
-[MIT](https://github.com/luoxuhai/pcl.js/blob/master/LICENSE)
+This project is licensed under the terms of the [MIT license](https://github.com/luoxuhai/pcl.js/blob/master/LICENSE).
