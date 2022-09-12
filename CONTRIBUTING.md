@@ -4,7 +4,7 @@ Thanks for the help! We welcome all contributions to it.
 
 ## Download and Setup
 
-1. [fork](https://docs.github.com/cn/get-started/quickstart/fork-a-repo#forking-a-repository) this repository to your Github, then clone to your local device (use `--recursive` for cloning submodules)
+1. [fork](https://docs.github.com/cn/get-started/quickstart/fork-a-repo#forking-a-repository) this repository to your Github, then clone to your local device (If you want to change C++ code, use `--recursive` for cloning submodules)
 
 ```bash
 git clone https://github.com/luoxuhai/pcl.js --recursive
@@ -16,18 +16,19 @@ git clone https://github.com/luoxuhai/pcl.js --recursive --depth 1 --single-bran
 ````
 
 2. Install [Node LTS](https://nodejs.org/en/download/)
-3. Install the [Emscripten SDK](https://emscripten.org/docs/getting_started/downloadshtml#installation-instructions-using-the-emsdk-recommended), if you need to change the C++ module (`/core/pcl`). macOS: `brew install emscripten`
+3. Install the [Emscripten SDK](https://emscripten.org/docs/getting_started/downloadshtml#installation-instructions-using-the-emsdk-recommended) (No need to install if you don't change C++ code, such as files under `src/bind` and `core/`)
 
 ## Editing
 
 1. Compile PCL(C++), [README](https://github.com/luoxuhai/pcl/tree/wasm/wasm/README.md)
-2. Compile WebAssembly `npm run dev:wasm`
-3. Package JavaScript `npm run dev:js` to monitor JavaScript changes in real time
+2. Compile WebAssembly if C++ code is changed: `npm run dev:wasm` or `npm run build:wasm`
+3. Package JavaScript `npm run dev:js` or `npm run build:js`
 
 ## Testing Your Changes
 
 1. Create the test code in the `/tests` directory (if the file does not already exist, create it with the `*.test.ts` extension)
-2. Run `npm run dev` or `npm run build` to build the test run code
+2. If you change the C++ code, you need to run `npm run dev:wasm` or `npm run build:wasm`
+2. Run `npm run dev:js` or `npm run build:js` to build the test run code
 3. Run `npm run test`
 
 ## Updating Documentation
@@ -65,16 +66,17 @@ the following categories:
   categories
 
 If you are interested in the detailed specification you can visit
-https://www.conventionalcommits.org/ or check out the
+[Conventional Commits](https://www.conventionalcommits.org) or check out the
 [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
 ## Command introduction
 
+- `npm run build:pcl` compile PCL to WebAssembly static library
 - `npm run dev:js` to package a debug version of JavaScript code
-- `npm run dev:wasm` to compile PCL to WebAssembly debug build
+- `npm run dev:wasm` to compile PCL's WebAssembly + `src/bind` to WebAssembly debug build
 - `npm run dev` simultaneously packages JavaScript and compiles PCL for development use
 - `npm run build:js` to package the production version of JavaScript code
-- `npm run build:wasm` to compile PCL to WebAssembly production build
+- `npm run build:wasm` to compile PCL's WebAssembly + `src/bind` to WebAssembly production build
 - `npm run build` bundles JavaScript and compiles PCL at the same time, ready for production use
 - `npm run lint` to check code style
 - `npm run test` to run tests. (Be sure to run `npm run dev` or `npm run build` before running tests)

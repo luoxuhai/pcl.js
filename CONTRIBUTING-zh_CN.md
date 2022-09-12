@@ -4,7 +4,7 @@
 
 ## 下载和安装
 
-1. [fork](https://docs.github.com/cn/get-started/quickstart/fork-a-repo#forking-a-repository) 这个仓库到你的 Github，然后克隆到你的本地设备 （使用 `--recursive` 用于克隆子模块）
+1. [fork](https://docs.github.com/cn/get-started/quickstart/fork-a-repo#forking-a-repository) 这个仓库到你的 Github，然后克隆到你的本地设备 （如果要更改 C++ 代码，需使用 `--recursive` 用于克隆子模块）
 
 ```bash
 git clone https://github.com/luoxuhai/pcl.js --recursive
@@ -17,7 +17,7 @@ git clone https://github.com/luoxuhai/pcl.js --recursive --depth 1 --single-bran
 ```
 
 2. 安装 [Node LTS](https://nodejs.org/en/download/)
-3. 安装 [Emscripten SDK](https://emscripten.org/docs/getting_started/downloadshtml#installation-instructions-using-the-emsdk-recommended)，如果你需要更改 C++ 模块 (`/core/pcl`)。macOS: `brew install emscripten`
+3. 安装 [Emscripten SDK](https://emscripten.org/docs/getting_started/downloadshtml#installation-instructions-using-the-emsdk-recommended)（如果你不更改 C++ 代码则不需要安装，比如`src/bind` 和 `core/` 下的文件）
 
 ### 安装依赖
 
@@ -29,14 +29,15 @@ npm install
 ## 编写代码
 
 1. 编译 PCL(C++)，[README](https://github.com/luoxuhai/pcl/tree/wasm/wasm/README.md)
-2. 编译 WebAssembly `npm run dev:wasm`
-3. 打包 JavaScript `npm run dev:js` 实时监听 JavaScript 更改 
+2. 如果更改了 C++ 代码需要编译 WebAssembly: `npm run dev:wasm` 或 `npm run build:wasm`
+3. 打包 JavaScript `npm run dev:js` 或者 `npm run build:js`
 
 ## 测试你的更改
 
 1. 在 `/tests` 目录下创建测试代码（如果该文件尚不存在，请使用 `*.test.ts` 扩展名创建它）
-2. 运行 `npm run dev` 或 `npm run build` 用于构建测试运行的代码
-3. 运行 `npm run test`
+2. 如果更改了 C++ 代码需要运行 `npm run dev:wasm` 或 `npm run build:wasm`
+3. 运行 `npm run dev:js` 或 `npm run build:js` 用于构建测试运行的代码
+4. 运行 `npm run test`
 
 ## 更新文档
 
@@ -63,12 +64,13 @@ npm install
 -  `style`：不会影响代码含义的更改（空格，格式，缺少分号等）
 -  `chore`：不符合上述任何一项的对存储库的更改
 
-如果您对详细规范感兴趣，可以访问 [Conventional Commits](https://www.conventionalcommits.or) 或查看 [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines)。
+如果您对详细规范感兴趣，可以访问 [Conventional Commits](https://www.conventionalcommits.org) 或查看 [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines)。
 
 ## 命令介绍
 
+- `npm run build:pcl` 编译 PCL 到 WebAssembly 静态库
 - `npm run dev:js` 打包 JavaScript 代码调试版本
-- `npm run dev:wasm` 编译 PCL 到 WebAssembly 调试版本
+- `npm run dev:wasm` 编译 PCL 的 WebAssembly + `src/bind` 到 WebAssembly 调试版本
 - `npm run dev` 同时打包 JavaScript 和 编译 PCL，用于开发使用
 - `npm run build:js` 打包 JavaScript 代码生产版本
 - `npm run build:wasm` 编译 PCL 到 WebAssembly 生产版本
