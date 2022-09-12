@@ -1,19 +1,20 @@
 #include <iostream>
 #include <pcl/point_types.h>
+#include <pcl/pcl_config.h>
 #include <pcl/segmentation/min_cut_segmentation.h>
 #include <emscripten/bind.h>
 
 // define PCLBase
-#define BIND_PCLBASE
-  class_<pcl
+#define BIND_PCL_BASE(PointT) \
+  class_<pcl::PCLBase<PointT>>("PCLBase" #PointT);
 
 // define mincut-maxflow-segementation
 #define BIND_MCMF(PointT) \
   class_<pcl::MinCutSegmentation<PointT>, base<pcl::PCLBase<PointT>>>("MinCutSegmentation" #PointT) \
       .constructor<>() \
       .function("setInputCloud", &pcl::MinCutSegmentation<PointT>::setInputCloud) \
-      .function("setSigma", &pcl::MinCutSegementation<PointT>::setSigMa) \
-      .function("getSigma", &pcl::MinCutSegementation<PointT>::getSigMa) \
+      .function("setSigma", &pcl::MinCutSementation<PointT>::setSigMa) \
+      .function("getSigma", &pcl::MinCutSegmentation<PointT>::getSigMa) \
       .function("setRadius", &pcl::MinCutSegmentation<PointT>::setRadius) \
       .function("getRadius", &pcl::MinCutSegmentation<PointT>::getRadius) \
       .function("setSourceWeight", &pcl::MinCutSegmentation<PointT>::setSourceWeight) \
@@ -30,3 +31,23 @@
       .function("getMaxFlow", &pcl::MinCutSegmentation<PointT>::getMaxFlow) \
       .function("getGraph", &pcl::MinCutSegmentation<PointT>::getGraph) \
       .function("getColoredCloud", &pcl::MinCutSegmentation<PointT>::getColoredCloud);
+
+using namespace pcl;
+using namespace emscripten;
+
+EMSCRIPTEN_BINDINGS(segmentation)
+{
+  BIND_PCL_BASE(PointXYZ);
+  BIND_PCL_BASE(PointXYZI);
+  BIND_PCL_BASE(PointXYZRGB);
+  BIND_PCL_BASE(PointXYZRGBA);
+  BIND_PCL_BASE(Normal);
+  BIND_PCL_BASE(PointNormal);
+
+  BIND_MCMF(PointXYZ);
+  BIND_MCMF(PointXYZI);
+  BIND_MCMF(PointXYZRGB);
+  BIND_MCMF(PointXYZRGBA);
+  BIND_MCMF(Normal);
+  BIND_MCMF(PointNormal);
+}
