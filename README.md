@@ -16,11 +16,11 @@
   <a href="https://www.npmtrends.com/pcl.js">
     <img src="https://img.shields.io/npm/dm/pcl.js" alt="Downloads" />
   </a>
-  <a href="https://github.com/luoxuhai/pcl.js/stargazers">
-    <img src="https://img.shields.io/github/stars/luoxuhai/pcl.js" alt="Github Stars" />
-  </a>
   <a href="https://www.jsdelivr.com/package/npm/pcl.js">
     <img src="https://data.jsdelivr.com/v1/package/npm/pcl.js/badge?style=rounded" alt="jsDelivr" />
+  </a>
+  <a href="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml">
+    <img src="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml/badge.svg" alt="Tests" />
   </a>
   <a href="https://openbase.com/js/pcl.js?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge">
     <img src="https://badges.openbase.com/js/rating/pcl.js.svg?token=nF4Z9XUsUhOe5yeVDZTPwpdoKqqamFbVBoVA5zbU5iM=" alt="Rate this package" />
