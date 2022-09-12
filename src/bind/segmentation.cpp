@@ -1,13 +1,18 @@
 #include <iostream>
 #include <pcl/point_types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <pcl/pcl_config.h>
 =======
 >>>>>>> + add binding for min cut segmentation
+=======
+#include <pcl/pcl_config.h>
+>>>>>>> ! add segmentation typescript module for pcl.js
 #include <pcl/segmentation/min_cut_segmentation.h>
 #include <emscripten/bind.h>
 
 // define PCLBase
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define BIND_PCL_BASE(PointT) \
   class_<pcl::PCLBase<PointT>>("PCLBase" #PointT);
@@ -15,6 +20,10 @@
 #define BIND_PCLBASE
   class_<pcl
 >>>>>>> + add binding for min cut segmentation
+=======
+#define BIND_PCL_BASE(PointT) \
+  class_<pcl::PCLBase<PointT>>("PCLBase" #PointT);
+>>>>>>> ! add segmentation typescript module for pcl.js
 
 // define mincut-maxflow-segementation
 #define BIND_MCMF(PointT) \
@@ -22,12 +31,17 @@
       .constructor<>() \
       .function("setInputCloud", &pcl::MinCutSegmentation<PointT>::setInputCloud) \
 <<<<<<< HEAD
+<<<<<<< HEAD
       .function("setSigma", &pcl::MinCutSegmentation<PointT>::setSigma) \
       .function("getSigma", &pcl::MinCutSegmentation<PointT>::getSigma) \
 =======
       .function("setSigma", &pcl::MinCutSegementation<PointT>::setSigMa) \
       .function("getSigma", &pcl::MinCutSegementation<PointT>::getSigMa) \
 >>>>>>> + add binding for min cut segmentation
+=======
+      .function("setSigma", &pcl::MinCutSementation<PointT>::setSigMa) \
+      .function("getSigma", &pcl::MinCutSegmentation<PointT>::getSigMa) \
+>>>>>>> ! add segmentation typescript module for pcl.js
       .function("setRadius", &pcl::MinCutSegmentation<PointT>::setRadius) \
       .function("getRadius", &pcl::MinCutSegmentation<PointT>::getRadius) \
       .function("setSourceWeight", &pcl::MinCutSegmentation<PointT>::setSourceWeight) \
@@ -50,6 +64,9 @@
       .function("getGraph", &pcl::MinCutSegmentation<PointT>::getGraph) \
       .function("getColoredCloud", &pcl::MinCutSegmentation<PointT>::getColoredCloud);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ! add segmentation typescript module for pcl.js
 
 using namespace pcl;
 using namespace emscripten;
@@ -69,6 +86,10 @@ EMSCRIPTEN_BINDINGS(segmentation)
   BIND_MCMF(PointXYZRGBA);
   BIND_MCMF(Normal);
   BIND_MCMF(PointNormal);
+<<<<<<< HEAD
 }
 =======
 >>>>>>> + add binding for min cut segmentation
+=======
+}
+>>>>>>> ! add segmentation typescript module for pcl.js
