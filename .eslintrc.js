@@ -21,4 +21,11 @@ module.exports = {
     '@typescript-eslint/triple-slash-reference': 'off',
     'no-useless-constructor': 'off',
   },
+  ignorePatterns: [
+    '/node_modules/',
+    '/dist/',
+    '/core/',
+    'website',
+    '/src/bind/',
+  ],
 };

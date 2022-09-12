@@ -21,12 +21,6 @@
     "prepare": "husky install",
     "release": "release-it"
   },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "prettier --write",
-      "eslint --fix"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luoxuhai/pcl.js.git"
@@ -83,5 +77,24 @@
     "rollup-plugin-typescript2": "^0.32.1",
     "ts-jest": "^28.0.7",
     "typescript": "^4.7.4"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json}": [
+      "prettier --write"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 80
   }
 }
