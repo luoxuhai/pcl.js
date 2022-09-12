@@ -1,7 +1,3 @@
-website/** -linguist-detectable
-tests/** -linguist-detectable
-src/bind/build/** -linguist-detectable
-.devcontainer/** -linguist-detectable
-.github/** -linguist-detectable
 *.css -linguist-detectable
 *.html -linguist-detectable
+*.tsx -linguist-detectable
