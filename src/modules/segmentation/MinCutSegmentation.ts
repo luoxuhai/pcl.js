@@ -1,11 +1,12 @@
 import {
   PointCloud,
-  wrapPointCloud,
   PointXYZ,
   PointTypesIntersection,
   PointTypesUnion,
   TPointTypesUnion,
 } from '../point-types';
+
+import { PointIndices, Vector } from '../point-indices';
 
 class MinCutSegmentation<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
@@ -44,7 +45,7 @@ class MinCutSegmentation<
     return this.native.getSourceWeight() as number;
   }
 
-  public setSearchMethod(tree: string | null): void{
+  public setSearchMethod(tree: string | null): void {
     return this.native.setSearchMethod(tree) as void;
   }
 
@@ -76,8 +77,21 @@ class MinCutSegmentation<
     return this.native.getBackgroundPoints() as PointCloud<T>;
   }
 
-  public extract(PointCloud<T>) {
-    return this.native.extract
+  public extract(clusters: Vector<PointIndices>): void {
+    return this.native.extract(clusters) as void;
+  }
+
+  public getMaxFlow(): number {
+    return this.native.getMaxFlow() as number;
+  }
+
+  // mGraphPtr
+  // public getGraph(): ??? {
+  //   return this.native.getGraph() as ???;
+  // }
+
+  public getColoredCloud(): PointCloud<T> {
+    return this.native.getColoredCloud() as PointCloud<T>;
   }
 }
 
