@@ -13,16 +13,16 @@
   class_<pcl::MinCutSegmentation<PointT>, base<pcl::PCLBase<PointT>>>("MinCutSegmentation" #PointT) \
       .constructor<>() \
       .function("setInputCloud", &pcl::MinCutSegmentation<PointT>::setInputCloud) \
-      .function("setSigma", &pcl::MinCutSementation<PointT>::setSigMa) \
-      .function("getSigma", &pcl::MinCutSegmentation<PointT>::getSigMa) \
+      .function("setSigma", &pcl::MinCutSegmentation<PointT>::setSigma) \
+      .function("getSigma", &pcl::MinCutSegmentation<PointT>::getSigma) \
       .function("setRadius", &pcl::MinCutSegmentation<PointT>::setRadius) \
       .function("getRadius", &pcl::MinCutSegmentation<PointT>::getRadius) \
       .function("setSourceWeight", &pcl::MinCutSegmentation<PointT>::setSourceWeight) \
       .function("getSourceWeight", &pcl::MinCutSegmentation<PointT>::getSourceWeight) \
       .function("setSearchMethod", &pcl::MinCutSegmentation<PointT>::setSearchMethod) \
       .function("getSearchMethod", &pcl::MinCutSegmentation<PointT>::getSearchMethod) \
-      .function("setNumberOfNeighbors", &pcl::MinCutSegmentation<PointT>::setNumberOfNeighbors) \
-      .function("getNumberOfNeighbors", &pcl::MinCutSegmentation<PointT>::getNumberOfNeighbors) \
+      .function("setNumberOfNeighbours", &pcl::MinCutSegmentation<PointT>::setNumberOfNeighbours) \
+      .function("getNumberOfNeighbours", &pcl::MinCutSegmentation<PointT>::getNumberOfNeighbours) \
       .function("setForegroundPoints", &pcl::MinCutSegmentation<PointT>::setForegroundPoints) \
       .function("getForegroundPoints", &pcl::MinCutSegmentation<PointT>::getForegroundPoints) \
       .function("setBackgroundPoints", &pcl::MinCutSegmentation<PointT>::setBackgroundPoints) \
