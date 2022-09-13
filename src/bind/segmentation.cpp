@@ -32,6 +32,7 @@
       .function("setInputCloud", &pcl::MinCutSegmentation<PointT>::setInputCloud) \
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       .function("setSigma", &pcl::MinCutSegmentation<PointT>::setSigma) \
       .function("getSigma", &pcl::MinCutSegmentation<PointT>::getSigma) \
 =======
@@ -42,6 +43,10 @@
       .function("setSigma", &pcl::MinCutSementation<PointT>::setSigMa) \
       .function("getSigma", &pcl::MinCutSegmentation<PointT>::getSigMa) \
 >>>>>>> ! add segmentation typescript module for pcl.js
+=======
+      .function("setSigma", &pcl::MinCutSegmentation<PointT>::setSigma) \
+      .function("getSigma", &pcl::MinCutSegmentation<PointT>::getSigma) \
+>>>>>>> ! fix function name in binding and module
       .function("setRadius", &pcl::MinCutSegmentation<PointT>::setRadius) \
       .function("getRadius", &pcl::MinCutSegmentation<PointT>::getRadius) \
       .function("setSourceWeight", &pcl::MinCutSegmentation<PointT>::setSourceWeight) \
@@ -49,12 +54,17 @@
       .function("setSearchMethod", &pcl::MinCutSegmentation<PointT>::setSearchMethod) \
       .function("getSearchMethod", &pcl::MinCutSegmentation<PointT>::getSearchMethod) \
 <<<<<<< HEAD
+<<<<<<< HEAD
       .function("setNumberOfNeighbours", &pcl::MinCutSegmentation<PointT>::setNumberOfNeighbours) \
       .function("getNumberOfNeighbours", &pcl::MinCutSegmentation<PointT>::getNumberOfNeighbours) \
 =======
       .function("setNumberOfNeighbors", &pcl::MinCutSegmentation<PointT>::setNumberOfNeighbors) \
       .function("getNumberOfNeighbors", &pcl::MinCutSegmentation<PointT>::getNumberOfNeighbors) \
 >>>>>>> + add binding for min cut segmentation
+=======
+      .function("setNumberOfNeighbours", &pcl::MinCutSegmentation<PointT>::setNumberOfNeighbours) \
+      .function("getNumberOfNeighbours", &pcl::MinCutSegmentation<PointT>::getNumberOfNeighbours) \
+>>>>>>> ! fix function name in binding and module
       .function("setForegroundPoints", &pcl::MinCutSegmentation<PointT>::setForegroundPoints) \
       .function("getForegroundPoints", &pcl::MinCutSegmentation<PointT>::getForegroundPoints) \
       .function("setBackgroundPoints", &pcl::MinCutSegmentation<PointT>::setBackgroundPoints) \
