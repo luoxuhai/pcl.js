@@ -1,3 +1,3 @@
-import { PointIndices, Vector } from './type';
+import { PointIndices } from './type';
 
-export { PointIndices, Vector };
+export { PointIndices };

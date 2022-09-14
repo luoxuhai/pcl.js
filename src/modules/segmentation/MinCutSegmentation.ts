@@ -6,7 +6,8 @@ import {
   TPointTypesUnion,
 } from '../point-types';
 
-import { PointIndices, Vector } from '../point-indices';
+import { PointIndices } from '../point-indices';
+import { Vector } from '../point-types/type';
 
 class MinCutSegmentation<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
