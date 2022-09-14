@@ -6,6 +6,7 @@ import fs from '../modules/fs';
 import io from '../modules/io';
 import filters from '../modules/filters';
 import registration from '../modules/registration';
+import segmentation from '../modules/segmentation';
 import common from '../modules/common';
 import { ENVIRONMENT_IS_NODE } from '../utils';
 
@@ -65,6 +66,7 @@ interface PCLInstance {
   io: typeof io;
   filters: typeof filters;
   registration: typeof registration;
+  segmentation: typeof segmentation;
 }
 
 async function init(options?: InitOptions): Promise<PCLInstance | null> {
@@ -113,6 +115,7 @@ async function init(options?: InitOptions): Promise<PCLInstance | null> {
     io,
     filters,
     registration,
+    segmentation,
     common,
   };
 }
@@ -121,3 +124,5 @@ const VERSION = '__version__';
 
 export { init, VERSION, PCLInstance, InitOptions };
 export * from '../modules/point-types/type';
+export * from '../modules/point-indices/type';
+export { PointCloud } from '../modules/point-types/index';
