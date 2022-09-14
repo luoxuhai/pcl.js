@@ -1,0 +1,92 @@
+# StatisticalOutlierRemoval
+
+> https://pointclouds.org/documentation/classpcl_1_1_statistical_outlier_removal.html
+
+`StatisticalOutlierRemoval` 使用点邻域统计过滤异常数据。
+
+## 构造函数
+
+```ts
+new pcl.filters.StatisticalOutlierRemoval(pointType, removed);
+```
+
+**参数:**
+
+| Name                  | Type                                              | Default    | 描述                                                                 |
+| --------------------- | ------------------------------------------------- | ---------- | -------------------------------------------------------------------- |
+| pointType             | [PointType](/docs/api/basic-structures#pointtype) | `PointXYZ` | The point cloud type.                                                |
+| extractRemovedIndices | `boolean`                                         | `false`    | Initializing with true will allow us to extract the removed indices. |
+
+## 方法
+
+### setMeanK
+
+```ts
+setMeanK(nrK);
+```
+
+设置用于平均距离估计的最近邻的数量。
+
+**参数:**
+
+| Name | Type     | Default | 描述                                                      |
+| ---- | -------- | ------- | --------------------------------------------------------- |
+| nrK  | `number` |         | The number of points to use for mean distance estimation. |
+
+### getMeanK
+
+```ts
+getMeanK();
+```
+
+### setStddevMulThresh
+
+```ts
+setStddevMulThresh(stddevMult);
+```
+
+设置距离阈值计算的标准偏差乘数。
+
+**参数:**
+
+| Name   | Type     | Default | 描述                               |
+| ------ | -------- | ------- | ---------------------------------- |
+| minPts | `number` |         | The standard deviation multiplier. |
+
+### getStddevMulThresh
+
+```ts
+getStddevMulThresh();
+```
+
+### setNegative
+
+See [PassThrough.setNegative](/docs/api/filters/pass-through#setnegative)
+
+### getNegative
+
+See [PassThrough.getNegative](/docs/api/filters/pass-through#getnegative)
+
+### setKeepOrganized
+
+See [PassThrough.setKeepOrganized](/docs/api/filters/pass-through#setkeeporganized)
+
+### getKeepOrganized
+
+See [PassThrough.getKeepOrganized](/docs/api/filters/pass-through#getkeeporganized)
+
+### setUserFilterValue
+
+See [PassThrough.setUserFilterValue](/docs/api/filters/pass-through#setuserfiltervalue)
+
+### setInputCloud
+
+See [PassThrough.setInputCloud](/docs/api/filters/pass-through#setinputcloud)
+
+### getInputCloud
+
+See [PassThrough.getInputCloud](/docs/api/filters/pass-through#getinputcloud)
+
+### filter
+
+See [PassThrough.filter](/docs/api/filters/pass-through#filter)

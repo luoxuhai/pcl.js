@@ -1,8 +1,10 @@
 node_modules
 .DS_Store
 .vscode
-.husky
 .env
 dist
-build
 coverage
+src/bind/build/CMakeFiles
+src/bind/build/cmake_install.cmake
+src/bind/build/CMakeCache.txt
+src/bind/build/Makefile

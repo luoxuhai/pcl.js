@@ -16,11 +16,11 @@
   <a href="https://www.npmtrends.com/pcl.js">
     <img src="https://img.shields.io/npm/dm/pcl.js" alt="Downloads" />
   </a>
-  <a href="https://github.com/luoxuhai/pcl.js/stargazers">
-    <img src="https://img.shields.io/github/stars/luoxuhai/pcl.js" alt="Github Stars" />
-  </a>
   <a href="https://www.jsdelivr.com/package/npm/pcl.js">
     <img src="https://data.jsdelivr.com/v1/package/npm/pcl.js/badge?style=rounded" alt="jsDelivr" />
+  </a>
+  <a href="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml">
+    <img src="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml/badge.svg" alt="Tests" />
   </a>
   <a href="https://openbase.com/js/pcl.js?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge">
     <img src="https://badges.openbase.com/js/rating/pcl.js.svg?token=nF4Z9XUsUhOe5yeVDZTPwpdoKqqamFbVBoVA5zbU5iM=" alt="Rate this package" />
@@ -40,7 +40,7 @@
 
 **Removing outliers from point cloud data using a [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) filter demo**
 <p align="center">
-  <a href="https://pcljs.org/examples/detail?code_url=https%3A%2F%2Fstackblitz.com%2Fedit%2Fweb-platform-ugzuzp%3Fembed%3D1%26file%3Dmain.js%26hideNavigation%3D1%26view%3Dpreview">
+  <a href="https://pcljs.org/examples">
     <img src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
   </a>
 </p>
@@ -55,7 +55,7 @@
 ## Resources
 
 - [Documentation](https://pcljs.org/docs/tutorials/intro)
-- [API Reference](https://pcljs.org/docs/api/intro)
+- [API Reference](https://pcljs.org/docs/api/about)
 - [Examples](https://pcljs.org/examples)
 - [Discussions](https://github.com/luoxuhai/pcl.js/discussions)
 

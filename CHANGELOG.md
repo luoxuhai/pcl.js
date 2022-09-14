@@ -1,5 +1,13 @@
 # Changelog
 
+# [1.2.0](https://github.com/luoxuhai/pcl.js/compare/v1.1.1...v1.2.0) (2022-09-12)
+
+### Features
+
+* Add some methods to VoxelGrid ([63addfd](https://github.com/luoxuhai/pcl.js/commit/63addfd95c0aba26a90576c5954368b0361b4c29))
+* Add API documentation([45a0170](https://github.com/luoxuhai/pcl.js/commit/45a0170bcea593e605660a54410884d0ef202115))
+
+
 ## [1.1.1](https://github.com/luoxuhai/pcl.js/compare/v1.1.0...v1.1.1) (2022-09-11)
 
 

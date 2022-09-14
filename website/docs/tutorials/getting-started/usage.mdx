@@ -8,7 +8,7 @@ sidebar_position: 2
 ## NPM
 
 ```typescript showLineNumbers
-import PCL from 'pcl.js';
+import * as PCL from 'pcl.js';
 
 async function main() {
   // Initialization
@@ -29,13 +29,7 @@ main();
 <script>
 async function main() {
   // Initialization, PCL is a global object.
-  const pcl = await PCL.init({
-    // Recommend, optional configuration, custom WebAssembly file link.
-    url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
-    // You can also pass an ArrayBuffer of WebAssembly files.
-    // arrayBuffer: ArrayBuffer
-  });
-
+  const pcl = await PCL.init();
   // ...
 }
 
@@ -49,13 +43,13 @@ It is recommended to use CDN to load `pcl-core.wasm`
 
 :::
 
-## Simple Example
+## Basic Usage Example
 
 Filtering a PointCloud using a PassThrough filter.  
 See: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
 
 ```typescript showLineNumbers
-import PCL from 'pcl.js';
+import * as PCL from 'pcl.js';
 
 async function main() {
   const pcl = await PCL.init({
@@ -67,17 +61,17 @@ async function main() {
   // Write a PCD file
   pcl.fs.writeFile('/test.pcd', pcd);
   // Load PCD file, return point cloud object
-  const pointCloud = pcl.io.loadPCDFile('/test.pcd');
+  const cloud = pcl.io.loadPCDFile('/test.pcd', PCL.PointXYZ);
 
   // Filtering a PointCloud using a PassThrough filter
-  const pass = new pcl.filters.PassThrough();
-  pass.setInputCloud(pointCloud);
+  const pass = new pcl.filters.PassThrough<PCL.PointXYZ>(PCL.PointXYZ);
+  pass.setInputCloud(cloud);
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
-  const filteredPointCloud = pass.filter();
+  const cloudFiltered = pass.filter();
 
   // Save filtered point cloud objects as PCD files
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', filteredPointCloud);
+  pcl.io.savePCDFileASCII('/test-filtered.pcd', cloudFiltered);
   // Read PCD file content, the content is ArrayBuffer
   const pcd = pcl.fs.readFile('/test-filtered.pcd');
 

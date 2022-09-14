@@ -1,6 +1,6 @@
 {
   "name": "pcl.js",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "PCL for browser and node, powered by WebAssembly.",
   "types": "dist/types/pcl.d.ts",
   "main": "dist/pcl.cjs.js",
@@ -20,12 +20,6 @@
     "lint": "eslint .",
     "prepare": "husky install",
     "release": "release-it"
-  },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "prettier --write",
-      "eslint --fix"
-    ]
   },
   "repository": {
     "type": "git",
@@ -55,7 +49,6 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@kayahr/jest-electron-runner": "^29.0.0",
     "@release-it/conventional-changelog": "^5.1.0",
     "@rollup/plugin-replace": "^4.0.0",
     "@types/jest": "^28.1.6",
@@ -71,7 +64,6 @@
     "eslint-plugin-promise": "^6.0.0",
     "husky": "^8.0.1",
     "jest": "^28.1.2",
-    "jest-environment-jsdom": "^29.0.2",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "release-it": "^15.4.1",
@@ -85,5 +77,24 @@
     "rollup-plugin-typescript2": "^0.32.1",
     "ts-jest": "^28.0.7",
     "typescript": "^4.7.4"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json}": [
+      "prettier --write"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 80
   }
 }

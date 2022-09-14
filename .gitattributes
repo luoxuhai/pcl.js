@@ -1,6 +1,5 @@
-website/** -linguist-detectable
 tests/** -linguist-detectable
-.devcontainer/** -linguist-detectable
-.github/** -linguist-detectable
 *.css -linguist-detectable
+*.scss -linguist-detectable
 *.html -linguist-detectable
+*.tsx -linguist-detectable

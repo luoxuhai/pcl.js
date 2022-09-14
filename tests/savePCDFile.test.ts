@@ -23,17 +23,26 @@ beforeAll(async () => {
 
 describe('savePCDFile', () => {
   it('should save a ascii fPCD file', () => {
-    pcl.io.savePCDFileASCII('ascii.pcd', cloud);
+    const status = pcl.io.savePCDFileASCII('ascii.pcd', cloud);
+
+    expect(status).toBe(true);
     expect(pcl.fs.stat('ascii.pcd').isFile).toBe(true);
   });
 
   it('should save a binary fPCD file', () => {
-    pcl.io.savePCDFileBinary('binary.pcd', cloud);
+    const status = pcl.io.savePCDFileBinary('binary.pcd', cloud);
+
+    expect(status).toBe(true);
     expect(pcl.fs.stat('binary.pcd').isFile).toBe(true);
   });
 
   it('should save a binary_compressed fPCD file', () => {
-    pcl.io.savePCDFileBinaryCompressed('binary_compressed.pcd', cloud);
+    const status = pcl.io.savePCDFileBinaryCompressed(
+      'binary_compressed.pcd',
+      cloud,
+    );
+
+    expect(status).toBe(true);
     expect(pcl.fs.stat('binary_compressed.pcd').isFile).toBe(true);
   });
 });

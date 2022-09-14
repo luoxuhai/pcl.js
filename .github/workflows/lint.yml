@@ -1,0 +1,25 @@
+name: Code Style Checks
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'website/**'
+      - 'data/**'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - 'website/**'
+      - 'data/**'
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install
+      - run: yarn lint

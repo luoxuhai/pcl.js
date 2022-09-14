@@ -15,11 +15,11 @@
   <a href="https://www.npmtrends.com/pcl.js">
     <img src="https://img.shields.io/npm/dm/pcl.js" alt="Downloads" />
   </a>
-  <a href="https://github.com/luoxuhai/pcl.js/stargazers">
-    <img src="https://img.shields.io/github/stars/luoxuhai/pcl.js" alt="Github Stars" />
-  </a>
   <a href="https://www.jsdelivr.com/package/npm/pcl.js">
     <img src="https://data.jsdelivr.com/v1/package/npm/pcl.js/badge?style=rounded" alt="jsDelivr" />
+  </a>
+  <a href="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml">
+    <img src="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml/badge.svg" alt="Tests" />
   </a>
   <a href="https://openbase.com/js/pcl.js?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge">
     <img src="https://badges.openbase.com/js/rating/pcl.js.svg?token=nF4Z9XUsUhOe5yeVDZTPwpdoKqqamFbVBoVA5zbU5iM=" alt="Rate this package" />
@@ -39,7 +39,7 @@
 
 **使用 [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) 过滤器去除点云数据中的异常值演示**
 <p align="center">
-  <a href="https://pcljs.org/zh-cn/examples/detail?code_url=https%3A%2F%2Fstackblitz.com%2Fedit%2Fweb-platform-ugzuzp%3Fembed%3D1%26file%3Dmain.js%26hideNavigation%3D1%26view%3Dpreview">
+  <a href="https://pcljs.org/zh-cn/examples">
     <img src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
   </a>
 </p>
@@ -54,7 +54,7 @@
 ## 资源
 
 - [文档](https://pcljs.org/zh-cn/docs/tutorials/intro)
-- [API](https://pcljs.org/zh-cn/docs/api/intro)
+- [API](https://pcljs.org/zh-cn/docs/api/about)
 - [示例](https://pcljs.org/zh-cn/examples)
 - [讨论](https://github.com/luoxuhai/pcl.js/discussions)
 
