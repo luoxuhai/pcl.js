@@ -27,10 +27,15 @@
       .function("getForegroundPoints", &pcl::MinCutSegmentation<PointT>::getForegroundPoints) \
       .function("setBackgroundPoints", &pcl::MinCutSegmentation<PointT>::setBackgroundPoints) \
       .function("getBackgroundPoints", &pcl::MinCutSegmentation<PointT>::getBackgroundPoints) \
-      .function("extract", &pcl::MinCutSegmentation<PointT>::extract) \
       .function("getMaxFlow", &pcl::MinCutSegmentation<PointT>::getMaxFlow) \
       .function("getGraph", &pcl::MinCutSegmentation<PointT>::getGraph) \
       .function("getColoredCloud", &pcl::MinCutSegmentation<PointT>::getColoredCloud);
+
+template <typename PointT>
+void extract(pcl::MinCutSegmentation<PointT>& segmentation ,std::vector<pcl::PointIndices> &clusters)
+{
+    segmentation.extract(clusters);
+}
 
 using namespace pcl;
 using namespace emscripten;
@@ -42,12 +47,10 @@ EMSCRIPTEN_BINDINGS(segmentation)
   BIND_PCL_BASE(PointXYZRGB);
   BIND_PCL_BASE(PointXYZRGBA);
   BIND_PCL_BASE(PointNormal);
-  BIND_PCL_BASE(PointIndices);
 
   BIND_MCMF(PointXYZ);
   BIND_MCMF(PointXYZI);
   BIND_MCMF(PointXYZRGB);
   BIND_MCMF(PointXYZRGBA);
   BIND_MCMF(PointNormal);
-  BIND_MCMF(PointIndices);
 }

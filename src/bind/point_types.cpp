@@ -1,5 +1,6 @@
 #include <iostream>
 #include <pcl/point_types.h>
+#include <pcl/PointIndices.h>
 #include <emscripten/bind.h>
 
 /**
