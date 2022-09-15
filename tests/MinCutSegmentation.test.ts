@@ -16,10 +16,6 @@ describe('MinCutSegmentation', () => {
     pcl.fs.writeFile(filename, new Uint8Array(pcd));
     const cloud = pcl.io.loadPCDFile<PCL.PointXYZI>(filename, PCL.PointXYZI);
 
-    vg.setInputCloud(cloud);
-    vg.setLeafSize(0.01, 0.01, 0.01);
-    vg.filter(cloudFiltered);
-
     const mcSeg = new pcl.segmentation.MinCutSegmentation<PCL.PointXYZI>(
       PCL.PointXYZI,
     );
