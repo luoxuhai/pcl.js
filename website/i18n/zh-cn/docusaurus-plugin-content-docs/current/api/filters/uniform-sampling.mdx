@@ -1,0 +1,48 @@
+# UniformSampling
+
+> https://pointclouds.org/documentation/classpcl_1_1_uniform_sampling.html
+
+`UniformSampling` 在给定的 [`PointCloud`](/docs/api/basic-structures#pointcloud) 上组装本地 3D 网格，并对数据进行下采样 + 过滤。
+
+`UniformSampling` 类在输入点云数据上创建一个 3D 体素网格（将体素网格想象为空间中的一组微小 3D 框）。 然后，在每个体素（即 3D 框）中，所有存在的点都将用最接近体素中心的点进行近似（即下采样）。
+
+## Constructor
+
+```ts
+new pcl.filters.UniformSampling(pointType, extractRemovedIndices);
+```
+
+**参数:**
+
+| 名称                  | 类型                                              | 默认值     | 描述                                     |
+| --------------------- | ------------------------------------------------- | ---------- | ---------------------------------------- |
+| pointType             | [PointType](/docs/api/basic-structures#pointtype) | `PointXYZ` | 点云类型                                 |
+| extractRemovedIndices | `boolean`                                         | `false`    | 使用 `true` 初始化将允许提取删除的索引。 |
+
+## 方法
+
+### setRadiusSearch
+
+```ts
+setRadiusSearch(radius);
+```
+
+设置 3D 网格叶子大小。
+
+**参数:**
+
+| 名称   | 类型     | 默认值 | 描述              |
+| ------ | -------- | ------ | ----------------- |
+| radius | `number` |        | 3D 网格叶子大小。 |
+
+### setInputCloud
+
+参考 [PassThrough.setInputCloud](/docs/api/filters/pass-through#setinputcloud)
+
+### getInputCloud
+
+参考 [PassThrough.getInputCloud](/docs/api/filters/pass-through#getinputcloud)
+
+### filter
+
+参考 [PassThrough.filter](/docs/api/filters/pass-through#filter)

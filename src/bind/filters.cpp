@@ -4,6 +4,7 @@
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/filters/statistical_outlier_removal.h>
 #include <pcl/filters/radius_outlier_removal.h>
+#include <pcl/filters/uniform_sampling.h>
 #include <emscripten/bind.h>
 #include "embind.cpp"
 
@@ -65,6 +66,12 @@
         .function("getRadiusSearch", &pcl::RadiusOutlierRemoval<PointT>::getRadiusSearch)                       \
         .function("setMinNeighborsInRadius", &pcl::RadiusOutlierRemoval<PointT>::setMinNeighborsInRadius)       \
         .function("getMinNeighborsInRadius", &pcl::RadiusOutlierRemoval<PointT>::getMinNeighborsInRadius);
+
+// define UniformSampling
+#define BIND_US(PointT)                                                                        \
+    class_<pcl::UniformSampling<PointT>, base<pcl::Filter<PointT>>>("UniformSampling" #PointT) \
+        .constructor<bool>()                                                                   \
+        .function("setRadiusSearch", &pcl::UniformSampling<PointT>::setRadiusSearch);
 
 struct FilterLimits
 {
@@ -164,6 +171,13 @@ EMSCRIPTEN_BINDINGS(filters)
     BIND_ROR(PointXYZRGB);
     BIND_ROR(PointXYZRGBA);
     BIND_ROR(PointNormal);
+
+    // Bind UniformSampling
+    BIND_US(PointXYZ);
+    BIND_US(PointXYZI);
+    BIND_US(PointXYZRGB);
+    BIND_US(PointXYZRGBA);
+    BIND_US(PointNormal);
 
     value_array<FilterLimits>("FilterLimits")
         .element(&FilterLimits::min)
