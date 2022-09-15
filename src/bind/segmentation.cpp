@@ -42,10 +42,12 @@ EMSCRIPTEN_BINDINGS(segmentation)
   BIND_PCL_BASE(PointXYZRGB);
   BIND_PCL_BASE(PointXYZRGBA);
   BIND_PCL_BASE(PointNormal);
+  BIND_PCL_BASE(PointIndices);
 
   BIND_MCMF(PointXYZ);
   BIND_MCMF(PointXYZI);
   BIND_MCMF(PointXYZRGB);
   BIND_MCMF(PointXYZRGBA);
   BIND_MCMF(PointNormal);
+  BIND_MCMF(PointIndices);
 }

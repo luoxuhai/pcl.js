@@ -4,9 +4,9 @@ import {
   PointTypesIntersection,
   PointTypesUnion,
   TPointTypesUnion,
+  PointIndices,
 } from '../point-types';
 
-import { PointIndices } from '../point-indices';
 import { Vector } from '../point-types/type';
 
 class MinCutSegmentation<

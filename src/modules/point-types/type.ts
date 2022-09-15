@@ -57,6 +57,10 @@ export interface Vector<T> extends Emscripten.NativeAPI {
   clear(): boolean;
 }
 
+export class PointIndices {
+  constructor(public x: Vector<number>) {}
+}
+
 export type PointTypesUnion =
   | PointXYZ
   | PointXYZI

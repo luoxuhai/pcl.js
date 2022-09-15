@@ -124,5 +124,4 @@ const VERSION = '__version__';
 
 export { init, VERSION, PCLInstance, InitOptions };
 export * from '../modules/point-types/type';
-export * from '../modules/point-indices/type';
 export { PointCloud } from '../modules/point-types/index';
