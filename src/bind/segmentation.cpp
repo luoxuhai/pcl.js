@@ -4,10 +4,6 @@
 #include <pcl/segmentation/min_cut_segmentation.h>
 #include <emscripten/bind.h>
 
-// define PCLBase
-#define BIND_PCL_BASE(PointT) \
-  class_<pcl::PCLBase<PointT>>("PCLBase" #PointT);
-
 // define mincut-maxflow-segementation
 #define BIND_MCMF(PointT) \
   class_<pcl::MinCutSegmentation<PointT>, base<pcl::PCLBase<PointT>>>("MinCutSegmentation" #PointT) \
@@ -32,7 +28,7 @@
       .function("getColoredCloud", &pcl::MinCutSegmentation<PointT>::getColoredCloud);
 
 template <typename PointT>
-void extract(pcl::MinCutSegmentation<PointT>& segmentation ,std::vector<pcl::PointIndices> &clusters)
+void extract(pcl::MinCutSegmentation<PointT>& segmentation, std::vector<pcl::PointIndices> &clusters)
 {
     segmentation.extract(clusters);
 }
@@ -42,15 +38,11 @@ using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(segmentation)
 {
-  BIND_PCL_BASE(PointXYZ);
-  BIND_PCL_BASE(PointXYZI);
-  BIND_PCL_BASE(PointXYZRGB);
-  BIND_PCL_BASE(PointXYZRGBA);
-  BIND_PCL_BASE(PointNormal);
-
   BIND_MCMF(PointXYZ);
   BIND_MCMF(PointXYZI);
   BIND_MCMF(PointXYZRGB);
   BIND_MCMF(PointXYZRGBA);
   BIND_MCMF(PointNormal);
+
+  register_vector<pcl::PointIndices>("vector<PointIndices>");
 }
