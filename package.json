@@ -11,7 +11,7 @@
   "module": "dist/pcl.esm.js",
   "scripts": {
     "dev:js": "rollup -c -w --environment ENV:development",
-    "dev:wasm": "sh scripts/build.sh",
+    "dev:wasm": "bash scripts/build.sh",
     "dev": "npm run dev:wasm && npm run dev:js",
     "build:js": "rollup -c",
     "build:wasm": "bash scripts/build.sh Release",
