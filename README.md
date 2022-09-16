@@ -177,6 +177,12 @@ async function main() {
 main();
 ```
 
+## Project Layout
+
+- [`src`](/src) All the source code for pcl.js, if you want to edit a api or just see how it works this is where you'll find it.
+- [`website`](/website) The source code for https://pcljs.org
+- [`tests`](/tests) You'll do most of your testing in here.
+
 ## Changelog
 
 The [changelog](https://github.com/luoxuhai/pcl.js/releases) is regularly updated to reflect what's changed in each new release.

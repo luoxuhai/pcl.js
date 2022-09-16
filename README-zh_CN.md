@@ -172,6 +172,12 @@ async function main() {
 main();
 ```
 
+## 项目结构
+
+- [`src`](/src) pcl.js 的所有源代码
+- [`website`](/website) https://pcljs.org 网站的源代码
+- [`tests`](/tests) 测试代码目录
+
 ## 变更日志
 
 [更改日志](https://github.com/luoxuhai/pcl.js/releases) 会定期更新，以反映每个新版本中的更改内容。
