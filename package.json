@@ -64,6 +64,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "husky": "^8.0.1",
     "jest": "^28.1.2",
+    "jest-environment-jsdom": "^29.0.3",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "release-it": "^15.4.1",

@@ -1,13 +1,9 @@
 import * as PCL from '../';
-import { initPCL } from './common';
-
-let pcl: PCL.PCLInstance;
-beforeAll(async () => {
-  pcl = (await initPCL())!;
-});
 
 describe('PassThrough', () => {
   it('should filtering a PointCloud using a PassThrough filter', () => {
+    const pcl = (window as any).pcl as PCL.PCLInstance;
+
     const before = [
       [0.352222, -0.151883, -0.106395],
       [-0.397406, -0.473106, 1.292602],
