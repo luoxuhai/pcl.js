@@ -5,6 +5,7 @@
 #include <pcl/filters/statistical_outlier_removal.h>
 #include <pcl/filters/radius_outlier_removal.h>
 #include <pcl/filters/uniform_sampling.h>
+#include <pcl/filters/random_sample.h>
 #include <emscripten/bind.h>
 #include "embind.cpp"
 
@@ -72,6 +73,15 @@
     class_<pcl::UniformSampling<PointT>, base<pcl::Filter<PointT>>>("UniformSampling" #PointT) \
         .constructor<bool>()                                                                   \
         .function("setRadiusSearch", &pcl::UniformSampling<PointT>::setRadiusSearch);
+
+// define RandomSample
+#define BIND_RS(PointT)                                                                         \
+    class_<pcl::RandomSample<PointT>, base<pcl::FilterIndices<PointT>>>("RandomSample" #PointT) \
+        .constructor<bool>()                                                                    \
+        .function("setSample", &pcl::RandomSample<PointT>::setSample)                           \
+        .function("getSample", &pcl::RandomSample<PointT>::getSample)                           \
+        .function("setSeed", &pcl::RandomSample<PointT>::setSeed)                               \
+        .function("getSeed", &pcl::RandomSample<PointT>::getSeed);
 
 struct FilterLimits
 {
@@ -178,6 +188,13 @@ EMSCRIPTEN_BINDINGS(filters)
     BIND_US(PointXYZRGB);
     BIND_US(PointXYZRGBA);
     BIND_US(PointNormal);
+
+    // Bind RandomSample
+    BIND_RS(PointXYZ);
+    BIND_RS(PointXYZI);
+    BIND_RS(PointXYZRGB);
+    BIND_RS(PointXYZRGBA);
+    BIND_RS(PointNormal);
 
     value_array<FilterLimits>("FilterLimits")
         .element(&FilterLimits::min)

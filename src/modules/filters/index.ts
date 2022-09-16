@@ -3,6 +3,7 @@ import VoxelGrid from './VoxelGrid';
 import StatisticalOutlierRemoval from './StatisticalOutlierRemoval';
 import RadiusOutlierRemoval from './RadiusOutlierRemoval';
 import UniformSampling from './UniformSampling';
+import RandomSample from './RandomSample';
 
 export default {
   PassThrough,
@@ -10,4 +11,5 @@ export default {
   StatisticalOutlierRemoval,
   RadiusOutlierRemoval,
   UniformSampling,
+  RandomSample,
 };
