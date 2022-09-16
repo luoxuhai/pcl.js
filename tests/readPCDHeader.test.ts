@@ -1,20 +1,10 @@
-import fs from 'fs';
-import path from 'path';
 import * as PCL from '../';
-import { initPCL } from './common';
-
-let pcl: PCL.PCLInstance;
-beforeAll(async () => {
-  pcl = (await initPCL())!;
-});
-
-function writeFile(name: string, pcl) {
-  const pcd = fs.readFileSync(path.join(__dirname, `../data/${name}`));
-  pcl.fs.writeFile(name, new Uint8Array(pcd));
-}
+import { writeFile } from './common';
 
 describe('readPCDHeader.test', () => {
   it('should read the header of a PCD file with an x,y,z field', async () => {
+    const pcl = (window as any).pcl as PCL.PCLInstance;
+
     const filename = 'ism_test_cat.pcd';
     writeFile(filename, pcl);
     const header = pcl.io.readPCDHeader(filename);
@@ -22,6 +12,8 @@ describe('readPCDHeader.test', () => {
   });
 
   it('should read the header of a PCD file with an x,y,x,intensity,distance,sid field', async () => {
+    const pcl = (window as any).pcl as PCL.PCLInstance;
+
     const filename = 'table_scene_lms400.pcd';
     writeFile(filename, pcl);
     const header = pcl.io.readPCDHeader(filename);
