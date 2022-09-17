@@ -10,7 +10,6 @@
 #include <pcl/filters/local_maximum.h>
 #include <pcl/filters/approximate_voxel_grid.h>
 #include <emscripten/bind.h>
-#include "embind.cpp"
 
 // define PassThrough
 #define BIND_PASS_THROUGH(PointT)                                                             \
@@ -96,17 +95,17 @@
 // define LocalMaximum
 #define BIND_LM(PointT)                                                                         \
     class_<pcl::LocalMaximum<PointT>, base<pcl::FilterIndices<PointT>>>("LocalMaximum" #PointT) \
-        .constructor<bool>()                                                                   \
+        .constructor<bool>()                                                                    \
         .function("setRadius", &pcl::LocalMaximum<PointT>::setRadius)                           \
         .function("getRadius", &pcl::LocalMaximum<PointT>::getRadius);
 
 // define ApproximateVoxelGrid
-#define BIND_AVG(PointT)                                                                                 \
-    class_<pcl::ApproximateVoxelGrid<PointT>, base<pcl::Filter<PointT>>>("ApproximateVoxelGrid" #PointT) \
-        .constructor()                                                                                   \
-        .function("setLeafSize",                                                                         \
-                  select_overload<void(float, float, float)>(&pcl::ApproximateVoxelGrid<PointT>::setLeafSize))      \
-        .function("setDownsampleAllData", &pcl::ApproximateVoxelGrid<PointT>::setDownsampleAllData)                 \
+#define BIND_AVG(PointT)                                                                                       \
+    class_<pcl::ApproximateVoxelGrid<PointT>, base<pcl::Filter<PointT>>>("ApproximateVoxelGrid" #PointT)       \
+        .constructor()                                                                                         \
+        .function("setLeafSize",                                                                               \
+                  select_overload<void(float, float, float)>(&pcl::ApproximateVoxelGrid<PointT>::setLeafSize)) \
+        .function("setDownsampleAllData", &pcl::ApproximateVoxelGrid<PointT>::setDownsampleAllData)            \
         .function("getDownsampleAllData", &pcl::ApproximateVoxelGrid<PointT>::getDownsampleAllData);
 
 struct FilterLimits
@@ -246,6 +245,4 @@ EMSCRIPTEN_BINDINGS(filters)
     value_array<FilterLimits>("FilterLimits")
         .element(&FilterLimits::min)
         .element(&FilterLimits::max);
-
-    register_vector_plus<index_t>("Indices");
 }
