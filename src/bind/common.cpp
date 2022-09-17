@@ -43,4 +43,7 @@ EMSCRIPTEN_BINDINGS(common)
   BIND_POINTS(PointXYZRGBA);
   BIND_POINTS(Normal);
   BIND_POINTS(PointNormal);
+
+  register_vector_plus<float>("VectorFloat");
+  register_vector_plus<index_t>("Indices");
 }
