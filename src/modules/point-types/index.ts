@@ -92,7 +92,7 @@ class Points<T> {
 
     const args = Object.values(this.native.get(index) ?? {});
 
-    return new pointTypeMap[pointType](...args);
+    return new pointTypeMap[pointType](...args) as T;
   }
 
   public push(value: T) {

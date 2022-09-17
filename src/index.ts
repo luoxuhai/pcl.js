@@ -1,3 +1,2 @@
 export * from './core';
-// TODO:
-// export * from './visualization';
+export * from './visualization';
