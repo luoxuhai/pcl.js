@@ -8,6 +8,7 @@
 #include <pcl/filters/random_sample.h>
 #include <pcl/filters/grid_minimum.h>
 #include <pcl/filters/local_maximum.h>
+#include <pcl/filters/approximate_voxel_grid.h>
 #include <emscripten/bind.h>
 #include "embind.cpp"
 
@@ -98,6 +99,15 @@
         .constructor<bool>()                                                                   \
         .function("setRadius", &pcl::LocalMaximum<PointT>::setRadius)                           \
         .function("getRadius", &pcl::LocalMaximum<PointT>::getRadius);
+
+// define ApproximateVoxelGrid
+#define BIND_AVG(PointT)                                                                                 \
+    class_<pcl::ApproximateVoxelGrid<PointT>, base<pcl::Filter<PointT>>>("ApproximateVoxelGrid" #PointT) \
+        .constructor()                                                                                   \
+        .function("setLeafSize",                                                                         \
+                  select_overload<void(float, float, float)>(&pcl::ApproximateVoxelGrid<PointT>::setLeafSize))      \
+        .function("setDownsampleAllData", &pcl::ApproximateVoxelGrid<PointT>::setDownsampleAllData)                 \
+        .function("getDownsampleAllData", &pcl::ApproximateVoxelGrid<PointT>::getDownsampleAllData);
 
 struct FilterLimits
 {
@@ -225,6 +235,13 @@ EMSCRIPTEN_BINDINGS(filters)
     BIND_LM(PointXYZRGB);
     BIND_LM(PointXYZRGBA);
     BIND_LM(PointNormal);
+
+    // Bind ApproximateVoxelGrid
+    BIND_AVG(PointXYZ);
+    BIND_AVG(PointXYZI);
+    BIND_AVG(PointXYZRGB);
+    BIND_AVG(PointXYZRGBA);
+    BIND_AVG(PointNormal);
 
     value_array<FilterLimits>("FilterLimits")
         .element(&FilterLimits::min)
