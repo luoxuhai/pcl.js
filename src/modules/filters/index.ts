@@ -6,6 +6,7 @@ import UniformSampling from './UniformSampling';
 import RandomSample from './RandomSample';
 import GridMinimum from './GridMinimum';
 import LocalMaximum from './LocalMaximum';
+import ApproximateVoxelGrid from './ApproximateVoxelGrid';
 
 export default {
   PassThrough,
@@ -16,4 +17,5 @@ export default {
   RandomSample,
   GridMinimum,
   LocalMaximum,
+  ApproximateVoxelGrid,
 };
