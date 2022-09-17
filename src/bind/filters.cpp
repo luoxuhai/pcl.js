@@ -7,6 +7,7 @@
 #include <pcl/filters/uniform_sampling.h>
 #include <pcl/filters/random_sample.h>
 #include <pcl/filters/grid_minimum.h>
+#include <pcl/filters/local_maximum.h>
 #include <emscripten/bind.h>
 #include "embind.cpp"
 
@@ -87,9 +88,16 @@
 // define GridMinimum
 #define BIND_GM(PointT)                                                                       \
     class_<pcl::GridMinimum<PointT>, base<pcl::FilterIndices<PointT>>>("GridMinimum" #PointT) \
-        .constructor<float>()                                                                  \
+        .constructor<float>()                                                                 \
         .function("setResolution", &pcl::GridMinimum<PointT>::setResolution)                  \
         .function("getResolution", &pcl::GridMinimum<PointT>::getResolution);
+
+// define LocalMaximum
+#define BIND_LM(PointT)                                                                         \
+    class_<pcl::LocalMaximum<PointT>, base<pcl::FilterIndices<PointT>>>("LocalMaximum" #PointT) \
+        .constructor<bool>()                                                                   \
+        .function("setRadius", &pcl::LocalMaximum<PointT>::setRadius)                           \
+        .function("getRadius", &pcl::LocalMaximum<PointT>::getRadius);
 
 struct FilterLimits
 {
@@ -204,12 +212,19 @@ EMSCRIPTEN_BINDINGS(filters)
     BIND_RS(PointXYZRGBA);
     BIND_RS(PointNormal);
 
-    // Bind RandomSample
+    // Bind GridMinimum
     BIND_GM(PointXYZ);
     BIND_GM(PointXYZI);
     BIND_GM(PointXYZRGB);
     BIND_GM(PointXYZRGBA);
     BIND_GM(PointNormal);
+
+    // Bind LocalMaximum
+    BIND_LM(PointXYZ);
+    BIND_LM(PointXYZI);
+    BIND_LM(PointXYZRGB);
+    BIND_LM(PointXYZRGBA);
+    BIND_LM(PointNormal);
 
     value_array<FilterLimits>("FilterLimits")
         .element(&FilterLimits::min)
