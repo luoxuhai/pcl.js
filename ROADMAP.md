@@ -41,6 +41,16 @@
 
 ### Sample Consensus
 
+### Features
+
+### Range Images
+
+### Visualization
+
+- [ ] PointCloudViewer
+- [ ] MeshViewer
+- [ ] RangeImageViewer
+
 ## Performance
 
 *Todo*
