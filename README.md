@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://pcljs.org" target="_blank"><img style="max-height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
+  <a href="https://pcljs.org" target="_blank"><img style="height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
   <p align="center"><a href="https://github.com/PointCloudLibrary/pcl" target="_blank">Point Cloud Library (PCL)</a> for browser, powered by WebAssembly.</p>
 </p>
 
