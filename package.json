@@ -1,6 +1,6 @@
 {
   "name": "pcl.js",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "PCL for browser and node, powered by WebAssembly.",
   "types": "dist/types/pcl.d.ts",
   "main": "dist/pcl.cjs.js",
@@ -10,12 +10,13 @@
     "dev:wasm": "bash scripts/build.sh",
     "dev": "npm run dev:wasm && npm run dev:js",
     "build:js": "rollup -c",
-    "build:wasm": "bash scripts/build.sh Release",
+    "build:wasm": "npm run clean:wasm && bash scripts/build.sh Release",
     "build:pcl": "bash scripts/build-pcl.sh",
     "build": "npm run build:wasm && npm run build:js",
     "prebuild": "npm run clean",
     "postbuild": "rimraf dist/types/.temp",
     "clean": "rimraf dist/*",
+    "clean:wasm": "rimraf src/bind/build/*",
     "test": "jest",
     "lint": "eslint .",
     "prepare": "husky install",
@@ -64,6 +65,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "husky": "^8.0.1",
     "jest": "^28.1.2",
+    "jest-environment-jsdom": "^29.0.3",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "release-it": "^15.4.1",
@@ -79,7 +81,7 @@
     "typescript": "^4.7.4"
   },
   "lint-staged": {
-    "*.{js,ts}": [
+    "*.{ts}": [
       "prettier --write",
       "eslint --fix"
     ],

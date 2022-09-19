@@ -76,4 +76,4 @@ npm install
 - `npm run build:wasm` 编译 PCL 到 WebAssembly 生产版本
 - `npm run build` 同时打包 JavaScript 和 编译 PCL，可用于生产环境
 - `npm run lint` 检查代码风格
-- `npm run test` 运行测试。(在运行测试前请确保已经运行 `npm run dev` 或 `npm run build`)
+- `npm run test` 运行测试。(在运行测试前请确保已经运行 `npm run dev:js` 或 `npm run build:js`)

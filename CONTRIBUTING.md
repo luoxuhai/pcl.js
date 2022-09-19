@@ -79,4 +79,4 @@ If you are interested in the detailed specification you can visit
 - `npm run build:wasm` to compile PCL's WebAssembly + `src/bind` to WebAssembly production build
 - `npm run build` bundles JavaScript and compiles PCL at the same time, ready for production use
 - `npm run lint` to check code style
-- `npm run test` to run tests. (Be sure to run `npm run dev` or `npm run build` before running tests)
+- `npm run test` to run tests. (Be sure to run `npm run dev:js` or `npm run build:js` before running tests)

@@ -5,8 +5,11 @@
 #include <pcl/filters/statistical_outlier_removal.h>
 #include <pcl/filters/radius_outlier_removal.h>
 #include <pcl/filters/uniform_sampling.h>
+#include <pcl/filters/random_sample.h>
+#include <pcl/filters/grid_minimum.h>
+#include <pcl/filters/local_maximum.h>
+#include <pcl/filters/approximate_voxel_grid.h>
 #include <emscripten/bind.h>
-#include "embind.cpp"
 
 // define PassThrough
 #define BIND_PASS_THROUGH(PointT)                                                             \
@@ -72,6 +75,38 @@
     class_<pcl::UniformSampling<PointT>, base<pcl::Filter<PointT>>>("UniformSampling" #PointT) \
         .constructor<bool>()                                                                   \
         .function("setRadiusSearch", &pcl::UniformSampling<PointT>::setRadiusSearch);
+
+// define RandomSample
+#define BIND_RS(PointT)                                                                         \
+    class_<pcl::RandomSample<PointT>, base<pcl::FilterIndices<PointT>>>("RandomSample" #PointT) \
+        .constructor<bool>()                                                                    \
+        .function("setSample", &pcl::RandomSample<PointT>::setSample)                           \
+        .function("getSample", &pcl::RandomSample<PointT>::getSample)                           \
+        .function("setSeed", &pcl::RandomSample<PointT>::setSeed)                               \
+        .function("getSeed", &pcl::RandomSample<PointT>::getSeed);
+
+// define GridMinimum
+#define BIND_GM(PointT)                                                                       \
+    class_<pcl::GridMinimum<PointT>, base<pcl::FilterIndices<PointT>>>("GridMinimum" #PointT) \
+        .constructor<float>()                                                                 \
+        .function("setResolution", &pcl::GridMinimum<PointT>::setResolution)                  \
+        .function("getResolution", &pcl::GridMinimum<PointT>::getResolution);
+
+// define LocalMaximum
+#define BIND_LM(PointT)                                                                         \
+    class_<pcl::LocalMaximum<PointT>, base<pcl::FilterIndices<PointT>>>("LocalMaximum" #PointT) \
+        .constructor<bool>()                                                                    \
+        .function("setRadius", &pcl::LocalMaximum<PointT>::setRadius)                           \
+        .function("getRadius", &pcl::LocalMaximum<PointT>::getRadius);
+
+// define ApproximateVoxelGrid
+#define BIND_AVG(PointT)                                                                                       \
+    class_<pcl::ApproximateVoxelGrid<PointT>, base<pcl::Filter<PointT>>>("ApproximateVoxelGrid" #PointT)       \
+        .constructor()                                                                                         \
+        .function("setLeafSize",                                                                               \
+                  select_overload<void(float, float, float)>(&pcl::ApproximateVoxelGrid<PointT>::setLeafSize)) \
+        .function("setDownsampleAllData", &pcl::ApproximateVoxelGrid<PointT>::setDownsampleAllData)            \
+        .function("getDownsampleAllData", &pcl::ApproximateVoxelGrid<PointT>::getDownsampleAllData);
 
 struct FilterLimits
 {
@@ -179,9 +214,35 @@ EMSCRIPTEN_BINDINGS(filters)
     BIND_US(PointXYZRGBA);
     BIND_US(PointNormal);
 
+    // Bind RandomSample
+    BIND_RS(PointXYZ);
+    BIND_RS(PointXYZI);
+    BIND_RS(PointXYZRGB);
+    BIND_RS(PointXYZRGBA);
+    BIND_RS(PointNormal);
+
+    // Bind GridMinimum
+    BIND_GM(PointXYZ);
+    BIND_GM(PointXYZI);
+    BIND_GM(PointXYZRGB);
+    BIND_GM(PointXYZRGBA);
+    BIND_GM(PointNormal);
+
+    // Bind LocalMaximum
+    BIND_LM(PointXYZ);
+    BIND_LM(PointXYZI);
+    BIND_LM(PointXYZRGB);
+    BIND_LM(PointXYZRGBA);
+    BIND_LM(PointNormal);
+
+    // Bind ApproximateVoxelGrid
+    BIND_AVG(PointXYZ);
+    BIND_AVG(PointXYZI);
+    BIND_AVG(PointXYZRGB);
+    BIND_AVG(PointXYZRGBA);
+    BIND_AVG(PointNormal);
+
     value_array<FilterLimits>("FilterLimits")
         .element(&FilterLimits::min)
         .element(&FilterLimits::max);
-
-    register_vector_plus<index_t>("Indices");
 }

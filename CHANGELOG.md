@@ -1,5 +1,16 @@
 # Changelog
 
+# [1.3.0](https://github.com/luoxuhai/pcl.js/compare/v1.2.0...v1.3.0) (2022-09-17)
+
+
+### Features
+
+* add ApproximateVoxelGrid filter ([09b9e7a](https://github.com/luoxuhai/pcl.js/commit/09b9e7a9c2c4514f1a986faee107c53be20dedc7))
+* add GridMinimum filter ([5b0c32f](https://github.com/luoxuhai/pcl.js/commit/5b0c32f043918bff0516ba5bef976b4c02e7eec7))
+* add LocalMaximum filter ([d3d2131](https://github.com/luoxuhai/pcl.js/commit/d3d213126a0ff30b06f9b7880c44b2551e0f8537))
+* add RandomSample filter ([9c0cd41](https://github.com/luoxuhai/pcl.js/commit/9c0cd4192cc5f279c12d7662c2c30327a5b2232a))
+* add UniformSampling filter ([d2cf028](https://github.com/luoxuhai/pcl.js/commit/d2cf0283dd8807726d2df242a7fb22405040d849))
+
 # [1.2.0](https://github.com/luoxuhai/pcl.js/compare/v1.1.1...v1.2.0) (2022-09-12)
 
 ### Features

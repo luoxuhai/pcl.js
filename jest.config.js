@@ -2,6 +2,8 @@
 module.exports = {
   preset: 'ts-jest',
   verbose: true,
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   testRegex: '(/tests/.*(\\.|/)(test|spec))\\.[jt]s$',
+  setupFilesAfterEnv: ['<rootDir>/tests/setup-tests.ts'],
+  reporters: ['default', 'github-actions'],
 };

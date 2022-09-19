@@ -1,0 +1,126 @@
+# KdTreeFLANN
+
+> https://pointclouds.org/documentation/classpcl_1_1_kd_tree_f_l_a_n_n.html
+
+`KdTreeFLANN` is a generic type of 3D spatial locator using kD-tree structures.
+
+The class is making use of the [FLANN (Fast Library for Approximate Nearest Neighbor)](https://github.com/flann-lib/flann) project.
+
+## Constructor
+
+```ts
+new pcl.kdtree.KdTreeFLANN(pointType, sorted);
+```
+
+**Parameters:**
+
+| Name      | Type                                              | Default    | Description                                                                                                         |
+| --------- | ------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------- |
+| pointType | [PointType](/docs/api/basic-structures#pointtype) | `PointXYZ` | The point cloud type.                                                                                               |
+| sorted    | `boolean`                                         | `true`     | Set to `true` if the application that the tree will be used for requires sorted nearest neighbor indices (default). |
+
+## Methods
+
+### setSortedResults()
+
+```ts
+setSortedResults(sorted);
+```
+
+**Parameters:**
+
+| Name   | Type      | Default | Description                                                                                               |
+| ------ | --------- | ------- | --------------------------------------------------------------------------------------------------------- |
+| sorted | `boolean` |         | Set to `true` if the application that the tree will be used for requires sorted nearest neighbor indices. |
+
+### setEpsilon()
+
+```ts
+setEpsilon(eps);
+```
+
+Set the search epsilon precision (error bound) for nearest neighbors searches.
+
+**Parameters:**
+
+| Name | Type     | Default | Description                                            |
+| ---- | -------- | ------- | ------------------------------------------------------ |
+| eps  | `number` |         | Precision (error bound) for nearest neighbors searches |
+
+### nearestKSearch()
+
+```ts
+nearestKSearch(point, k);
+```
+
+Search for k-nearest neighbors for the given query point.
+
+For Exmaple:
+
+```ts
+import * as PCL from 'pcl.js'
+
+const pcl = await PCL.init();
+
+// highlight-next-line
+const point = new PCL.PointXYZ(1, 2, 3);
+// highlight-next-line
+const k = 5
+const kdtree = new pcl.kdtree.KdTreeFLANN(pointType, sorted);
+// highlight-next-line
+kdtree.nearestKSearch(point, k);
+```
+
+:::caution
+
+This method does not do any bounds checking for the input index (i.e., index >= cloud.size () || index < 0), and assumes valid (i.e., finite) data.
+
+:::
+
+**Parameters:**
+
+| Name  | Type                                                | Default | Description                              |
+| ----- | --------------------------------------------------- | ------- | ---------------------------------------- |
+| point | [`PointType`](/docs/api/basic-structures#pointtype) |         | A given valid (i.e., finite) query point |
+| k     | `number`                                            |         | The number of neighbors to search for    |
+
+**Returns:**
+
+| Name   | Type                                                     |
+| ------ | -------------------------------------------------------- |
+| result | `{ indices: Vector<number>; distances: Vector<number> }` |
+
+### radiusSearch()
+
+```ts
+radiusSearch(point, radius);
+```
+
+Search for all the nearest neighbors of the query point in a given radius.
+
+:::caution
+
+This method does not do any bounds checking for the input index (i.e., index >= cloud.size () || index < 0), and assumes valid (i.e., finite) data.
+
+:::
+
+**Parameters:**
+
+| Name   | Type                                                | Default | Description                                              |
+| ------ | --------------------------------------------------- | ------- | -------------------------------------------------------- |
+| point  | [`PointType`](/docs/api/basic-structures#pointtype) |         | A given valid (i.e., finite) query point                 |
+| radius | `number`                                            |         | The radius of the sphere bounding all of p_q's neighbors |
+
+**Returns:**
+
+| Name   | Type                                                     |
+| ------ | -------------------------------------------------------- |
+| result | `{ indices: Vector<number>; distances: Vector<number> }` |
+
+### setInputCloud
+
+See [PassThrough.setInputCloud](/docs/api/filters/pass-through#setinputcloud)
+
+### getInputCloud
+
+See [PassThrough.getInputCloud](/docs/api/filters/pass-through#getinputcloud)

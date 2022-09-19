@@ -1,15 +1,13 @@
-# VoxelGrid
+# ApproximateVoxelGrid
 
-> https://pointclouds.org/documentation/classpcl_1_1_voxel_grid.html
+> https://pointclouds.org/documentation/classpcl_1_1_approximate_voxel_grid.html
 
-VoxelGrid assembles a local 3D grid over a given PointCloud, and downsamples + filters the data.
-
-The VoxelGrid class creates a 3D voxel grid (think about a voxel grid as a set of tiny 3D boxes in space) over the input point cloud data. Then, in each voxel (i.e., 3D box), all the points present will be approximated (i.e., downsampled) with their centroid. This approach is a bit slower than approximating them with the center of the voxel, but it represents the underlying surface more accurately.
+`ApproximateVoxelGrid` assembles a local 3D grid over a given `PointCloud`, and downsamples + filters the data.
 
 ## Constructor
 
 ```ts
-new pcl.filters.VoxelGrid(pointType);
+new pcl.filters.ApproximateVoxelGrid(pointType);
 ```
 
 **Parameters:**
@@ -62,34 +60,6 @@ Get the state of the internal downsampling parameter (true if all fields need to
 | Name       | Type      |
 | ---------- | --------- |
 | downsample | `boolean` |
-
-### setMinimumPointsNumberPerVoxel()
-
-```ts
-setMinimumPointsNumberPerVoxel(minPointsPerVoxel);
-```
-
-Set the minimum number of points required for a voxel to be used.
-
-**Parameters:**
-
-| Name              | Type     | Default | Description                                                       |
-| ----------------- | -------- | ------- | ----------------------------------------------------------------- |
-| minPointsPerVoxel | `number` |         | The minimum number of points for required for a voxel to be used. |
-
-### getMinimumPointsNumberPerVoxel()
-
-```ts
-getMinimumPointsNumberPerVoxel();
-```
-
-Return the minimum number of points required for a voxel to be used.
-
-**Returns:**
-
-| Name              | Type     |
-| ----------------- | -------- |
-| minPointsPerVoxel | `number` |
 
 ### setInputCloud
 

@@ -18,7 +18,7 @@ set(FLANN_LIB ${PCL_ROOT}/wasm/deps/flann/build/lib)
 include_directories(${PCL_INCLUDE} ${BOOST_INCLUDE} ${EIGEN_INCLUDE} ${FLANN_INCLUDE})
 link_directories(${PCL_LIB} ${BOOST_LIB} ${FLANN_LIB})
 
-set(PCL_LINK_LIBS pcl_common pcl_io pcl_features pcl_filters pcl_kdtree pcl_stereo pcl_keypoints pcl_octree pcl_search pcl_segmentation pcl_surface pcl_tracking pcl_ml)
+file(GLOB PCL_LINK_LIBS ${PCL_LIB}/*.a)
 file(GLOB SRCS *.cpp)
 
 foreach(SRC IN LISTS SRCS)

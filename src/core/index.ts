@@ -8,6 +8,7 @@ import filters from '../modules/filters';
 import registration from '../modules/registration';
 import segmentation from '../modules/segmentation';
 import common from '../modules/common';
+import kdtree from '../modules/kdtree';
 import { ENVIRONMENT_IS_NODE } from '../utils';
 
 interface InitOptions {
@@ -66,6 +67,7 @@ interface PCLInstance {
   io: typeof io;
   filters: typeof filters;
   registration: typeof registration;
+  kdtree: typeof kdtree;
   segmentation: typeof segmentation;
 }
 
@@ -117,6 +119,7 @@ async function init(options?: InitOptions): Promise<PCLInstance | null> {
     registration,
     segmentation,
     common,
+    kdtree,
   };
 }
 

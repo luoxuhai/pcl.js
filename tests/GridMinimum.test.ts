@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import * as PCL from '../';
 
-describe('VoxelGrid', () => {
-  it('should downsampling a PointCloud using a VoxelGrid filter', () => {
+describe('GridMinimum', () => {
+  it('should downsampling a PointCloud using a GridMinimum filter', () => {
     const pcl = (window as any).pcl as PCL.PCLInstance;
 
     const filename = 'table_scene_lms400.pcd';
@@ -14,11 +14,11 @@ describe('VoxelGrid', () => {
       PCL.PointXYZI,
     );
 
-    const vg = new pcl.filters.VoxelGrid<PCL.PointXYZI>(PCL.PointXYZI);
-    vg.setInputCloud(cloud);
-    vg.setLeafSize(0.01, 0.01, 0.01);
-    vg.filter(cloudFiltered);
+    const gm = new pcl.filters.GridMinimum<PCL.PointXYZI>(PCL.PointXYZI);
+    gm.setInputCloud(cloud);
+    gm.setResolution(0.025);
+    gm.filter(cloudFiltered);
 
-    expect(cloudFiltered.points.size()).toBe(41049);
+    expect(cloudFiltered.points.size()).toBe(2606);
   });
 });
