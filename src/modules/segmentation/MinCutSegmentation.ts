@@ -7,7 +7,7 @@ import {
   PointIndices,
 } from '../point-types';
 
-import { Vector } from '../point-types/type';
+import { Vector, vectorPointIndices } from '../point-types/type';
 
 class MinCutSegmentation<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
@@ -78,7 +78,8 @@ class MinCutSegmentation<
     return this.native.getBackgroundPoints() as PointCloud<T>;
   }
 
-  public extract(clusters: Vector<PointIndices>): void {
+  // Vector<PointIndices>
+  public extract(clusters: vectorPointIndices): void {
     return this.native.extract(clusters) as void;
   }
 

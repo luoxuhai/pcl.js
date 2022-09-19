@@ -30,7 +30,7 @@
 template <typename PointT>
 void extract(pcl::MinCutSegmentation<PointT>& segmentation, std::vector<pcl::PointIndices> &clusters)
 {
-    segmentation.extract(clusters);
+  segmentation.extract(clusters);
 }
 
 using namespace pcl;
@@ -44,5 +44,5 @@ EMSCRIPTEN_BINDINGS(segmentation)
   BIND_MCMF(PointXYZRGBA);
   BIND_MCMF(PointNormal);
 
-  register_vector<pcl::PointIndices>("vector<PointIndices>");
+  register_vector<pcl::PointIndices>("vectorPointIndices");
 }
