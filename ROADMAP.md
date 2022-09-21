@@ -47,7 +47,7 @@
 
 ### Visualization
 
-- [ ] PointCloudViewer
+- [x] PointCloudViewer
 - [ ] MeshViewer
 - [ ] RangeImageViewer
 
