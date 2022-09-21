@@ -1,3 +1,5 @@
+// https://github.com/mrdoob/three.js/blob/dev/examples/jsm/controls/OrbitControls.js
+
 import {
 	EventDispatcher,
 	MOUSE,
