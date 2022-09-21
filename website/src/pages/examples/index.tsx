@@ -18,7 +18,7 @@ const exampleList = [
     cover: require('@site/static/img/examples/StatisticalOutlierRemoval.gif')
       .default,
     code_url:
-      'https://codesandbox.io/embed/pcl-js-examples-statisticaloutlierremoval-ys43o3',
+      'https://codesandbox.io/embed/pcl-js-statisticaloutlierremoval-kl2zjs',
   },
 ];
 
