@@ -39,7 +39,7 @@
 
 **使用 [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) 过滤器去除点云数据中的异常值演示**
 <p align="center">
-  <a href="https://pcljs.org/zh-cn/examples">
+  <a href="https://kl2zjs.csb.app">
     <img src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
   </a>
 </p>

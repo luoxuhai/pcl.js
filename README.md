@@ -40,7 +40,7 @@
 
 **Removing outliers from point cloud data using a [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) filter demo**
 <p align="center">
-  <a href="https://pcljs.org/examples">
+  <a href="https://kl2zjs.csb.app">
     <img src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
   </a>
 </p>

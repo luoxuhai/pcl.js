@@ -1,6 +1,6 @@
 {
   "examples.statistical-outlier-removal": {
-    "message": "Removing Sparse Outliers"
+    "message": "Removing outliers from point cloud data using a StatisticalOutlierRemoval filter"
   },
   "home.getting-started": {
     "message": "Getting Started"
