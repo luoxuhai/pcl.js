@@ -48,9 +48,6 @@ class PointCloudViewer {
       canvas,
       antialias: true,
     });
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setSize(width, height);
-    this.renderer.setAnimationLoop(this.render);
     this.controls = this.createOrbitControls();
     this.setOrbitControls({ minDistance: 0.1, maxDistance: 100 });
     this.setCameraParameters({
@@ -64,6 +61,9 @@ class PointCloudViewer {
         z: 10,
       },
     });
+    this.setSize(width, height);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setAnimationLoop(this.render);
   }
 
   // public function
@@ -106,7 +106,10 @@ class PointCloudViewer {
   }
 
   public removePointCloud(id = this.cloudProperties.id) {
-    this.scene.getObjectByName(id)?.removeFromParent();
+    const object = this.scene.getObjectByName(id) as PointsObject3D;
+    object?.material?.dispose();
+    object?.geometry?.dispose();
+    object?.removeFromParent();
     this.cloud = undefined;
   }
 
@@ -188,7 +191,7 @@ class PointCloudViewer {
   public setSize(width: number, height: number) {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, width);
+    this.renderer.setSize(width, height);
   }
 
   public show() {
