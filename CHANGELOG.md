@@ -1,5 +1,13 @@
 # Changelog
 
+# [1.4.0](https://github.com/luoxuhai/pcl.js/compare/v1.3.0...v1.4.0) (2022-09-21)
+
+
+### Features
+
+* add CloudViewer to visualize point cloud ([338373a](https://github.com/luoxuhai/pcl.js/commit/338373a59f8b7ffd9df8f2d209bada6b95569a51))
+* add KdTreeFLANN ([25d8d98](https://github.com/luoxuhai/pcl.js/commit/25d8d98962091f494a99cb25601c2f95e6ce08c0))
+
 # [1.3.0](https://github.com/luoxuhai/pcl.js/compare/v1.2.0...v1.3.0) (2022-09-17)
 
 
