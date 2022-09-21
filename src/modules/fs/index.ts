@@ -3,7 +3,19 @@
  * https://nodejs.org/api/fs.html#file-system
  */
 
-export default () => {
+export type FileSystem = Pick<
+  Emscripten.FS,
+  | 'readdir'
+  | 'readFile'
+  | 'writeFile'
+  | 'stat'
+  | 'mkdir'
+  | 'rmdir'
+  | 'rename'
+  | 'unlink'
+>;
+
+export default (): FileSystem => {
   const { FS } = __PCLCore__;
 
   const writeFile = FS.writeFile;
