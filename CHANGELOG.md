@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.1](https://github.com/luoxuhai/pcl.js/compare/v1.4.0...v1.4.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* setSize method of PointCloudViewer does not scale correctly ([6781d94](https://github.com/luoxuhai/pcl.js/commit/6781d942f6f33e8c2ed8b89cbc55176636c91be0))
+
+### Documentation
+
+* update StatisticalOutlierRemoval example url ([7b0f6cb](https://github.com/luoxuhai/pcl.js/commit/7b0f6cb81767b6dc1447f5190e7e3e41e70081ac))
+* remove example detail page ([7f02e57](https://github.com/luoxuhai/pcl.js/commit/7f02e57194b239be1d28cb7f9cdaa193b04998f2))
+
 # [1.4.0](https://github.com/luoxuhai/pcl.js/compare/v1.3.0...v1.4.0) (2022-09-21)
 
 
