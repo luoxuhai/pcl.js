@@ -6,6 +6,7 @@
   "main": "dist/pcl.cjs.js",
   "module": "dist/pcl.esm.js",
   "scripts": {
+    "setup": "yarn install && cd website && yarn install",
     "dev:js": "rollup -c -w --environment ENV:development",
     "dev:wasm": "sh scripts/build.sh",
     "dev": "npm run dev:wasm && npm run dev:js",
