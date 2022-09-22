@@ -10,7 +10,7 @@ beforeAll(async () => {
     [-0.734766, 0.854581, -0.0361733],
     [-0.4607, -0.277468, -0.916762],
   ];
-  const pcl = (window as any).pcl as PCL.PCLInstance;
+  const pcl = global.pcl as PCL.PCLInstance;
   cloud = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
   for (let i = 0; i < points.length; i++) {
@@ -20,7 +20,7 @@ beforeAll(async () => {
 
 describe('savePCDFile', () => {
   it('should save a ascii PCD file', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+    const pcl = global.pcl as PCL.PCLInstance;
 
     const result = pcl.io.savePCDDataASCII(cloud);
 
@@ -28,7 +28,7 @@ describe('savePCDFile', () => {
   });
 
   it('should save a binary PCD file', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+    const pcl = global.pcl as PCL.PCLInstance;
 
     const result = pcl.io.savePCDDataBinary(cloud);
 
@@ -36,7 +36,7 @@ describe('savePCDFile', () => {
   });
 
   it('should save a binary_compressed PCD file', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+    const pcl = global.pcl as PCL.PCLInstance;
 
     const result = pcl.io.savePCDDataBinaryCompressed(cloud);
 

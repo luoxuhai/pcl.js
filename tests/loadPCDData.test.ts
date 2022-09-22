@@ -4,7 +4,7 @@ import * as PCL from '../';
 
 describe('loadPCDData', () => {
   it('should load a ascii format PCD data with XYZ fields', async () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+    const pcl = global.pcl as PCL.PCLInstance;
     const data = fs.readFileSync(
       path.join(__dirname, '../data/ism_test_cat.pcd'),
     );
@@ -14,7 +14,7 @@ describe('loadPCDData', () => {
   });
 
   it('should load a binary_compressed format PCD data with XYZ fields', async () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+    const pcl = global.pcl as PCL.PCLInstance;
     const data = fs.readFileSync(
       path.join(__dirname, '../data/room_scan1.pcd'),
     );

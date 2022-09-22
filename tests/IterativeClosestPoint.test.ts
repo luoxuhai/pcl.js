@@ -2,7 +2,7 @@ import * as PCL from '../';
 
 describe('IterativeClosestPoint', () => {
   it('should to return a registered point cloud', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+    const pcl = global.pcl as PCL.PCLInstance;
 
     const source = [
       [0.352222, -0.151883, -0.106395],

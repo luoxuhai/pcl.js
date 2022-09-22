@@ -2,7 +2,7 @@ import * as PCL from '../';
 
 describe('RadiusOutlierRemoval', () => {
   it('should filtering a PointCloud using a RadiusOutlierRemoval filter', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+    const pcl = global.pcl as PCL.PCLInstance;
 
     const before = [
       [0.352222, -0.151883, -0.106395],
