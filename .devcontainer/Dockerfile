@@ -40,30 +40,30 @@ RUN echo "## Install Emscripten" \
 # TODO(sbc): We should be able to use just emcc -v here but it doesn't
 # currently create the sanity file.
 RUN cd ${EMSDK} \
-    && echo "## Generate standard configuration" \
-    && ./emsdk activate ${EMSCRIPTEN_VERSION} \
-    && chmod 777 ${EMSDK}/upstream/emscripten \
-    && chmod -R 777 ${EMSDK}/upstream/emscripten/cache \
-    && echo "int main() { return 0; }" > hello.c \
-    && ${EMSDK}/upstream/emscripten/emcc -c hello.c \
-    && cat ${EMSDK}/upstream/emscripten/cache/sanity.txt \
-    && echo "## Done"
+  && echo "## Generate standard configuration" \
+  && ./emsdk activate ${EMSCRIPTEN_VERSION} \
+  && chmod 777 ${EMSDK}/upstream/emscripten \
+  && chmod -R 777 ${EMSDK}/upstream/emscripten/cache \
+  && echo "int main() { return 0; }" > hello.c \
+  && ${EMSDK}/upstream/emscripten/emcc -c hello.c \
+  && cat ${EMSDK}/upstream/emscripten/cache/sanity.txt \
+  && echo "## Done"
 
 ENV PATH $EMSDK:$EMSDK/upstream/emscripten/:$PATH
 
 # Copied directly from https://github.com/emscripten-core/emsdk/blob/master/docker/Dockerfile
 # Cleanup Emscripten installation and strip some symbols
 RUN echo "## Aggressive optimization: Remove debug symbols" \
-    && cd ${EMSDK} && . ./emsdk_env.sh \
-    # Remove debugging symbols from embedded node (extra 7MB)
-    && strip -s `which node` \
-    # Tests consume ~80MB disc space
-    && rm -fr ${EMSDK}/upstream/emscripten/tests \
-    # Fastcomp is not supported
-    && rm -fr ${EMSDK}/upstream/fastcomp \
-    # strip out symbols from clang (~extra 50MB disc space)
-    && find ${EMSDK}/upstream/bin -type f -exec strip -s {} + || true \
-    && echo "## Done"
+  && cd ${EMSDK} && . ./emsdk_env.sh \
+  # Remove debugging symbols from embedded node (extra 7MB)
+  && strip -s `which node` \
+  # Tests consume ~80MB disc space
+  && rm -fr ${EMSDK}/upstream/emscripten/tests \
+  # Fastcomp is not supported
+  && rm -fr ${EMSDK}/upstream/fastcomp \
+  # strip out symbols from clang (~extra 50MB disc space)
+  && find ${EMSDK}/upstream/bin -type f -exec strip -s {} + || true \
+  && echo "## Done"
 
 RUN echo ". /emsdk/emsdk_env.sh" >> /etc/bash.bashrc
 # We must set the EM_NODE_JS environment variable for a somewhat silly reason
@@ -76,7 +76,10 @@ RUN echo 'export EM_NODE_JS="$EMSDK_NODE"' >> /etc/bash.bashrc
 # --------------------------------------------------------------------
 
 RUN apt-get update \
-     && apt-get install -y \
-     cmake
+  && apt-get install -y \
+  && cmake \
+  && npm install --global yarn n
 
-RUN npm install --global yarn
+ENV NODE_VERSION 16.17.0
+
+RUN n ${NODE_VERSION}

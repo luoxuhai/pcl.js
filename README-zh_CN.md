@@ -134,6 +134,8 @@ main();
 ```
 ### 简单示例
 ```typescript
+// TypeScript
+
 import * as PCL from 'pcl.js';
 
 async function main() {
@@ -143,10 +145,9 @@ async function main() {
 
   // 获取 PCD 文件
   const pcd = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
-  // 写入 PCD 文件
-  pcl.fs.writeFile('/test.pcd', new Uint8Array(pcd));
+
   // 加载 PCD 文件，返回点云对象
-  const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>('/test.pcd', PCL.PointXYZ);
+  const cloud = pcl.io.loadPCDData<PCL.PointXYZ>(pcd, PCL.PointXYZ);
 
   // 使用 PassThrough 过滤器过滤点云
   // 参考: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
@@ -155,19 +156,9 @@ async function main() {
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
   const cloudFiltered = pass.filter();
-  // 也可以和 C++ 中写法保存一致
-  // const cloudFiltered = pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
-  // pass.filter(cloudFiltered);
 
-  // 将过滤后的点云对象保存为 PCD 文件
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', cloudFiltered);
-  // 读取 PCD 文件内容， 内容为 ArrayBuffer
-  const pcd = pcl.fs.readFile('/test-filtered.pcd');
-
-  // 删除所有 PCD 文件
-  pcl.fs.unlink('/test.pcd')
-  pcl.fs.unlink('/test-filtered.pcd')
-  // ...
+  // 将过滤后的点云对象保存为 PCD 数据，内容为 ArrayBuffer
+  const cloudFilteredData = pcl.io.savePCDFileASCII(cloudFiltered);
 }
 
 main();
