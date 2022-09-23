@@ -9,7 +9,10 @@ import {
 class UniformSampling<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterBase<T> {
-  constructor(PT: TPointTypesUnion = PointXYZ, extractRemovedIndices = false) {
+  constructor(
+    protected PT: TPointTypesUnion = PointXYZ,
+    extractRemovedIndices = false,
+  ) {
     super(new __PCLCore__[`UniformSampling${PT.name}`](extractRemovedIndices));
   }
 

@@ -17,6 +17,6 @@ describe('RandomSample', () => {
     rs.setSeed(1);
     const cloudFiltered = rs.filter();
 
-    expect(cloudFiltered.points.size()).toBe(sample);
+    expect(cloudFiltered?.points.size()).toBe(sample);
   });
 });
