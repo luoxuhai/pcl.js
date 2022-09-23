@@ -6,14 +6,6 @@
 
 using namespace pcl;
 
-template <typename PointT>
-typename PointCloud<PointT>::Ptr loadPCDFile(const std::string &file_name)
-{
-  typename PointCloud<PointT>::Ptr cloud_ptr(new PointCloud<PointT>);
-  int flag = io::loadPCDFile(file_name, *cloud_ptr);
-  return cloud_ptr;
-}
-
 std::vector<pcl::PCLPointField> readPCDHeader(const std::string &file_name)
 {
   pcl::PCLPointCloud2 cloud;
@@ -22,7 +14,7 @@ std::vector<pcl::PCLPointField> readPCDHeader(const std::string &file_name)
   return cloud.fields;
 }
 
-#define BIND_LOAD_PCD_FILE(PointT) function("loadPCDFile" #PointT, &loadPCDFile<PointT>);
+#define BIND_LOAD_PCD_FILE(PointT) function("loadPCDFile" #PointT, select_overload<int(const std::string &, PointCloud<PointT> &)>(&io::loadPCDFile));
 #define BIND_SAVE_PCD_FILE(PointT) function("savePCDFile" #PointT, select_overload<int(const std::string &, const PointCloud<PointT> &, bool)>(&io::savePCDFile));
 #define BIND_SAVE_PCD_FBC(PointT) function("savePCDFileBinaryCompressed" #PointT, &io::savePCDFileBinaryCompressed<PointT>);
 

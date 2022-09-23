@@ -9,7 +9,7 @@ import {
 class ApproximateVoxelGrid<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterBase<T> {
-  constructor(PT: TPointTypesUnion = PointXYZ) {
+  constructor(protected PT: TPointTypesUnion = PointXYZ) {
     super(new __PCLCore__[`ApproximateVoxelGrid${PT.name}`]());
   }
 

@@ -5,13 +5,13 @@ import {
   PointTypesIntersection,
 } from '../point-types';
 
-class KdTree<
+class PCLBase<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > {
   constructor(public native: Emscripten.NativeAPI) {}
 
-  public setInputCloud(cloud: PointCloud<T>) {
-    this.native.setInputCloud(cloud.native);
+  public setInputCloud(cloud: PointCloud<T>): null {
+    return this.native.setInputCloud(cloud.native);
   }
 
   public getInputCloud() {
@@ -19,4 +19,4 @@ class KdTree<
   }
 }
 
-export default KdTree;
+export default PCLBase;
