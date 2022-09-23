@@ -138,6 +138,8 @@ main();
 ### Basic Usage Example
 
 ```typescript
+// TypeScript
+
 import * as PCL from 'pcl.js';
 
 async function main() {
@@ -146,11 +148,9 @@ async function main() {
   });
 
   // Get PCD file
-  const pcd = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
-  // Write a PCD file
-  pcl.fs.writeFile('/test.pcd', new Uint8Array(pcd));
-  // Load PCD file, return point cloud object
-  const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>('/test.pcd', PCL.PointXYZ);
+  const data = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
+  // Load PCD file data, return point cloud object
+  const cloud = pcl.io.loadPCDData<PCL.PointXYZ>('data, PCL.PointXYZ);
 
   // Filtering a PointCloud using a PassThrough filter
   // See: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
@@ -159,19 +159,9 @@ async function main() {
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
   const cloudFiltered = pass.filter();
-  // It can also be saved in the same way as in C++:
-  // const cloudFiltered = pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
-  // pass.filter(cloudFiltered);
 
-  // Save filtered point cloud objects as PCD files
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', cloudFiltered);
-  // Read PCD file content, the content is ArrayBuffer
-  const pcd = pcl.fs.readFile('/test-filtered.pcd');
-
-  // Delete all PCD files
-  pcl.fs.unlink('/test.pcd')
-  pcl.fs.unlink('/test-filtered.pcd')
-  // ...
+  // Save filtered point cloud objects as PCD files, the content is ArrayBuffer
+  const cloudFilteredData = pcl.io.savePCDDataASCII(cloudFiltered);
 }
 
 main();
