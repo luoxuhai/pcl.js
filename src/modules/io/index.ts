@@ -1,6 +1,5 @@
 import {
   PointCloud,
-  wrapPointCloud,
   PointTypesUnion,
   TPointTypesUnion,
   PointTypesIntersection,
@@ -14,8 +13,14 @@ let FS: FileSystem;
 function loadPCDFile<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 >(filename: string, PT: TPointTypesUnion = PointXYZ) {
-  const native = __PCLCore__[`loadPCDFile${PT.name}`](filename);
-  return wrapPointCloud<T>(native);
+  const cloud = new PointCloud<T>(PT);
+  const status = __PCLCore__[`loadPCDFile${PT.name}`](filename, cloud.native);
+  const isSuccess = status === 0;
+  if (!isSuccess) {
+    cloud.delete();
+    throw Error("Couldn't load the pcd data");
+  }
+  return cloud;
 }
 
 function savePCDFile(filename: string, cloud: PointCloud, binaryMode = false) {

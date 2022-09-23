@@ -9,7 +9,10 @@ import {
 class LocalMaximum<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterIndices<T> {
-  constructor(PT: TPointTypesUnion = PointXYZ, extractRemovedIndices = false) {
+  constructor(
+    protected PT: TPointTypesUnion = PointXYZ,
+    extractRemovedIndices = false,
+  ) {
     super(new __PCLCore__[`LocalMaximum${PT.name}`](extractRemovedIndices));
   }
 
