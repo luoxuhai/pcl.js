@@ -1,5 +1,12 @@
 # Changelog
 
+# [1.5.0](https://github.com/luoxuhai/pcl.js/compare/v1.4.1...v1.5.0) (2022-09-23)
+
+
+### Features
+
+* add new io apis ([cbfc1be](https://github.com/luoxuhai/pcl.js/commit/cbfc1bef12af49ca18605c6fdba3f6332f6fb22e))
+
 ## [1.4.1](https://github.com/luoxuhai/pcl.js/compare/v1.4.0...v1.4.1) (2022-09-21)
 
 
