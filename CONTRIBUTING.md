@@ -4,7 +4,7 @@ Thanks for the help! We welcome all contributions to it.
 
 ## Download and Setup
 
-1. [fork](https://docs.github.com/cn/get-started/quickstart/fork-a-repo#forking-a-repository) this repository to your Github, then clone to your local device (If you want to change C++ code, use `--recursive` for cloning submodules)
+1. [fork](https://docs.github.com/cn/get-started/quickstart/fork-a-repo#forking-a-repository) this repository to your Github, then clone to your local device (If you want to change C++ code, use `--recursive` for cloning submodules) or use [Gitpod](https://gitpod.io/#https://github.com/luoxuhai/pcl.js), a free online dev environment for GitHub.
 
 ```bash
 git clone https://github.com/luoxuhai/pcl.js --recursive

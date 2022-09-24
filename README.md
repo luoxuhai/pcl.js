@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://pcljs.org" target="_blank"><img style="height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
-  <p align="center"><a href="https://github.com/PointCloudLibrary/pcl" target="_blank">Point Cloud Library (PCL)</a> for browser, powered by WebAssembly.</p>
+  <p align="center"><a href="https://pointclouds.org" target="_blank">Point Cloud Library (PCL)</a> for browser, powered by WebAssembly.</p>
 </p>
 
 <p align="center">
@@ -36,7 +36,7 @@
 
 ## Overview
 
-**pcl.js** is a [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/). [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) is a standalone, large scale, open project for 2D/3D image and point cloud processing. 
+**pcl.js** is a [Point Cloud Library (PCL)](https://pointclouds.org) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/). [Point Cloud Library (PCL)](https://pointclouds.org) is a standalone, large scale, open project for 2D/3D image and point cloud processing. 
 
 **Removing outliers from point cloud data using a [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) filter demo**
 <p align="center">
@@ -150,7 +150,7 @@ async function main() {
   // Get PCD file
   const data = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
   // Load PCD file data, return point cloud object
-  const cloud = pcl.io.loadPCDData<PCL.PointXYZ>('data, PCL.PointXYZ);
+  const cloud = pcl.io.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
 
   // Filtering a PointCloud using a PassThrough filter
   // See: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
