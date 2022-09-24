@@ -8,6 +8,7 @@ import filters from '../modules/filters';
 import registration from '../modules/registration';
 import common from '../modules/common';
 import kdtree from '../modules/kdtree';
+import search from '../modules/search';
 import { ENVIRONMENT_IS_NODE } from '../utils';
 
 interface InitOptions {
@@ -67,6 +68,7 @@ interface PCLInstance {
   filters: typeof filters;
   registration: typeof registration;
   kdtree: typeof kdtree;
+  search: typeof search;
 }
 
 async function init(options?: InitOptions): Promise<PCLInstance | null> {
@@ -117,6 +119,7 @@ async function init(options?: InitOptions): Promise<PCLInstance | null> {
     registration,
     common,
     kdtree,
+    search,
   };
 }
 
