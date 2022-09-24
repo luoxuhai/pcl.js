@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://pcljs.org/zh-cn" target="_blank"><img style="height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
-  <p align="center">在浏览器运行的<a href="https://github.com/PointCloudLibrary/pcl" target="_blank">点云库 (PCL)</a>，由 WebAssembly 提供支持。</p>
+  <p align="center">在浏览器运行的<a href="https://pointclouds.org" target="_blank">点云库 (PCL)</a>，由 WebAssembly 提供支持。</p>
 </p>
 
 <p align="center">
@@ -36,7 +36,7 @@
 
 ## 简介
 
-**pcl.js** 是在浏览器中运行的 [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。[Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) 是一个独立、大型、开源的 2D/3D 图像和点云处理库。
+**pcl.js** 是在浏览器中运行的 [Point Cloud Library (PCL)](https://pointclouds.org)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。[Point Cloud Library (PCL)](https://pointclouds.org) 是一个独立、大型、开源的 2D/3D 图像和点云处理库。
 
 **使用 [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) 过滤器去除点云数据中的异常值演示**
 <p align="center">
