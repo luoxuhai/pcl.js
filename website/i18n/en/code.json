@@ -2,6 +2,9 @@
   "examples.statistical-outlier-removal": {
     "message": "Removing outliers from point cloud data using a StatisticalOutlierRemoval filter"
   },
+  "examples.iss-keypoint-3d": {
+    "message": "Extract point cloud keypoints using ISSKeypoint3D"
+  },
   "home.getting-started": {
     "message": "Getting Started"
   },

@@ -2,6 +2,13 @@
 
 Thanks for the help! We welcome all contributions to it. 
 
+## Project Layout
+
+- [`src`](/src) All the source code for pcl.js, if you want to edit a api or just see how it works this is where you'll find it.
+- [`website`](/website) The source code for https://pcljs.org
+- [`tests`](/tests) You'll do most of your testing in here.
+- [`core`](/core) Point Cloud Library (PCL) project source code.
+
 ## Download and Setup
 
 1. [fork](https://docs.github.com/cn/get-started/quickstart/fork-a-repo#forking-a-repository) this repository to your Github, then clone to your local device (If you want to change C++ code, use `--recursive` for cloning submodules) or use [Gitpod](https://gitpod.io/#https://github.com/luoxuhai/pcl.js), a free online dev environment for GitHub.

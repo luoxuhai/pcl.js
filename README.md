@@ -38,12 +38,14 @@
 
 **pcl.js** is a [Point Cloud Library (PCL)](https://pointclouds.org) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/). [Point Cloud Library (PCL)](https://pointclouds.org) is a standalone, large scale, open project for 2D/3D image and point cloud processing. 
 
-**Removing outliers from point cloud data using a [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) filter demo**
-<p align="center">
-  <a href="https://kl2zjs.csb.app">
-    <img src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
-  </a>
-</p>
+## Featured Demos
+
+<p>
+  <a href="https://kl2zjs.csb.app"><img src="./website/static/img/examples/StatisticalOutlierRemoval.jpg" width="30%" /></a>
+  <a href="https://3l6tfj.csb.app"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
+
+  <h4><a href="https://pcljs.org/examples">See all demos</a></h4>
+<p>
 
 ## Features
 
@@ -166,13 +168,6 @@ async function main() {
 
 main();
 ```
-
-## Project Layout
-
-- [`src`](/src) All the source code for pcl.js, if you want to edit a api or just see how it works this is where you'll find it.
-- [`website`](/website) The source code for https://pcljs.org
-- [`tests`](/tests) You'll do most of your testing in here.
-- [`core`](/core) Point Cloud Library (PCL) project source code.
 
 ## Changelog
 

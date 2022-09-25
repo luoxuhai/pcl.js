@@ -38,12 +38,14 @@
 
 **pcl.js** 是在浏览器中运行的 [Point Cloud Library (PCL)](https://pointclouds.org)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。[Point Cloud Library (PCL)](https://pointclouds.org) 是一个独立、大型、开源的 2D/3D 图像和点云处理库。
 
-**使用 [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) 过滤器去除点云数据中的异常值演示**
-<p align="center">
-  <a href="https://kl2zjs.csb.app">
-    <img src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
-  </a>
-</p>
+## 示例
+
+<p>
+  <a href="https://kl2zjs.csb.app"><img src="./website/static/img/examples/StatisticalOutlierRemoval.jpg" width="30%" /></a>
+  <a href="https://3l6tfj.csb.app"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
+
+  <h4><a href="https://pcljs.org/zh-cn/examples">查看所有示例</a></h4>
+<p>
 
 ## 特性
 
@@ -162,13 +164,6 @@ async function main() {
 
 main();
 ```
-
-## 项目结构
-
-- [`src`](/src) pcl.js 的所有源代码
-- [`website`](/website) https://pcljs.org 网站的源代码
-- [`tests`](/tests) 测试代码目录
-- [`core`](/core) 点云库 (PCL) 源代码
 
 ## 变更日志
 

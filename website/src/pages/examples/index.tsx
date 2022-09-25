@@ -12,9 +12,17 @@ const exampleList = [
     title: translate({
       message: 'examples.statistical-outlier-removal',
     }),
-    cover: require('@site/static/img/examples/StatisticalOutlierRemoval.gif')
+    cover: require('@site/static/img/examples/StatisticalOutlierRemoval.jpg')
       .default,
     code_url: 'https://kl2zjs.csb.app',
+  },
+  {
+    title: translate({
+      message: 'examples.iss-keypoint-3d',
+    }),
+    cover: require('@site/static/img/examples/ISSKeypoint3D.jpg')
+      .default,
+    code_url: 'https://3l6tfj.csb.app',
   },
 ];
 
