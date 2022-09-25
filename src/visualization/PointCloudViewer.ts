@@ -28,13 +28,14 @@ interface CloudProperties {
 type PointsObject3D = Points<BufferGeometry, PointsMaterial>;
 
 class PointCloudViewer {
-  private scene = new Scene();
+  public scene = new Scene();
+
   private camera = new PerspectiveCamera();
   private renderer: WebGLRenderer;
   private axesHelper?: AxesHelper;
   private gridHelper?: GridHelper;
   private controls: OrbitControls;
-  private cloud?: PointsObject3D;
+  private clouds: PointsObject3D[] = [];
   private cloudProperties: CloudProperties = {
     sizeAttenuation: false,
     size: 1,
@@ -49,12 +50,14 @@ class PointCloudViewer {
       antialias: true,
     });
     this.controls = this.createOrbitControls();
-    this.setOrbitControls({ minDistance: 0.1, maxDistance: 100 });
+    const near = 0.0001;
+    const far = 10000;
+    this.setOrbitControls({ minDistance: near, maxDistance: far });
     this.setCameraParameters({
       fov: 45,
-      aspect: window.innerWidth / window.innerHeight,
-      near: 0.1,
-      far: 1000,
+      aspect: width / height,
+      near,
+      far,
       position: {
         x: 0,
         y: 0,
@@ -88,8 +91,8 @@ class PointCloudViewer {
         new Float32BufferAttribute(position, 3),
       );
     }
-    this.cloud = new Points(geometry, material);
-    this.addPointCloudToScene(this.cloud, id);
+
+    this.addPointCloudToScene(new Points(geometry, material), id);
   }
 
   public async addPointCloudByUrl(
@@ -98,11 +101,15 @@ class PointCloudViewer {
     onProgress?: ((event: ProgressEvent<EventTarget>) => void) | undefined,
   ) {
     this.removePointCloud();
-    this.cloud = (await new PCDLoader().loadAsync(url, onProgress)) as Points<
-      BufferGeometry,
-      PointsMaterial
-    >;
-    this.addPointCloudToScene(this.cloud, id);
+    const cloud = await new PCDLoader().loadAsync(url, onProgress);
+    if (cloud) {
+      this.addPointCloudToScene(cloud, id);
+    }
+  }
+
+  public async addPointCloudByData(data: ArrayBuffer, id?: string) {
+    const cloud = new PCDLoader().parse(data);
+    this.addPointCloudToScene(cloud, id);
   }
 
   public removePointCloud(id = this.cloudProperties.id) {
@@ -110,20 +117,35 @@ class PointCloudViewer {
     object?.material?.dispose();
     object?.geometry?.dispose();
     object?.removeFromParent();
-    this.cloud = undefined;
+    const index = this.clouds.findIndex((v) => v.name === id);
+    this.clouds.splice(index, 1);
   }
 
-  public setPointCloudProperties(properties?: Partial<CloudProperties>) {
+  public setPointCloudProperties(
+    properties?: Partial<CloudProperties>,
+    id?: string,
+  ) {
     this.cloudProperties = { ...this.cloudProperties, ...properties };
 
-    if (!this.cloud) {
+    if (!this.clouds.length) {
       return;
     }
 
-    this.cloud.material.sizeAttenuation = this.cloudProperties.sizeAttenuation;
-    this.cloud.material.size = this.cloudProperties.size;
-    this.cloud.material.color.set(new Color(this.cloudProperties.color));
-    this.cloud.name = this.cloudProperties.id;
+    const setProperties = (cloud: PointsObject3D) => {
+      cloud.material.sizeAttenuation = this.cloudProperties.sizeAttenuation;
+      cloud.material.size = this.cloudProperties.size;
+      cloud.material.color.set(new Color(this.cloudProperties.color));
+      cloud.name = this.cloudProperties.id;
+    };
+
+    if (id) {
+      const object = this.clouds.find((v) => v.name === id);
+      if (object) {
+        setProperties(object);
+      }
+    } else {
+      this.clouds.forEach(setProperties);
+    }
   }
 
   public setBackgroundColor(bgc: ColorRepresentation) {
@@ -220,6 +242,7 @@ class PointCloudViewer {
 
   private addPointCloudToScene(cloud: PointsObject3D, id?: string) {
     this.scene.add(cloud);
+    this.clouds.push(cloud);
     this.setPointCloudProperties({ id });
     this.setOrbitControls({ target: getCenter(cloud.geometry) });
   }
