@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.0](https://github.com/luoxuhai/pcl.js/compare/v1.5.0...v1.6.0) (2022-09-25)
+
+
+### ✨ Features
+
+* add ISSKeypoint3D ([018adfc](https://github.com/luoxuhai/pcl.js/commit/018adfc59c7e39b68c184c032cb54b66f7f94024))
+* add search.KdTree api ([bad2092](https://github.com/luoxuhai/pcl.js/commit/bad2092efa89da77e979195c5a67169a036ad251))
+
 # [1.5.0](https://github.com/luoxuhai/pcl.js/compare/v1.4.1...v1.5.0) (2022-09-23)
 
 
