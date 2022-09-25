@@ -1,6 +1,6 @@
 {
   "name": "pcl.js",
-  "version": "1.6.0",
+  "version": "1.7.0-alpha.0",
   "description": "PCL for browser and node, powered by WebAssembly.",
   "types": "dist/types/pcl.d.ts",
   "main": "dist/pcl.cjs.js",
