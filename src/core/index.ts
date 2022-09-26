@@ -70,6 +70,8 @@ interface PCLInstance {
   filters: typeof filters;
   registration: typeof registration;
   kdtree: typeof kdtree;
+  search: typeof search;
+  keypoints: typeof keypoints;
   segmentation: typeof segmentation;
 }
 
