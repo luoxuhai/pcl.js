@@ -1,13 +1,14 @@
 {
   "name": "pcl.js",
-  "version": "1.3.0",
+  "version": "1.6.0",
   "description": "PCL for browser and node, powered by WebAssembly.",
   "types": "dist/types/pcl.d.ts",
   "main": "dist/pcl.cjs.js",
   "module": "dist/pcl.esm.js",
   "scripts": {
+    "setup": "yarn install && cd website && yarn install",
     "dev:js": "rollup -c -w --environment ENV:development",
-    "dev:wasm": "bash scripts/build.sh",
+    "dev:wasm": "npm run clean:wasm && bash scripts/build.sh",
     "dev": "npm run dev:wasm && npm run dev:js",
     "build:js": "rollup -c",
     "build:wasm": "npm run clean:wasm && bash scripts/build.sh Release",
@@ -53,6 +54,7 @@
     "@release-it/conventional-changelog": "^5.1.0",
     "@rollup/plugin-replace": "^4.0.0",
     "@types/jest": "^28.1.6",
+    "@types/three": "^0.144.0",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "eslint": "^8.19.0",
@@ -98,5 +100,8 @@
     "singleQuote": true,
     "trailingComma": "all",
     "printWidth": 80
+  },
+  "dependencies": {
+    "three": "^0.144.0"
   }
 }

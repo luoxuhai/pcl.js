@@ -47,7 +47,7 @@
 
 ### 可视化
 
-- [ ] PointCloudViewer
+- [x] PointCloudViewer
 - [ ] MeshViewer
 - [ ] RangeImageViewer
 

@@ -1,30 +1,25 @@
 import {
   PointCloud,
-  wrapPointCloud,
   PointTypesUnion,
   PointTypesIntersection,
   Vector,
+  TPointTypesUnion,
 } from '../point-types';
+import PCLBase from '../common/PCLBase';
 
-class FilterBase<
+abstract class FilterBase<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
-> {
-  public native: Emscripten.NativeAPI;
-
-  constructor(native: Emscripten.NativeAPI) {
-    this.native = native;
-  }
-
-  public setInputCloud(cloud: PointCloud<T>): null {
-    return this.native.setInputCloud(cloud.native);
-  }
-
-  public getInputCloud() {
-    return wrapPointCloud<T>(this.native.getInputCloud());
-  }
+> extends PCLBase<T> {
+  protected abstract PT?: TPointTypesUnion;
 
   public filter(cloud?: PointCloud<T>) {
-    return wrapPointCloud<T>(this.native.filter(cloud?.native ?? null));
+    if (!this.PT) {
+      return null;
+    }
+
+    const _cloud = cloud ?? new PointCloud<T>(this.PT);
+    this.native.filter(_cloud.native);
+    return _cloud;
   }
 
   public getRemovedIndices(): Vector<number> {

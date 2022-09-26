@@ -3,7 +3,7 @@ import * as PCL from '../';
 
 describe('KdTreeFLANN', () => {
   it('should find the K nearest neighbors of a specific point', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+    const pcl = global.pcl as PCL.PCLInstance;
 
     const filename = 'table_scene_lms400.pcd';
     writeFile(filename, pcl);
@@ -20,7 +20,7 @@ describe('KdTreeFLANN', () => {
   });
 
   it('should find all neighbors within some radius specified', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+    const pcl = global.pcl as PCL.PCLInstance;
 
     const filename = 'room_scan1.pcd';
     writeFile(filename, pcl);

@@ -10,7 +10,7 @@ beforeAll(async () => {
     [-0.734766, 0.854581, -0.0361733],
     [-0.4607, -0.277468, -0.916762],
   ];
-  const pcl = (window as any).pcl as PCL.PCLInstance;
+  const pcl = global.pcl as PCL.PCLInstance;
   cloud = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
   for (let i = 0; i < points.length; i++) {
@@ -19,33 +19,27 @@ beforeAll(async () => {
 });
 
 describe('savePCDFile', () => {
-  it('should save a ascii fPCD file', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+  it('should save a ascii PCD file', () => {
+    const pcl = global.pcl as PCL.PCLInstance;
 
-    const status = pcl.io.savePCDFileASCII('ascii.pcd', cloud);
+    const result = pcl.io.savePCDDataASCII(cloud);
 
-    expect(status).toBe(true);
-    expect(pcl.fs.stat('ascii.pcd').isFile).toBe(true);
+    expect(result.byteLength).toBe(326);
   });
 
-  it('should save a binary fPCD file', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+  it('should save a binary PCD file', () => {
+    const pcl = global.pcl as PCL.PCLInstance;
 
-    const status = pcl.io.savePCDFileBinary('binary.pcd', cloud);
+    const result = pcl.io.savePCDDataBinary(cloud);
 
-    expect(status).toBe(true);
-    expect(pcl.fs.stat('binary.pcd').isFile).toBe(true);
+    expect(result.byteLength).toBe(224);
   });
 
-  it('should save a binary_compressed fPCD file', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+  it('should save a binary_compressed PCD file', () => {
+    const pcl = global.pcl as PCL.PCLInstance;
 
-    const status = pcl.io.savePCDFileBinaryCompressed(
-      'binary_compressed.pcd',
-      cloud,
-    );
+    const result = pcl.io.savePCDDataBinaryCompressed(cloud);
 
-    expect(status).toBe(true);
-    expect(pcl.fs.stat('binary_compressed.pcd').isFile).toBe(true);
+    expect(result.byteLength).toBe(245);
   });
 });

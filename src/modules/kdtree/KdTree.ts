@@ -8,11 +8,7 @@ import {
 class KdTree<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > {
-  public native: Emscripten.NativeAPI;
-
-  constructor(native: Emscripten.NativeAPI) {
-    this.native = native;
-  }
+  constructor(public native: Emscripten.NativeAPI) {}
 
   public setInputCloud(cloud: PointCloud<T>) {
     this.native.setInputCloud(cloud.native);

@@ -2,9 +2,16 @@
 
 感谢您的帮助！我们欢迎所有贡献者。
 
+## 项目结构
+
+- [`src`](/src) pcl.js 的所有源代码
+- [`website`](/website) https://pcljs.org 网站的源代码
+- [`tests`](/tests) 测试代码目录
+- [`core`](/core) 点云库 (PCL) 源代码
+
 ## 下载和安装
 
-1. [fork](https://docs.github.com/cn/get-started/quickstart/fork-a-repo#forking-a-repository) 这个仓库到你的 Github，然后克隆到你的本地设备 （如果要更改 C++ 代码，需使用 `--recursive` 用于克隆子模块）
+1. [fork](https://docs.github.com/cn/get-started/quickstart/fork-a-repo#forking-a-repository) 这个仓库到你的 Github，然后克隆到你的本地设备 （如果要更改 C++ 代码，需使用 `--recursive` 用于克隆子模块）或者使用 [Gitpod](https://gitpod.io/#https://github.com/luoxuhai/pcl.js)，一个免费的 GitHub 在线开发环境。
 
 ```bash
 git clone https://github.com/luoxuhai/pcl.js --recursive

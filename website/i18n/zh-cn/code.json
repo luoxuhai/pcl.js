@@ -1,6 +1,9 @@
 {
   "examples.statistical-outlier-removal": {
-    "message": "离群点移除"
+    "message": "使用 StatisticalOutlierRemoval 过滤异常值"
+  },
+  "examples.iss-keypoint-3d": {
+    "message": "使用 ISSKeypoint3D 提取点云关键点"
   },
   "home.getting-started": {
     "message": "开始"

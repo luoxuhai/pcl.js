@@ -9,6 +9,8 @@ import registration from '../modules/registration';
 import segmentation from '../modules/segmentation';
 import common from '../modules/common';
 import kdtree from '../modules/kdtree';
+import search from '../modules/search';
+import keypoints from '../modules/keypoints';
 import { ENVIRONMENT_IS_NODE } from '../utils';
 
 interface InitOptions {
@@ -120,6 +122,8 @@ async function init(options?: InitOptions): Promise<PCLInstance | null> {
     segmentation,
     common,
     kdtree,
+    search,
+    keypoints,
   };
 }
 

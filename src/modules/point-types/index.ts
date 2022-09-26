@@ -2,21 +2,21 @@ import {
   PointTypesUnion,
   TPointTypesUnion,
   PointTypesIntersection,
-  pointTypeMap,
   PointXYZ,
   Vector,
 } from './type';
+import { getPointType } from '../../utils';
 
 class PointCloud<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > {
   public native: Emscripten.NativeAPI;
-  public readonly PT: TPointTypesUnion;
 
-  constructor(PT: TPointTypesUnion = PointXYZ, native?: Emscripten.NativeAPI) {
-    this.PT = PT;
-    this.native =
-      native ?? new __PCLCore__[`PointCloud${PT.name}`]().makeShared();
+  constructor(
+    public readonly PT: TPointTypesUnion = PointXYZ,
+    native?: Emscripten.NativeAPI,
+  ) {
+    this.native = native ?? new __PCLCore__[`PointCloud${PT.name}`]();
   }
 
   public isOrganized(): boolean {
@@ -78,21 +78,19 @@ class PointCloud<
 }
 
 class Points<T> {
-  constructor(public native: Vector<T>) {}
+  private readonly PT: TPointTypesUnion;
+
+  constructor(public native: Vector<T>) {
+    this.PT = getPointType(native, 'Points');
+  }
 
   public set(index: number, value: T) {
     return this.native.set(index, value);
   }
 
   public get(index: number) {
-    const pointType = this.native.$$.ptrType.registeredClass.name.replace(
-      'Points',
-      '',
-    );
-
-    const args = Object.values(this.native.get(index) ?? {});
-
-    return new pointTypeMap[pointType](...args);
+    const args: number[] = Object.values(this.native.get(index) ?? {});
+    return new this.PT(...args) as unknown as T;
   }
 
   public push(value: T) {
@@ -115,11 +113,7 @@ class Points<T> {
 function wrapPointCloud<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 >(native: Emscripten.NativeAPI) {
-  const pointType = native.$$.ptrType.registeredClass.name.replace(
-    'PointCloud',
-    '',
-  ) as string;
-  return new PointCloud<T>(pointTypeMap[pointType], native);
+  return new PointCloud<T>(getPointType(native, 'PointCloud'), native);
 }
 
 function wrapPoints<

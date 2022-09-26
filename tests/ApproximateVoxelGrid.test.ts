@@ -4,7 +4,7 @@ import * as PCL from '../';
 
 describe('ApproximateVoxelGrid', () => {
   it('should downsampling a PointCloud using a ApproximateVoxelGrid filter', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+    const pcl = global.pcl as PCL.PCLInstance;
 
     const filename = 'table_scene_lms400.pcd';
     const pcd = fs.readFileSync(path.join(__dirname, `../data/${filename}`));
@@ -19,6 +19,6 @@ describe('ApproximateVoxelGrid', () => {
     avg.setDownsampleAllData(false);
     const cloudFiltered = avg.filter();
 
-    expect(cloudFiltered.points.size()).toBe(96641);
+    expect(cloudFiltered?.points.size()).toBe(96641);
   });
 });

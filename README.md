@@ -1,26 +1,26 @@
 <p align="center">
   <a href="https://pcljs.org" target="_blank"><img style="height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
-  <p align="center"><a href="https://github.com/PointCloudLibrary/pcl" target="_blank">Point Cloud Library (PCL)</a> for browser, powered by WebAssembly.</p>
+  <p align="center"><a href="https://pointclouds.org" target="_blank">Point Cloud Library (PCL)</a> for browser, powered by WebAssembly.</p>
 </p>
 
 <p align="center">
- <a href="https://github.com/FoalTS/foal/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
+  <a href="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml">
+    <img src="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml/badge.svg" alt="Tests" />
+  </a>
+  <a href="https://www.npmjs.com/package/pcl.js">
+    <img src="https://img.shields.io/npm/v/pcl.js.svg" alt="npm version">
   </a>
  <a href="https://bundlephobia.com/package/pcl.js">
     <img src="https://img.shields.io/bundlephobia/min/pcl.js.svg" alt="Bundle Size">
  </a>
-  <a href="https://www.npmjs.com/package/pcl.js">
-    <img src="https://img.shields.io/npm/v/pcl.js.svg" alt="npm version">
+ <a href="https://github.com/FoalTS/foal/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
   </a>
   <a href="https://www.npmtrends.com/pcl.js">
     <img src="https://img.shields.io/npm/dm/pcl.js" alt="Downloads" />
   </a>
   <a href="https://www.jsdelivr.com/package/npm/pcl.js">
     <img src="https://data.jsdelivr.com/v1/package/npm/pcl.js/badge?style=rounded" alt="jsDelivr" />
-  </a>
-  <a href="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml">
-    <img src="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml/badge.svg" alt="Tests" />
   </a>
   <a href="https://openbase.com/js/pcl.js?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge">
     <img src="https://badges.openbase.com/js/rating/pcl.js.svg?token=nF4Z9XUsUhOe5yeVDZTPwpdoKqqamFbVBoVA5zbU5iM=" alt="Rate this package" />
@@ -36,14 +36,16 @@
 
 ## Overview
 
-**pcl.js** is a [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/). [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) is a standalone, large scale, open project for 2D/3D image and point cloud processing. 
+**pcl.js** is a [Point Cloud Library (PCL)](https://pointclouds.org) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/). [Point Cloud Library (PCL)](https://pointclouds.org) is a standalone, large scale, open project for 2D/3D image and point cloud processing. 
 
-**Removing outliers from point cloud data using a [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) filter demo**
-<p align="center">
-  <a href="https://pcljs.org/examples">
-    <img src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
-  </a>
-</p>
+## Featured Demos
+
+<p>
+  <a href="https://kl2zjs.csb.app"><img src="./website/static/img/examples/StatisticalOutlierRemoval.jpg" width="30%" /></a>
+  <a href="https://3l6tfj.csb.app"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
+
+  <h4><a href="https://pcljs.org/examples">See all demos</a></h4>
+<p>
 
 ## Features
 
@@ -138,6 +140,8 @@ main();
 ### Basic Usage Example
 
 ```typescript
+// TypeScript
+
 import * as PCL from 'pcl.js';
 
 async function main() {
@@ -146,11 +150,9 @@ async function main() {
   });
 
   // Get PCD file
-  const pcd = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
-  // Write a PCD file
-  pcl.fs.writeFile('/test.pcd', new Uint8Array(pcd));
-  // Load PCD file, return point cloud object
-  const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>('/test.pcd', PCL.PointXYZ);
+  const data = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
+  // Load PCD file data, return point cloud object
+  const cloud = pcl.io.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
 
   // Filtering a PointCloud using a PassThrough filter
   // See: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
@@ -159,29 +161,13 @@ async function main() {
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
   const cloudFiltered = pass.filter();
-  // It can also be saved in the same way as in C++:
-  // const cloudFiltered = pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
-  // pass.filter(cloudFiltered);
 
-  // Save filtered point cloud objects as PCD files
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', cloudFiltered);
-  // Read PCD file content, the content is ArrayBuffer
-  const pcd = pcl.fs.readFile('/test-filtered.pcd');
-
-  // Delete all PCD files
-  pcl.fs.unlink('/test.pcd')
-  pcl.fs.unlink('/test-filtered.pcd')
-  // ...
+  // Save filtered point cloud objects as PCD files, the content is ArrayBuffer
+  const cloudFilteredData = pcl.io.savePCDDataASCII(cloudFiltered);
 }
 
 main();
 ```
-
-## Project Layout
-
-- [`src`](/src) All the source code for pcl.js, if you want to edit a api or just see how it works this is where you'll find it.
-- [`website`](/website) The source code for https://pcljs.org
-- [`tests`](/tests) You'll do most of your testing in here.
 
 ## Changelog
 
@@ -190,6 +176,12 @@ The [changelog](https://github.com/luoxuhai/pcl.js/releases) is regularly update
 ## Roadmap
 
 Checkout the full roadmap [here](ROADMAP.md).
+
+## Online Development
+
+Use Gitpod, a free online dev environment for GitHub.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/luoxuhai/pcl.js)
 
 ## Contributing
 

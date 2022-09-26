@@ -28,5 +28,6 @@ module.exports = {
     '/core/',
     'website',
     '/src/bind/',
+    'vendors',
   ],
 };

@@ -1,4 +1,3 @@
-#include <iostream>
 #include <pcl/point_types.h>
 #include <pcl/filters/passthrough.h>
 #include <pcl/filters/voxel_grid.h>
@@ -33,13 +32,7 @@
 #define BIND_FILTER(PointT)                                                   \
     class_<pcl::Filter<PointT>, base<pcl::PCLBase<PointT>>>("Filter" #PointT) \
         .function("getRemovedIndices", &getRemovedIndices<PointT>)            \
-        .function("filter", &filter<PointT>);
-
-// define PCLBase
-#define BIND_PCL_BASE(PointT)                                            \
-    class_<pcl::PCLBase<PointT>>("PCLBase" #PointT)                      \
-        .function("setInputCloud", &pcl::PCLBase<PointT>::setInputCloud) \
-        .function("getInputCloud", &pcl::PCLBase<PointT>::getInputCloud);
+        .function("filter", &pcl::Filter<PointT>::filter);
 
 // define VoxelGrid
 #define BIND_VOXEL_GRID(PointT)                                                                              \
@@ -127,22 +120,6 @@ FilterLimits getFilterLimits(pcl::PassThrough<PointT> &passThrough)
 }
 
 template <typename PointT>
-typename pcl::PointCloud<PointT>::Ptr filter(pcl::Filter<PointT> &filter, typename pcl::PointCloud<PointT>::Ptr &output)
-{
-    if (output == nullptr)
-    {
-        pcl::PointCloud<PointT> cloud;
-        filter.filter(cloud);
-        return cloud.makeShared();
-    }
-    else
-    {
-        filter.filter(*output);
-        return output;
-    }
-}
-
-template <typename PointT>
 pcl::Indices getRemovedIndices(pcl::Filter<PointT> &filter)
 {
     pcl::PointIndices pointIndices;
@@ -177,14 +154,6 @@ EMSCRIPTEN_BINDINGS(filters)
     BIND_FILTER(PointXYZRGBA);
     BIND_FILTER(Normal);
     BIND_FILTER(PointNormal);
-
-    // Bind PCLBase
-    BIND_PCL_BASE(PointXYZ);
-    BIND_PCL_BASE(PointXYZI);
-    BIND_PCL_BASE(PointXYZRGB);
-    BIND_PCL_BASE(PointXYZRGBA);
-    BIND_PCL_BASE(Normal);
-    BIND_PCL_BASE(PointNormal);
 
     // Bind VoxelGrid
     BIND_VOXEL_GRID(PointXYZ);
