@@ -1,15 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import * as PCL from '../';
-import { initPCL } from './common';
-
-let pcl: PCL.PCLInstance;
-beforeAll(async () => {
-  pcl = (await initPCL())!;
-});
 
 describe('MinCutSegmentation', () => {
   it('should segment a PointCloud into foreground and background', () => {
+    const pcl = (window as any).pcl as PCL.PCLInstance;
+
     const filename = 'min_cut_segmentation_tutorial.pcd';
     const pcd = fs.readFileSync(path.join(__dirname, `../data/${filename}`));
     pcl.fs.writeFile(filename, new Uint8Array(pcd));
@@ -28,12 +24,12 @@ describe('MinCutSegmentation', () => {
     const foregroundPoints = new pcl.common.PointCloud<PCL.PointXYZ>();
     foregroundPoints.points.push(objectCenter);
 
-    // mcSeg.setForegroundPoints(foregroundPoints);
-    mcSeg.setInputCloud(cloud);
-    mcSeg.setRadius(radius);
-    mcSeg.setSigma(sigma);
-    mcSeg.setSourceWeight(sourceWeight);
-    mcSeg.setNumberOfNeighbours(neighborNumber);
+    mcSeg.setForegroundPoints(foregroundPoints);
+    // mcSeg.setInputCloud(cloud);
+    // mcSeg.setRadius(radius);
+    // mcSeg.setSigma(sigma);
+    // mcSeg.setSourceWeight(sourceWeight);
+    // mcSeg.setNumberOfNeighbours(neighborNumber);
 
     // let clusters = new pcl.Module.vectorPointIndices();
     // mcSeg.extract(clusters);

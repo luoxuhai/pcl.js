@@ -4,10 +4,8 @@ import {
   PointTypesIntersection,
   PointTypesUnion,
   TPointTypesUnion,
-  PointIndices,
+  Vector,
 } from '../point-types';
-
-import { Vector, vectorPointIndices } from '../point-types/type';
 
 class MinCutSegmentation<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
@@ -79,7 +77,7 @@ class MinCutSegmentation<
   }
 
   // Vector<PointIndices>
-  public extract(clusters: vectorPointIndices): void {
+  public extract(clusters: Vector<Vector<number>>): void {
     return this.native.extract(clusters) as void;
   }
 

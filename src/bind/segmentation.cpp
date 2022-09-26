@@ -19,7 +19,6 @@
       .function("getSearchMethod", &pcl::MinCutSegmentation<PointT>::getSearchMethod) \
       .function("setNumberOfNeighbours", &pcl::MinCutSegmentation<PointT>::setNumberOfNeighbours) \
       .function("getNumberOfNeighbours", &pcl::MinCutSegmentation<PointT>::getNumberOfNeighbours) \
-      .function("setForegroundPoints", &pcl::MinCutSegmentation<PointT>::setForegroundPoints) \
       .function("getForegroundPoints", &pcl::MinCutSegmentation<PointT>::getForegroundPoints) \
       .function("setBackgroundPoints", &pcl::MinCutSegmentation<PointT>::setBackgroundPoints) \
       .function("getBackgroundPoints", &pcl::MinCutSegmentation<PointT>::getBackgroundPoints) \
@@ -28,7 +27,17 @@
       .function("getColoredCloud", &pcl::MinCutSegmentation<PointT>::getColoredCloud);
 
 template <typename PointT>
-void extract(pcl::MinCutSegmentation<PointT>& segmentation, std::vector<pcl::PointIndices> &clusters)
+void setForegroundPoints(pcl::MinCutSegmentation<PointT> &segmentation, typename pcl::PointCloud<PointT>::Ptr &foreground_points) {
+  segmentation.setForegroundPoints(foreground_points);
+}
+
+template <typename PointT>
+void setBackgroundPoints(pcl::MinCutSegmentation<PointT> &segmentation, typename pcl::PointCloud<PointT>::Ptr &background_points) {
+  segmentation.setBackgroundPoints(background_points);
+}
+
+template <typename PointT>
+void extract(pcl::MinCutSegmentation<PointT> &segmentation, std::vector<pcl::PointIndices> &clusters)
 {
   segmentation.extract(clusters);
 }
@@ -44,5 +53,5 @@ EMSCRIPTEN_BINDINGS(segmentation)
   BIND_MCMF(PointXYZRGBA);
   BIND_MCMF(PointNormal);
 
-  register_vector<pcl::PointIndices>("vectorPointIndices");
+  register_vector<PointIndices>("vectorPointIndices");
 }
