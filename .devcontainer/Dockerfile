@@ -65,13 +65,6 @@ RUN echo "## Aggressive optimization: Remove debug symbols" \
     && find ${EMSDK}/upstream/bin -type f -exec strip -s {} + || true \
     && echo "## Done"
 
-RUN echo ". /emsdk/emsdk_env.sh" >> /etc/bash.bashrc
-# We must set the EM_NODE_JS environment variable for a somewhat silly reason
-# We run our build scripts with `npm run`, which sets the NODE environment variable as it runs.
-# The EMSDK picks up on that environment variable and gives a deprecation warning: warning: honoring legacy environment variable `NODE`.  Please switch to using `EM_NODE_JS` instead`
-# So, we are going to put this environment variable here explicitly to avoid the deprecation warning.
-RUN echo 'export EM_NODE_JS="$EMSDK_NODE"' >> /etc/bash.bashrc
-
 # END EMSDK
 # --------------------------------------------------------------------
 
@@ -79,4 +72,7 @@ RUN apt-get update \
      && apt-get install -y \
      cmake
 
-RUN npm install --global yarn
+RUN npm install --global yarn \
+    && git submodule update --init --recursive --remote \
+    && git config --global --add --bool push.autoSetupRemote true \
+    && yarn setup

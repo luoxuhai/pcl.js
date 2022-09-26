@@ -7,6 +7,9 @@ import io from '../modules/io';
 import filters from '../modules/filters';
 import registration from '../modules/registration';
 import common from '../modules/common';
+import kdtree from '../modules/kdtree';
+import search from '../modules/search';
+import keypoints from '../modules/keypoints';
 import { ENVIRONMENT_IS_NODE } from '../utils';
 
 interface InitOptions {
@@ -65,6 +68,9 @@ interface PCLInstance {
   io: typeof io;
   filters: typeof filters;
   registration: typeof registration;
+  kdtree: typeof kdtree;
+  search: typeof search;
+  keypoints: typeof keypoints;
 }
 
 async function init(options?: InitOptions): Promise<PCLInstance | null> {
@@ -114,6 +120,9 @@ async function init(options?: InitOptions): Promise<PCLInstance | null> {
     filters,
     registration,
     common,
+    kdtree,
+    search,
+    keypoints,
   };
 }
 

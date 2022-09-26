@@ -1,13 +1,9 @@
 import * as PCL from '../';
-import { initPCL } from './common';
-
-let pcl: PCL.PCLInstance;
-beforeAll(async () => {
-  pcl = (await initPCL())!;
-});
 
 describe('IterativeClosestPoint', () => {
   it('should to return a registered point cloud', () => {
+    const pcl = global.pcl as PCL.PCLInstance;
+
     const source = [
       [0.352222, -0.151883, -0.106395],
       [-0.397406, -0.473106, 0.292602],

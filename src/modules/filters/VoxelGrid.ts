@@ -9,7 +9,7 @@ import {
 class VoxelGrid<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterBase<T> {
-  constructor(PT: TPointTypesUnion = PointXYZ) {
+  constructor(protected PT: TPointTypesUnion = PointXYZ) {
     super(new __PCLCore__[`VoxelGrid${PT.name}`]());
   }
 

@@ -1,0 +1,56 @@
+
+# ISSKeypoint3D
+
+`ISSKeypoint3D` detects the Intrinsic Shape Signatures keypoints for a given point cloud.
+
+More: https://pointclouds.org/documentation/classpcl_1_1_i_s_s_keypoint3_d.html
+
+## Example
+
+```ts title="TypeScript" showLineNumbers
+import * as PCl from 'pcl'
+
+const pcl = await PCL.init();
+
+// data: pcd file data (ArrayBuffer)
+const cloud = pcl.io.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
+// Get point cloud resolution
+const resolution = pcl.common.computeCloudResolution(cloud);
+const tree = new pcl.search.KdTree<PCL.PointXYZ>(PCL.PointXYZ);
+const keypoints = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+const iss = new pcl.keypoints.ISSKeypoint3D<PCL.PointXYZ>(PCL.PointXYZ);
+
+iss.setSearchMethod(tree);
+iss.setSalientRadius(6 * resolution);
+iss.setNonMaxRadius(4 * resolution);
+iss.setThreshold21(0.975);
+iss.setThreshold32(0.975);
+iss.setMinNeighbors(5);
+iss.setInputCloud(cloud);
+iss.compute(keypoints);
+```
+
+## Type Definitions
+```ts
+class ISSKeypoint3D<T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>> {
+    constructor(PT?: TPointTypesUnion, salientRadius?: number);
+    setSalientRadius(salientRadius: number): void;
+    setNonMaxRadius(radius: number): void;
+    setNormalRadius(radius: number): void;
+    setBorderRadius(radius: number): void;
+    setMinNeighbors(minNeighbors: number): void;
+    setThreshold21(gamma21: number): void;
+    setThreshold32(gamma32: number): void;
+    setAngleThreshold(angle: number): void;
+
+    setSearchMethod(tree: KdTree): void;
+    getSearchMethod(): KdTree;
+    getSearchParameter(): number;
+    getKeypointsIndices(): Vector<number>;
+    setKSearch(k: number): void;
+    getKSearch(): number;
+    setRadiusSearch(radius: number): void;
+    getRadiusSearch(): number;
+    compute(cloud: PointCloud<T>): void;
+}
+```

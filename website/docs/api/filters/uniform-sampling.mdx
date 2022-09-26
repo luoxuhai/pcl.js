@@ -1,0 +1,48 @@
+# UniformSampling
+
+> https://pointclouds.org/documentation/classpcl_1_1_uniform_sampling.html
+
+`UniformSampling` assembles a local 3D grid over a given [`PointCloud`](/docs/api/basic-structures#pointcloud), and downsamples + filters the data.
+
+The `UniformSampling` class creates a 3D voxel grid (think about a voxel grid as a set of tiny 3D boxes in space) over the input point cloud data. Then, in each voxel (i.e., 3D box), all the points present will be approximated (i.e., downsampled) with the closest point to the center of the voxel.
+
+## Constructor
+
+```ts
+new pcl.filters.UniformSampling(pointType, extractRemovedIndices);
+```
+
+**Parameters:**
+
+| Name                  | Type                                              | Default    | Description                                                          |
+| --------------------- | ------------------------------------------------- | ---------- | -------------------------------------------------------------------- |
+| pointType             | [PointType](/docs/api/basic-structures#pointtype) | `PointXYZ` | The point cloud type.                                                |
+| extractRemovedIndices | `boolean`                                         | `false`    | Initializing with true will allow us to extract the removed indices. |
+
+## Methods
+
+### setRadiusSearch
+
+```ts
+setRadiusSearch(radius);
+```
+
+Set the 3D grid leaf size.
+
+**Parameters:**
+
+| Name   | Type     | Default | Description            |
+| ------ | -------- | ------- | ---------------------- |
+| radius | `number` |         | The 3D grid leaf size. |
+
+### setInputCloud
+
+See [PassThrough.setInputCloud](/docs/api/filters/pass-through#setinputcloud)
+
+### getInputCloud
+
+See [PassThrough.getInputCloud](/docs/api/filters/pass-through#getinputcloud)
+
+### filter
+
+See [PassThrough.filter](/docs/api/filters/pass-through#filter)

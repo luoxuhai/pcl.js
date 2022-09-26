@@ -1,17 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import * as PCL from '../';
-import { initPCL } from './common';
-
-let pcl: PCL.PCLInstance;
-beforeAll(async () => {
-  pcl = (await initPCL())!;
-});
 
 describe('FileSystem', () => {
   const text = '# .PCD v.7 - Point Cloud Data file format';
 
   it('should write and read files', () => {
+    const pcl = global.pcl as PCL.PCLInstance;
+
     const binary = fs.readFileSync(
       path.join(__dirname, '../data/room_scan2.pcd'),
     );
@@ -27,6 +23,8 @@ describe('FileSystem', () => {
   });
 
   it('should read a file information', () => {
+    const pcl = global.pcl as PCL.PCLInstance;
+
     pcl?.fs.writeFile('test-read-file-info.pcd', text);
     const pcd = pcl?.fs.stat('test-read-file-info.pcd');
 
@@ -34,6 +32,8 @@ describe('FileSystem', () => {
   });
 
   it('should create a folder', () => {
+    const pcl = global.pcl as PCL.PCLInstance;
+
     pcl?.fs.mkdir('new-folder');
     const result = pcl?.fs.stat('new-folder');
 
@@ -42,6 +42,8 @@ describe('FileSystem', () => {
   });
 
   it('should delete a file', () => {
+    const pcl = global.pcl as PCL.PCLInstance;
+
     const filename = 'test-write-file-1.pcd';
     pcl?.fs.writeFile(filename, 'text');
     pcl?.fs.unlink(filename);

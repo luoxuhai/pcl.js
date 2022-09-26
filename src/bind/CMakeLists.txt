@@ -18,7 +18,7 @@ set(FLANN_LIB ${PCL_ROOT}/wasm/deps/flann/build/lib)
 include_directories(${PCL_INCLUDE} ${BOOST_INCLUDE} ${EIGEN_INCLUDE} ${FLANN_INCLUDE})
 link_directories(${PCL_LIB} ${BOOST_LIB} ${FLANN_LIB})
 
-set(PCL_LINK_LIBS pcl_common pcl_io pcl_features pcl_filters pcl_kdtree pcl_stereo pcl_keypoints pcl_octree pcl_search pcl_segmentation pcl_surface pcl_tracking pcl_ml)
+file(GLOB PCL_LINK_LIBS ${PCL_LIB}/*.a)
 file(GLOB SRCS *.cpp)
 
 foreach(SRC IN LISTS SRCS)
@@ -31,9 +31,9 @@ target_link_libraries(${PROJECT_NAME} ${PCL_LINK_LIBS} flann_cpp_s boost_filesys
 option(CMAKE_BUILD_TYPE "This is a option for build type" "Debug")
 
 set(INCOMING_MODULE_JS_API "fetchSettings,locateFile,wasmBinary")
-set(COMMON_LINK_FLAGS "-lembind -sSTRICT=1 -sALLOW_MEMORY_GROWTH=1 -sMODULARIZE=1 -sEXPORT_ES6=1 -sUSE_ES6_IMPORT_META=0 -sEXPORT_NAME=PCLCore -sENVIRONMENT=web,webview,worker -sINCOMING_MODULE_JS_API=${INCOMING_MODULE_JS_API} -sEXPORTED_RUNTIME_METHODS=FS --no-entry")
+set(COMMON_LINK_FLAGS "-lembind -sSTRICT=1 -sSTRICT_JS=1 -sALLOW_MEMORY_GROWTH=1 -sMODULARIZE=1 -sEXPORT_ES6=1 -sUSE_ES6_IMPORT_META=0 -sEXPORT_NAME=PCLCore -sENVIRONMENT=web,webview,worker -sINCOMING_MODULE_JS_API=${INCOMING_MODULE_JS_API} -sEXPORTED_RUNTIME_METHODS=FS --no-entry")
 
-set(EM_LINK_FLAGS "${COMMON_LINK_FLAGS} -g")
+set(EM_LINK_FLAGS "${COMMON_LINK_FLAGS} -g -sLLD_REPORT_UNDEFINED -sVERBOSE=1")
 if (${CMAKE_BUILD_TYPE} STREQUAL "Release")
   set(EM_LINK_FLAGS "${COMMON_LINK_FLAGS} -O3")
 endif()

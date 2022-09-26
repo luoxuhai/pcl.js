@@ -2,9 +2,16 @@
 
 Thanks for the help! We welcome all contributions to it. 
 
+## Project Layout
+
+- [`src`](/src) All the source code for pcl.js, if you want to edit a api or just see how it works this is where you'll find it.
+- [`website`](/website) The source code for https://pcljs.org
+- [`tests`](/tests) You'll do most of your testing in here.
+- [`core`](/core) Point Cloud Library (PCL) project source code.
+
 ## Download and Setup
 
-1. [fork](https://docs.github.com/cn/get-started/quickstart/fork-a-repo#forking-a-repository) this repository to your Github, then clone to your local device (If you want to change C++ code, use `--recursive` for cloning submodules)
+1. [fork](https://docs.github.com/cn/get-started/quickstart/fork-a-repo#forking-a-repository) this repository to your Github, then clone to your local device (If you want to change C++ code, use `--recursive` for cloning submodules) or use [Gitpod](https://gitpod.io/#https://github.com/luoxuhai/pcl.js), a free online dev environment for GitHub.
 
 ```bash
 git clone https://github.com/luoxuhai/pcl.js --recursive
@@ -79,4 +86,4 @@ If you are interested in the detailed specification you can visit
 - `npm run build:wasm` to compile PCL's WebAssembly + `src/bind` to WebAssembly production build
 - `npm run build` bundles JavaScript and compiles PCL at the same time, ready for production use
 - `npm run lint` to check code style
-- `npm run test` to run tests. (Be sure to run `npm run dev` or `npm run build` before running tests)
+- `npm run test` to run tests. (Be sure to run `npm run dev:js` or `npm run build:js` before running tests)

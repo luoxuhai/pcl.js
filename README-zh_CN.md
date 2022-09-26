@@ -1,25 +1,26 @@
 <p align="center">
-  <a href="https://pcljs.org/zh-cn" target="_blank"><img style="max-height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
-  <p align="center">在浏览器运行的<a href="https://github.com/PointCloudLibrary/pcl" target="_blank">点云库 (PCL)</a>，由 WebAssembly 提供支持。</p>
+  <a href="https://pcljs.org/zh-cn" target="_blank"><img style="height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
+  <p align="center">在浏览器运行的<a href="https://pointclouds.org" target="_blank">点云库 (PCL)</a>，由 WebAssembly 提供支持。</p>
 </p>
+
 <p align="center">
- <a href="https://github.com/FoalTS/foal/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
+  <a href="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml">
+    <img src="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml/badge.svg" alt="Tests" />
+  </a>
+  <a href="https://www.npmjs.com/package/pcl.js">
+    <img src="https://img.shields.io/npm/v/pcl.js.svg" alt="npm version">
   </a>
  <a href="https://bundlephobia.com/package/pcl.js">
     <img src="https://img.shields.io/bundlephobia/min/pcl.js.svg" alt="Bundle Size">
  </a>
-  <a href="https://www.npmjs.com/package/pcl.js">
-    <img src="https://img.shields.io/npm/v/pcl.js.svg" alt="npm version">
+ <a href="https://github.com/FoalTS/foal/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
   </a>
   <a href="https://www.npmtrends.com/pcl.js">
     <img src="https://img.shields.io/npm/dm/pcl.js" alt="Downloads" />
   </a>
   <a href="https://www.jsdelivr.com/package/npm/pcl.js">
     <img src="https://data.jsdelivr.com/v1/package/npm/pcl.js/badge?style=rounded" alt="jsDelivr" />
-  </a>
-  <a href="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml">
-    <img src="https://github.com/luoxuhai/pcl.js/actions/workflows/test.yml/badge.svg" alt="Tests" />
   </a>
   <a href="https://openbase.com/js/pcl.js?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge">
     <img src="https://badges.openbase.com/js/rating/pcl.js.svg?token=nF4Z9XUsUhOe5yeVDZTPwpdoKqqamFbVBoVA5zbU5iM=" alt="Rate this package" />
@@ -35,14 +36,16 @@
 
 ## 简介
 
-**pcl.js** 是在浏览器中运行的 [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。[Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) 是一个独立、大型、开源的 2D/3D 图像和点云处理库。
+**pcl.js** 是在浏览器中运行的 [Point Cloud Library (PCL)](https://pointclouds.org)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。[Point Cloud Library (PCL)](https://pointclouds.org) 是一个独立、大型、开源的 2D/3D 图像和点云处理库。
 
-**使用 [StatisticalOutlierRemoval](https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal) 过滤器去除点云数据中的异常值演示**
-<p align="center">
-  <a href="https://pcljs.org/zh-cn/examples">
-    <img src="./website/static/img/examples/StatisticalOutlierRemoval.gif">
-  </a>
-</p>
+## 示例
+
+<p>
+  <a href="https://kl2zjs.csb.app"><img src="./website/static/img/examples/StatisticalOutlierRemoval.jpg" width="30%" /></a>
+  <a href="https://3l6tfj.csb.app"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
+
+  <h4><a href="https://pcljs.org/zh-cn/examples">查看所有示例</a></h4>
+<p>
 
 ## 特性
 
@@ -70,8 +73,8 @@
 
 | 资源          |                                                    链接                                                     |     大小      |
 | :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |
-| pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~33k gzip’d |
-| pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.wasm) | ~199k gzip’d  |
+| pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~34k gzip’d |
+| pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm) | ~360k gzip’d  |
 
 ## 安装
 
@@ -133,6 +136,8 @@ main();
 ```
 ### 简单示例
 ```typescript
+// TypeScript
+
 import * as PCL from 'pcl.js';
 
 async function main() {
@@ -141,11 +146,9 @@ async function main() {
   });
 
   // 获取 PCD 文件
-  const pcd = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
-  // 写入 PCD 文件
-  pcl.fs.writeFile('/test.pcd', new Uint8Array(pcd));
-  // 加载 PCD 文件，返回点云对象
-  const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>('/test.pcd', PCL.PointXYZ);
+  const data = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
+  // 加载 PCD 数据，返回点云对象
+  const cloud = pcl.io.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
 
   // 使用 PassThrough 过滤器过滤点云
   // 参考: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
@@ -154,19 +157,9 @@ async function main() {
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
   const cloudFiltered = pass.filter();
-  // 也可以和 C++ 中写法保存一致
-  // const cloudFiltered = pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
-  // pass.filter(cloudFiltered);
 
-  // 将过滤后的点云对象保存为 PCD 文件
-  pcl.io.savePCDFileASCII('/test-filtered.pcd', cloudFiltered);
-  // 读取 PCD 文件内容， 内容为 ArrayBuffer
-  const pcd = pcl.fs.readFile('/test-filtered.pcd');
-
-  // 删除所有 PCD 文件
-  pcl.fs.unlink('/test.pcd')
-  pcl.fs.unlink('/test-filtered.pcd')
-  // ...
+  // 将过滤后的点云对象保存为 PCD 文件, 内容为 ArrayBuffer
+  const cloudFilteredData = pcl.io.savePCDDataASCII(cloudFiltered);
 }
 
 main();
@@ -179,6 +172,12 @@ main();
 ## 路线图
 
 查看完整的 [路线图](ROADMAP-zh_CN.md)。
+
+## 在线开发
+
+你可以使用 Gitpod 进行在线开发：
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/luoxuhai/pcl.js)
 
 ## 贡献
 

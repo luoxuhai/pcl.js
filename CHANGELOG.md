@@ -1,5 +1,51 @@
 # Changelog
 
+## [1.6.0](https://github.com/luoxuhai/pcl.js/compare/v1.5.0...v1.6.0) (2022-09-25)
+
+
+### ✨ Features
+
+* add ISSKeypoint3D ([018adfc](https://github.com/luoxuhai/pcl.js/commit/018adfc59c7e39b68c184c032cb54b66f7f94024))
+* add search.KdTree api ([bad2092](https://github.com/luoxuhai/pcl.js/commit/bad2092efa89da77e979195c5a67169a036ad251))
+
+# [1.5.0](https://github.com/luoxuhai/pcl.js/compare/v1.4.1...v1.5.0) (2022-09-23)
+
+
+### Features
+
+* add new io apis ([cbfc1be](https://github.com/luoxuhai/pcl.js/commit/cbfc1bef12af49ca18605c6fdba3f6332f6fb22e))
+
+## [1.4.1](https://github.com/luoxuhai/pcl.js/compare/v1.4.0...v1.4.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* setSize method of PointCloudViewer does not scale correctly ([6781d94](https://github.com/luoxuhai/pcl.js/commit/6781d942f6f33e8c2ed8b89cbc55176636c91be0))
+
+### Documentation
+
+* update StatisticalOutlierRemoval example url ([7b0f6cb](https://github.com/luoxuhai/pcl.js/commit/7b0f6cb81767b6dc1447f5190e7e3e41e70081ac))
+* remove example detail page ([7f02e57](https://github.com/luoxuhai/pcl.js/commit/7f02e57194b239be1d28cb7f9cdaa193b04998f2))
+
+# [1.4.0](https://github.com/luoxuhai/pcl.js/compare/v1.3.0...v1.4.0) (2022-09-21)
+
+
+### Features
+
+* add CloudViewer to visualize point cloud ([338373a](https://github.com/luoxuhai/pcl.js/commit/338373a59f8b7ffd9df8f2d209bada6b95569a51))
+* add KdTreeFLANN ([25d8d98](https://github.com/luoxuhai/pcl.js/commit/25d8d98962091f494a99cb25601c2f95e6ce08c0))
+
+# [1.3.0](https://github.com/luoxuhai/pcl.js/compare/v1.2.0...v1.3.0) (2022-09-17)
+
+
+### Features
+
+* add ApproximateVoxelGrid filter ([09b9e7a](https://github.com/luoxuhai/pcl.js/commit/09b9e7a9c2c4514f1a986faee107c53be20dedc7))
+* add GridMinimum filter ([5b0c32f](https://github.com/luoxuhai/pcl.js/commit/5b0c32f043918bff0516ba5bef976b4c02e7eec7))
+* add LocalMaximum filter ([d3d2131](https://github.com/luoxuhai/pcl.js/commit/d3d213126a0ff30b06f9b7880c44b2551e0f8537))
+* add RandomSample filter ([9c0cd41](https://github.com/luoxuhai/pcl.js/commit/9c0cd4192cc5f279c12d7662c2c30327a5b2232a))
+* add UniformSampling filter ([d2cf028](https://github.com/luoxuhai/pcl.js/commit/d2cf0283dd8807726d2df242a7fb22405040d849))
+
 # [1.2.0](https://github.com/luoxuhai/pcl.js/compare/v1.1.1...v1.2.0) (2022-09-12)
 
 ### Features

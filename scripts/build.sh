@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 PROJECT_ROOT=$(pwd)
 WASM_OUT_DIR=${PROJECT_ROOT}/dist

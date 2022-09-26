@@ -19,6 +19,7 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     '@typescript-eslint/triple-slash-reference': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'no-useless-constructor': 'off',
   },
   ignorePatterns: [
@@ -27,5 +28,6 @@ module.exports = {
     '/core/',
     'website',
     '/src/bind/',
+    'vendors',
   ],
 };

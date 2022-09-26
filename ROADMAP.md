@@ -20,7 +20,11 @@
 - [x] StatisticalOutlierRemoval
 - [ ] BilateralFilter
 - [ ] FastBilateralFilter
-- [ ] UniformSampling
+- [x] UniformSampling
+- [x] ApproximateVoxelGrid
+- [x] LocalMaximum
+- [x] GridMinimum
+- [x] RandomSample
 
 ### Registration - 20%
 
@@ -36,6 +40,16 @@
 ### Surface
 
 ### Sample Consensus
+
+### Features
+
+### Range Images
+
+### Visualization
+
+- [x] PointCloudViewer
+- [ ] MeshViewer
+- [ ] RangeImageViewer
 
 ## Performance
 

@@ -9,7 +9,10 @@ import {
 class StatisticalOutlierRemoval<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterIndices<T> {
-  constructor(PT: TPointTypesUnion = PointXYZ, extractRemovedIndices = false) {
+  constructor(
+    protected PT: TPointTypesUnion = PointXYZ,
+    extractRemovedIndices = false,
+  ) {
     super(
       new __PCLCore__[`StatisticalOutlierRemoval${PT.name}`](
         extractRemovedIndices,

@@ -55,11 +55,17 @@ const config = [
         file: `dist/pcl.js`,
         format: 'iife',
         name: 'PCL',
+        globals: {
+          three: 'THREE',
+        },
       },
       {
         file: `dist/pcl.min.js`,
         format: 'iife',
         name: 'PCL',
+        globals: {
+          three: 'THREE',
+        },
         plugins: [
           replaceCode(),
           terser({
@@ -98,6 +104,7 @@ const config = [
           },
         }),
     ],
+    external: ['three'],
   },
   {
     input: './dist/types/.temp/index.d.ts',
