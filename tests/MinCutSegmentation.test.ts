@@ -4,7 +4,7 @@ import * as PCL from '../';
 
 describe('MinCutSegmentation', () => {
   it('should segment a PointCloud into foreground and background', () => {
-    const pcl = (window as any).pcl as PCL.PCLInstance;
+    const pcl = global.pcl as PCL.PCLInstance;
 
     const filename = 'min_cut_segmentation_tutorial.pcd';
     const pcd = fs.readFileSync(path.join(__dirname, `../data/${filename}`));
