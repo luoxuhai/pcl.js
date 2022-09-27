@@ -19,6 +19,6 @@ describe('ApproximateVoxelGrid', () => {
     avg.setDownsampleAllData(false);
     const cloudFiltered = avg.filter();
 
-    expect(cloudFiltered?.points.size()).toBe(96641);
+    expect(cloudFiltered?.points.size).toBe(96641);
   });
 });

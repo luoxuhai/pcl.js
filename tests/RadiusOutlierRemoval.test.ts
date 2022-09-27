@@ -17,7 +17,7 @@ describe('RadiusOutlierRemoval', () => {
     const cloudFiltered = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
     for (let i = 0; i < before.length; i++) {
-      cloud.push(new PCL.PointXYZ(...before[i]));
+      cloud.addPoint(new PCL.PointXYZ(...before[i]));
     }
 
     const ror = new pcl.filters.RadiusOutlierRemoval<PCL.PointXYZ>(
@@ -28,6 +28,6 @@ describe('RadiusOutlierRemoval', () => {
     ror.setMinNeighborsInRadius(2);
     ror.filter(cloudFiltered);
 
-    expect(cloudFiltered.points.size()).toBe(6);
+    expect(cloudFiltered.points.size).toBe(6);
   });
 });

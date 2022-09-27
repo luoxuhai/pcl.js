@@ -10,10 +10,10 @@ class RandomSample<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterIndices<T> {
   constructor(
-    protected PT: TPointTypesUnion = PointXYZ,
+    protected _PT: TPointTypesUnion = PointXYZ,
     extractRemovedIndices = false,
   ) {
-    super(new __PCLCore__[`RandomSample${PT.name}`](extractRemovedIndices));
+    super(new __PCLCore__[`RandomSample${_PT.name}`](extractRemovedIndices));
   }
 
   public setSample(sample: number) {

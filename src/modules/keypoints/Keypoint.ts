@@ -1,8 +1,8 @@
 import { PointCloud } from '../point-types';
 import {
-  Vector,
   PointTypesUnion,
   PointTypesIntersection,
+  Indices,
 } from '../point-types/type';
 import KdTree from '../kdtree/KdTree';
 import PCLBase from '../common/PCLBase';
@@ -22,8 +22,8 @@ class Keypoint<
     return this.native.getSearchParameter();
   }
 
-  public getKeypointsIndices(): Vector<number> {
-    return this.native.getKeypointsIndices();
+  public getKeypointsIndices() {
+    return new Indices(this.native.getKeypointsIndices());
   }
 
   public setKSearch(k: number) {

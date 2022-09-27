@@ -8,7 +8,7 @@ import {
 class FilterIndices<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterBase<T> {
-  protected PT?: TPointTypesUnion;
+  protected _PT?: TPointTypesUnion;
 
   public setNegative(negative = false) {
     this.native.setNegative(negative);

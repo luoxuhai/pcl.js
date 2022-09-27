@@ -17,7 +17,7 @@ describe('StatisticalOutlierRemoval', () => {
     const cloudFiltered = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
     for (let i = 0; i < before.length; i++) {
-      cloud.push(new PCL.PointXYZ(...before[i]));
+      cloud.addPoint(new PCL.PointXYZ(...before[i]));
     }
 
     const sor = new pcl.filters.StatisticalOutlierRemoval<PCL.PointXYZ>(
@@ -27,6 +27,6 @@ describe('StatisticalOutlierRemoval', () => {
     sor.setStddevMulThresh(1);
     sor.filter(cloudFiltered);
 
-    expect(cloudFiltered.points.size()).not.toBe(cloud.points.size());
+    expect(cloudFiltered.points.size).not.toBe(cloud.points.size);
   });
 });

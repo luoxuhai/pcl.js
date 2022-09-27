@@ -9,8 +9,8 @@ import {
 class VoxelGrid<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterBase<T> {
-  constructor(protected PT: TPointTypesUnion = PointXYZ) {
-    super(new __PCLCore__[`VoxelGrid${PT.name}`]());
+  constructor(protected _PT: TPointTypesUnion = PointXYZ) {
+    super(new __PCLCore__[`VoxelGrid${_PT.name}`]());
   }
 
   public setLeafSize(lx: number, ly: number, lz: number) {

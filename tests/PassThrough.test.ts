@@ -19,7 +19,7 @@ describe('PassThrough', () => {
     const cloudFiltered = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
     for (let i = 0; i < before.length; i++) {
-      cloud.push(new PCL.PointXYZ(...before[i]));
+      cloud.addPoint(new PCL.PointXYZ(...before[i]));
     }
 
     const pass = new pcl.filters.PassThrough<PCL.PointXYZ>(PCL.PointXYZ);
@@ -28,8 +28,8 @@ describe('PassThrough', () => {
     pass.setFilterLimits(0, 2);
     pass.filter(cloudFiltered);
 
-    expect(cloudFiltered.points.size()).toBe(after.length);
-    // for (let i = 0; i < cloudFiltered.points.size(); i++) {
+    expect(cloudFiltered.points.size).toBe(after.length);
+    // for (let i = 0; i < cloudFiltered.points.size; i++) {
     //   expect(cloudFiltered.points.get(i)).toEqual(
     //     new PCL.PointXYZ(...after[i]),
     //   );
