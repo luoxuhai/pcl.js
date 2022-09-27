@@ -69,10 +69,11 @@ RUN echo "## Aggressive optimization: Remove debug symbols" \
 # --------------------------------------------------------------------
 
 RUN apt-get update \
-     && apt-get install -y \
-     cmake
+     && apt-get install -y python3-pip \
+     && pip3 install --upgrade pip \
+     && pip3 install cmake
 
-RUN npm install --global yarn \
-    && git submodule update --init --recursive --remote \
-    && git config --global --add --bool push.autoSetupRemote true \
-    && yarn setup
+# RUN npm install --global yarn \
+#     && git submodule update --init --recursive --remote \
+#     && git config --global --add --bool push.autoSetupRemote true \
+#     && yarn setup

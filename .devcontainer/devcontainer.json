@@ -15,7 +15,11 @@
     // Configure properties specific to VS Code.
     "vscode": {
       // Add the IDs of extensions you want installed when the container is created.
-      "extensions": ["dbaeumer.vscode-eslint", "ms-vscode.cpptools-extension-pack", "esbenp.prettier-vscode"]
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.cpptools-extension-pack",
+        "esbenp.prettier-vscode"
+      ]
     }
   },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -25,5 +29,6 @@
   // That way, our devcontainer is more reproducible. --Taytay
   // "postCreateCommand": "npm ci",
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "node"
+  "remoteUser": "node",
+  "postCreateCommand": "npm install --global yarn && git submodule update --init --recursive --remote && git config --global --add --bool push.autoSetupRemote true && yarn setup"
 }
