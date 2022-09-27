@@ -12,8 +12,8 @@ class IterativeClosestPoint<
 > {
   public native: Emscripten.NativeAPI;
 
-  constructor(PT: TPointTypesUnion = PointXYZ) {
-    this.native = new __PCLCore__[`IterativeClosestPoint${PT.name}`]();
+  constructor(_PT: TPointTypesUnion = PointXYZ) {
+    this.native = new __PCLCore__[`IterativeClosestPoint${_PT.name}`]();
   }
 
   public setInputSource(cloud: PointCloud<T>) {

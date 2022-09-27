@@ -9,8 +9,8 @@ import {
 class GridMinimum<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterIndices<T> {
-  constructor(protected PT: TPointTypesUnion = PointXYZ, resolution = 0) {
-    super(new __PCLCore__[`GridMinimum${PT.name}`](resolution));
+  constructor(protected _PT: TPointTypesUnion = PointXYZ, resolution = 0) {
+    super(new __PCLCore__[`GridMinimum${_PT.name}`](resolution));
   }
 
   public setResolution(resolution: number) {

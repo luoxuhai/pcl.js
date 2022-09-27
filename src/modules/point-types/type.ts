@@ -48,13 +48,47 @@ export class PointNormal extends Point {
   }
 }
 
-export interface Vector<T> extends Emscripten.NativeAPI {
-  get(index: number): T;
-  set(index: number, value: T): boolean;
-  push_back(value: T): void;
-  size(): number;
-  empty(): boolean;
-  clear(): boolean;
+export class Vector<T> {
+  constructor(public native: Emscripten.NativeAPI) {}
+
+  get size() {
+    return this.native.size();
+  }
+
+  public set(index: number, value: T) {
+    return this.native.set(index, value);
+  }
+
+  public get(index: number): T {
+    return this.native.get(index);
+  }
+
+  public push(value: T) {
+    this.native.push_back(value);
+  }
+
+  public isEmpty() {
+    return this.native.empty();
+  }
+
+  public resize(count: number, value?: T) {
+    return this.native.resize(count, value ?? null);
+  }
+
+  public clear() {
+    return this.native.clear();
+  }
+
+  public delete() {
+    return this.native.delete();
+  }
+}
+
+export class Indices extends Vector<number> {
+  constructor(native?: Emscripten.NativeAPI) {
+    const _native = native ?? new __PCLCore__.Indices();
+    super(_native);
+  }
 }
 
 export type PointTypesUnion =

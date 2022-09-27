@@ -10,10 +10,10 @@ class LocalMaximum<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterIndices<T> {
   constructor(
-    protected PT: TPointTypesUnion = PointXYZ,
+    protected _PT: TPointTypesUnion = PointXYZ,
     extractRemovedIndices = false,
   ) {
-    super(new __PCLCore__[`LocalMaximum${PT.name}`](extractRemovedIndices));
+    super(new __PCLCore__[`LocalMaximum${_PT.name}`](extractRemovedIndices));
   }
 
   public setRadius(radius: number) {

@@ -23,6 +23,6 @@ describe('ISSKeypoint3D', () => {
     iss.setInputCloud(cloud);
     iss.compute(keypoints);
 
-    expect(keypoints.points.size()).toBe(6);
+    expect(keypoints.points.size).toBe(6);
   });
 });
