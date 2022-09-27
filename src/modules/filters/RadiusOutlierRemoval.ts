@@ -10,11 +10,11 @@ class RadiusOutlierRemoval<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterIndices<T> {
   constructor(
-    protected PT: TPointTypesUnion = PointXYZ,
+    protected _PT: TPointTypesUnion = PointXYZ,
     extractRemovedIndices = false,
   ) {
     super(
-      new __PCLCore__[`RadiusOutlierRemoval${PT.name}`](extractRemovedIndices),
+      new __PCLCore__[`RadiusOutlierRemoval${_PT.name}`](extractRemovedIndices),
     );
   }
 

@@ -10,10 +10,10 @@ class PassThrough<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterIndices<T> {
   constructor(
-    protected PT: TPointTypesUnion = PointXYZ,
+    protected _PT: TPointTypesUnion = PointXYZ,
     extractRemovedIndices = false,
   ) {
-    super(new __PCLCore__[`PassThrough${PT.name}`](extractRemovedIndices));
+    super(new __PCLCore__[`PassThrough${_PT.name}`](extractRemovedIndices));
   }
 
   public setFilterFieldName(fieldName: string) {

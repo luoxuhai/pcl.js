@@ -19,6 +19,6 @@ describe('GridMinimum', () => {
     gm.setResolution(0.025);
     gm.filter(cloudFiltered);
 
-    expect(cloudFiltered.points.size()).toBe(2606);
+    expect(cloudFiltered.points.size).toBe(2606);
   });
 });

@@ -9,8 +9,8 @@ import {
 class ISSKeypoint3D<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends Keypoint<T> {
-  constructor(PT: TPointTypesUnion = PointXYZ, salientRadius = 0.0001) {
-    super(new __PCLCore__[`ISSKeypoint3D${PT.name}`](salientRadius));
+  constructor(_PT: TPointTypesUnion = PointXYZ, salientRadius = 0.0001) {
+    super(new __PCLCore__[`ISSKeypoint3D${_PT.name}`](salientRadius));
   }
 
   public setSalientRadius(salientRadius: number) {

@@ -2,28 +2,28 @@ import {
   PointCloud,
   PointTypesUnion,
   PointTypesIntersection,
-  Vector,
   TPointTypesUnion,
+  Indices,
 } from '../point-types';
 import PCLBase from '../common/PCLBase';
 
 abstract class FilterBase<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends PCLBase<T> {
-  protected abstract PT?: TPointTypesUnion;
+  protected abstract _PT?: TPointTypesUnion;
 
   public filter(cloud?: PointCloud<T>) {
-    if (!this.PT) {
+    if (!this._PT) {
       return null;
     }
 
-    const _cloud = cloud ?? new PointCloud<T>(this.PT);
+    const _cloud = cloud ?? new PointCloud<T>(this._PT);
     this.native.filter(_cloud.native);
     return _cloud;
   }
 
-  public getRemovedIndices(): Vector<number> {
-    return this.native.getRemovedIndices();
+  public getRemovedIndices() {
+    return new Indices(this.native.getRemovedIndices());
   }
 }
 
