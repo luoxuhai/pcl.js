@@ -14,15 +14,15 @@ class ApproximateVoxelGrid<
   }
 
   public setLeafSize(lx: number, ly: number, lz: number) {
-    return this.native.setLeafSize(lx, ly, lz);
+    return this._native.setLeafSize(lx, ly, lz);
   }
 
   public setDownsampleAllData(downsample: boolean) {
-    return this.native.setDownsampleAllData(downsample);
+    return this._native.setDownsampleAllData(downsample);
   }
 
   public getDownsampleAllData(): boolean {
-    return this.native.getDownsampleAllData();
+    return this._native.getDownsampleAllData();
   }
 }
 

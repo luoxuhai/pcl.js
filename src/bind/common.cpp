@@ -89,4 +89,17 @@ EMSCRIPTEN_BINDINGS(common)
   register_vector_plus<index_t>("Indices");
 
   function("computeCloudResolution", &computeCloudResolution);
+
+  class_<PointIndices>("PointIndices")
+      .smart_ptr_constructor<PointIndices::Ptr>("PointIndices", &std::make_shared<PointIndices>)
+      .property("header", &PointIndices::header)
+      .property("indices", &PointIndices::indices)
+      .smart_ptr<PointIndices::ConstPtr>("PointIndicesConstPtr");
+
+  class_<PCLHeader>("PCLHeader")
+      .smart_ptr_constructor<PCLHeader::Ptr>("PCLHeader", &std::make_shared<PCLHeader>)
+      .property("seq", &PCLHeader::seq)
+      .property("stamp", &PCLHeader::stamp)
+      .property("frame_id", &PCLHeader::frame_id)
+      .smart_ptr<PCLHeader::ConstPtr>("PCLHeaderConstPtr");
 }

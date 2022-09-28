@@ -19,19 +19,19 @@ class RadiusOutlierRemoval<
   }
 
   public setRadiusSearch(radius: number) {
-    return this.native.setRadiusSearch(radius);
+    return this._native.setRadiusSearch(radius);
   }
 
   public getRadiusSearch(): number {
-    return this.native.getRadiusSearch();
+    return this._native.getRadiusSearch();
   }
 
   public setMinNeighborsInRadius(minPts = 1) {
-    return this.native.setMinNeighborsInRadius(minPts);
+    return this._native.setMinNeighborsInRadius(minPts);
   }
 
   public getMinNeighborsInRadius(): number {
-    return this.native.getMinNeighborsInRadius();
+    return this._native.getMinNeighborsInRadius();
   }
 }
 

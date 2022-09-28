@@ -8,14 +8,14 @@ import {
 class PCLBase<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > {
-  constructor(public native: Emscripten.NativeAPI) {}
+  constructor(public _native: Emscripten.NativeAPI) {}
 
   public setInputCloud(cloud: PointCloud<T>): null {
-    return this.native.setInputCloud(cloud.native);
+    return this._native.setInputCloud(cloud._native);
   }
 
   public getInputCloud() {
-    return wrapPointCloud<T>(this.native.getInputCloud());
+    return wrapPointCloud<T>(this._native.getInputCloud());
   }
 }
 

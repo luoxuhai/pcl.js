@@ -17,19 +17,19 @@ class PassThrough<
   }
 
   public setFilterFieldName(fieldName: string) {
-    return this.native.setFilterFieldName(fieldName);
+    return this._native.setFilterFieldName(fieldName);
   }
 
   public getFilterFieldName(): string | null {
-    return this.native.getFilterFieldName() as string | null;
+    return this._native.getFilterFieldName() as string | null;
   }
 
   public setFilterLimits(min: number, max: number) {
-    return this.native.setFilterLimits(min, max);
+    return this._native.setFilterLimits(min, max);
   }
 
   public getFilterLimits(): [number, number] {
-    return this.native.getFilterLimits();
+    return this._native.getFilterLimits();
   }
 }
 

@@ -7,18 +7,18 @@ import {
 class Search<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > {
-  constructor(public native: Emscripten.NativeAPI) {}
+  constructor(public _native: Emscripten.NativeAPI) {}
 
   public getInputCloud() {
-    return wrapPointCloud<T>(this.native.getInputCloud());
+    return wrapPointCloud<T>(this._native.getInputCloud());
   }
 
   public getName() {
-    this.native.getName();
+    this._native.getName();
   }
 
   public getSortedResults() {
-    this.native.getSortedResults();
+    this._native.getSortedResults();
   }
 }
 

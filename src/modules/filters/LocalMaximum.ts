@@ -17,11 +17,11 @@ class LocalMaximum<
   }
 
   public setRadius(radius: number) {
-    return this.native.setRadius(radius);
+    return this._native.setRadius(radius);
   }
 
   public getRadius(): number {
-    return this.native.getRadius();
+    return this._native.getRadius();
   }
 }
 

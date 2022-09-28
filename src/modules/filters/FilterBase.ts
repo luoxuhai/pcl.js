@@ -18,12 +18,12 @@ abstract class FilterBase<
     }
 
     const _cloud = cloud ?? new PointCloud<T>(this._PT);
-    this.native.filter(_cloud.native);
+    this._native.filter(_cloud._native);
     return _cloud;
   }
 
   public getRemovedIndices() {
-    return new Indices(this.native.getRemovedIndices());
+    return new Indices(this._native.getRemovedIndices());
   }
 }
 
