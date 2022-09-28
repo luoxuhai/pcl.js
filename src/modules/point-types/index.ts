@@ -5,6 +5,7 @@ import {
   PointXYZ,
   Vector,
   NativeObject,
+  PCLHeader,
 } from './type';
 import { getPointType } from '../../utils';
 
@@ -57,6 +58,14 @@ class PointCloud<
 
   get height(): number {
     return this._native.height;
+  }
+
+  get header() {
+    return new PCLHeader(this._native.header);
+  }
+
+  get size(): number {
+    return this.points.size;
   }
 
   get points() {

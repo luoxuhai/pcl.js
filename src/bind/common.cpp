@@ -15,6 +15,7 @@ const std::string VERSION = PCL_VERSION_PRETTY;
       .property("height", &PointCloud<PointT>::height)                                                             \
       .property("points", &PointCloud<PointT>::points)                                                             \
       .property("is_dense", &PointCloud<PointT>::is_dense)                                                         \
+      .property("header", &PointCloud<PointT>::header)                                                             \
       .function("isOrganized", &PointCloud<PointT>::isOrganized)                                                   \
       .function("resize", select_overload<void(index_t, const PointT &)>(&PointCloud<PointT>::resize))             \
       .function("push_back", &PointCloud<PointT>::push_back)                                                       \
