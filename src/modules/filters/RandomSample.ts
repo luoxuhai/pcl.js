@@ -17,19 +17,19 @@ class RandomSample<
   }
 
   public setSample(sample: number) {
-    return this.native.setSample(sample);
+    return this._native.setSample(sample);
   }
 
   public getSample(): number {
-    return this.native.getSample();
+    return this._native.getSample();
   }
 
   public setSeed(seed: number) {
-    return this.native.setSeed(seed);
+    return this._native.setSeed(seed);
   }
 
   public getSeed(): number {
-    return this.native.getSeed();
+    return this._native.getSeed();
   }
 }
 

@@ -11,23 +11,23 @@ class FilterIndices<
   protected _PT?: TPointTypesUnion;
 
   public setNegative(negative = false) {
-    this.native.setNegative(negative);
+    this._native.setNegative(negative);
   }
 
   public getNegative(): boolean {
-    return this.native.getNegative();
+    return this._native.getNegative();
   }
 
   public setKeepOrganized(keepOrganized = false) {
-    this.native.setNegative(keepOrganized);
+    this._native.setNegative(keepOrganized);
   }
 
   public getKeepOrganized(): boolean {
-    return this.native.getKeepOrganized();
+    return this._native.getKeepOrganized();
   }
 
   public setUserFilterValue(value: number) {
-    this.native.setNegative(value);
+    this._native.setNegative(value);
   }
 }
 

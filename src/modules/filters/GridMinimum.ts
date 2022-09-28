@@ -14,11 +14,11 @@ class GridMinimum<
   }
 
   public setResolution(resolution: number) {
-    return this.native.setResolution(resolution);
+    return this._native.setResolution(resolution);
   }
 
   public getResolution(): number {
-    return this.native.getResolution();
+    return this._native.getResolution();
   }
 }
 

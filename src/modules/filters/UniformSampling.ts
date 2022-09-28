@@ -17,7 +17,7 @@ class UniformSampling<
   }
 
   public setRadiusSearch(radius: number) {
-    return this.native.setRadiusSearch(radius);
+    return this._native.setRadiusSearch(radius);
   }
 }
 

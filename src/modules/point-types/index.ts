@@ -4,68 +4,70 @@ import {
   PointTypesIntersection,
   PointXYZ,
   Vector,
+  NativeObject,
 } from './type';
 import { getPointType } from '../../utils';
 
 class Points<T> extends Vector<T> {
   private readonly _PT: TPointTypesUnion;
 
-  constructor(native: Emscripten.NativeAPI) {
-    super(native);
-    this._PT = getPointType(native, 'Points');
+  constructor(_native: Emscripten.NativeAPI) {
+    super(_native);
+    this._PT = getPointType(_native, 'Points');
   }
 
   public get(index: number) {
-    const args: number[] = Object.values(this.native.get(index) ?? {});
+    const args: number[] = Object.values(this._native.get(index) ?? {});
     return new this._PT(...args) as unknown as T;
   }
 }
 
 class PointCloud<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
-> {
-  public native: Emscripten.NativeAPI;
+> extends NativeObject {
+  public _native: Emscripten.NativeAPI;
 
   constructor(
     public readonly _PT: TPointTypesUnion = PointXYZ,
-    native?: Emscripten.NativeAPI,
+    _native?: Emscripten.NativeAPI,
   ) {
-    this.native = native ?? new __PCLCore__[`PointCloud${_PT.name}`]();
+    super();
+    this._native = _native ?? new __PCLCore__[`PointCloud${_PT.name}`]();
   }
 
   get isOrganized(): boolean {
-    return this.native.isOrganized();
+    return this._native.isOrganized();
   }
 
   get isDense(): boolean {
-    return this.native.is_dense;
+    return this._native.is_dense;
   }
 
   set width(v: number) {
-    this.native.width = v;
+    this._native.width = v;
   }
 
   get width(): number {
-    return this.native.width;
+    return this._native.width;
   }
 
   set height(v: number) {
-    this.native.height = v;
+    this._native.height = v;
   }
 
   get height(): number {
-    return this.native.height;
+    return this._native.height;
   }
 
   get points() {
-    return wrapPoints(this.native.points);
+    return wrapPoints(this._native.points);
   }
 
   /**
    * Removes all points in a cloud and sets the width and height to 0.
    */
   public clear() {
-    this.native.clear();
+    this._native.clear();
   }
 
   /**
@@ -74,7 +76,7 @@ class PointCloud<
    * @params pt - The value to initialize the new points with
    */
   public resize(count: number, pt?: T) {
-    this.native.resize(count, pt ?? new this._PT());
+    this._native.resize(count, pt ?? new this._PT());
   }
 
   /**
@@ -83,25 +85,28 @@ class PointCloud<
    * @params pt - The point to insert
    */
   public addPoint(pt: T | null = null) {
-    this.native.push_back(pt);
+    this._native.push_back(pt);
   }
 
+  /**
+   * override
+   */
   public delete() {
-    this.native.delete();
+    super.delete();
     this.points.delete();
   }
 }
 
 function wrapPointCloud<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
->(native: Emscripten.NativeAPI) {
-  return new PointCloud<T>(getPointType(native, 'PointCloud'), native);
+>(_native: Emscripten.NativeAPI) {
+  return new PointCloud<T>(getPointType(_native, 'PointCloud'), _native);
 }
 
 function wrapPoints<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
->(native: Emscripten.NativeAPI) {
-  return new Points<T>(native);
+>(_native: Emscripten.NativeAPI) {
+  return new Points<T>(_native);
 }
 
 export { PointCloud, Points, wrapPointCloud, wrapPoints };

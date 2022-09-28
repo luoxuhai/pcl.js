@@ -17,21 +17,21 @@ class KdTree<
   }
 
   public setSortedResults(sorted: boolean) {
-    this.native.setSortedResults(sorted);
+    this._native.setSortedResults(sorted);
   }
 
   public setEpsilon(eps: number) {
-    this.native.setEpsilon(eps);
+    this._native.setEpsilon(eps);
   }
 
   public setInputCloud(cloud: PointCloud<T>) {
-    this.native.setInputCloud(cloud.native);
+    this._native.setInputCloud(cloud._native);
   }
 
   public nearestKSearch(point: PointTypesUnion, k: number) {
     const indices = new Indices();
     const distances = new Vector<number>(new __PCLCore__.VectorFloat());
-    this.native.nearestKSearch(point, k, indices.native, distances.native);
+    this._native.nearestKSearch(point, k, indices._native, distances._native);
 
     return {
       indices,
@@ -42,11 +42,11 @@ class KdTree<
   public radiusSearch(point: PointTypesUnion, radius: number, maxNN = 0) {
     const indices = new Indices();
     const distances = new Vector<number>(new __PCLCore__.VectorFloat());
-    this.native.radiusSearch(
+    this._native.radiusSearch(
       point,
       radius,
-      indices.native,
-      distances.native,
+      indices._native,
+      distances._native,
       maxNN,
     );
 
