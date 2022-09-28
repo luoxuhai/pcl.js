@@ -14,7 +14,7 @@ function loadPCDFile<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 >(filename: string, _PT: TPointTypesUnion = PointXYZ) {
   const cloud = new PointCloud<T>(_PT);
-  const status = __PCLCore__[`loadPCDFile${_PT.name}`](filename, cloud.native);
+  const status = __PCLCore__[`loadPCDFile${_PT.name}`](filename, cloud._native);
   const isSuccess = status === 0;
   if (!isSuccess) {
     cloud.delete();
@@ -26,7 +26,7 @@ function loadPCDFile<
 function savePCDFile(filename: string, cloud: PointCloud, binaryMode = false) {
   const flag = __PCLCore__[`savePCDFile${cloud._PT.name}`](
     filename,
-    cloud.native,
+    cloud._native,
     binaryMode,
   );
   return flag === 0;
@@ -43,7 +43,7 @@ function savePCDFileBinary(filename: string, cloud: PointCloud) {
 function savePCDFileBinaryCompressed(filename: string, cloud: PointCloud) {
   const flag = __PCLCore__[`savePCDFileBinaryCompressed${cloud._PT.name}`](
     filename,
-    cloud.native,
+    cloud._native,
   );
   return flag === 0;
 }
