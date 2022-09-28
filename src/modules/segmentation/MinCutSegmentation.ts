@@ -1,5 +1,6 @@
 import {
   PointCloud,
+  wrapPointCloud,
   PointXYZ,
   PointTypesIntersection,
   PointTypesUnion,
@@ -60,25 +61,25 @@ class MinCutSegmentation<
     return this.native.getNumberOfNeighbours() as number;
   }
 
-  public setForegroundPoints(foregroundPoints: PointCloud<T>): void {
-    return this.native.setForegroundPoints(foregroundPoints) as void;
+  public setForegroundPoints(cloud: PointCloud<T>) {
+    return this.native.setForegroundPoints(cloud.native);
+    // return wrapPointCloud<T>(this.native.setForegroundPoints(foregroundPoints?.native ?? null));
   }
 
   public getForegroundPoints(): PointCloud<T> {
     return this.native.getForegroundPoints() as PointCloud<T>;
   }
 
-  public setBackgroundPoints(backgroundPoints: PointCloud<T>): void {
-    return this.native.setBackgroundPoints(backgroundPoints) as void;
+  public setBackgroundPoints(cloud: PointCloud<T>) {
+    return this.native.setBackgroundPoints(cloud.native);
   }
 
   public getBackgroundPoints(): PointCloud<T> {
     return this.native.getBackgroundPoints() as PointCloud<T>;
   }
 
-  // Vector<PointIndices>
-  public extract(clusters: Vector<Vector<number>>): void {
-    return this.native.extract(clusters) as void;
+  public extract(clusters: Vector<PointIndices>) {
+    return wrapPointCloud<T>(this.native.extract(clusters.native));
   }
 
   public getMaxFlow(): number {

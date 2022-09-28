@@ -25,16 +25,17 @@ describe('MinCutSegmentation', () => {
     foregroundPoints.points.push(objectCenter);
 
     mcSeg.setForegroundPoints(foregroundPoints);
-    // mcSeg.setInputCloud(cloud);
-    // mcSeg.setRadius(radius);
-    // mcSeg.setSigma(sigma);
-    // mcSeg.setSourceWeight(sourceWeight);
-    // mcSeg.setNumberOfNeighbours(neighborNumber);
+    mcSeg.setInputCloud(cloud);
+    mcSeg.setRadius(radius);
+    mcSeg.setSigma(sigma);
+    mcSeg.setSourceWeight(sourceWeight);
+    mcSeg.setNumberOfNeighbours(neighborNumber);
 
-    // let clusters = new pcl.Module.vectorPointIndices();
-    // mcSeg.extract(clusters);
+    const clusters = pcl.Module.returnVectorPointIndices();
+    console.log(clusters);
+    mcSeg.extract(clusters);
 
-    // print(clusters)
-    // expect(clusters.size(), 2);
+    console.log(clusters.size());
+    expect(clusters.size()).toBe(2);
   });
 });
