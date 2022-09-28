@@ -16,6 +16,7 @@
     "@release-it/conventional-changelog": {
       "infile": "CHANGELOG.md",
       "header": "# Changelog",
+      "skipUnstable": true,
       "preset": {
         "name": "conventionalcommits",
         "types": [
