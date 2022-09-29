@@ -26,31 +26,8 @@
       .function("getMaxFlow", &pcl::MinCutSegmentation<PointT>::getMaxFlow) \
       .function("getColoredCloud", &pcl::MinCutSegmentation<PointT>::getColoredCloud);
 
-// template <typename PointT>
-// void setForegroundPoints(pcl::MinCutSegmentation<PointT> &segmentation, typename pcl::PointCloud<PointT>::Ptr &foreground_points) {
-//   segmentation.setForegroundPoints(foreground_points);
-// }
-
-// template <typename PointT>
-// void setBackgroundPoints(pcl::MinCutSegmentation<PointT> &segmentation, typename pcl::PointCloud<PointT>::Ptr &background_points) {
-//   segmentation.setBackgroundPoints(background_points);
-// }
-
-template <typename PointT>
-typename std::vector<pcl::PointIndices>
-extract(pcl::MinCutSegmentation<PointT> &segmentation, std::vector<pcl::PointIndices>& clusters)
-{
-  segmentation.extract(clusters);
-  return clusters;
-}
-
 using namespace pcl;
 using namespace emscripten;
-
-// std::vector<PointIndices> returnVectorPointIndices () {
-//   std::vector<PointIndices> v(2);
-//   return v;
-// }
 
 EMSCRIPTEN_BINDINGS(segmentation)
 {
@@ -59,6 +36,5 @@ EMSCRIPTEN_BINDINGS(segmentation)
   BIND_MCMF(PointXYZRGB);
   BIND_MCMF(PointXYZRGBA);
   BIND_MCMF(PointNormal);
-  // function("returnVectorPointIndices", &returnVectorPointIndices);
   register_vector<PointIndices>("VectorPointIndices");
 }

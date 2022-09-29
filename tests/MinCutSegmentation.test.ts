@@ -22,7 +22,7 @@ describe('MinCutSegmentation', () => {
     const neighborNumber = 14;
 
     const foregroundPoints = new pcl.common.PointCloud<PCL.PointXYZ>();
-    foregroundPoints.points.push(objectCenter);
+    foregroundPoints.addPoint(objectCenter);
 
     mcSeg.setForegroundPoints(foregroundPoints);
     mcSeg.setInputCloud(cloud);
@@ -31,10 +31,8 @@ describe('MinCutSegmentation', () => {
     mcSeg.setSourceWeight(sourceWeight);
     mcSeg.setNumberOfNeighbours(neighborNumber);
 
-    // const clusters = pcl.Module.returnVectorPointIndices();
-    mcSeg.extract(clusters);
-
-    console.log(clusters.size());
-    expect(clusters.size()).toBe(2);
+    const clusters = mcSeg.extract();
+    expect(clusters.size).toBe(2);
+    expect(mcSeg.getMaxFlow()).toBe(5970.370432746628);
   });
 });

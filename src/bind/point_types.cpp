@@ -1,6 +1,5 @@
 #include <iostream>
 #include <pcl/point_types.h>
-#include <pcl/PointIndices.h>
 #include <emscripten/bind.h>
 
 /**
@@ -49,7 +48,4 @@ EMSCRIPTEN_BINDINGS(point_types)
         .field("normal_y", &PointNormal::normal_y)
         .field("normal_z", &PointNormal::normal_z)
         .field("curvature", &PointNormal::curvature);
-
-    value_object<PointIndices>("PointIndices")
-        .field("indices", &PointIndices::indices);
 }
