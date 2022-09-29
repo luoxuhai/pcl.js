@@ -10,14 +10,14 @@ class UniformSampling<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterBase<T> {
   constructor(
-    protected PT: TPointTypesUnion = PointXYZ,
+    protected _PT: TPointTypesUnion = PointXYZ,
     extractRemovedIndices = false,
   ) {
-    super(new __PCLCore__[`UniformSampling${PT.name}`](extractRemovedIndices));
+    super(new __PCLCore__[`UniformSampling${_PT.name}`](extractRemovedIndices));
   }
 
   public setRadiusSearch(radius: number) {
-    return this.native.setRadiusSearch(radius);
+    return this._native.setRadiusSearch(radius);
   }
 }
 

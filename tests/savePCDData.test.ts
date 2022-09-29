@@ -14,7 +14,7 @@ beforeAll(async () => {
   cloud = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
   for (let i = 0; i < points.length; i++) {
-    cloud.push(new PCL.PointXYZ(...points[i]));
+    cloud.addPoint(new PCL.PointXYZ(...points[i]));
   }
 });
 

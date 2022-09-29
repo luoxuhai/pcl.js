@@ -15,8 +15,8 @@ describe('SearchKdTree', () => {
     kdtree.setInputCloud(cloud);
     const result = kdtree.nearestKSearch(point, k);
 
-    expect(result.indices.size()).toBe(k);
-    expect(result.distances.size()).toBe(k);
+    expect(result.indices.size).toBe(k);
+    expect(result.distances.size).toBe(k);
   });
 
   it('should find all neighbors within some radius specified', () => {
@@ -31,7 +31,7 @@ describe('SearchKdTree', () => {
     kdtree.setInputCloud(cloud);
     const result = kdtree.radiusSearch(point, 1);
 
-    expect(result.indices.size()).toBe(24424);
-    expect(result.distances.size()).toBe(24424);
+    expect(result.indices.size).toBe(24424);
+    expect(result.distances.size).toBe(24424);
   });
 });

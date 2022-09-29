@@ -5,31 +5,33 @@ import {
   TPointTypesUnion,
   PointXYZ,
   PointCloud,
+  Indices,
+  Vector,
 } from '../point-types';
 
 class KdTree<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends Search<T> {
-  constructor(PT: TPointTypesUnion = PointXYZ, sorted = true) {
-    super(new __PCLCore__[`SearchKdTree${PT.name}`](sorted));
+  constructor(_PT: TPointTypesUnion = PointXYZ, sorted = true) {
+    super(new __PCLCore__[`SearchKdTree${_PT.name}`](sorted));
   }
 
   public setSortedResults(sorted: boolean) {
-    this.native.setSortedResults(sorted);
+    this._native.setSortedResults(sorted);
   }
 
   public setEpsilon(eps: number) {
-    this.native.setEpsilon(eps);
+    this._native.setEpsilon(eps);
   }
 
   public setInputCloud(cloud: PointCloud<T>) {
-    this.native.setInputCloud(cloud.native);
+    this._native.setInputCloud(cloud._native);
   }
 
   public nearestKSearch(point: PointTypesUnion, k: number) {
-    const indices = new __PCLCore__.Indices();
-    const distances = new __PCLCore__.VectorFloat();
-    this.native.nearestKSearch(point, k, indices, distances);
+    const indices = new Indices();
+    const distances = new Vector<number>(new __PCLCore__.VectorFloat());
+    this._native.nearestKSearch(point, k, indices._native, distances._native);
 
     return {
       indices,
@@ -38,9 +40,15 @@ class KdTree<
   }
 
   public radiusSearch(point: PointTypesUnion, radius: number, maxNN = 0) {
-    const indices = new __PCLCore__.Indices();
-    const distances = new __PCLCore__.VectorFloat();
-    this.native.radiusSearch(point, radius, indices, distances, maxNN);
+    const indices = new Indices();
+    const distances = new Vector<number>(new __PCLCore__.VectorFloat());
+    this._native.radiusSearch(
+      point,
+      radius,
+      indices._native,
+      distances._native,
+      maxNN,
+    );
 
     return {
       indices,
