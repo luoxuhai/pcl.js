@@ -31,8 +31,7 @@ describe('MinCutSegmentation', () => {
     mcSeg.setSourceWeight(sourceWeight);
     mcSeg.setNumberOfNeighbours(neighborNumber);
 
-    const clusters = pcl.Module.returnVectorPointIndices();
-    console.log(clusters);
+    // const clusters = pcl.Module.returnVectorPointIndices();
     mcSeg.extract(clusters);
 
     console.log(clusters.size());

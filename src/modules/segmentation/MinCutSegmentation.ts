@@ -1,6 +1,5 @@
 import {
   PointCloud,
-  wrapPointCloud,
   PointXYZ,
   PointTypesIntersection,
   PointTypesUnion,
@@ -11,88 +10,84 @@ import {
 class MinCutSegmentation<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > {
-  public native: Emscripten.NativeAPI;
+  public _native: Emscripten.NativeAPI;
 
   constructor(PT: TPointTypesUnion = PointXYZ) {
-    this.native = new __PCLCore__[`MinCutSegmentation${PT.name}`]();
+    this._native = new __PCLCore__[`MinCutSegmentation${PT.name}`]();
   }
 
   public setInputCloud(cloud: PointCloud<T>) {
-    return this.native.setInputCloud(cloud.native);
+    return this._native.setInputCloud(cloud._native);
   }
 
   public setSigma(sigma: number): void {
-    return this.native.setSigma(sigma) as void;
+    return this._native.setSigma(sigma) as void;
   }
 
   public getSigma(): number {
-    return this.native.getSigma() as number;
+    return this._native.getSigma() as number;
   }
 
   public setRadius(radius: number): void {
-    return this.native.setRadius(radius) as void;
+    return this._native.setRadius(radius) as void;
   }
 
   public getRadius(): number {
-    return this.native.getRadius() as number;
+    return this._native.getRadius() as number;
   }
 
   public setSourceWeight(weight: number): void {
-    return this.native.setSourceWeight(weight) as void;
+    return this._native.setSourceWeight(weight) as void;
   }
 
   public getSourceWeight(): number {
-    return this.native.getSourceWeight() as number;
+    return this._native.getSourceWeight() as number;
   }
 
   public setSearchMethod(tree: string | null): void {
-    return this.native.setSearchMethod(tree) as void;
+    return this._native.setSearchMethod(tree) as void;
   }
 
   public getSearchMethod(): string | null {
-    return this.native.getSearchMethod() as string | null;
+    return this._native.getSearchMethod() as string | null;
   }
 
   public setNumberOfNeighbours(neighbourNumber: number): void {
-    return this.native.setNumberOfNeighbours(neighbourNumber) as void;
+    return this._native.setNumberOfNeighbours(neighbourNumber) as void;
   }
 
   public getNumberOfNeighbours(): number {
-    return this.native.getNumberOfNeighbours() as number;
+    return this._native.getNumberOfNeighbours() as number;
   }
 
   public setForegroundPoints(cloud: PointCloud<T>) {
-    return this.native.setForegroundPoints(cloud.native);
-    // return wrapPointCloud<T>(this.native.setForegroundPoints(foregroundPoints?.native ?? null));
+    return this._native.setForegroundPoints(cloud._native);
   }
 
   public getForegroundPoints(): PointCloud<T> {
-    return this.native.getForegroundPoints() as PointCloud<T>;
+    return this._native.getForegroundPoints() as PointCloud<T>;
   }
 
   public setBackgroundPoints(cloud: PointCloud<T>) {
-    return this.native.setBackgroundPoints(cloud.native);
+    return this._native.setBackgroundPoints(cloud._native);
   }
 
   public getBackgroundPoints(): PointCloud<T> {
-    return this.native.getBackgroundPoints() as PointCloud<T>;
+    return this._native.getBackgroundPoints() as PointCloud<T>;
   }
 
-  public extract(clusters: Vector<number>) {
-    return wrapPointCloud<T>(this.native.extract(clusters.native));
+  public extract() {
+    const clusters = new Vector(new __PCLCore__.VectorPointIndices());
+    this._native.extract(clusters._native);
+    return clusters;
   }
 
   public getMaxFlow(): number {
-    return this.native.getMaxFlow() as number;
+    return this._native.getMaxFlow() as number;
   }
 
-  // mGraphPtr
-  // public getGraph(): ??? {
-  //   return this.native.getGraph() as ???;
-  // }
-
   public getColoredCloud(): PointCloud<T> {
-    return this.native.getColoredCloud() as PointCloud<T>;
+    return this._native.getColoredCloud() as PointCloud<T>;
   }
 }
 

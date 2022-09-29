@@ -138,14 +138,6 @@ export class PointIndices extends NativeObject {
   }
 }
 
-// export class PointIndices {
-//   constructor(public indices: Vector<number>) {}
-// }
-
-// export class vectorPointIndices {
-//   constructor(public vectorPointIndices: Vector<PointIndices>) {}
-// }
-
 export type PointTypesUnion =
   | PointXYZ
   | PointXYZI
