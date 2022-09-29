@@ -1,12 +1,5 @@
 # Changelog
 
-## [1.7.0-alpha.0](https://github.com/luoxuhai/pcl.js/compare/v1.6.0...v1.7.0-alpha.0) (2022-09-25)
-
-
-### ✨ Features
-
-* add addPointCloudByData method to PointCloudViewer ([5a80639](https://github.com/luoxuhai/pcl.js/commit/5a806397fd5ee29d0383a0240902882cdbce0283))
-
 ## [1.6.0](https://github.com/luoxuhai/pcl.js/compare/v1.5.0...v1.6.0) (2022-09-25)
 
 
