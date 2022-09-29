@@ -3,7 +3,7 @@ import path from 'path';
 import * as PCL from '../';
 
 describe('MinCutSegmentation', () => {
-  it('should segment a PointCloud into foreground and background', () => {
+  it('should segment a PointCloud into foreground and background clusters', () => {
     const pcl = global.pcl as PCL.PCLInstance;
 
     const filename = 'min_cut_segmentation_tutorial.pcd';
