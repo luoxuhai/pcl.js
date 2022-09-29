@@ -7,12 +7,16 @@ describe('ISSKeypoint3D', () => {
     const pcl = global.pcl as PCL.PCLInstance;
 
     const data = fs.readFileSync(path.join(__dirname, '../data/bun0.pcd'));
-    const cloud = pcl.io.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
+    const cloud = pcl.io.loadPCDData<PCL.PointNormal>(data, PCL.PointNormal);
     // Get point cloud resolution
     const resolution = pcl.common.computeCloudResolution(cloud);
-    const tree = new pcl.search.KdTree<PCL.PointXYZ>(PCL.PointXYZ);
-    const keypoints = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
-    const iss = new pcl.keypoints.ISSKeypoint3D<PCL.PointXYZ>(PCL.PointXYZ);
+    const tree = new pcl.search.KdTree<PCL.PointNormal>(PCL.PointNormal);
+    const keypoints = new pcl.common.PointCloud<PCL.PointNormal>(
+      PCL.PointNormal,
+    );
+    const iss = new pcl.keypoints.ISSKeypoint3D<PCL.PointNormal>(
+      PCL.PointNormal,
+    );
 
     iss.setSearchMethod(tree);
     iss.setSalientRadius(6 * resolution);
@@ -22,7 +26,9 @@ describe('ISSKeypoint3D', () => {
     iss.setMinNeighbors(5);
     iss.setInputCloud(cloud);
     iss.compute(keypoints);
+    const keypointsIndices = iss.getKeypointsIndices();
 
     expect(keypoints.points.size).toBe(6);
+    expect(keypointsIndices.indices.size).toBe(6);
   });
 });
