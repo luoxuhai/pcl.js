@@ -78,7 +78,7 @@ class MinCutSegmentation<
     return this.native.getBackgroundPoints() as PointCloud<T>;
   }
 
-  public extract(clusters: Vector<PointIndices>) {
+  public extract(clusters: Vector<number>) {
     return wrapPointCloud<T>(this.native.extract(clusters.native));
   }
 
