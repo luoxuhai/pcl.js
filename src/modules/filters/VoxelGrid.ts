@@ -9,28 +9,28 @@ import {
 class VoxelGrid<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterBase<T> {
-  constructor(protected PT: TPointTypesUnion = PointXYZ) {
-    super(new __PCLCore__[`VoxelGrid${PT.name}`]());
+  constructor(protected _PT: TPointTypesUnion = PointXYZ) {
+    super(new __PCLCore__[`VoxelGrid${_PT.name}`]());
   }
 
   public setLeafSize(lx: number, ly: number, lz: number) {
-    return this.native.setLeafSize(lx, ly, lz);
+    return this._native.setLeafSize(lx, ly, lz);
   }
 
   public setDownsampleAllData(downsample: boolean) {
-    return this.native.setDownsampleAllData(downsample);
+    return this._native.setDownsampleAllData(downsample);
   }
 
   public getDownsampleAllData(): boolean {
-    return this.native.getDownsampleAllData();
+    return this._native.getDownsampleAllData();
   }
 
   public setMinimumPointsNumberPerVoxel(minPointsPerVoxel: number) {
-    return this.native.setMinimumPointsNumberPerVoxel(minPointsPerVoxel);
+    return this._native.setMinimumPointsNumberPerVoxel(minPointsPerVoxel);
   }
 
   public getMinimumPointsNumberPerVoxel(): number {
-    return this.native.getMinimumPointsNumberPerVoxel();
+    return this._native.getMinimumPointsNumberPerVoxel();
   }
 }
 

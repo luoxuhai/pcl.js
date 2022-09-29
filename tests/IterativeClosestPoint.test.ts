@@ -24,8 +24,8 @@ describe('IterativeClosestPoint', () => {
     const final = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
     for (let i = 0; i < source.length; i++) {
-      cloudIn.push(new PCL.PointXYZ(...source[i]));
-      cloudOut.push(new PCL.PointXYZ(...target[i]));
+      cloudIn.addPoint(new PCL.PointXYZ(...source[i]));
+      cloudOut.addPoint(new PCL.PointXYZ(...target[i]));
     }
 
     const icp = new pcl.registration.IterativeClosestPoint<PCL.PointXYZ>(
@@ -36,6 +36,6 @@ describe('IterativeClosestPoint', () => {
     icp.align(final);
 
     expect(icp.hasConverged()).toBe(true);
-    expect(final.points.size()).toBe(5);
+    expect(final.points.size).toBe(5);
   });
 });

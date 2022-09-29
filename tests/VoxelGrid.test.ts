@@ -19,6 +19,6 @@ describe('VoxelGrid', () => {
     vg.setLeafSize(0.01, 0.01, 0.01);
     vg.filter(cloudFiltered);
 
-    expect(cloudFiltered.points.size()).toBe(41049);
+    expect(cloudFiltered.points.size).toBe(41049);
   });
 });

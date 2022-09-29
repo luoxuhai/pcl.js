@@ -19,6 +19,6 @@ describe('UniformSampling', () => {
     us.setRadiusSearch(0.005);
     us.filter(cloudFiltered);
 
-    expect(cloudFiltered.points.size()).toBe(141525);
+    expect(cloudFiltered.points.size).toBe(141525);
   });
 });

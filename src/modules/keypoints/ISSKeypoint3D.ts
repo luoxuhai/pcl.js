@@ -9,40 +9,40 @@ import {
 class ISSKeypoint3D<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends Keypoint<T> {
-  constructor(PT: TPointTypesUnion = PointXYZ, salientRadius = 0.0001) {
-    super(new __PCLCore__[`ISSKeypoint3D${PT.name}`](salientRadius));
+  constructor(_PT: TPointTypesUnion = PointXYZ, salientRadius = 0.0001) {
+    super(new __PCLCore__[`ISSKeypoint3D${_PT.name}`](salientRadius));
   }
 
   public setSalientRadius(salientRadius: number) {
-    this.native.setSalientRadius(salientRadius);
+    this._native.setSalientRadius(salientRadius);
   }
 
   public setNonMaxRadius(radius: number) {
-    this.native.setNonMaxRadius(radius);
+    this._native.setNonMaxRadius(radius);
   }
 
   public setNormalRadius(radius: number) {
-    this.native.setNormalRadius(radius);
+    this._native.setNormalRadius(radius);
   }
 
   public setBorderRadius(radius: number) {
-    this.native.setBorderRadius(radius);
+    this._native.setBorderRadius(radius);
   }
 
   public setMinNeighbors(minNeighbors: number) {
-    this.native.setMinNeighbors(minNeighbors);
+    this._native.setMinNeighbors(minNeighbors);
   }
 
   public setThreshold21(gamma21: number) {
-    this.native.setThreshold21(gamma21);
+    this._native.setThreshold21(gamma21);
   }
 
   public setThreshold32(gamma32: number) {
-    this.native.setThreshold32(gamma32);
+    this._native.setThreshold32(gamma32);
   }
 
   public setAngleThreshold(angle: number) {
-    this.native.setAngleThreshold(angle);
+    this._native.setAngleThreshold(angle);
   }
 }
 

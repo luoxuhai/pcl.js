@@ -10,7 +10,7 @@ describe('loadPCDData', () => {
     );
 
     const cloud = pcl.io.loadPCDData(data);
-    expect(cloud?.points.size()).toBe(3400);
+    expect(cloud?.points.size).toBe(3400);
   });
 
   it('should load a binary_compressed format PCD data with XYZ fields', async () => {
@@ -20,6 +20,6 @@ describe('loadPCDData', () => {
     );
 
     const cloud = pcl.io.loadPCDData(data);
-    expect(cloud?.points.size()).toBe(112586);
+    expect(cloud?.points.size).toBe(112586);
   });
 });

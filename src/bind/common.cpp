@@ -15,6 +15,7 @@ const std::string VERSION = PCL_VERSION_PRETTY;
       .property("height", &PointCloud<PointT>::height)                                                             \
       .property("points", &PointCloud<PointT>::points)                                                             \
       .property("is_dense", &PointCloud<PointT>::is_dense)                                                         \
+      .property("header", &PointCloud<PointT>::header)                                                             \
       .function("isOrganized", &PointCloud<PointT>::isOrganized)                                                   \
       .function("resize", select_overload<void(index_t, const PointT &)>(&PointCloud<PointT>::resize))             \
       .function("push_back", &PointCloud<PointT>::push_back)                                                       \
@@ -29,15 +30,19 @@ const std::string VERSION = PCL_VERSION_PRETTY;
       .function("setInputCloud", &PCLBase<PointT>::setInputCloud) \
       .function("getInputCloud", &PCLBase<PointT>::getInputCloud);
 
+#define BIND_COMPUTE_CLOUD_RESOLUTION(PointT) \
+  function("computeCloudResolution" #PointT, &computeCloudResolution<PointT>);
+
+template <typename PointT>
 double
-computeCloudResolution(const PointCloud<PointXYZ>::ConstPtr &cloud)
+computeCloudResolution(const typename PointCloud<PointT>::ConstPtr &cloud)
 {
   double resolution = 0.0;
   int numberOfPoints = 0;
   int nres;
   std::vector<int> indices(2);
   std::vector<float> squaredDistances(2);
-  search::KdTree<PointXYZ>::Ptr tree(new search::KdTree<PointXYZ>());
+  typename search::KdTree<PointT>::Ptr tree(new search::KdTree<PointT>());
   tree->setInputCloud(cloud);
 
   for (size_t i = 0; i < cloud->size(); ++i)
@@ -88,5 +93,22 @@ EMSCRIPTEN_BINDINGS(common)
   register_vector_plus<float>("VectorFloat");
   register_vector_plus<index_t>("Indices");
 
-  function("computeCloudResolution", &computeCloudResolution);
+  BIND_COMPUTE_CLOUD_RESOLUTION(PointXYZ);
+  BIND_COMPUTE_CLOUD_RESOLUTION(PointXYZI);
+  BIND_COMPUTE_CLOUD_RESOLUTION(PointXYZRGB);
+  BIND_COMPUTE_CLOUD_RESOLUTION(PointXYZRGBA);
+  BIND_COMPUTE_CLOUD_RESOLUTION(PointNormal);
+
+  class_<PointIndices>("PointIndices")
+      .smart_ptr_constructor<PointIndices::Ptr>("PointIndices", &std::make_shared<PointIndices>)
+      .property("header", &PointIndices::header)
+      .property("indices", &PointIndices::indices)
+      .smart_ptr<PointIndices::ConstPtr>("PointIndicesConstPtr");
+
+  class_<PCLHeader>("PCLHeader")
+      .smart_ptr_constructor<PCLHeader::Ptr>("PCLHeader", &std::make_shared<PCLHeader>)
+      .property("seq", &PCLHeader::seq)
+      .property("stamp", &PCLHeader::stamp)
+      .property("frame_id", &PCLHeader::frame_id)
+      .smart_ptr<PCLHeader::ConstPtr>("PCLHeaderConstPtr");
 }

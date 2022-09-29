@@ -10,7 +10,7 @@ describe('PointCloud', () => {
     const p = new PCL.PointXYZ(1, 2, 3);
     cloud.resize(SIZE, p);
 
-    expect(cloud.points.size()).toBe(SIZE);
+    expect(cloud.points.size).toBe(SIZE);
     expect(cloud.width).toBe(SIZE);
     expect(cloud.height).toBe(1);
     expect(cloud.points.get(0)).toEqual(p);

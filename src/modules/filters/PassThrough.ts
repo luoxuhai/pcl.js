@@ -10,26 +10,26 @@ class PassThrough<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends FilterIndices<T> {
   constructor(
-    protected PT: TPointTypesUnion = PointXYZ,
+    protected _PT: TPointTypesUnion = PointXYZ,
     extractRemovedIndices = false,
   ) {
-    super(new __PCLCore__[`PassThrough${PT.name}`](extractRemovedIndices));
+    super(new __PCLCore__[`PassThrough${_PT.name}`](extractRemovedIndices));
   }
 
   public setFilterFieldName(fieldName: string) {
-    return this.native.setFilterFieldName(fieldName);
+    return this._native.setFilterFieldName(fieldName);
   }
 
   public getFilterFieldName(): string | null {
-    return this.native.getFilterFieldName() as string | null;
+    return this._native.getFilterFieldName() as string | null;
   }
 
   public setFilterLimits(min: number, max: number) {
-    return this.native.setFilterLimits(min, max);
+    return this._native.setFilterLimits(min, max);
   }
 
   public getFilterLimits(): [number, number] {
-    return this.native.getFilterLimits();
+    return this._native.getFilterLimits();
   }
 }
 
