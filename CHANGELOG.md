@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.7.0](https://github.com/luoxuhai/pcl.js/compare/v1.6.0...v1.7.0) (2022-09-29)
+
+
+### ✨ Features
+
+* add addPointCloudByData method to PointCloudViewer ([5a80639](https://github.com/luoxuhai/pcl.js/commit/5a806397fd5ee29d0383a0240902882cdbce0283))
+* add bigint support ([96cf62c](https://github.com/luoxuhai/pcl.js/commit/96cf62cc0bce4242a541effad74b98903c07c230))
+* add header and size to PointCLoud ([00f0a37](https://github.com/luoxuhai/pcl.js/commit/00f0a372d9e2da1df5f1afe699a9e97d6403cec4))
+
+
+### 🐛 Bug Fixes
+
+* computeCloudResolution fails to process point clouds that are not of type PointXYZ ([f6f9548](https://github.com/luoxuhai/pcl.js/commit/f6f9548deb7362024ba27bbb35885cfedb2b8add))
+
 ## [1.6.0](https://github.com/luoxuhai/pcl.js/compare/v1.5.0...v1.6.0) (2022-09-25)
 
 
