@@ -27,6 +27,7 @@ class PointCloud<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
 > extends NativeObject {
   public _native: Emscripten.NativeAPI;
+  private _points?: Points<T>;
 
   constructor(
     public readonly _PT: TPointTypesUnion = PointXYZ,
@@ -69,7 +70,11 @@ class PointCloud<
   }
 
   get points() {
-    return wrapPoints(this._native.points);
+    if (!this._points) {
+      this._points = wrapPoints(this._native.points);
+    }
+
+    return this._points;
   }
 
   /**

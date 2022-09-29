@@ -73,11 +73,11 @@ export class Vector<T> extends NativeObject {
     super();
   }
 
-  get size() {
+  get size(): number {
     return this._native.size();
   }
 
-  public set(index: number, value: T) {
+  public set(index: number, value: T): boolean {
     return this._native.set(index, value);
   }
 
@@ -89,16 +89,16 @@ export class Vector<T> extends NativeObject {
     this._native.push_back(value);
   }
 
-  public isEmpty() {
+  public isEmpty(): boolean {
     return this._native.empty();
   }
 
   public resize(count: number, value?: T) {
-    return this._native.resize(count, value ?? null);
+    this._native.resize(count, value ?? null);
   }
 
   public clear() {
-    return this._native.clear();
+    this._native.clear();
   }
 }
 
