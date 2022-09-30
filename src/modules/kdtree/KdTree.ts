@@ -1,9 +1,8 @@
+import { PointCloud, wrapPointCloud } from '@/modules/common/PointCloud';
 import {
-  PointCloud,
-  wrapPointCloud,
   PointTypesUnion,
   PointTypesIntersection,
-} from '../point-types';
+} from '@/modules/common/point-types';
 
 class KdTree<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,

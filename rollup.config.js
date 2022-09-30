@@ -5,6 +5,7 @@ import bundleSize from 'rollup-plugin-bundle-size';
 import copy from 'rollup-plugin-copy';
 import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
+import alias from '@rollup/plugin-alias';
 
 import pkg from './package.json';
 
@@ -77,6 +78,9 @@ const config = [
       },
     ],
     plugins: [
+      alias({
+        entries: [{ find: '@', replacement: 'src' }],
+      }),
       replaceCode(),
       replace({
         __version__: pkg.version,

@@ -1,11 +1,11 @@
+import { PointCloud } from '@/modules/common/PointCloud';
 import {
-  PointCloud,
   PointXYZ,
   PointXYZI,
   PointXYZRGB,
   PointXYZRGBA,
   PointNormal,
-} from '../point-types';
+} from '@/modules/common/point-types';
 
 export function computeCloudResolution(
   cloud: PointCloud<

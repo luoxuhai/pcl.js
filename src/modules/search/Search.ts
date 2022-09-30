@@ -1,8 +1,8 @@
+import { wrapPointCloud } from '@/modules/common/PointCloud';
 import {
-  wrapPointCloud,
   PointTypesUnion,
   PointTypesIntersection,
-} from '../point-types';
+} from '@/modules/common/point-types';
 
 class Search<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,

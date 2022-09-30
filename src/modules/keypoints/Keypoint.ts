@@ -1,11 +1,10 @@
-import { PointCloud } from '../point-types';
+import { PointCloud, PointIndices } from '@/modules/common/PointCloud';
 import {
   PointTypesUnion,
   PointTypesIntersection,
-  PointIndices,
-} from '../point-types/type';
-import KdTree from '../kdtree/KdTree';
-import PCLBase from '../common/PCLBase';
+} from '@/modules/common/point-types';
+import KdTree from '@/modules/kdtree/KdTree';
+import PCLBase from '@/modules/common/PCLBase';
 
 class Keypoint<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,

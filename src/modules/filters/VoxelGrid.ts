@@ -4,7 +4,7 @@ import {
   TPointTypesUnion,
   PointXYZ,
   PointTypesIntersection,
-} from '../point-types';
+} from '@/modules/common/point-types';
 
 class VoxelGrid<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,

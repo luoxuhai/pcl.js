@@ -4,7 +4,7 @@ import {
   PointTypesIntersection,
   TPointTypesUnion,
   PointXYZ,
-} from '../point-types';
+} from '@/modules/common/point-types';
 
 class PassThrough<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
