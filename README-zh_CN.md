@@ -189,7 +189,8 @@ pcl.js 已采用 [贡献者公约](https://www.contributor-covenant.org/) 作为
 
 [![贡献者](https://contrib.rocks/image?repo=luoxuhai/pcl.js)](https://github.com/luoxuhai/pcl.js/graphs/contributors)
 
-
 ## 协议
 
 这个项目是根据 [MIT](https://github.com/luoxuhai/pcl.js/blob/master/LICENSE) 条款获得许可的。
+
+<a href="https://www.producthunt.com/posts/pcl-js?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-pcl&#0045;js" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=361683&theme=light" alt="pcl&#0046;js - Point&#0032;Cloud&#0032;Library&#0032;for&#0032;browser&#0044;&#0032;powered&#0032;by&#0032;WebAssembly&#0046; | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
