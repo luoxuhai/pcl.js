@@ -75,8 +75,8 @@ class PointCloudViewer {
     this.removePointCloud(id);
 
     const position: number[] = [];
-    const points = cloud.points._native;
-    const size = points.size();
+    const { points } = cloud;
+    const size = points.size;
     for (let i = 0; i < size; i++) {
       const point = points.get(i);
       position.push(point.x!, point.y!, point.z!);

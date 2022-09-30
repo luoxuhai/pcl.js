@@ -26,13 +26,18 @@ EMSCRIPTEN_BINDINGS(point_types)
         .field("x", &PointXYZRGB::x)
         .field("y", &PointXYZRGB::y)
         .field("z", &PointXYZRGB::z)
-        .field("rgb", &PointXYZRGB::rgb);
+        .field("r", &PointXYZRGB::r)
+        .field("g", &PointXYZRGB::g)
+        .field("b", &PointXYZRGB::b);
 
     value_object<PointXYZRGBA>("PointXYZRGBA")
         .field("x", &PointXYZRGBA::x)
         .field("y", &PointXYZRGBA::y)
         .field("z", &PointXYZRGBA::z)
-        .field("rgba", &PointXYZRGBA::rgba);
+        .field("r", &PointXYZRGBA::r)
+        .field("g", &PointXYZRGBA::g)
+        .field("b", &PointXYZRGBA::b)
+        .field("a", &PointXYZRGBA::a);
 
     value_object<Normal>("Normal")
         .field("normal_x", &Normal::normal_x)
