@@ -1,26 +1,41 @@
 export class Point {
-  constructor(public x: number, public y: number, public z: number) {}
+  constructor(public x: number, public y: number) {}
 }
 
-export class PointXYZ extends Point {
-  constructor(x = 0, y = 0, z = 0) {
-    super(x, y, z);
+export class PointXY extends Point {
+  constructor(x = 0, y = 0) {
+    super(x, y);
   }
 }
 
-export class PointXYZI extends Point {
+export class PointXYZ extends PointXY {
+  constructor(x = 0, y = 0, public z = 0) {
+    super(x, y);
+  }
+}
+
+export class PointXYZI extends PointXYZ {
   constructor(x = 0, y = 0, z = 0, public intensity = 0) {
     super(x, y, z);
   }
 }
 
-export class PointXYZRGB extends Point {
-  constructor(x = 0, y = 0, z = 0, public rgb = 0) {
+export class PointXYZRGB extends PointXYZ {
+  constructor(x = 0, y = 0, z = 0, public r = 0, public g = 0, public b = 0) {
     super(x, y, z);
   }
 }
-export class PointXYZRGBA extends Point {
-  constructor(x = 0, y = 0, z = 0, public rgba = 0) {
+
+export class PointXYZRGBA extends PointXYZ {
+  constructor(
+    x = 0,
+    y = 0,
+    z = 0,
+    public r = 0,
+    public g = 0,
+    public b = 0,
+    public a = 0,
+  ) {
     super(x, y, z);
   }
 }
@@ -34,7 +49,7 @@ export class Normal {
   ) {}
 }
 
-export class PointNormal extends Point {
+export class PointNormal extends PointXYZ {
   constructor(
     x = 0,
     y = 0,
