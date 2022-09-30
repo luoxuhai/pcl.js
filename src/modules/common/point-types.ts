@@ -63,6 +63,45 @@ export class PointNormal extends PointXYZ {
   }
 }
 
+export type PointTypesUnion =
+  | PointXYZ
+  | PointXYZI
+  | PointXYZRGB
+  | PointXYZRGBA
+  | Normal
+  | PointNormal;
+
+export type TPointTypesUnion =
+  | typeof PointXYZ
+  | typeof PointXYZI
+  | typeof PointXYZRGB
+  | typeof PointXYZRGBA
+  | typeof Normal
+  | typeof PointNormal;
+
+export type PointTypesIntersection = PointXYZ &
+  PointXYZI &
+  PointXYZRGB &
+  PointXYZRGBA &
+  Normal &
+  PointNormal;
+
+export type TPointTypesIntersection = typeof PointXYZ &
+  typeof PointXYZI &
+  typeof PointXYZRGB &
+  typeof PointXYZRGBA &
+  typeof Normal &
+  typeof PointNormal;
+
+export const pointTypeMap = {
+  PointXYZ,
+  PointXYZI,
+  PointXYZRGB,
+  PointXYZRGBA,
+  Normal,
+  PointNormal,
+};
+
 export abstract class NativeObject {
   abstract _native: Emscripten.NativeAPI;
 
@@ -116,78 +155,3 @@ export class Vector<T> extends NativeObject {
     this._native.clear();
   }
 }
-
-export class Indices extends Vector<number> {
-  constructor(native?: Emscripten.NativeAPI) {
-    const _native = native ?? new __PCLCore__.Indices();
-    super(_native);
-  }
-}
-
-export class PCLHeader extends NativeObject {
-  constructor(public _native: Emscripten.NativeAPI) {
-    super();
-  }
-
-  get seq(): number {
-    return this._native.seq;
-  }
-
-  get stamp(): bigint {
-    return this._native.stamp;
-  }
-
-  get frameId(): string {
-    return this._native.frame_id;
-  }
-}
-
-export class PointIndices extends NativeObject {
-  public header: PCLHeader;
-  public indices: Indices;
-
-  constructor(public _native: Emscripten.NativeAPI) {
-    super();
-    this.header = new PCLHeader(this._native.header);
-    this.indices = new Indices(this._native.indices);
-  }
-}
-
-export type PointTypesUnion =
-  | PointXYZ
-  | PointXYZI
-  | PointXYZRGB
-  | PointXYZRGBA
-  | Normal
-  | PointNormal;
-
-export type TPointTypesUnion =
-  | typeof PointXYZ
-  | typeof PointXYZI
-  | typeof PointXYZRGB
-  | typeof PointXYZRGBA
-  | typeof Normal
-  | typeof PointNormal;
-
-export type PointTypesIntersection = PointXYZ &
-  PointXYZI &
-  PointXYZRGB &
-  PointXYZRGBA &
-  Normal &
-  PointNormal;
-
-export type TPointTypesIntersection = typeof PointXYZ &
-  typeof PointXYZI &
-  typeof PointXYZRGB &
-  typeof PointXYZRGBA &
-  typeof Normal &
-  typeof PointNormal;
-
-export const pointTypeMap = {
-  PointXYZ,
-  PointXYZI,
-  PointXYZRGB,
-  PointXYZRGBA,
-  Normal,
-  PointNormal,
-};

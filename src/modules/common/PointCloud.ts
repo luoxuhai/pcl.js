@@ -3,11 +3,46 @@ import {
   TPointTypesUnion,
   PointTypesIntersection,
   PointXYZ,
-  Vector,
   NativeObject,
-  PCLHeader,
-} from './type';
+  Vector,
+} from './point-types';
 import { getPointType } from '../../utils';
+
+class Indices extends Vector<number> {
+  constructor(native?: Emscripten.NativeAPI) {
+    const _native = native ?? new __PCLCore__.Indices();
+    super(_native);
+  }
+}
+
+class PCLHeader extends NativeObject {
+  constructor(public _native: Emscripten.NativeAPI) {
+    super();
+  }
+
+  get seq(): number {
+    return this._native.seq;
+  }
+
+  get stamp(): bigint {
+    return this._native.stamp;
+  }
+
+  get frameId(): string {
+    return this._native.frame_id;
+  }
+}
+
+class PointIndices extends NativeObject {
+  public header: PCLHeader;
+  public indices: Indices;
+
+  constructor(public _native: Emscripten.NativeAPI) {
+    super();
+    this.header = new PCLHeader(this._native.header);
+    this.indices = new Indices(this._native.indices);
+  }
+}
 
 class Points<T> extends Vector<T> {
   private readonly _PT: TPointTypesUnion;
@@ -123,5 +158,12 @@ function wrapPoints<
   return new Points<T>(_native);
 }
 
-export { PointCloud, Points, wrapPointCloud, wrapPoints };
-export * from './type';
+export {
+  PointCloud,
+  Points,
+  wrapPointCloud,
+  wrapPoints,
+  PointIndices,
+  PCLHeader,
+  Indices,
+};

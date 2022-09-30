@@ -1,13 +1,12 @@
 import Search from './Search';
+import { PointCloud, Indices } from '@/modules/common/PointCloud';
 import {
   PointTypesUnion,
   PointTypesIntersection,
   TPointTypesUnion,
   PointXYZ,
-  PointCloud,
-  Indices,
   Vector,
-} from '../point-types';
+} from '@/modules/common/point-types';
 
 class KdTree<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,

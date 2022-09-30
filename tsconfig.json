@@ -14,7 +14,11 @@
     "noImplicitThis": false,
     "skipLibCheck": true,
     "moduleResolution": "node",
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "build", "dist", "tests", "website"]

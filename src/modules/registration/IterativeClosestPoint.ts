@@ -1,11 +1,10 @@
+import { PointCloud, wrapPointCloud } from '@/modules/common/PointCloud';
 import {
-  PointCloud,
-  wrapPointCloud,
   PointXYZ,
   PointTypesIntersection,
   PointTypesUnion,
   TPointTypesUnion,
-} from '../point-types';
+} from '@/modules/common/point-types';
 
 class IterativeClosestPoint<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,

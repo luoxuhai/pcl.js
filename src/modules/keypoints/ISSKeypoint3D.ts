@@ -4,7 +4,7 @@ import {
   PointTypesIntersection,
   TPointTypesUnion,
   PointXYZ,
-} from '../point-types';
+} from '@/modules/common/point-types';
 
 class ISSKeypoint3D<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,

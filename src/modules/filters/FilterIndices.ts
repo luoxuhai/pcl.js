@@ -3,7 +3,7 @@ import {
   PointTypesUnion,
   PointTypesIntersection,
   TPointTypesUnion,
-} from '../point-types';
+} from '@/modules/common/point-types';
 
 class FilterIndices<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,

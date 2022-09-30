@@ -1,12 +1,12 @@
+import { PointCloud } from '@/modules/common/PointCloud';
 import {
-  PointCloud,
   PointTypesUnion,
   TPointTypesUnion,
   PointTypesIntersection,
   PointXYZ,
-} from '../point-types';
-import fs, { FileSystem } from '../fs';
-import { getRandomArbitrary } from '../../utils';
+} from '@/modules/common/point-types';
+import fs, { FileSystem } from '@/modules/fs';
+import { getRandomArbitrary } from '@/utils';
 
 let FS: FileSystem;
 
