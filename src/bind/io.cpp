@@ -6,14 +6,6 @@
 
 using namespace pcl;
 
-std::vector<pcl::PCLPointField> readPCDHeader(const std::string &file_name)
-{
-  pcl::PCLPointCloud2 cloud;
-  pcl::PCDReader reader;
-  reader.readHeader(file_name, cloud);
-  return cloud.fields;
-}
-
 #define BIND_LOAD_PCD_FILE(PointT) function("loadPCDFile" #PointT, select_overload<int(const std::string &, PointCloud<PointT> &)>(&io::loadPCDFile));
 #define BIND_SAVE_PCD_FILE(PointT) function("savePCDFile" #PointT, select_overload<int(const std::string &, const PointCloud<PointT> &, bool)>(&io::savePCDFile));
 #define BIND_SAVE_PCD_FBC(PointT) function("savePCDFileBinaryCompressed" #PointT, &io::savePCDFileBinaryCompressed<PointT>);
@@ -42,12 +34,4 @@ EMSCRIPTEN_BINDINGS(io)
   BIND_SAVE_PCD_FBC(PointXYZRGBA);
   BIND_SAVE_PCD_FBC(Normal);
   BIND_SAVE_PCD_FBC(PointNormal);
-
-  function("readPCDHeader", &readPCDHeader);
-
-  register_vector<pcl::PCLPointField>("PCLPointFields");
-
-  value_object<pcl::PCLPointField>("PCLPointField")
-      .field("name", &pcl::PCLPointField::name)
-      .field("datatype", &pcl::PCLPointField::datatype);
 }

@@ -16,7 +16,7 @@ import {
 import { OrbitControls } from './vendors/OrbitControls';
 import { PCDLoader } from './vendors/PCDLoader';
 import { getCenter } from './utils';
-import { PointCloud } from '../modules/point-types';
+import { PointCloud } from '@/modules/common/PointCloud';
 
 interface CloudProperties {
   sizeAttenuation: boolean;

@@ -1,6 +1,6 @@
 {
   "name": "pcl.js",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "PCL for browser and node, powered by WebAssembly.",
   "types": "dist/types/pcl.d.ts",
   "main": "dist/pcl.cjs.js",
@@ -52,6 +52,7 @@
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@release-it/conventional-changelog": "^5.1.0",
+    "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-replace": "^4.0.0",
     "@types/jest": "^28.1.6",
     "@types/three": "^0.144.0",

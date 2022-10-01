@@ -1,4 +1,4 @@
-import { pointTypeMap, TPointTypesUnion } from '../modules/point-types/type';
+import { pointTypeMap, TPointTypesUnion } from '../modules/common/point-types';
 
 export const ENVIRONMENT_IS_NODE =
   typeof process === 'object' &&

@@ -1,16 +1,16 @@
 /// <reference path="../emscripten.d.ts" />
 /// <reference path="../global.d.ts" />
 
-import initPCLCore from '../bind/build/pcl-core';
-import fs from '../modules/fs';
-import io from '../modules/io';
-import filters from '../modules/filters';
-import registration from '../modules/registration';
-import common from '../modules/common';
-import kdtree from '../modules/kdtree';
-import search from '../modules/search';
-import keypoints from '../modules/keypoints';
-import { ENVIRONMENT_IS_NODE } from '../utils';
+import initPCLCore from '@/bind/build/pcl-core';
+import fs from '@/modules/fs';
+import io from '@/modules/io';
+import filters from '@/modules/filters';
+import registration from '@/modules/registration';
+import common from '@/modules/common';
+import kdtree from '@/modules/kdtree';
+import search from '@/modules/search';
+import keypoints from '@/modules/keypoints';
+import { ENVIRONMENT_IS_NODE } from '@/utils';
 
 interface InitOptions {
   /**
@@ -129,4 +129,4 @@ async function init(options?: InitOptions): Promise<PCLInstance | null> {
 const VERSION = '__version__';
 
 export { init, VERSION, PCLInstance, InitOptions };
-export * from '../modules/point-types/type';
+export * from '../modules/common/point-types';

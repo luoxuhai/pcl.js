@@ -4,7 +4,7 @@ import {
   PointXYZ,
   PointTypesIntersection,
   TPointTypesUnion,
-} from '../point-types';
+} from '@/modules/common/point-types';
 
 class StatisticalOutlierRemoval<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,

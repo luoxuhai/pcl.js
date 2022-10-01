@@ -1,13 +1,16 @@
+import fs from 'fs';
+import path from 'path';
 import * as PCL from '../';
 import { writeFile } from './common';
 
-describe('readPCDHeader.test', () => {
+describe('readPCDHeader', () => {
   it('should read the header of a PCD file with an x,y,z field', async () => {
     const pcl = global.pcl as PCL.PCLInstance;
 
     const filename = 'ism_test_cat.pcd';
+
     writeFile(filename, pcl);
-    const header = pcl.io.readPCDHeader(filename);
+    const header = pcl.io.readPCDFileHeader(filename);
     expect(header?.fields).toEqual(['x', 'y', 'z']);
   });
 
@@ -16,7 +19,7 @@ describe('readPCDHeader.test', () => {
 
     const filename = 'table_scene_lms400.pcd';
     writeFile(filename, pcl);
-    const header = pcl.io.readPCDHeader(filename);
+    const header = pcl.io.readPCDFileHeader(filename);
     expect(header?.fields).toEqual([
       'x',
       'y',
@@ -25,5 +28,15 @@ describe('readPCDHeader.test', () => {
       'distance',
       'sid',
     ]);
+  });
+
+  it('should read the header of a PCD file using readPCDHeader', async () => {
+    const pcl = global.pcl as PCL.PCLInstance;
+
+    const data = fs.readFileSync(
+      path.join(__dirname, `../data/ism_test_cat.pcd`),
+    );
+    const header = pcl.io.readPCDHeader(data);
+    expect(header?.fields).toEqual(['x', 'y', 'z']);
   });
 });

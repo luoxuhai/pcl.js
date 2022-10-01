@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.7.2](https://github.com/luoxuhai/pcl.js/compare/v1.7.1...v1.7.2) (2022-10-01)
+
+
+### 🐛 Bug Fixes
+
+* can't get PointXYZRGB to rgb value ([be97496](https://github.com/luoxuhai/pcl.js/commit/be974960bd4d84085b4a5db2e3bf4cb83b3abfb8))
+
+
+### ✨ Features
+
+* new readPCDHeader method ([2b56103](https://github.com/luoxuhai/pcl.js/commit/2b56103df15740f7a36b9a4144b334ebe931ba0d))
+
 ## [1.7.1](https://github.com/luoxuhai/pcl.js/compare/v1.7.0...v1.7.1) (2022-09-29)
 
 

@@ -1,9 +1,5 @@
-import {
-  PointCloud,
-  wrapPointCloud,
-  PointTypesUnion,
-  PointTypesIntersection,
-} from '../point-types';
+import { PointCloud, wrapPointCloud } from './PointCloud';
+import { PointTypesUnion, PointTypesIntersection } from './point-types';
 
 class PCLBase<
   T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,

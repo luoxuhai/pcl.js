@@ -1,10 +1,9 @@
+import { PointCloud, Indices } from '@/modules/common/PointCloud';
 import {
-  PointCloud,
   PointTypesUnion,
   PointTypesIntersection,
   TPointTypesUnion,
-  Indices,
-} from '../point-types';
+} from '@/modules/common/point-types';
 import PCLBase from '../common/PCLBase';
 
 abstract class FilterBase<
