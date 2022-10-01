@@ -7,6 +7,7 @@ import {
 } from '@/modules/common/point-types';
 import fs, { FileSystem } from '@/modules/fs';
 import { getRandomArbitrary } from '@/utils';
+import { readPCDHeader, PCDHeader } from './pcd-reader';
 
 let FS: FileSystem;
 
@@ -48,18 +49,14 @@ function savePCDFileBinaryCompressed(filename: string, cloud: PointCloud) {
   return flag === 0;
 }
 
-function readPCDHeader(filename: string) {
-  const header = __PCLCore__.readPCDHeader(filename) as Emscripten.NativeAPI;
-
-  const fields: string[] = [];
-  for (let i = 0; i < header.size(); i++) {
-    fields.push(header.get(i).name);
+function readPCDFileHeader(filename: string) {
+  if (!FS) {
+    FS = fs();
   }
-  header.delete();
 
-  return {
-    fields,
-  };
+  const data = FS.readFile(filename);
+
+  return readPCDHeader(data);
 }
 
 function loadPCDData<
@@ -122,10 +119,13 @@ export default {
   savePCDFileASCII,
   savePCDFileBinary,
   savePCDFileBinaryCompressed,
-  readPCDHeader,
+  readPCDFileHeader,
   loadPCDData,
   savePCDData,
   savePCDDataASCII,
   savePCDDataBinary,
   savePCDDataBinaryCompressed,
+  readPCDHeader,
 };
+
+export { PCDHeader };
