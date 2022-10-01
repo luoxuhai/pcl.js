@@ -6,6 +6,7 @@ import fs from '@/modules/fs';
 import io from '@/modules/io';
 import filters from '@/modules/filters';
 import registration from '@/modules/registration';
+import segmentation from '@/modules/segmentation';
 import common from '@/modules/common';
 import kdtree from '@/modules/kdtree';
 import search from '@/modules/search';
@@ -71,6 +72,7 @@ interface PCLInstance {
   kdtree: typeof kdtree;
   search: typeof search;
   keypoints: typeof keypoints;
+  segmentation: typeof segmentation;
 }
 
 async function init(options?: InitOptions): Promise<PCLInstance | null> {
@@ -119,6 +121,7 @@ async function init(options?: InitOptions): Promise<PCLInstance | null> {
     io,
     filters,
     registration,
+    segmentation,
     common,
     kdtree,
     search,
