@@ -1,5 +1,5 @@
-import * as PCL from '../';
-import { writeFile } from './common';
+import * as PCL from '../../';
+import { writeFile } from '../utils';
 
 describe('loadPCDFile', () => {
   it('should load a ascii format PCD file with XYZ fields', async () => {

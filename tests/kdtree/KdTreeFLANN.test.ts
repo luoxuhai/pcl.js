@@ -1,5 +1,5 @@
-import { writeFile } from './common';
-import * as PCL from '../';
+import { writeFile } from '../utils';
+import * as PCL from '../../';
 
 describe('KdTreeFLANN', () => {
   it('should find the K nearest neighbors of a specific point', () => {

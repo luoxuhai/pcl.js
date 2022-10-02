@@ -1,4 +1,4 @@
-import * as PCL from '../';
+import * as PCL from '../../';
 
 describe('StatisticalOutlierRemoval', () => {
   it('should filtering a PointCloud using a StatisticalOutlierRemoval filter', () => {
