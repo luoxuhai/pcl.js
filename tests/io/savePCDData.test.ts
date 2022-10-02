@@ -1,4 +1,4 @@
-import * as PCL from '../';
+import * as PCL from '../../';
 
 let cloud: any;
 

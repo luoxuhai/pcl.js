@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import * as PCL from '../';
+import * as PCL from '../../';
 
 describe('ISSKeypoint3D', () => {
   it('should compute the ISS 3D keypoints - Without Boundary Estimation', () => {
     const pcl = global.pcl as PCL.PCLInstance;
 
-    const data = fs.readFileSync(path.join(__dirname, '../data/bun0.pcd'));
+    const data = fs.readFileSync(path.join(global.ROOT_DIR, 'data/bun0.pcd'));
     const cloud = pcl.io.loadPCDData<PCL.PointNormal>(data, PCL.PointNormal);
     // Get point cloud resolution
     const resolution = pcl.common.computeCloudResolution(cloud);

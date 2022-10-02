@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import * as PCL from '../';
+import * as PCL from '../../';
 
 describe('FileSystem', () => {
   const text = '# .PCD v.7 - Point Cloud Data file format';
@@ -9,7 +9,7 @@ describe('FileSystem', () => {
     const pcl = global.pcl as PCL.PCLInstance;
 
     const binary = fs.readFileSync(
-      path.join(__dirname, '../data/room_scan2.pcd'),
+      path.join(global.ROOT_DIR, '/data/room_scan2.pcd'),
     );
     pcl?.fs.writeFile('test-write-file.pcd', text);
     pcl?.fs.writeFile('test-write-binary-file.pcd', new Uint8Array(binary));

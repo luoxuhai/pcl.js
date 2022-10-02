@@ -1,4 +1,4 @@
-import * as PCL from '../';
+import * as PCL from '../../';
 
 describe('PassThrough', () => {
   it('should filtering a PointCloud using a PassThrough filter', () => {
