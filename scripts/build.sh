@@ -12,7 +12,7 @@ echo $(pwd)
 mkdir -p ${EMBIND_BUILD_DIR}
 cd ${EMBIND_BUILD_DIR}
 
-if [ $1 = "Release" ]; then
+if [[ $1 = "Release" ]]; then
   BUILD_TYPE=Release
 else
   BUILD_TYPE=Debug

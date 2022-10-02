@@ -25,7 +25,7 @@ class MinCutSegmentation<
   }
 
   public getSigma(): number {
-    return this._native.getSigma() as number;
+    return this._native.getSigma();
   }
 
   public setRadius(radius: number): void {
