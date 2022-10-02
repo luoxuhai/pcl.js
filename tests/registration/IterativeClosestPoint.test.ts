@@ -1,4 +1,4 @@
-import * as PCL from '../';
+import * as PCL from '../../';
 
 describe('IterativeClosestPoint', () => {
   it('should to return a registered point cloud', () => {

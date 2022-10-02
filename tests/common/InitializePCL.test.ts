@@ -1,10 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import * as PCL from '../';
+import * as PCL from '../../';
 
 describe('InitializePCL', () => {
   it('should initialize pcl.js via ArrayBuffer', async () => {
-    const wasm = fs.readFileSync(path.join(__dirname, '../dist/pcl-core.wasm'));
+    const wasm = fs.readFileSync(
+      path.join(global.ROOT_DIR, 'dist/pcl-core.wasm'),
+    );
     const pcl = await PCL.init({
       arrayBuffer: wasm,
       log: false,

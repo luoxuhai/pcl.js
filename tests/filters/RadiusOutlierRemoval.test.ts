@@ -1,4 +1,4 @@
-import * as PCL from '../';
+import * as PCL from '../../';
 
 describe('RadiusOutlierRemoval', () => {
   it('should filtering a PointCloud using a RadiusOutlierRemoval filter', () => {

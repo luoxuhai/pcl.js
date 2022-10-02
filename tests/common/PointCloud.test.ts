@@ -1,4 +1,4 @@
-import * as PCL from '../';
+import * as PCL from '../../';
 
 describe('PointCloud', () => {
   it('should create a point cloud data with XYZ fields, `width` = 5, `height` = 1', async () => {

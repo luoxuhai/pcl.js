@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import * as PCL from '../';
-import { writeFile } from './common';
+import * as PCL from '../../';
+import { writeFile } from '../utils';
 
 describe('readPCDHeader', () => {
   it('should read the header of a PCD file with an x,y,z field', async () => {
@@ -34,7 +34,7 @@ describe('readPCDHeader', () => {
     const pcl = global.pcl as PCL.PCLInstance;
 
     const data = fs.readFileSync(
-      path.join(__dirname, `../data/ism_test_cat.pcd`),
+      path.join(global.ROOT_DIR, `data/ism_test_cat.pcd`),
     );
     const header = pcl.io.readPCDHeader(data);
     expect(header?.fields).toEqual(['x', 'y', 'z']);
