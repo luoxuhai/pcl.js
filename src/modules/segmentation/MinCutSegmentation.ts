@@ -1,10 +1,15 @@
-import { PointCloud } from '@/modules/common/PointCloud';
+import {
+  PointCloud,
+  wrapPointCloud,
+  wrapPoints,
+} from '@/modules/common/PointCloud';
 import {
   PointXYZ,
   PointTypesIntersection,
   PointTypesUnion,
   TPointTypesUnion,
   Vector,
+  PointXYZRGB,
 } from '@/modules/common/point-types';
 
 class MinCutSegmentation<
@@ -17,63 +22,63 @@ class MinCutSegmentation<
   }
 
   public setInputCloud(cloud: PointCloud<T>) {
-    return this._native.setInputCloud(cloud._native);
+    this._native.setInputCloud(cloud._native);
   }
 
-  public setSigma(sigma: number): void {
-    return this._native.setSigma(sigma) as void;
+  public setSigma(sigma: number) {
+    this._native.setSigma(sigma);
   }
 
   public getSigma(): number {
     return this._native.getSigma();
   }
 
-  public setRadius(radius: number): void {
-    return this._native.setRadius(radius) as void;
+  public setRadius(radius: number) {
+    this._native.setRadius(radius);
   }
 
   public getRadius(): number {
-    return this._native.getRadius() as number;
+    return this._native.getRadius();
   }
 
-  public setSourceWeight(weight: number): void {
-    return this._native.setSourceWeight(weight) as void;
+  public setSourceWeight(weight: number) {
+    this._native.setSourceWeight(weight);
   }
 
   public getSourceWeight(): number {
-    return this._native.getSourceWeight() as number;
+    return this._native.getSourceWeight();
   }
 
-  public setSearchMethod(tree: string | null): void {
-    return this._native.setSearchMethod(tree) as void;
+  public setSearchMethod(tree: string | null) {
+    this._native.setSearchMethod(tree);
   }
 
   public getSearchMethod(): string | null {
-    return this._native.getSearchMethod() as string | null;
+    return this._native.getSearchMethod();
   }
 
-  public setNumberOfNeighbours(neighbourNumber: number): void {
-    return this._native.setNumberOfNeighbours(neighbourNumber) as void;
+  public setNumberOfNeighbours(neighbourNumber: number) {
+    this._native.setNumberOfNeighbours(neighbourNumber);
   }
 
   public getNumberOfNeighbours(): number {
-    return this._native.getNumberOfNeighbours() as number;
+    return this._native.getNumberOfNeighbours();
   }
 
   public setForegroundPoints(cloud: PointCloud<T>) {
-    return this._native.setForegroundPoints(cloud._native);
+    this._native.setForegroundPoints(cloud._native);
   }
 
-  public getForegroundPoints(): PointCloud<T> {
-    return this._native.getForegroundPoints() as PointCloud<T>;
+  public getForegroundPoints() {
+    return wrapPoints<T>(this._native.getForegroundPoints());
   }
 
   public setBackgroundPoints(cloud: PointCloud<T>) {
-    return this._native.setBackgroundPoints(cloud._native);
+    this._native.setBackgroundPoints(cloud._native);
   }
 
-  public getBackgroundPoints(): PointCloud<T> {
-    return this._native.getBackgroundPoints() as PointCloud<T>;
+  public getBackgroundPoints() {
+    return wrapPoints<T>(this._native.getBackgroundPoints());
   }
 
   public extract() {
@@ -83,11 +88,11 @@ class MinCutSegmentation<
   }
 
   public getMaxFlow(): number {
-    return this._native.getMaxFlow() as number;
+    return this._native.getMaxFlow();
   }
 
-  public getColoredCloud(): PointCloud<T> {
-    return this._native.getColoredCloud() as PointCloud<T>;
+  public getColoredCloud() {
+    return wrapPointCloud<PointXYZRGB>(this._native.getColoredCloud());
   }
 }
 
