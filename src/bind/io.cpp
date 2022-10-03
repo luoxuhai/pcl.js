@@ -1,37 +1,26 @@
-#include <iostream>
-#include <pcl/io/pcd_io.h>
-#include <pcl/point_types.h>
 #include <pcl/PCLPointCloud2.h>
-#include <emscripten/bind.h>
+#include <pcl/io/pcd_io.h>
 
-using namespace pcl;
-
-#define BIND_LOAD_PCD_FILE(PointT) function("loadPCDFile" #PointT, select_overload<int(const std::string &, PointCloud<PointT> &)>(&io::loadPCDFile));
-#define BIND_SAVE_PCD_FILE(PointT) function("savePCDFile" #PointT, select_overload<int(const std::string &, const PointCloud<PointT> &, bool)>(&io::savePCDFile));
-#define BIND_SAVE_PCD_FBC(PointT) function("savePCDFileBinaryCompressed" #PointT, &io::savePCDFileBinaryCompressed<PointT>);
+#include "embind.hpp"
 
 using namespace emscripten;
+using namespace pcl;
 
-EMSCRIPTEN_BINDINGS(io)
-{
-  BIND_LOAD_PCD_FILE(PointXYZ);
-  BIND_LOAD_PCD_FILE(PointXYZI);
-  BIND_LOAD_PCD_FILE(PointXYZRGB);
-  BIND_LOAD_PCD_FILE(PointXYZRGBA);
-  BIND_LOAD_PCD_FILE(Normal);
-  BIND_LOAD_PCD_FILE(PointNormal);
+#define BIND_loadPCDFile(r, data, PointT) \
+  function("loadPCDFile" BOOST_PP_STRINGIZE(PointT), select_overload<int(const std::string &, PointCloud<PointT> &)>(&io::loadPCDFile));
 
-  BIND_SAVE_PCD_FILE(PointXYZ);
-  BIND_SAVE_PCD_FILE(PointXYZI);
-  BIND_SAVE_PCD_FILE(PointXYZRGB);
-  BIND_SAVE_PCD_FILE(PointXYZRGBA);
-  BIND_SAVE_PCD_FILE(Normal);
-  BIND_SAVE_PCD_FILE(PointNormal);
+#define BIND_savePCDFile(r, data, PointT)                                          \
+  function("savePCDFile" BOOST_PP_STRINGIZE(PointT),                                                                     \
+      select_overload<int(const std::string &, const PointCloud<PointT> &, bool)>( \
+          &io::savePCDFile));
 
-  BIND_SAVE_PCD_FBC(PointXYZ);
-  BIND_SAVE_PCD_FBC(PointXYZI);
-  BIND_SAVE_PCD_FBC(PointXYZRGB);
-  BIND_SAVE_PCD_FBC(PointXYZRGBA);
-  BIND_SAVE_PCD_FBC(Normal);
-  BIND_SAVE_PCD_FBC(PointNormal);
+#define BIND_savePCDFileBinaryCompressed(r, data, PointT) \
+  function("savePCDFileBinaryCompressed" BOOST_PP_STRINGIZE(PointT), &io::savePCDFileBinaryCompressed<PointT>);
+
+EMSCRIPTEN_BINDINGS(io) {
+  BOOST_PP_SEQ_FOR_EACH(BIND_loadPCDFile, , POINT_TYPES);
+
+  BOOST_PP_SEQ_FOR_EACH(BIND_savePCDFile, , POINT_TYPES);
+
+  BOOST_PP_SEQ_FOR_EACH(BIND_savePCDFileBinaryCompressed, , POINT_TYPES);
 }

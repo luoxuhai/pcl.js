@@ -1,42 +1,45 @@
-#include <pcl/point_types.h>
-#include <pcl/pcl_config.h>
 #include <pcl/impl/pcl_base.hpp>
+#include <pcl/pcl_config.h>
 #include <pcl/search/kdtree.h>
-#include "embind.cpp"
+
+#include "embind.hpp"
 
 using namespace pcl;
 
 const std::string VERSION = PCL_VERSION_PRETTY;
 
-#define BIND_POINT_CLOUD(PointT)                                                                                   \
-  class_<PointCloud<PointT>>("PointCloud" #PointT)                                                                 \
-      .smart_ptr_constructor<PointCloud<PointT>::Ptr>("PointCloud" #PointT, &std::make_shared<PointCloud<PointT>>) \
-      .property("width", &PointCloud<PointT>::width)                                                               \
-      .property("height", &PointCloud<PointT>::height)                                                             \
-      .property("points", &PointCloud<PointT>::points)                                                             \
-      .property("is_dense", &PointCloud<PointT>::is_dense)                                                         \
-      .property("header", &PointCloud<PointT>::header)                                                             \
-      .function("isOrganized", &PointCloud<PointT>::isOrganized)                                                   \
-      .function("resize", select_overload<void(index_t, const PointT &)>(&PointCloud<PointT>::resize))             \
-      .function("push_back", &PointCloud<PointT>::push_back)                                                       \
-      .function("clear", &PointCloud<PointT>::clear)                                                               \
-      .smart_ptr<PointCloud<PointT>::ConstPtr>("PointCloudConstPtr" #PointT);
+#define BIND_PointCloud(r, data, PointT)                                                      \
+  class_<PointCloud<PointT>>(                                                                 \
+      "PointCloud" BOOST_PP_STRINGIZE(PointT))                                                \
+          .smart_ptr_constructor<PointCloud<PointT>::Ptr>(                                    \
+              "PointCloud" BOOST_PP_STRINGIZE(PointT), &std::make_shared<PointCloud<PointT>>) \
+                  .property("width", &PointCloud<PointT>::width)                              \
+                  .property("height", &PointCloud<PointT>::height)                            \
+                  .property("points", &PointCloud<PointT>::points)                            \
+                  .property("is_dense", &PointCloud<PointT>::is_dense)                        \
+                  .property("header", &PointCloud<PointT>::header)                            \
+                  .function("isOrganized", &PointCloud<PointT>::isOrganized)                  \
+                  .function("resize", select_overload<void(index_t, const PointT &)>(         \
+                                          &PointCloud<PointT>::resize))                       \
+                  .function("push_back", &PointCloud<PointT>::push_back)                      \
+                  .function("clear", &PointCloud<PointT>::clear)                              \
+                  .smart_ptr<PointCloud<PointT>::ConstPtr>(                                   \
+                      "PointCloudConstPtr" BOOST_PP_STRINGIZE(PointT));
 
-#define BIND_POINTS(PointT) register_vector_plus<PointT, Eigen::aligned_allocator<PointT>>("Points" #PointT);
+#define BIND_Points(r, data, PointT)                              \
+  register_vector_plus<PointT, Eigen::aligned_allocator<PointT>>( \
+      "Points" BOOST_PP_STRINGIZE(PointT));
 
-// define PCLBase
-#define BIND_PCL_BASE(PointT)                                     \
-  class_<PCLBase<PointT>>("PCLBase" #PointT)                      \
-      .function("setInputCloud", &PCLBase<PointT>::setInputCloud) \
-      .function("getInputCloud", &PCLBase<PointT>::getInputCloud);
+#define BIND_PCLBase(r, data, PointT)                                                     \
+  class_<PCLBase<PointT>>("PCLBase" BOOST_PP_STRINGIZE(PointT))                           \
+                              .function("setInputCloud", &PCLBase<PointT>::setInputCloud) \
+                              .function("getInputCloud", &PCLBase<PointT>::getInputCloud);
 
-#define BIND_COMPUTE_CLOUD_RESOLUTION(PointT) \
-  function("computeCloudResolution" #PointT, &computeCloudResolution<PointT>);
+#define BIND_computeCloudResolution(r, data, PointT) \
+  function("computeCloudResolution" BOOST_PP_STRINGIZE(PointT), &computeCloudResolution<PointT>);
 
 template <typename PointT>
-double
-computeCloudResolution(const typename PointCloud<PointT>::ConstPtr &cloud)
-{
+double computeCloudResolution(const typename PointCloud<PointT>::ConstPtr &cloud) {
   double resolution = 0.0;
   int numberOfPoints = 0;
   int nres;
@@ -45,59 +48,34 @@ computeCloudResolution(const typename PointCloud<PointT>::ConstPtr &cloud)
   typename search::KdTree<PointT>::Ptr tree(new search::KdTree<PointT>());
   tree->setInputCloud(cloud);
 
-  for (size_t i = 0; i < cloud->size(); ++i)
-  {
-    if (!std::isfinite((*cloud)[i].x))
-      continue;
+  for (size_t i = 0; i < cloud->size(); ++i) {
+    if (!std::isfinite((*cloud)[i].x)) continue;
 
     // Considering the second neighbor since the first is the point itself.
     nres = tree->nearestKSearch(i, 2, indices, squaredDistances);
-    if (nres == 2)
-    {
+    if (nres == 2) {
       resolution += sqrt(squaredDistances[1]);
       ++numberOfPoints;
     }
   }
-  if (numberOfPoints != 0)
-    resolution /= numberOfPoints;
+  if (numberOfPoints != 0) resolution /= numberOfPoints;
 
   return resolution;
 }
 
-EMSCRIPTEN_BINDINGS(common)
-{
+EMSCRIPTEN_BINDINGS(common) {
   constant("PCL_VERSION", VERSION);
 
-  BIND_POINT_CLOUD(PointXYZ);
-  BIND_POINT_CLOUD(PointXYZI);
-  BIND_POINT_CLOUD(PointXYZRGB);
-  BIND_POINT_CLOUD(PointXYZRGBA);
-  BIND_POINT_CLOUD(Normal);
-  BIND_POINT_CLOUD(PointNormal);
+  BOOST_PP_SEQ_FOR_EACH(BIND_PointCloud, , POINT_TYPES);
 
-  BIND_POINTS(PointXYZ);
-  BIND_POINTS(PointXYZI);
-  BIND_POINTS(PointXYZRGB);
-  BIND_POINTS(PointXYZRGBA);
-  BIND_POINTS(Normal);
-  BIND_POINTS(PointNormal);
+  BOOST_PP_SEQ_FOR_EACH(BIND_Points, , POINT_TYPES);
 
-  // Bind PCLBase
-  BIND_PCL_BASE(PointXYZ);
-  BIND_PCL_BASE(PointXYZI);
-  BIND_PCL_BASE(PointXYZRGB);
-  BIND_PCL_BASE(PointXYZRGBA);
-  BIND_PCL_BASE(Normal);
-  BIND_PCL_BASE(PointNormal);
+  BOOST_PP_SEQ_FOR_EACH(BIND_PCLBase, , POINT_TYPES);
 
   register_vector_plus<float>("VectorFloat");
   register_vector_plus<index_t>("Indices");
 
-  BIND_COMPUTE_CLOUD_RESOLUTION(PointXYZ);
-  BIND_COMPUTE_CLOUD_RESOLUTION(PointXYZI);
-  BIND_COMPUTE_CLOUD_RESOLUTION(PointXYZRGB);
-  BIND_COMPUTE_CLOUD_RESOLUTION(PointXYZRGBA);
-  BIND_COMPUTE_CLOUD_RESOLUTION(PointNormal);
+  BOOST_PP_SEQ_FOR_EACH(BIND_computeCloudResolution, , XYZ_POINT_TYPES);
 
   class_<PointIndices>("PointIndices")
       .smart_ptr_constructor<PointIndices::Ptr>("PointIndices", &std::make_shared<PointIndices>)

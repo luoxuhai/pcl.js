@@ -3,3 +3,13 @@ Language:	Cpp
 Standard: c++14
 BasedOnStyle:	Google
 ColumnLimit: 100
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<[a-z_]+>$'
+    Priority: 1
+  - Regex: '^<pcl/.*>$'
+    Priority: 2
+  - Regex: '^<.*>$'
+    Priority: 3
+  - Regex: '^".*"$'
+    Priority: 4
