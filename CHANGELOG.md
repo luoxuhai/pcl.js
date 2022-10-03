@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.0](https://github.com/luoxuhai/pcl.js/compare/v1.7.2...v1.8.0) (2022-10-03)
+
+
+### ✨ Features
+
+* add MinCutSegmentation ([#49](https://github.com/luoxuhai/pcl.js/issues/49)) ([de1e36d](https://github.com/luoxuhai/pcl.js/commit/de1e36dc839ad7e313d606c02c2aaceaedb61e22))
+* add removeNaNFromPointCloud and removeNaNNormalsFromPointCloud methods ([#51](https://github.com/luoxuhai/pcl.js/issues/51)) ([689f76c](https://github.com/luoxuhai/pcl.js/commit/689f76cb82c635e18e279e98acb53879412bae03))
+
 ## [1.7.2](https://github.com/luoxuhai/pcl.js/compare/v1.7.1...v1.7.2) (2022-10-01)
 
 
