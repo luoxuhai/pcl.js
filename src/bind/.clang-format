@@ -1,0 +1,5 @@
+---
+Language:	Cpp
+Standard: c++14
+BasedOnStyle:	Google
+ColumnLimit: 100
