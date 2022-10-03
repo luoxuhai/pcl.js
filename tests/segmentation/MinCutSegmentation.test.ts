@@ -1,15 +1,15 @@
 import fs from 'fs';
 import path from 'path';
-import * as PCL from '../';
+import * as PCL from '../../';
 
 describe('MinCutSegmentation', () => {
   it('should segment a PointCloud into foreground and background clusters', () => {
     const pcl = global.pcl as PCL.PCLInstance;
 
-    const filename = 'min_cut_segmentation_tutorial.pcd';
-    const pcd = fs.readFileSync(path.join(__dirname, `../data/${filename}`));
-    pcl.fs.writeFile(filename, new Uint8Array(pcd));
-    const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>(filename, PCL.PointXYZ);
+    const data = fs.readFileSync(
+      path.join(global.ROOT_DIR, 'data/min_cut_segmentation_tutorial.pcd'),
+    );
+    const cloud = pcl.io.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
 
     const mcSeg = new pcl.segmentation.MinCutSegmentation<PCL.PointXYZ>(
       PCL.PointXYZ,

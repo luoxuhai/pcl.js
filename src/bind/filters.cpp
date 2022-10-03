@@ -8,6 +8,7 @@
 #include <pcl/filters/grid_minimum.h>
 #include <pcl/filters/local_maximum.h>
 #include <pcl/filters/approximate_voxel_grid.h>
+#include <pcl/filters/filter.h>
 #include <emscripten/bind.h>
 
 // define PassThrough
@@ -100,6 +101,13 @@
                   select_overload<void(float, float, float)>(&pcl::ApproximateVoxelGrid<PointT>::setLeafSize)) \
         .function("setDownsampleAllData", &pcl::ApproximateVoxelGrid<PointT>::setDownsampleAllData)            \
         .function("getDownsampleAllData", &pcl::ApproximateVoxelGrid<PointT>::getDownsampleAllData);
+
+#define BIND_removeNaNFromPointCloud(PointT)    \
+    function("removeNaNFromPointCloud" #PointT, \
+             select_overload<void(const pcl::PointCloud<PointT> &, pcl::PointCloud<PointT> &, pcl::Indices &)>(&pcl::removeNaNFromPointCloud<PointT>))
+
+#define BIND_removeNaNNormalsFromPointCloud(PointT) \
+    function("removeNaNNormalsFromPointCloud" #PointT, &pcl::removeNaNNormalsFromPointCloud<PointT>);
 
 struct FilterLimits
 {
@@ -214,4 +222,13 @@ EMSCRIPTEN_BINDINGS(filters)
     value_array<FilterLimits>("FilterLimits")
         .element(&FilterLimits::min)
         .element(&FilterLimits::max);
+
+    BIND_removeNaNFromPointCloud(PointXYZ);
+    BIND_removeNaNFromPointCloud(PointXYZI);
+    BIND_removeNaNFromPointCloud(PointXYZRGB);
+    BIND_removeNaNFromPointCloud(PointXYZRGBA);
+    BIND_removeNaNFromPointCloud(PointNormal);
+
+    BIND_removeNaNNormalsFromPointCloud(Normal);
+    BIND_removeNaNNormalsFromPointCloud(PointNormal);
 }

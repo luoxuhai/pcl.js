@@ -6,6 +6,8 @@ import copy from 'rollup-plugin-copy';
 import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
 import alias from '@rollup/plugin-alias';
+import path from 'path';
+import { exec } from 'child_process';
 
 import pkg from './package.json';
 
@@ -36,6 +38,23 @@ function replaceCode() {
             'ENVIRONMENT_IS_NODE = false',
           )
       );
+    },
+  };
+}
+
+function tscAlias() {
+  return {
+    name: 'tsAlias',
+    buildStart: () => {
+      return new Promise((resolve, reject) => {
+        exec('tsc-alias', function callback(error, stdout, stderr) {
+          if (stderr || error) {
+            reject(stderr || error);
+          } else {
+            resolve(stdout);
+          }
+        });
+      });
     },
   };
 }
@@ -79,7 +98,7 @@ const config = [
     ],
     plugins: [
       alias({
-        entries: [{ find: '@', replacement: 'src' }],
+        entries: { '@/': path.resolve(__dirname, 'src/') },
       }),
       replaceCode(),
       replace({
@@ -113,7 +132,7 @@ const config = [
   {
     input: './dist/types/.temp/index.d.ts',
     output: [{ file: 'dist/types/pcl.d.ts', format: 'es' }],
-    plugins: [dts()],
+    plugins: [tscAlias(), dts()],
   },
 ];
 
