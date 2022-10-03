@@ -2,4 +2,4 @@
 
 PCL_DIR=$PWD/core/pcl
 
-${PCL_DIR} build-wasm.sh
+${PCL_DIR}/build-wasm.sh
