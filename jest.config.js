@@ -5,5 +5,5 @@ module.exports = {
   testEnvironment: 'jsdom',
   testRegex: '(/tests/.*(\\.|/)(test|spec))\\.[jt]s$',
   setupFilesAfterEnv: ['<rootDir>/tests/setup-tests.ts'],
-  reporters: ['default', 'github-actions'],
+  testTimeout: 1000 * 60,
 };

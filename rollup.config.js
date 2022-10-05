@@ -42,105 +42,156 @@ function replaceCode() {
   };
 }
 
-function tscAlias() {
-  return {
-    name: 'tsAlias',
-    buildStart: () => {
-      return new Promise((resolve, reject) => {
-        exec('tsc-alias', function callback(error, stdout, stderr) {
-          if (stderr || error) {
-            reject(stderr || error);
-          } else {
-            resolve(stdout);
-          }
+function collectTypeDefinition(moduleName) {
+  const tscAlias = () => {
+    return {
+      name: 'tsAlias',
+      buildStart: () => {
+        return new Promise((resolve, reject) => {
+          exec('tsc-alias', function callback(error, stdout, stderr) {
+            if (stderr || error) {
+              reject(stderr || error);
+            } else {
+              resolve(stdout);
+            }
+          });
         });
-      });
-    },
-    renderChunk(code) {
-      return `
+      },
+    };
+  };
+
+  const addExtra = (moduleName) => {
+    return {
+      renderChunk(code) {
+        return `
 /// <reference path="../../src/emscripten.d.ts" />
 /// <reference path="../../src/global.d.ts" />
-
-${code}`;
-    },
+  
+${code}
+  
+export as namespace ${moduleName};`;
+      },
+    };
   };
+
+  return [tscAlias(), dts(), addExtra(moduleName)];
 }
 
-const config = [
-  {
-    input: 'src/index.ts',
+const constants = {
+  __version__: pkg.version,
+};
+
+const commonPlugins = [
+  alias({
+    entries: { '@/': path.resolve(__dirname, 'src/') },
+  }),
+  bundleSize(),
+  banner(),
+];
+
+const coreConfig = {
+  input: 'src/core/index.ts',
+  output: [
+    {
+      file: pkg.main,
+      format: 'cjs',
+    },
+    {
+      file: pkg.module,
+      format: 'esm',
+    },
+    {
+      file: `dist/pcl.js`,
+      format: 'iife',
+      name: 'PCL',
+    },
+    {
+      file: `dist/pcl.min.js`,
+      format: 'iife',
+      name: 'PCL',
+      plugins: [replaceCode(), terser()],
+    },
+  ],
+  plugins: [
+    ...commonPlugins,
+    replaceCode(),
+    replace(constants),
+    typescript({
+      useTsconfigDeclarationDir: true,
+    }),
+    copy({
+      targets: [
+        {
+          src: 'src/bind/build/pcl-core.wasm',
+          dest: 'dist',
+        },
+      ],
+    }),
+    process.env.ENV === 'development' &&
+      serve({
+        contentBase: 'dist',
+        port: 4321,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      }),
+  ],
+};
+
+const visualizationModules = ['PointCloudViewer'];
+const visualizationConfig = visualizationModules.map((name) => {
+  return {
+    input: `src/visualization/${name}.ts`,
     output: [
       {
-        file: pkg.main,
-        format: 'cjs',
-      },
-      {
-        file: pkg.module,
+        file: `dist/visualization/${name}.esm.js`,
         format: 'esm',
       },
       {
-        file: `dist/pcl.js`,
+        file: `dist/visualization/${name}.js`,
         format: 'iife',
-        name: 'PCL',
+        name,
         globals: {
           three: 'THREE',
         },
       },
       {
-        file: `dist/pcl.min.js`,
+        file: `dist/visualization/${name}.min.js`,
         format: 'iife',
-        name: 'PCL',
+        name,
         globals: {
           three: 'THREE',
         },
-        plugins: [
-          replaceCode(),
-          terser({
-            compress: {
-              drop_console: true,
-            },
-          }),
-        ],
+        plugins: [terser()],
       },
     ],
     plugins: [
-      alias({
-        entries: { '@/': path.resolve(__dirname, 'src/') },
-      }),
-      replaceCode(),
-      replace({
-        __version__: pkg.version,
-      }),
+      ...commonPlugins,
       typescript({
-        useTsconfigDeclarationDir: true,
-        tsconfig: './tsconfig.json',
-      }),
-      bundleSize(),
-      banner(),
-      copy({
-        targets: [
-          {
-            src: 'src/bind/build/pcl-core.wasm',
-            dest: 'dist',
+        tsconfigOverride: {
+          compilerOptions: {
+            declaration: false,
           },
-        ],
+        },
       }),
-      process.env.ENV === 'development' &&
-        serve({
-          contentBase: 'dist',
-          port: 4321,
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
-        }),
     ],
     external: ['three'],
-  },
+  };
+});
+
+const config = [
+  coreConfig,
+  ...visualizationConfig,
   {
-    input: './dist/types/.temp/index.d.ts',
-    output: [{ file: 'dist/types/pcl.d.ts', format: 'es' }],
-    plugins: [tscAlias(), dts()],
+    input: './dist/.types/core/index.d.ts',
+    output: [{ file: 'dist/pcl.d.ts', format: 'es' }],
+    plugins: collectTypeDefinition('PCL'),
   },
+  ...visualizationModules.map((name) => ({
+    input: `./dist/.types/visualization/${name}.d.ts`,
+    output: [{ file: `dist/visualization/${name}.d.ts`, format: 'es' }],
+    plugins: collectTypeDefinition(name),
+  })),
 ];
 
 export default config;

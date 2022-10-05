@@ -12,9 +12,9 @@ import {
   Vector3,
   Float32BufferAttribute,
 } from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { PCDLoader } from 'three/examples/jsm/loaders/PCDLoader';
 
-import { OrbitControls } from './vendors/OrbitControls';
-import { PCDLoader } from './vendors/PCDLoader';
 import { getCenter } from './utils';
 import { PointCloud } from '@/modules/common/PointCloud';
 
@@ -98,14 +98,14 @@ class PointCloudViewer {
     onProgress?: ((event: ProgressEvent<EventTarget>) => void) | undefined,
   ) {
     this.removePointCloud();
-    const cloud = await new PCDLoader().loadAsync(url, onProgress);
+    const cloud = (await new PCDLoader().loadAsync(url, onProgress)) as PointsObject3D;
     if (cloud) {
       this.addPointCloudToScene(cloud, id);
     }
   }
 
   public async addPointCloudByData(data: ArrayBuffer, id?: string) {
-    const cloud = new PCDLoader().parse(data);
+    const cloud = new PCDLoader().parse(data, '') as PointsObject3D;
     this.addPointCloudToScene(cloud, id);
   }
 
