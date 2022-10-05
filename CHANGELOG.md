@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.9.0](https://github.com/luoxuhai/pcl.js/compare/v1.8.0...v1.9.0) (2022-10-05)
+
+
+### ✨ Features
+
+* add more point type ([34b4954](https://github.com/luoxuhai/pcl.js/commit/34b4954c930b7e4954f894ee1553e0da387a7076))
+
+
+### 🐛 Bug Fixes
+
+* unable to use new point type ([#56](https://github.com/luoxuhai/pcl.js/issues/56)) ([1c9282c](https://github.com/luoxuhai/pcl.js/commit/1c9282caf5aa9fadae10a6bfb83776a7d151d5a3))
+
 ## [1.8.0](https://github.com/luoxuhai/pcl.js/compare/v1.7.2...v1.8.0) (2022-10-03)
 
 
