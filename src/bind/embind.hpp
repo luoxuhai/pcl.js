@@ -40,10 +40,15 @@ class_<std::vector<T, Allocator>> register_vector_plus(const char *name) {
 
 using namespace pcl;
 
-#define POINT_TYPES (PointXYZ)(PointXYZI)(PointXYZRGB)(PointXYZRGBA)(PointNormal)(Normal)
+#define POINT_TYPES    \
+  (PointXY)(PointXYZ)( \
+      PointXYZI)(PointXYZL)(InterestPoint)(PointXYZRGB)(PointXYZRGBA)(PointXYZRGBL)(Normal)(PointNormal)(PointXYZRGBNormal)(PointXYZINormal)(PointXYZLNormal)(PointSurfel)
 
-#define XYZ_POINT_TYPES (PointXYZ)(PointXYZI)(PointXYZRGB)(PointXYZRGBA)(PointNormal)
+#define XYZ_POINT_TYPES  \
+  (PointXYZ)(PointXYZI)( \
+      PointXYZL)(InterestPoint)(PointXYZRGB)(PointXYZRGBA)(PointXYZRGBL)(PointNormal)(PointXYZRGBNormal)(PointXYZINormal)(PointXYZLNormal)(PointSurfel)
 
-#define NORMAL_POINT_TYPES (PointNormal)(Normal)
+#define NORMAL_POINT_TYPES \
+  (Normal)(PointNormal)(PointXYZRGBNormal)(PointXYZINormal)(PointXYZLNormal)(PointSurfel)
 
 #endif
