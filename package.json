@@ -1,10 +1,26 @@
 {
   "name": "pcl.js",
   "version": "1.9.0",
-  "description": "PCL for browser and node, powered by WebAssembly.",
-  "types": "dist/types/pcl.d.ts",
+  "description": "Point Cloud Library (PCL) for browser, powered by WebAssembly.｜在浏览器运行的点云库 (PCL)，由 WebAssembly 提供支持。",
+  "types": "dist/pcl.d.ts",
   "main": "dist/pcl.cjs.js",
   "module": "dist/pcl.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/pcl.esm.js",
+      "require": "./dist/pcl.cjs.js",
+      "types": "./dist/pcl.d.ts"
+    },
+    "./pcl-core.wasm": "./dist/pcl-core.wasm",
+    "./PointCloudViewer": "./dist/visualization/PointCloudViewer.esm.js"
+  },
+  "typesVersions": {
+    "*": {
+      "PointCloudViewer": [
+        "./dist/visualization/PointCloudViewer.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "setup": "yarn install && cd website && yarn install",
     "dev:js": "rollup -c -w --environment ENV:development",
@@ -15,7 +31,7 @@
     "build:pcl": "bash scripts/build-pcl.sh",
     "build": "npm run build:wasm && npm run build:js",
     "prebuild": "npm run clean",
-    "postbuild": "rimraf dist/types/.temp",
+    "postbuild": "rimraf dist/.types",
     "clean": "rimraf dist/*",
     "clean:wasm": "rimraf src/bind/build/*",
     "test": "jest",
@@ -29,10 +45,12 @@
   },
   "keywords": [
     "PCL",
+    "Point Cloud",
     "Point Cloud Library",
     "WebAssembly",
     "JavaScript",
-    "TypeScript"
+    "TypeScript",
+    "Point Cloud Viewer"
   ],
   "files": [
     "dist",
@@ -46,7 +64,10 @@
   },
   "homepage": "https://github.com/luoxuhai/pcl.js#readme",
   "engines": {
-    "node": ">=11.0.0"
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "three": ">=0.123.0 <1.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
@@ -102,8 +123,5 @@
     "singleQuote": true,
     "trailingComma": "all",
     "printWidth": 100
-  },
-  "dependencies": {
-    "three": "^0.144.0"
   }
 }
