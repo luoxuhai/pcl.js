@@ -1,19 +1,14 @@
 import { PointCloud, PointIndices } from '@/modules/common/PointCloud';
-import {
-  PointTypesUnion,
-  PointTypesIntersection,
-} from '@/modules/common/point-types';
+import { XYZPointTypes } from '@/modules/common/point-types';
 import KdTree from '@/modules/kdtree/KdTree';
 import PCLBase from '@/modules/common/PCLBase';
 
-class Keypoint<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
-> extends PCLBase<T> {
-  public setSearchMethod(tree: KdTree) {
+class Keypoint<T extends XYZPointTypes> extends PCLBase<T> {
+  public setSearchMethod(tree: KdTree<T>) {
     this._native.setSearchMethod(tree._native);
   }
 
-  public getSearchMethod(): KdTree {
+  public getSearchMethod(): KdTree<T> {
     return this._native.getSearchMethod();
   }
 

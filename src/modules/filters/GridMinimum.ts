@@ -1,15 +1,15 @@
 import FilterIndices from './FilterIndices';
 import {
-  PointTypesUnion,
-  TPointTypesUnion,
+  XYZPointTypes,
+  XYZPointTypesTypeof,
   PointXYZ,
-  PointTypesIntersection,
 } from '@/modules/common/point-types';
 
 class GridMinimum<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
+  T extends XYZPointTypes = PointXYZ &
+    Partial<UnionToIntersection<XYZPointTypes>>,
 > extends FilterIndices<T> {
-  constructor(protected _PT: TPointTypesUnion = PointXYZ, resolution = 0) {
+  constructor(protected _PT: XYZPointTypesTypeof = PointXYZ, resolution = 0) {
     super(new __PCLCore__[`GridMinimum${_PT.name}`](resolution));
   }
 

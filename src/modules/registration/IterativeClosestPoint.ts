@@ -1,30 +1,30 @@
 import { PointCloud, wrapPointCloud } from '@/modules/common/PointCloud';
 import {
+  XYZPointTypes,
+  XYZPointTypesTypeof,
   PointXYZ,
-  PointTypesIntersection,
-  PointTypesUnion,
-  TPointTypesUnion,
 } from '@/modules/common/point-types';
 
 class IterativeClosestPoint<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
+  T extends XYZPointTypes = PointXYZ &
+    Partial<UnionToIntersection<XYZPointTypes>>,
 > {
   public _native: Emscripten.NativeAPI;
 
-  constructor(_PT: TPointTypesUnion = PointXYZ) {
+  constructor(_PT: XYZPointTypesTypeof = PointXYZ) {
     this._native = new __PCLCore__[`IterativeClosestPoint${_PT.name}`]();
   }
 
   public setInputSource(cloud: PointCloud<T>) {
-    return this._native.setInputSource(cloud._native);
+    this._native.setInputSource(cloud._native);
   }
 
   public setInputTarget(cloud: PointCloud<T>) {
-    return this._native.setInputTarget(cloud._native);
+    this._native.setInputTarget(cloud._native);
   }
 
   public getFinalTransformation(): string | null {
-    return this._native.getFinalTransformation() as string | null;
+    return this._native.getFinalTransformation();
   }
 
   public getFitnessScore(): number {
@@ -36,9 +36,7 @@ class IterativeClosestPoint<
   }
 
   public setUseReciprocalCorrespondences(useReciprocalCorrespondence: boolean) {
-    return this._native.setUseReciprocalCorrespondences(
-      useReciprocalCorrespondence,
-    );
+    this._native.setUseReciprocalCorrespondences(useReciprocalCorrespondence);
   }
 
   public getUseReciprocalCorrespondences(): boolean {

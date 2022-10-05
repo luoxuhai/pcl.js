@@ -1,8 +1,8 @@
 # ApproximateVoxelGrid
 
-> https://pointclouds.org/documentation/classpcl_1_1_approximate_voxel_grid.html
-
 `ApproximateVoxelGrid` assembles a local 3D grid over a given `PointCloud`, and downsamples + filters the data.
+
+More: <https://pointclouds.org/documentation/classpcl_1_1_approximate_voxel_grid.html>
 
 ## Constructor
 

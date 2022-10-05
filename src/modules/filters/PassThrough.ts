@@ -1,16 +1,16 @@
 import FilterIndices from './FilterIndices';
 import {
-  PointTypesUnion,
-  PointTypesIntersection,
-  TPointTypesUnion,
+  XYZPointTypes,
+  XYZPointTypesTypeof,
   PointXYZ,
 } from '@/modules/common/point-types';
 
 class PassThrough<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
+  T extends XYZPointTypes = PointXYZ &
+    Partial<UnionToIntersection<XYZPointTypes>>,
 > extends FilterIndices<T> {
   constructor(
-    protected _PT: TPointTypesUnion = PointXYZ,
+    protected _PT: XYZPointTypesTypeof = PointXYZ,
     extractRemovedIndices = false,
   ) {
     super(new __PCLCore__[`PassThrough${_PT.name}`](extractRemovedIndices));

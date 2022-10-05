@@ -3,9 +3,10 @@
 
 This class implements the segmentation algorithm based on minimal cut of the graph.
 
-More: 
-1. https://pointclouds.org/documentation/classpcl_1_1_min_cut_segmentation.html
-2. https://pcl.readthedocs.io/projects/tutorials/en/master/min_cut_segmentation.html#min-cut-segmentation
+More:
+
+1. <https://pointclouds.org/documentation/classpcl_1_1_min_cut_segmentation.html>
+2. <https://pcl.readthedocs.io/projects/tutorials/en/master/min_cut_segmentation.html#min-cut-segmentation>
 
 ## Example
 
@@ -38,10 +39,11 @@ const clusters = mcSeg.extract();
 ```
 
 ## Type Definitions
+
 ```ts
 class MinCutSegmentation<T> {
     _native: Emscripten.NativeAPI;
-    constructor(PT?: TPointTypesUnion);
+    constructor(PT?: XYZPointTypesTypeof);
     setInputCloud(cloud: PointCloud<T>): any;
     setSigma(sigma: number): void;
     getSigma(): number;

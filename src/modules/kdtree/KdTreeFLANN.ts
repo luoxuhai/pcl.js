@@ -1,17 +1,17 @@
 import KdTree from './KdTree';
 import { Indices } from '@/modules/common/PointCloud';
 import {
-  PointTypesUnion,
-  PointTypesIntersection,
-  TPointTypesUnion,
+  XYZPointTypes,
+  XYZPointTypesTypeof,
   PointXYZ,
   Vector,
 } from '@/modules/common/point-types';
 
 class KdTreeFLANN<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
+  T extends XYZPointTypes = PointXYZ &
+    Partial<UnionToIntersection<XYZPointTypes>>,
 > extends KdTree<T> {
-  constructor(_PT: TPointTypesUnion = PointXYZ, sorted = true) {
+  constructor(_PT: XYZPointTypesTypeof = PointXYZ, sorted = true) {
     super(new __PCLCore__[`KdTreeFLANN${_PT.name}`](sorted));
   }
 
@@ -23,7 +23,7 @@ class KdTreeFLANN<
     this._native.setEpsilon(eps);
   }
 
-  public nearestKSearch(point: PointTypesUnion, k: number) {
+  public nearestKSearch(point: T, k: number) {
     const indices = new Indices();
     const distances = new Vector<number>(new __PCLCore__.VectorFloat());
     this._native.nearestKSearch(point, k, indices._native, distances._native);
@@ -34,7 +34,7 @@ class KdTreeFLANN<
     };
   }
 
-  public radiusSearch(point: PointTypesUnion, radius: number, maxNN = 0) {
+  public radiusSearch(point: T, radius: number, maxNN = 0) {
     const indices = new Indices();
     const distances = new Vector<number>(new __PCLCore__.VectorFloat());
     this._native.radiusSearch(

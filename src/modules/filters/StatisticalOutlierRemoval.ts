@@ -1,16 +1,16 @@
 import FilterIndices from './FilterIndices';
 import {
-  PointTypesUnion,
   PointXYZ,
-  PointTypesIntersection,
-  TPointTypesUnion,
+  XYZPointTypes,
+  XYZPointTypesTypeof,
 } from '@/modules/common/point-types';
 
 class StatisticalOutlierRemoval<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
+  T extends XYZPointTypes = PointXYZ &
+    Partial<UnionToIntersection<XYZPointTypes>>,
 > extends FilterIndices<T> {
   constructor(
-    protected _PT: TPointTypesUnion = PointXYZ,
+    protected _PT: XYZPointTypesTypeof = PointXYZ,
     extractRemovedIndices = false,
   ) {
     super(
