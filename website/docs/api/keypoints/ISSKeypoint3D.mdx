@@ -32,8 +32,8 @@ iss.compute(keypoints);
 
 ## Type Definitions
 ```ts
-class ISSKeypoint3D<T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>> {
-    constructor(PT?: TPointTypesUnion, salientRadius?: number);
+class ISSKeypoint3D<T extends XYZPointTypes = PointXYZ> {
+    constructor(PT?: XYZPointTypesTypeof, salientRadius?: number);
     setSalientRadius(salientRadius: number): void;
     setNonMaxRadius(radius: number): void;
     setNormalRadius(radius: number): void;

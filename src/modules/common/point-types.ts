@@ -1,66 +1,70 @@
 export class PointXY {
+  // HACK: To distinguish between different types
+  private readonly _PointXY = 'PointXY';
   constructor(public x = 0, public y = 0) {}
 }
 
-export class PointXYZ extends PointXY {
-  constructor(x = 0, y = 0, public z = 0) {
-    super(x, y);
-  }
+export class PointXYZ {
+  private readonly _PointXYZ = 'PointXYZ';
+  constructor(public x = 0, public y = 0, public z = 0) {}
 }
 
-export class PointXYZI extends PointXYZ {
-  constructor(x = 0, y = 0, z = 0, public intensity = 0) {
-    super(x, y, z);
-  }
+export class PointXYZI {
+  private readonly _PointXYZI = 'PointXYZI';
+
+  constructor(public x = 0, public y = 0, public z = 0, public intensity = 0) {}
 }
 
-export class PointXYZL extends PointXYZ {
-  constructor(x?: number, y?: number, z?: number, public label = 0) {
-    super(x, y, z);
-  }
+export class PointXYZL {
+  private readonly _PointXYZL = 'PointXYZL';
+  constructor(public x = 0, public y = 0, public z = 0, public label = 0) {}
 }
 
-export class InterestPoint extends PointXYZ {
-  constructor(x?: number, y?: number, z?: number, public strength = 0) {
-    super(x, y, z);
-  }
+export class InterestPoint {
+  private readonly _InterestPoint = 'InterestPoint';
+  constructor(public x = 0, public y = 0, public z = 0, public strength = 0) {}
 }
 
-export class PointXYZRGB extends PointXYZ {
-  constructor(x = 0, y = 0, z = 0, public r = 0, public g = 0, public b = 0) {
-    super(x, y, z);
-  }
-}
-
-export class PointXYZRGBA extends PointXYZ {
+export class PointXYZRGB {
+  private readonly _PointXYZRGB = 'PointXYZRGB';
   constructor(
-    x = 0,
-    y = 0,
-    z = 0,
+    public x = 0,
+    public y = 0,
+    public z = 0,
+    public r = 0,
+    public g = 0,
+    public b = 0,
+  ) {}
+}
+
+export class PointXYZRGBA {
+  private readonly _PointXYZRGBA = 'PointXYZRGBA';
+  constructor(
+    public x = 0,
+    public y = 0,
+    public z = 0,
     public r = 0,
     public g = 0,
     public b = 0,
     public a = 0,
-  ) {
-    super(x, y, z);
-  }
+  ) {}
 }
 
-export class PointXYZRGBL extends PointXYZRGB {
+export class PointXYZRGBL {
+  private readonly _PointXYZRGBL = 'PointXYZRGBL';
   constructor(
-    x?: number,
-    y?: number,
-    z?: number,
-    r?: number,
-    g?: number,
-    b?: number,
+    public x = 0,
+    public y = 0,
+    public z = 0,
+    public r = 0,
+    public g = 0,
+    public b = 0,
     public label = 0,
-  ) {
-    super(x, y, z, r, g, b);
-  }
+  ) {}
 }
 
 export class Normal {
+  private readonly _Normal = 'Normal';
   constructor(
     public normalX = 0,
     public normalY = 0,
@@ -69,72 +73,69 @@ export class Normal {
   ) {}
 }
 
-export class PointNormal extends PointXYZ {
+export class PointNormal {
+  private readonly _PointNormal = 'PointNormal';
   constructor(
-    x = 0,
-    y = 0,
-    z = 0,
+    public x = 0,
+    public y = 0,
+    public z = 0,
     public normalX = 0,
     public normalY = 0,
     public normalZ = 0,
     public curvature = 0,
-  ) {
-    super(x, y, z);
-  }
+  ) {}
 }
 
-export class PointXYZLNormal extends PointNormal {
+export class PointXYZLNormal {
+  private readonly _PointXYZLNormal = 'PointXYZLNormal';
   constructor(
-    x?: number,
-    y?: number,
-    z?: number,
+    public x = 0,
+    public y = 0,
+    public z = 0,
     public label = 0,
-    normalX?: number,
-    normalY?: number,
-    normalZ?: number,
-    curvature?: number,
-  ) {
-    super(x, y, z, normalX, normalY, normalZ, curvature);
-  }
+    public normalX = 0,
+    public normalY = 0,
+    public normalZ = 0,
+    public curvature = 0,
+  ) {}
 }
 
-export class PointXYZINormal extends PointNormal {
+export class PointXYZINormal {
+  private readonly _PointXYZINormal = 'PointXYZINormal';
   constructor(
-    x?: number,
-    y?: number,
-    z?: number,
+    public x = 0,
+    public y = 0,
+    public z = 0,
     public intensity = 0,
-    normalX?: number,
-    normalY?: number,
-    normalZ?: number,
-    curvature?: number,
-  ) {
-    super(x, y, z, normalX, normalY, normalZ, curvature);
-  }
+    public normalX = 0,
+    public normalY = 0,
+    public normalZ = 0,
+    public curvature = 0,
+  ) {}
 }
 
-export class PointXYZRGBNormal extends PointNormal {
+export class PointXYZRGBNormal {
+  private readonly _PointXYZRGBNormal = 'PointXYZRGBNormal';
   constructor(
-    x?: number,
-    y?: number,
-    z?: number,
+    public x = 0,
+    public y = 0,
+    public z = 0,
     public r = 0,
     public g = 0,
     public b = 0,
-    normalX?: number,
-    normalY?: number,
-    normalZ?: number,
-    curvature?: number,
-  ) {
-    super(x, y, z, normalX, normalY, normalZ, curvature);
-  }
+    public normalX = 0,
+    public normalY = 0,
+    public normalZ = 0,
+    public curvature = 0,
+  ) {}
 }
 
-export class PointSurfel extends PointXYZ {
+export class PointSurfel {
+  private readonly _PointSurfel = 'PointSurfel';
   constructor(
-    x?: number,
-    y?: number,
-    z?: number,
+    public x = 0,
+    public y = 0,
+    public z = 0,
     public normalX = 0,
     public normalY = 0,
     public normalZ = 0,
@@ -145,12 +146,11 @@ export class PointSurfel extends PointXYZ {
     public radius = 0,
     public confidence = 0,
     public curvature = 0,
-  ) {
-    super(x, y, z);
-  }
+  ) {}
 }
 
-export type PointTypesUnion =
+// Define all point types
+export type PointTypes =
   | PointXY
   | PointXYZ
   | PointXYZI
@@ -166,7 +166,7 @@ export type PointTypesUnion =
   | PointXYZLNormal
   | PointSurfel;
 
-export type TPointTypesUnion =
+export type PointTypesTypeof =
   | typeof PointXY
   | typeof PointXYZ
   | typeof PointXYZI
@@ -182,9 +182,54 @@ export type TPointTypesUnion =
   | typeof PointXYZLNormal
   | typeof PointSurfel;
 
-export type PointTypesIntersection = UnionToIntersection<PointTypesUnion>;
+// Define all point types that include XYZ data
+export type XYZPointTypes =
+  | PointXYZ
+  | PointXYZI
+  | PointXYZL
+  | PointXYZRGBA
+  | PointXYZRGB
+  | PointXYZRGBL
+  | InterestPoint
+  | PointNormal
+  | PointXYZRGBNormal
+  | PointXYZINormal
+  | PointXYZLNormal
+  | PointSurfel;
 
-export type TPointTypesIntersection = UnionToIntersection<TPointTypesUnion>;
+export type XYZPointTypesTypeof =
+  | typeof PointXYZ
+  | typeof PointXYZI
+  | typeof PointXYZL
+  | typeof PointXYZRGBA
+  | typeof PointXYZRGB
+  | typeof PointXYZRGBL
+  | typeof InterestPoint
+  | typeof PointNormal
+  | typeof PointXYZRGBNormal
+  | typeof PointXYZINormal
+  | typeof PointXYZLNormal
+  | typeof PointSurfel;
+
+// Define all point types with XYZ and label
+export type XYZLPointTypes = PointXYZL | PointXYZRGBL | PointXYZLNormal;
+
+// Define all point types that include RGB data
+export type RGBPointTypes =
+  | PointXYZRGB
+  | PointXYZRGBA
+  | PointXYZRGBL
+  | PointXYZRGBNormal
+  | PointSurfel;
+
+// Define all point types that include normal data
+export type NormalPointTypes =
+  | Normal
+  | PointNormal
+  | PointXYZRGBNormal
+  | PointXYZINormal
+  | PointXYZLNormal
+  | PointSurfel;
 
 export const pointTypeMap = {
   PointXY,

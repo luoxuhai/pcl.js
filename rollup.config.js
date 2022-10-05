@@ -56,6 +56,13 @@ function tscAlias() {
         });
       });
     },
+    renderChunk(code) {
+      return `
+/// <reference path="../../src/emscripten.d.ts" />
+/// <reference path="../../src/global.d.ts" />
+
+${code}`;
+    },
   };
 }
 

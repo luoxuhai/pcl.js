@@ -1,15 +1,9 @@
 import { PointCloud, Indices } from '@/modules/common/PointCloud';
-import {
-  PointTypesUnion,
-  PointTypesIntersection,
-  TPointTypesUnion,
-} from '@/modules/common/point-types';
-import PCLBase from '../common/PCLBase';
+import { PointTypes, PointTypesTypeof } from '@/modules/common/point-types';
+import PCLBase from '@/modules/common/PCLBase';
 
-abstract class FilterBase<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
-> extends PCLBase<T> {
-  protected abstract _PT?: TPointTypesUnion;
+abstract class FilterBase<T extends PointTypes> extends PCLBase<T> {
+  protected abstract _PT?: PointTypesTypeof;
 
   public filter(cloud?: PointCloud<T>) {
     if (!this._PT) {

@@ -6,4 +6,4 @@ export default {
   ...Utils,
 };
 
-export * from '../common/point-types';
+export * from '@/modules/common/point-types';

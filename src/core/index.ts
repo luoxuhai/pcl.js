@@ -1,6 +1,3 @@
-/// <reference path="../emscripten.d.ts" />
-/// <reference path="../global.d.ts" />
-
 import initPCLCore from '@/bind/build/pcl-core';
 import fs from '@/modules/fs';
 import io from '@/modules/io';

@@ -1,9 +1,7 @@
 import { PointCloud, wrapPointCloud } from './PointCloud';
-import { PointTypesUnion, PointTypesIntersection } from './point-types';
+import { PointTypes } from './point-types';
 
-class PCLBase<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
-> {
+class PCLBase<T extends PointTypes> {
   constructor(public _native: Emscripten.NativeAPI) {}
 
   public setInputCloud(cloud: PointCloud<T>): null {

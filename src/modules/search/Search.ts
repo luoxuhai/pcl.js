@@ -1,12 +1,7 @@
 import { wrapPointCloud } from '@/modules/common/PointCloud';
-import {
-  PointTypesUnion,
-  PointTypesIntersection,
-} from '@/modules/common/point-types';
+import { XYZPointTypes } from '@/modules/common/point-types';
 
-class Search<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
-> {
+class Search<T extends XYZPointTypes> {
   constructor(public _native: Emscripten.NativeAPI) {}
 
   public getInputCloud() {

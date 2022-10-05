@@ -1,8 +1,7 @@
 import { PointCloud } from '@/modules/common/PointCloud';
 import {
-  PointTypesUnion,
-  TPointTypesUnion,
-  PointTypesIntersection,
+  PointTypes,
+  PointTypesTypeof,
   PointXYZ,
 } from '@/modules/common/point-types';
 import fs, { FileSystem } from '@/modules/fs';
@@ -12,8 +11,8 @@ import { readPCDHeader, PCDHeader } from './pcd-reader';
 let FS: FileSystem;
 
 function loadPCDFile<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
->(filename: string, _PT: TPointTypesUnion = PointXYZ) {
+  T extends PointTypes = PointXYZ & Partial<UnionToIntersection<PointTypes>>,
+>(filename: string, _PT: PointTypesTypeof = PointXYZ) {
   const cloud = new PointCloud<T>(_PT);
   const status = __PCLCore__[`loadPCDFile${_PT.name}`](filename, cloud._native);
   const isSuccess = status === 0;
@@ -24,7 +23,11 @@ function loadPCDFile<
   return cloud;
 }
 
-function savePCDFile(filename: string, cloud: PointCloud, binaryMode = false) {
+function savePCDFile(
+  filename: string,
+  cloud: PointCloud<PointTypes>,
+  binaryMode = false,
+) {
   const flag = __PCLCore__[`savePCDFile${cloud._PT.name}`](
     filename,
     cloud._native,
@@ -33,15 +36,18 @@ function savePCDFile(filename: string, cloud: PointCloud, binaryMode = false) {
   return flag === 0;
 }
 
-function savePCDFileASCII(filename: string, cloud: PointCloud) {
+function savePCDFileASCII(filename: string, cloud: PointCloud<PointTypes>) {
   return savePCDFile(filename, cloud);
 }
 
-function savePCDFileBinary(filename: string, cloud: PointCloud) {
+function savePCDFileBinary(filename: string, cloud: PointCloud<PointTypes>) {
   return savePCDFile(filename, cloud, true);
 }
 
-function savePCDFileBinaryCompressed(filename: string, cloud: PointCloud) {
+function savePCDFileBinaryCompressed(
+  filename: string,
+  cloud: PointCloud<PointTypes>,
+) {
   const flag = __PCLCore__[`savePCDFileBinaryCompressed${cloud._PT.name}`](
     filename,
     cloud._native,
@@ -60,8 +66,8 @@ function readPCDFileHeader(filename: string) {
 }
 
 function loadPCDData<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
->(data: ArrayBuffer, _PT: TPointTypesUnion = PointXYZ) {
+  T extends PointTypes = PointXYZ & Partial<UnionToIntersection<PointTypes>>,
+>(data: ArrayBuffer, _PT: PointTypesTypeof = PointXYZ) {
   if (!FS) {
     FS = fs();
   }
@@ -74,10 +80,7 @@ function loadPCDData<
   return cloud;
 }
 
-function savePCDData(
-  cloud: PointCloud<Partial<PointTypesIntersection>>,
-  binaryMode = false,
-) {
+function savePCDData(cloud: PointCloud<PointTypes>, binaryMode = false) {
   if (!FS) {
     FS = fs();
   }
@@ -90,17 +93,15 @@ function savePCDData(
   return data;
 }
 
-function savePCDDataASCII(cloud: PointCloud<Partial<PointTypesIntersection>>) {
+function savePCDDataASCII(cloud: PointCloud<PointTypes>) {
   return savePCDData(cloud);
 }
 
-function savePCDDataBinary(cloud: PointCloud<Partial<PointTypesIntersection>>) {
+function savePCDDataBinary(cloud: PointCloud<PointTypes>) {
   return savePCDData(cloud, true);
 }
 
-function savePCDDataBinaryCompressed(
-  cloud: PointCloud<Partial<PointTypesIntersection>>,
-) {
+function savePCDDataBinaryCompressed(cloud: PointCloud<PointTypes>) {
   if (!FS) {
     FS = fs();
   }

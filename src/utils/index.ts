@@ -1,4 +1,4 @@
-import { pointTypeMap, TPointTypesUnion } from '../modules/common/point-types';
+import { pointTypeMap, PointTypesTypeof } from '../modules/common/point-types';
 
 export const ENVIRONMENT_IS_NODE =
   typeof process === 'object' &&
@@ -11,5 +11,5 @@ export function getRandomArbitrary(min: number, max: number) {
 
 export function getPointType(native: Emscripten.NativeAPI, className: string) {
   const name = native.$$.ptrType.registeredClass.name.replace(className, '');
-  return pointTypeMap[name] as TPointTypesUnion;
+  return pointTypeMap[name] as PointTypesTypeof;
 }

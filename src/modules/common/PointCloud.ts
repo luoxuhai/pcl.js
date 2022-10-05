@@ -1,12 +1,11 @@
 import {
-  PointTypesUnion,
-  TPointTypesUnion,
-  PointTypesIntersection,
+  PointTypes,
+  PointTypesTypeof,
   PointXYZ,
   NativeObject,
   Vector,
 } from './point-types';
-import { getPointType } from '../../utils';
+import { getPointType } from '@/utils';
 
 class Indices extends Vector<number> {
   constructor(native?: Emscripten.NativeAPI) {
@@ -44,8 +43,8 @@ class PointIndices extends NativeObject {
   }
 }
 
-class Points<T> extends Vector<T> {
-  private readonly _PT: TPointTypesUnion;
+class Points<T extends PointTypes> extends Vector<T> {
+  private readonly _PT: PointTypesTypeof;
 
   constructor(_native: Emscripten.NativeAPI) {
     super(_native);
@@ -58,14 +57,12 @@ class Points<T> extends Vector<T> {
   }
 }
 
-class PointCloud<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
-> extends NativeObject {
+class PointCloud<T extends PointTypes = PointXYZ> extends NativeObject {
   public _native: Emscripten.NativeAPI;
   private _points?: Points<T>;
 
   constructor(
-    public readonly _PT: TPointTypesUnion = PointXYZ,
+    public readonly _PT: PointTypesTypeof = PointXYZ,
     _native?: Emscripten.NativeAPI,
   ) {
     super();
@@ -146,15 +143,11 @@ class PointCloud<
   }
 }
 
-function wrapPointCloud<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
->(_native: Emscripten.NativeAPI) {
+function wrapPointCloud<T extends PointTypes>(_native: Emscripten.NativeAPI) {
   return new PointCloud<T>(getPointType(_native, 'PointCloud'), _native);
 }
 
-function wrapPoints<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
->(_native: Emscripten.NativeAPI) {
+function wrapPoints<T extends PointTypes>(_native: Emscripten.NativeAPI) {
   return new Points<T>(_native);
 }
 

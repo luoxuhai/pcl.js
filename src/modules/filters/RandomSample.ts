@@ -1,16 +1,16 @@
 import FilterIndices from './FilterIndices';
 import {
-  PointTypesUnion,
-  TPointTypesUnion,
+  XYZPointTypes,
+  XYZPointTypesTypeof,
   PointXYZ,
-  PointTypesIntersection,
 } from '@/modules/common/point-types';
 
 class RandomSample<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
+  T extends XYZPointTypes = PointXYZ &
+    Partial<UnionToIntersection<XYZPointTypes>>,
 > extends FilterIndices<T> {
   constructor(
-    protected _PT: TPointTypesUnion = PointXYZ,
+    protected _PT: XYZPointTypesTypeof = PointXYZ,
     extractRemovedIndices = false,
   ) {
     super(new __PCLCore__[`RandomSample${_PT.name}`](extractRemovedIndices));

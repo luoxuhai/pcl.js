@@ -4,20 +4,20 @@ import {
   wrapPoints,
 } from '@/modules/common/PointCloud';
 import {
+  XYZPointTypes,
+  XYZPointTypesTypeof,
   PointXYZ,
-  PointTypesIntersection,
-  PointTypesUnion,
-  TPointTypesUnion,
-  Vector,
   PointXYZRGB,
+  Vector,
 } from '@/modules/common/point-types';
 
 class MinCutSegmentation<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
+  T extends XYZPointTypes = PointXYZ &
+    Partial<UnionToIntersection<XYZPointTypes>>,
 > {
   public _native: Emscripten.NativeAPI;
 
-  constructor(PT: TPointTypesUnion = PointXYZ) {
+  constructor(PT: XYZPointTypesTypeof = PointXYZ) {
     this._native = new __PCLCore__[`MinCutSegmentation${PT.name}`]();
   }
 

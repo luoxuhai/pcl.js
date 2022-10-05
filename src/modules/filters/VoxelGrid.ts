@@ -1,15 +1,15 @@
 import FilterBase from './FilterBase';
 import {
-  PointTypesUnion,
-  TPointTypesUnion,
+  XYZPointTypes,
+  XYZPointTypesTypeof,
   PointXYZ,
-  PointTypesIntersection,
 } from '@/modules/common/point-types';
 
 class VoxelGrid<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
+  T extends XYZPointTypes = PointXYZ &
+    Partial<UnionToIntersection<XYZPointTypes>>,
 > extends FilterBase<T> {
-  constructor(protected _PT: TPointTypesUnion = PointXYZ) {
+  constructor(protected _PT: XYZPointTypesTypeof = PointXYZ) {
     super(new __PCLCore__[`VoxelGrid${_PT.name}`]());
   }
 

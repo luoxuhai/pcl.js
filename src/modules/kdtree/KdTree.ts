@@ -1,12 +1,7 @@
 import { PointCloud, wrapPointCloud } from '@/modules/common/PointCloud';
-import {
-  PointTypesUnion,
-  PointTypesIntersection,
-} from '@/modules/common/point-types';
+import { XYZPointTypes } from '@/modules/common/point-types';
 
-class KdTree<
-  T extends Partial<PointTypesUnion> = Partial<PointTypesIntersection>,
-> {
+class KdTree<T extends XYZPointTypes> {
   constructor(public _native: Emscripten.NativeAPI) {}
 
   public setInputCloud(cloud: PointCloud<T>) {
