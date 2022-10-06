@@ -44,7 +44,7 @@
   <a href="https://kl2zjs.csb.app"><img src="./website/static/img/examples/StatisticalOutlierRemoval.jpg" width="30%" /></a>
   <a href="https://3l6tfj.csb.app"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
 
-  <h4><a href="https://pcljs.org/examples">See all demos</a></h4>
+  <p><a href="https://pcljs.org/examples">See all demos</a></p>
 <p>
 
 ## Features
@@ -73,7 +73,7 @@
 
 | Source        |                                                    Link                                                     |     Size      |
 | :------------ | :---------------------------------------------------------------------------------------------------------: | :-----------: |
-| pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~45k gzip’d |
+| pcl.js        |     [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl.js)      | ~36k gzip’d |
 | pcl-core.wasm | [https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm](https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm) | ~553k gzip’d  |
 
 ## Installation

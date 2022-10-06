@@ -2,12 +2,26 @@
 
 Simple point cloud visualization class.
 
+Install Dependencies:
+
+```bash
+yarn add three
+or 
+npm install three --save
+```
+
+:::caution
+
+The version of Three.js needs to be greater than 0.123.0
+
+:::
+
 For Example:
 
 ```ts
-import * as PCL from 'pcl.js'
+import PointCloudViewer from 'pcl.js/PointCloudViewer'
 
-const pointCloudViewer = new PCL.PointCloudViewer(document.getElementById('canvas'), 500, 500);
+const pointCloudViewer = new PointCloudViewer(document.getElementById('canvas'), 500, 500);
 pointCloudViewer.addPointCloud(cloud)
 ```
 
@@ -16,7 +30,7 @@ pointCloudViewer.addPointCloud(cloud)
 ## Constructor
 
 ```ts
-new PCL.PointCloudViewer(canvasEl, width, height);
+new PointCloudViewer(canvasEl, width, height);
 ```
 
 **Parameters:**
