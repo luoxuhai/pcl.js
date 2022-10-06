@@ -1,5 +1,6 @@
 import FilterIndices from './FilterIndices';
 import { PointXYZ, XYZPointTypes, XYZPointTypesTypeof } from '@/modules/common/point-types';
+import { UnionToIntersection } from '@/types/utils';
 
 class StatisticalOutlierRemoval<
   T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,

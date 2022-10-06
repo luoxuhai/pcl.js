@@ -7,7 +7,7 @@
 ## Constructor
 
 ```ts
-new pcl.filters.PassThrough(removed, pointType);
+new PCL.PassThrough(removed, pointType);
 ```
 
 示例:
@@ -15,9 +15,9 @@ new pcl.filters.PassThrough(removed, pointType);
 ```ts
 import * as PCL from 'pcl.js';
 
-const pcl = await PCL.init();
+await PCL.init();
 
-new pcl.filters.PassThrough(PCL.PointXYZ, true);
+new PCL.PassThrough(PCL.PointXYZ, true);
 ```
 
 **参数:**

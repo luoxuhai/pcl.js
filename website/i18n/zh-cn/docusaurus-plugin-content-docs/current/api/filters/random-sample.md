@@ -7,7 +7,7 @@
 ## 构造函数
 
 ```ts
-new pcl.filters.RandomSample(pointType, extractRemovedIndices);
+new PCL.RandomSample(pointType, extractRemovedIndices);
 ```
 
 **参数:**

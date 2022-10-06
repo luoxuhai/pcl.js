@@ -13,29 +13,24 @@ More:
 ```ts title="TypeScript" showLineNumbers
 import * as PCl from 'pcl'
 
-const pcl = await PCL.init();
+await PCL.init();
 
-const mcSeg = new pcl.segmentation.MinCutSegmentation<PCL.PointXYZ>(
+// highlight-start
+const mcSeg = new PCL.MinCutSegmentation<PCL.PointXYZ>(
   PCL.PointXYZ,
 );
 const objectCenter = new PCL.PointXYZ(68.97, -18.55, 0.57);
-
-const radius = 3.0433856;
-const sigma = 0.25;
-const sourceWeight = 0.8;
-const neighborNumber = 14;
-
-const foregroundPoints = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+const foregroundPoints = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 foregroundPoints.addPoint(objectCenter);
 
 mcSeg.setForegroundPoints(foregroundPoints);
 mcSeg.setInputCloud(cloud);
-mcSeg.setRadius(radius);
-mcSeg.setSigma(sigma);
-mcSeg.setSourceWeight(sourceWeight);
-mcSeg.setNumberOfNeighbours(neighborNumber);
-
+mcSeg.setRadius(3.0433856);
+mcSeg.setSigma(0.25);
+mcSeg.setSourceWeight(0.8);
+mcSeg.setNumberOfNeighbours(14);
 const clusters = mcSeg.extract();
+// highlight-end
 ```
 
 ## Type Definitions

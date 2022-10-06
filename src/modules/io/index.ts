@@ -1,10 +1,9 @@
 import { PointCloud } from '@/modules/common/PointCloud';
 import { PointTypes, PointTypesTypeof, PointXYZ } from '@/modules/common/point-types';
-import fs, { FileSystem } from '@/modules/fs';
+import * as fs from '@/modules/fs';
 import { getRandomArbitrary } from '@/utils';
 import { readPCDHeader, PCDHeader } from './pcd-reader';
-
-let FS: FileSystem;
+import { UnionToIntersection } from '@/types/utils';
 
 function loadPCDFile<T extends PointTypes = PointXYZ & Partial<UnionToIntersection<PointTypes>>>(
   filename: string,
@@ -39,40 +38,28 @@ function savePCDFileBinaryCompressed(filename: string, cloud: PointCloud<PointTy
 }
 
 function readPCDFileHeader(filename: string) {
-  if (!FS) {
-    FS = fs();
-  }
+  const data = fs.readFile(filename);
 
-  const data = FS.readFile(filename);
-
-  return readPCDHeader(data);
+  return readPCDHeader(data as ArrayBuffer);
 }
 
 function loadPCDData<T extends PointTypes = PointXYZ & Partial<UnionToIntersection<PointTypes>>>(
   data: ArrayBuffer,
   _PT: PointTypesTypeof = PointXYZ,
 ) {
-  if (!FS) {
-    FS = fs();
-  }
-
   const filename = `temp-${getRandomArbitrary(0, 10000)}.pcd`;
-  FS.writeFile(filename, new Uint8Array(data));
+  fs.writeFile(filename, new Uint8Array(data));
   const cloud = loadPCDFile<T>(filename, _PT);
-  FS.unlink(filename);
+  fs.unlink(filename);
 
   return cloud;
 }
 
 function savePCDData(cloud: PointCloud<PointTypes>, binaryMode = false) {
-  if (!FS) {
-    FS = fs();
-  }
-
   const filename = `temp-${getRandomArbitrary(0, 10000)}.pcd`;
   savePCDFile(filename, cloud, binaryMode);
-  const data = FS.readFile(filename);
-  FS.unlink(filename);
+  const data = fs.readFile(filename);
+  fs.unlink(filename);
 
   return data;
 }
@@ -86,19 +73,15 @@ function savePCDDataBinary(cloud: PointCloud<PointTypes>) {
 }
 
 function savePCDDataBinaryCompressed(cloud: PointCloud<PointTypes>) {
-  if (!FS) {
-    FS = fs();
-  }
-
   const filename = `temp-${getRandomArbitrary(0, 10000)}.pcd`;
   savePCDFileBinaryCompressed(filename, cloud);
-  const data = FS.readFile(filename);
-  FS.unlink(filename);
+  const data = fs.readFile(filename);
+  fs.unlink(filename);
 
   return data;
 }
 
-export default {
+export {
   loadPCDFile,
   savePCDFile,
   savePCDFileASCII,
@@ -111,6 +94,5 @@ export default {
   savePCDDataBinary,
   savePCDDataBinaryCompressed,
   readPCDHeader,
+  PCDHeader,
 };
-
-export { PCDHeader };

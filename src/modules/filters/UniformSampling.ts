@@ -1,5 +1,6 @@
 import FilterBase from './FilterBase';
 import { PointXYZ, XYZPointTypes, XYZPointTypesTypeof } from '@/modules/common/point-types';
+import { UnionToIntersection } from '@/types/utils';
 
 class UniformSampling<
   T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,

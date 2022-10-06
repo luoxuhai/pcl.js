@@ -15,10 +15,10 @@ For example:
 ```ts
 import * as PCL from "pcl.js"
 
-const pcl = await PCL.init()
+await PCL.init()
 
 // highlight-next-line
-pcl.io.loadPCDFile("test.pcd", PCL.PointXYZ)
+PCL.loadPCDFile("test.pcd", PCL.PointXYZ)
 ```
 
 **Parameters:**

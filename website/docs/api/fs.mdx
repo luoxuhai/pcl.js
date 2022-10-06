@@ -6,6 +6,16 @@ sidebar_position: 3
 
 > https://emscripten.org/docs/api_reference/Filesystem-API.html#id2
 
+For Example
+
+```ts showLineNumbers
+import { init, fs } from 'pcl.js';
+
+await init();
+
+fs.writeFile('file', 'foobar');
+```
+
 ## Methods
 
 ### writeFile
@@ -16,14 +26,14 @@ writeFile(path, data, options);
 
 Writes the entire contents of data to the file at path. For example:
 
-```ts showLineNumbers
-pcl.fs.writeFile('file', 'foobar');
+```ts
+fs.writeFile('file', 'foobar');
 ```
 
 ### readFile
 
 ```ts
-readFile(path, options);
+fs.readFile(path, options);
 ```
 
 Reads the entire file at path and returns it as a string (encoding is utf8), or as a new Uint8Array buffer (encoding is binary).
@@ -37,7 +47,7 @@ Reads the entire file at path and returns it as a string (encoding is utf8), or 
 ### unlink
 
 ```ts
-unlink(path);
+fs.unlink(path);
 ```
 
 This removes a name from the file system. If that name was the last link to a file (and no processes have the file open) the file is deleted.
@@ -45,7 +55,7 @@ This removes a name from the file system. If that name was the last link to a fi
 ### rename
 
 ```ts
-rename(oldPath, newPath);
+fs.rename(oldPath, newPath);
 ```
 
 Renames the node at oldpath to newpath.
@@ -53,7 +63,7 @@ Renames the node at oldpath to newpath.
 ### mkdir
 
 ```ts
-mkdir(path, mode);
+fs.mkdir(path, mode);
 ```
 
 Creates a new directory node in the file system.
@@ -61,7 +71,7 @@ Creates a new directory node in the file system.
 ### rmdir
 
 ```ts
-rmdir(path);
+fs.rmdir(path);
 ```
 
 Removes an empty directory located at path.
@@ -69,12 +79,12 @@ Removes an empty directory located at path.
 ### readdir
 
 ```ts
-readdir(path);
+fs.readdir(path);
 ```
 
 Reads the entire files at path and returns it as a array. For example:
 
 ```ts showLineNumbers
-const result = pcl.fs.readdir('/)
+const result = fs.readdir('/)
 console.log(result) // ['dev', 'temp']
 ```

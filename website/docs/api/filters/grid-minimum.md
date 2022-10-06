@@ -7,7 +7,7 @@
 ## Constructor
 
 ```ts
-new pcl.filters.GridMinimum(pointType, resolution);
+new PCL.GridMinimum(pointType, resolution);
 ```
 
 **Parameters:**

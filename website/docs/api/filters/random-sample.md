@@ -7,7 +7,7 @@
 ## Constructor
 
 ```ts
-new pcl.filters.RandomSample(pointType, extractRemovedIndices);
+new PCL.RandomSample(pointType, extractRemovedIndices);
 ```
 
 **Parameters:**

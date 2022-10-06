@@ -6,48 +6,40 @@ describe('FileSystem', () => {
   const text = '# .PCD v.7 - Point Cloud Data file format';
 
   it('should write and read files', () => {
-    const pcl = global.pcl as PCL.PCLInstance;
-
     const binary = fs.readFileSync(path.join(global.ROOT_DIR, '/data/room_scan2.pcd'));
-    pcl?.fs.writeFile('test-write-file.pcd', text);
-    pcl?.fs.writeFile('test-write-binary-file.pcd', new Uint8Array(binary));
-    const textRes = pcl?.fs.readFile('test-write-file.pcd', {
+    PCL.fs.writeFile('test-write-file.pcd', text);
+    PCL.fs.writeFile('test-write-binary-file.pcd', new Uint8Array(binary));
+    const textRes = PCL.fs.readFile('test-write-file.pcd', {
       encoding: 'utf8',
     });
-    const binaryRes = pcl?.fs.readFile('test-write-binary-file.pcd');
+    const binaryRes = PCL.fs.readFile('test-write-binary-file.pcd') as Uint8Array;
 
     expect(textRes).toBe(text);
     expect(binaryRes?.byteLength).toBe(binary.byteLength);
   });
 
   it('should read a file information', () => {
-    const pcl = global.pcl as PCL.PCLInstance;
-
-    pcl?.fs.writeFile('test-read-file-info.pcd', text);
-    const pcd = pcl?.fs.stat('test-read-file-info.pcd');
+    PCL.fs.writeFile('test-read-file-info.pcd', text);
+    const pcd = PCL.fs.stat('test-read-file-info.pcd');
 
     expect(pcd?.size).toBe(41);
   });
 
   it('should create a folder', () => {
-    const pcl = global.pcl as PCL.PCLInstance;
-
-    pcl?.fs.mkdir('new-folder');
-    const result = pcl?.fs.stat('new-folder');
+    PCL.fs.mkdir('new-folder');
+    const result = PCL.fs.stat('new-folder');
 
     expect(result?.size).toBe(4096);
     expect(result?.isDir).toBe(true);
   });
 
   it('should delete a file', () => {
-    const pcl = global.pcl as PCL.PCLInstance;
-
     const filename = 'test-write-file-1.pcd';
-    pcl?.fs.writeFile(filename, 'text');
-    pcl?.fs.unlink(filename);
+    PCL.fs.writeFile(filename, 'text');
+    PCL.fs.unlink(filename);
     let result: any = null;
     try {
-      result = pcl?.fs.stat(filename);
+      result = PCL.fs.stat(filename);
     } catch {
       result = undefined;
     }

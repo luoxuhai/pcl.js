@@ -1,5 +1,3 @@
-import KdTree from './KdTree';
+import SearchKdTree from './KdTree';
 
-export default {
-  KdTree,
-};
+export { SearchKdTree };

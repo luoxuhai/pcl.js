@@ -6,6 +6,7 @@ import {
   PointXYZRGB,
   Vector,
 } from '@/modules/common/point-types';
+import { UnionToIntersection, Emscripten } from '@/types';
 
 class MinCutSegmentation<
   T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,

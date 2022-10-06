@@ -1,4 +1,5 @@
 import { pointTypeMap, PointTypesTypeof } from '../modules/common/point-types';
+import { Emscripten } from '@/types';
 
 export const ENVIRONMENT_IS_NODE =
   typeof process === 'object' &&

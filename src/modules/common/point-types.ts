@@ -1,3 +1,4 @@
+import { Emscripten } from '@/types';
 export class PointXY {
   // HACK: To distinguish between different types
   private readonly _PointXY = 'PointXY';

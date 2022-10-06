@@ -107,7 +107,7 @@ import * as PCL from 'pcl.js';
 
 async function main() {
   // 初始化
-  const pcl = await PCL.init({
+  await PCL.init({
     /**
      * 推荐，可选配置，自定义 WebAssembly 文件链接
      * @default js 文件所在目录 + pcl-core.wasm
@@ -127,7 +127,7 @@ main();
 <script>
 async function main() {
   // 初始化，PCL 是全局对象
-  const pcl = await PCL.init();
+  await PCL.init();
   // ...
 }
 
@@ -143,25 +143,25 @@ main();
 import * as PCL from 'pcl.js';
 
 async function main() {
-  const pcl = await PCL.init({
+  await PCL.init({
     url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
   });
 
   // 获取 PCD 文件
   const data = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
   // 加载 PCD 数据，返回点云对象
-  const cloud = pcl.io.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
+  const cloud = PCL.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
 
   // 使用 PassThrough 过滤器过滤点云
   // 参考: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
-  const pass = new pcl.filters.PassThrough<PCL.PointXYZ>(PCL.PointXYZ);
+  const pass = new PCL.PassThrough<PCL.PointXYZ>(PCL.PointXYZ);
   pass.setInputCloud(cloud);
   pass.setFilterFieldName('z');
   pass.setFilterLimits(0.0, 1.0);
   const cloudFiltered = pass.filter();
 
   // 将过滤后的点云对象保存为 PCD 文件, 内容为 ArrayBuffer
-  const cloudFilteredData = pcl.io.savePCDDataASCII(cloudFiltered);
+  const cloudFilteredData = PCL.savePCDDataASCII(cloudFiltered);
 }
 
 main();

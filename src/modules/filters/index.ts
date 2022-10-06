@@ -9,7 +9,7 @@ import LocalMaximum from './LocalMaximum';
 import ApproximateVoxelGrid from './ApproximateVoxelGrid';
 import { removeNaNFromPointCloud, removeNaNNormalsFromPointCloud } from './remove-invalid';
 
-export default {
+export {
   PassThrough,
   VoxelGrid,
   StatisticalOutlierRemoval,

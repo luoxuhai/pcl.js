@@ -1,5 +1,6 @@
 import Keypoint from './Keypoint';
 import { XYZPointTypes, XYZPointTypesTypeof, PointXYZ } from '@/modules/common/point-types';
+import { UnionToIntersection } from '@/types/utils';
 
 class ISSKeypoint3D<
   T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,

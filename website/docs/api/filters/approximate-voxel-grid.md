@@ -7,7 +7,7 @@ More: <https://pointclouds.org/documentation/classpcl_1_1_approximate_voxel_grid
 ## Constructor
 
 ```ts
-new pcl.filters.ApproximateVoxelGrid(pointType);
+new PCL.ApproximateVoxelGrid(pointType);
 ```
 
 **Parameters:**

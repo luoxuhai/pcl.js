@@ -11,7 +11,7 @@ Iterates through the entire input once, automatically filtering non-finite point
 ## Constructor
 
 ```ts
-new pcl.filters.PassThrough(removed, pointType);
+new PCL.PassThrough(removed, pointType);
 ```
 
 For example:
@@ -19,9 +19,9 @@ For example:
 ```ts
 import * as PCL from 'pcl.js';
 
-const pcl = await PCL.init();
+await PCL.init();
 
-new pcl.filters.PassThrough(PCL.PointXYZ, true);
+new PCL.PassThrough(PCL.PointXYZ, true);
 ```
 
 **Parameters:**

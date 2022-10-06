@@ -1,14 +1,25 @@
 import initPCLCore from '@/bind/build/pcl-core';
-import fs from '@/modules/fs';
-import io from '@/modules/io';
-import filters from '@/modules/filters';
-import registration from '@/modules/registration';
-import segmentation from '@/modules/segmentation';
-import common from '@/modules/common';
-import kdtree from '@/modules/kdtree';
-import search from '@/modules/search';
-import keypoints from '@/modules/keypoints';
 import { ENVIRONMENT_IS_NODE } from '@/utils';
+import { Emscripten } from '@/types';
+
+export * from '@/constants';
+export * as fs from '@/modules/fs';
+export * from '@/modules/io';
+export * from '@/modules/common';
+export * from '@/modules/kdtree';
+export * from '@/modules/search';
+export * from '@/modules/filters';
+export * from '@/modules/keypoints';
+export * from '@/modules/segmentation';
+export * from '@/modules/registration';
+
+if (window.__PCLCore__) {
+  console.warn('Multiple instances of pcl.js being imported.');
+} else {
+  window.__PCLCore__ = null;
+}
+
+let isInitialized = false;
 
 interface InitOptions {
   /**
@@ -25,52 +36,15 @@ interface InitOptions {
    * @default { credentials: 'same-origin' }
    */
   fetchOptions?: Emscripten.ModuleOpts['fetchSettings'];
-  /**
-   * Show log in console
-   *
-   * @default true
-   */
-  log?: boolean;
-  onsuccess?: (module: Emscripten.Module) => void;
+  onsuccess?: () => void;
   onerror?: (error: unknown) => void;
 }
 
-interface PCLInstance {
-  /**
-   * Emscripten Module
-   * {@link https://emscripten.org/docs/api_reference/module.html}
-   */
-  Module: Emscripten.Module;
-  /**
-   * File system
-   * {@link https://emscripten.org/docs/api_reference/Filesystem-API.html}
-   */
-  fs: Pick<
-    Emscripten.FS,
-    'readdir' | 'readFile' | 'writeFile' | 'stat' | 'mkdir' | 'rmdir' | 'rename' | 'unlink'
-  >;
-  /**
-   * Base info
-   */
-  info: {
-    PCL_VERSION: string;
-  };
-  common: typeof common;
-  io: typeof io;
-  filters: typeof filters;
-  registration: typeof registration;
-  kdtree: typeof kdtree;
-  search: typeof search;
-  keypoints: typeof keypoints;
-  segmentation: typeof segmentation;
-}
-
-async function init(options?: InitOptions): Promise<PCLInstance | null> {
+async function init(options?: InitOptions) {
   const {
     arrayBuffer,
     url,
     fetchOptions: fetchSettings = { credentials: 'same-origin' },
-    log = true,
   } = options ?? {};
 
   const moduleOptions: Emscripten.ModuleOpts = {
@@ -79,47 +53,24 @@ async function init(options?: InitOptions): Promise<PCLInstance | null> {
     fetchSettings,
   };
 
-  let Module: Emscripten.Module;
   try {
-    Module = await initPCLCore(moduleOptions);
+    const __PCLCore__ = await initPCLCore(moduleOptions);
     if (ENVIRONMENT_IS_NODE) {
-      (global as any).__PCLCore__ = Module;
+      (global as any).__PCLCore__ = __PCLCore__;
     } else {
-      window.__PCLCore__ = Module;
+      window.__PCLCore__ = __PCLCore__;
     }
-    options?.onsuccess?.(Module);
+    isInitialized = true;
+    options?.onsuccess?.();
   } catch (error) {
     options?.onerror?.(error);
     throw error;
   }
-
-  const PCL_VERSION: string = Module.PCL_VERSION;
-
-  if (log) {
-    console.log('pcl.js version: __version__');
-    console.log(`PCL version: ${PCL_VERSION}`);
-  }
-
-  const info = {
-    PCL_VERSION,
-  };
-
-  return {
-    Module,
-    info,
-    fs: fs(),
-    io,
-    filters,
-    registration,
-    segmentation,
-    common,
-    kdtree,
-    search,
-    keypoints,
-  };
 }
 
-const VERSION = '__version__';
+function destroy() {
+  window.__PCLCore__ = null;
+  isInitialized = false;
+}
 
-export { init, VERSION, PCLInstance, InitOptions };
-export * from '../modules/common/point-types';
+export { InitOptions, init, destroy, isInitialized };

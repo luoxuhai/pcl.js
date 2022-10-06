@@ -8,11 +8,10 @@ export function initPCL() {
   const wasm = fs.readFileSync(path.join(global.ROOT_DIR, 'dist/pcl-core.wasm'));
   return PCL.init({
     arrayBuffer: wasm,
-    log: false,
   });
 }
 
-export function writeFile(name: string, pcl: PCL.PCLInstance) {
+export function writeFile(name: string, FS: PCL.fs) {
   const pcd = fs.readFileSync(path.join(global.ROOT_DIR, `data/${name}`));
-  pcl.fs.writeFile(name, new Uint8Array(pcd));
+  FS.writeFile(name, new Uint8Array(pcd));
 }

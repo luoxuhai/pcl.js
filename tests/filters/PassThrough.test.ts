@@ -2,8 +2,6 @@ import * as PCL from '../../';
 
 describe('PassThrough', () => {
   it('should filtering a PointCloud using a PassThrough filter', () => {
-    const pcl = global.pcl as PCL.PCLInstance;
-
     const before = [
       [0.352222, -0.151883, -0.106395],
       [-0.397406, -0.473106, 1.292602],
@@ -15,14 +13,14 @@ describe('PassThrough', () => {
       [-0.397406, -0.473106, 1.292602],
       [-0.731898, 0.667105, 0.441304],
     ];
-    const cloud = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
-    const cloudFiltered = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+    const cloud = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+    const cloudFiltered = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
     for (let i = 0; i < before.length; i++) {
       cloud.addPoint(new PCL.PointXYZ(...before[i]));
     }
 
-    const pass = new pcl.filters.PassThrough<PCL.PointXYZ>(PCL.PointXYZ);
+    const pass = new PCL.PassThrough<PCL.PointXYZ>(PCL.PointXYZ);
     pass.setInputCloud(cloud);
     pass.setFilterFieldName('z');
     pass.setFilterLimits(0, 2);

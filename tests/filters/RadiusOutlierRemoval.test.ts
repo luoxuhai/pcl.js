@@ -2,8 +2,6 @@ import * as PCL from '../../';
 
 describe('RadiusOutlierRemoval', () => {
   it('should filtering a PointCloud using a RadiusOutlierRemoval filter', () => {
-    const pcl = global.pcl as PCL.PCLInstance;
-
     const before = [
       [0.352222, -0.151883, -0.106395],
       [-0.397406, -0.473106, 1.292602],
@@ -13,14 +11,14 @@ describe('RadiusOutlierRemoval', () => {
       [10.4607, 20.277468, 40.916762],
     ];
 
-    const cloud = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
-    const cloudFiltered = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+    const cloud = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+    const cloudFiltered = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
     for (let i = 0; i < before.length; i++) {
       cloud.addPoint(new PCL.PointXYZ(...before[i]));
     }
 
-    const ror = new pcl.filters.RadiusOutlierRemoval<PCL.PointXYZ>(PCL.PointXYZ);
+    const ror = new PCL.RadiusOutlierRemoval<PCL.PointXYZ>(PCL.PointXYZ);
     ror.setInputCloud(cloud);
     ror.setRadiusSearch(100);
     ror.setMinNeighborsInRadius(2);

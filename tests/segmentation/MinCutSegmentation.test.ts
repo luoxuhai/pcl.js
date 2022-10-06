@@ -4,14 +4,12 @@ import * as PCL from '../../';
 
 describe('MinCutSegmentation', () => {
   it('should segment a PointCloud into foreground and background clusters', () => {
-    const pcl = global.pcl as PCL.PCLInstance;
-
     const data = fs.readFileSync(
       path.join(global.ROOT_DIR, 'data/min_cut_segmentation_tutorial.pcd'),
     );
-    const cloud = pcl.io.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
+    const cloud = PCL.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
 
-    const mcSeg = new pcl.segmentation.MinCutSegmentation<PCL.PointXYZ>(PCL.PointXYZ);
+    const mcSeg = new PCL.MinCutSegmentation<PCL.PointXYZ>(PCL.PointXYZ);
     const objectCenter: PCL.PointXYZ = new PCL.PointXYZ(68.97, -18.55, 0.57);
 
     const radius = 3.0433856;
@@ -19,7 +17,7 @@ describe('MinCutSegmentation', () => {
     const sourceWeight = 0.8;
     const neighborNumber = 14;
 
-    const foregroundPoints = new pcl.common.PointCloud<PCL.PointXYZ>();
+    const foregroundPoints = new PCL.PointCloud<PCL.PointXYZ>();
     foregroundPoints.addPoint(objectCenter);
 
     mcSeg.setForegroundPoints(foregroundPoints);

@@ -9,7 +9,7 @@ The class is making use of the [FLANN (Fast Library for Approximate Nearest Neig
 ## Constructor
 
 ```ts
-new pcl.kdtree.KdTreeFLANN(pointType, sorted);
+new PCL.KdTreeFLANN(pointType, sorted);
 ```
 
 **Parameters:**
@@ -66,7 +66,7 @@ const pcl = await PCL.init();
 const point = new PCL.PointXYZ(1, 2, 3);
 // highlight-next-line
 const k = 5
-const kdtree = new pcl.kdtree.KdTreeFLANN(pointType, sorted);
+const kdtree = new PCL.KdTreeFLANN(pointType, sorted);
 // highlight-next-line
 kdtree.nearestKSearch(point, k);
 ```
