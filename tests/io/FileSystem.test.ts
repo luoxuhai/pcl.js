@@ -8,9 +8,7 @@ describe('FileSystem', () => {
   it('should write and read files', () => {
     const pcl = global.pcl as PCL.PCLInstance;
 
-    const binary = fs.readFileSync(
-      path.join(global.ROOT_DIR, '/data/room_scan2.pcd'),
-    );
+    const binary = fs.readFileSync(path.join(global.ROOT_DIR, '/data/room_scan2.pcd'));
     pcl?.fs.writeFile('test-write-file.pcd', text);
     pcl?.fs.writeFile('test-write-binary-file.pcd', new Uint8Array(binary));
     const textRes = pcl?.fs.readFile('test-write-file.pcd', {

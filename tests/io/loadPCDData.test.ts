@@ -5,9 +5,7 @@ import * as PCL from '../../';
 describe('loadPCDData', () => {
   it('should load a ascii format PCD data with XYZ fields', async () => {
     const pcl = global.pcl as PCL.PCLInstance;
-    const data = fs.readFileSync(
-      path.join(global.ROOT_DIR, 'data/ism_test_cat.pcd'),
-    );
+    const data = fs.readFileSync(path.join(global.ROOT_DIR, 'data/ism_test_cat.pcd'));
 
     const cloud = pcl.io.loadPCDData(data);
     expect(cloud?.points.size).toBe(3400);
@@ -15,9 +13,7 @@ describe('loadPCDData', () => {
 
   it('should load a binary_compressed format PCD data with XYZ fields', async () => {
     const pcl = global.pcl as PCL.PCLInstance;
-    const data = fs.readFileSync(
-      path.join(global.ROOT_DIR, 'data/room_scan1.pcd'),
-    );
+    const data = fs.readFileSync(path.join(global.ROOT_DIR, 'data/room_scan1.pcd'));
 
     const cloud = pcl.io.loadPCDData(data);
     expect(cloud?.points.size).toBe(112586);

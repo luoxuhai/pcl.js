@@ -5,14 +5,7 @@
 
 export type FileSystem = Pick<
   Emscripten.FS,
-  | 'readdir'
-  | 'readFile'
-  | 'writeFile'
-  | 'stat'
-  | 'mkdir'
-  | 'rmdir'
-  | 'rename'
-  | 'unlink'
+  'readdir' | 'readFile' | 'writeFile' | 'stat' | 'mkdir' | 'rmdir' | 'rename' | 'unlink'
 >;
 
 export default (): FileSystem => {

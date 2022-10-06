@@ -52,14 +52,8 @@ declare namespace Emscripten {
       isDir: boolean;
       isFile: boolean;
     };
-    readFile(
-      path: string,
-      opts?: { encoding?: 'binary'; flags?: string | undefined },
-    ): Uint8Array;
-    readFile(
-      path: string,
-      opts?: { encoding: 'utf8'; flags?: string | undefined },
-    ): string;
+    readFile(path: string, opts?: { encoding?: 'binary'; flags?: string | undefined }): Uint8Array;
+    readFile(path: string, opts?: { encoding: 'utf8'; flags?: string | undefined }): string;
     writeFile(
       path: string,
       data: string | ArrayBufferView,
@@ -85,10 +79,7 @@ declare namespace Emscripten {
     wasmBinary: ArrayBuffer;
 
     destroy(object: object): void;
-    getPreloadedPackage(
-      remotePackageName: string,
-      remotePackageSize: number,
-    ): ArrayBuffer;
+    getPreloadedPackage(remotePackageName: string, remotePackageSize: number): ArrayBuffer;
     instantiateWasm(
       imports: WebAssembly.Imports,
       successCallback: (module: WebAssembly.Module) => void,
@@ -98,12 +89,7 @@ declare namespace Emscripten {
 
     Runtime: any;
 
-    ccall(
-      ident: string,
-      returnType: string | null,
-      argTypes: string[],
-      args: any[],
-    ): any;
+    ccall(ident: string, returnType: string | null, argTypes: string[], args: any[]): any;
     cwrap(ident: string, returnType: string | null, argTypes: string[]): any;
 
     setValue(ptr: number, value: any, type: string, noSafe?: boolean): void;
@@ -116,12 +102,7 @@ declare namespace Emscripten {
     ALLOC_NONE: number;
 
     allocate(slab: any, types: string, allocator: number, ptr: number): number;
-    allocate(
-      slab: any,
-      types: string[],
-      allocator: number,
-      ptr: number,
-    ): number;
+    allocate(slab: any, types: string[], allocator: number, ptr: number): number;
 
     Pointer_stringify(ptr: number, length?: number): string;
     UTF16ToString(ptr: number): string;
@@ -155,17 +136,9 @@ declare namespace Emscripten {
     addOnPostRun(cb: () => any): void;
 
     // Tools
-    intArrayFromString(
-      stringy: string,
-      dontAddNull?: boolean,
-      length?: number,
-    ): number[];
+    intArrayFromString(stringy: string, dontAddNull?: boolean, length?: number): number[];
     intArrayToString(array: number[]): string;
-    writeStringToMemory(
-      str: string,
-      buffer: number,
-      dontAddNull: boolean,
-    ): void;
+    writeStringToMemory(str: string, buffer: number, dontAddNull: boolean): void;
     writeArrayToMemory(array: number[], buffer: number): void;
     writeAsciiToMemory(str: string, buffer: number, dontAddNull: boolean): void;
 
@@ -208,7 +181,5 @@ declare namespace Emscripten {
     isDeleted: () => boolean;
   }
 
-  type ModuleFactory<T extends Module = Module> = (
-    moduleOverrides?: ModuleOpts,
-  ) => Promise<T>;
+  type ModuleFactory<T extends Module = Module> = (moduleOverrides?: ModuleOpts) => Promise<T>;
 }

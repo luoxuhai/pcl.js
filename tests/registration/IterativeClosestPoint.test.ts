@@ -28,9 +28,7 @@ describe('IterativeClosestPoint', () => {
       cloudOut.addPoint(new PCL.PointXYZ(...target[i]));
     }
 
-    const icp = new pcl.registration.IterativeClosestPoint<PCL.PointXYZ>(
-      PCL.PointXYZ,
-    );
+    const icp = new pcl.registration.IterativeClosestPoint<PCL.PointXYZ>(PCL.PointXYZ);
     icp.setInputSource(cloudIn);
     icp.setInputTarget(cloudOut);
     icp.align(final);

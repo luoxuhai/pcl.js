@@ -11,12 +11,8 @@ describe('ISSKeypoint3D', () => {
     // Get point cloud resolution
     const resolution = pcl.common.computeCloudResolution(cloud);
     const tree = new pcl.search.KdTree<PCL.PointNormal>(PCL.PointNormal);
-    const keypoints = new pcl.common.PointCloud<PCL.PointNormal>(
-      PCL.PointNormal,
-    );
-    const iss = new pcl.keypoints.ISSKeypoint3D<PCL.PointNormal>(
-      PCL.PointNormal,
-    );
+    const keypoints = new pcl.common.PointCloud<PCL.PointNormal>(PCL.PointNormal);
+    const iss = new pcl.keypoints.ISSKeypoint3D<PCL.PointNormal>(PCL.PointNormal);
 
     iss.setSearchMethod(tree);
     iss.setSalientRadius(6 * resolution);

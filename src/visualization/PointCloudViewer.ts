@@ -86,10 +86,7 @@ class PointCloudViewer {
     const material = new PointsMaterial();
 
     if (position.length) {
-      geometry.setAttribute(
-        'position',
-        new Float32BufferAttribute(position, 3),
-      );
+      geometry.setAttribute('position', new Float32BufferAttribute(position, 3));
     }
 
     this.addPointCloudToScene(new Points(geometry, material), id);
@@ -121,10 +118,7 @@ class PointCloudViewer {
     this.clouds.splice(index, 1);
   }
 
-  public setPointCloudProperties(
-    properties?: Partial<CloudProperties>,
-    id?: string,
-  ) {
+  public setPointCloudProperties(properties?: Partial<CloudProperties>, id?: string) {
     this.cloudProperties = { ...this.cloudProperties, ...properties };
 
     if (!this.clouds.length) {
@@ -195,11 +189,7 @@ class PointCloudViewer {
     this.axesHelper.visible = visible;
   }
 
-  public setGridHelper(properties: {
-    visible: boolean;
-    size?: number;
-    divisions?: number;
-  }) {
+  public setGridHelper(properties: { visible: boolean; size?: number; divisions?: number }) {
     const { visible = true, size = 100, divisions = 100 } = properties ?? {};
 
     if (!this.gridHelper) {

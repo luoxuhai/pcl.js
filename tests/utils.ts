@@ -5,9 +5,7 @@ import path from 'path';
 import * as PCL from '../';
 
 export function initPCL() {
-  const wasm = fs.readFileSync(
-    path.join(global.ROOT_DIR, 'dist/pcl-core.wasm'),
-  );
+  const wasm = fs.readFileSync(path.join(global.ROOT_DIR, 'dist/pcl-core.wasm'));
   return PCL.init({
     arrayBuffer: wasm,
     log: false,

@@ -20,9 +20,7 @@ describe('StatisticalOutlierRemoval', () => {
       cloud.addPoint(new PCL.PointXYZ(...before[i]));
     }
 
-    const sor = new pcl.filters.StatisticalOutlierRemoval<PCL.PointXYZ>(
-      PCL.PointXYZ,
-    );
+    const sor = new pcl.filters.StatisticalOutlierRemoval<PCL.PointXYZ>(PCL.PointXYZ);
     sor.setInputCloud(cloud);
     sor.setStddevMulThresh(1);
     sor.filter(cloudFiltered);

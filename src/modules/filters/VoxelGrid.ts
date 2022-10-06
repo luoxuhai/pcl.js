@@ -1,13 +1,8 @@
 import FilterBase from './FilterBase';
-import {
-  XYZPointTypes,
-  XYZPointTypesTypeof,
-  PointXYZ,
-} from '@/modules/common/point-types';
+import { XYZPointTypes, XYZPointTypesTypeof, PointXYZ } from '@/modules/common/point-types';
 
 class VoxelGrid<
-  T extends XYZPointTypes = PointXYZ &
-    Partial<UnionToIntersection<XYZPointTypes>>,
+  T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
 > extends FilterBase<T> {
   constructor(protected _PT: XYZPointTypesTypeof = PointXYZ) {
     super(new __PCLCore__[`VoxelGrid${_PT.name}`]());

@@ -7,10 +7,7 @@ import RandomSample from './RandomSample';
 import GridMinimum from './GridMinimum';
 import LocalMaximum from './LocalMaximum';
 import ApproximateVoxelGrid from './ApproximateVoxelGrid';
-import {
-  removeNaNFromPointCloud,
-  removeNaNNormalsFromPointCloud,
-} from './remove-invalid';
+import { removeNaNFromPointCloud, removeNaNNormalsFromPointCloud } from './remove-invalid';
 
 export default {
   PassThrough,

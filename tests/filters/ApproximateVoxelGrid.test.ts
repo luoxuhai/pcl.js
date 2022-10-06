@@ -11,9 +11,7 @@ describe('ApproximateVoxelGrid', () => {
     pcl.fs.writeFile(filename, new Uint8Array(pcd));
     const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>(filename, PCL.PointXYZ);
 
-    const avg = new pcl.filters.ApproximateVoxelGrid<PCL.PointXYZ>(
-      PCL.PointXYZ,
-    );
+    const avg = new pcl.filters.ApproximateVoxelGrid<PCL.PointXYZ>(PCL.PointXYZ);
     avg.setInputCloud(cloud);
     avg.setLeafSize(0.01, 0.01, 0.01);
     avg.setDownsampleAllData(false);

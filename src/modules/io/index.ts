@@ -1,18 +1,15 @@
 import { PointCloud } from '@/modules/common/PointCloud';
-import {
-  PointTypes,
-  PointTypesTypeof,
-  PointXYZ,
-} from '@/modules/common/point-types';
+import { PointTypes, PointTypesTypeof, PointXYZ } from '@/modules/common/point-types';
 import fs, { FileSystem } from '@/modules/fs';
 import { getRandomArbitrary } from '@/utils';
 import { readPCDHeader, PCDHeader } from './pcd-reader';
 
 let FS: FileSystem;
 
-function loadPCDFile<
-  T extends PointTypes = PointXYZ & Partial<UnionToIntersection<PointTypes>>,
->(filename: string, _PT: PointTypesTypeof = PointXYZ) {
+function loadPCDFile<T extends PointTypes = PointXYZ & Partial<UnionToIntersection<PointTypes>>>(
+  filename: string,
+  _PT: PointTypesTypeof = PointXYZ,
+) {
   const cloud = new PointCloud<T>(_PT);
   const status = __PCLCore__[`loadPCDFile${_PT.name}`](filename, cloud._native);
   const isSuccess = status === 0;
@@ -23,16 +20,8 @@ function loadPCDFile<
   return cloud;
 }
 
-function savePCDFile(
-  filename: string,
-  cloud: PointCloud<PointTypes>,
-  binaryMode = false,
-) {
-  const flag = __PCLCore__[`savePCDFile${cloud._PT.name}`](
-    filename,
-    cloud._native,
-    binaryMode,
-  );
+function savePCDFile(filename: string, cloud: PointCloud<PointTypes>, binaryMode = false) {
+  const flag = __PCLCore__[`savePCDFile${cloud._PT.name}`](filename, cloud._native, binaryMode);
   return flag === 0;
 }
 
@@ -44,14 +33,8 @@ function savePCDFileBinary(filename: string, cloud: PointCloud<PointTypes>) {
   return savePCDFile(filename, cloud, true);
 }
 
-function savePCDFileBinaryCompressed(
-  filename: string,
-  cloud: PointCloud<PointTypes>,
-) {
-  const flag = __PCLCore__[`savePCDFileBinaryCompressed${cloud._PT.name}`](
-    filename,
-    cloud._native,
-  );
+function savePCDFileBinaryCompressed(filename: string, cloud: PointCloud<PointTypes>) {
+  const flag = __PCLCore__[`savePCDFileBinaryCompressed${cloud._PT.name}`](filename, cloud._native);
   return flag === 0;
 }
 
@@ -65,9 +48,10 @@ function readPCDFileHeader(filename: string) {
   return readPCDHeader(data);
 }
 
-function loadPCDData<
-  T extends PointTypes = PointXYZ & Partial<UnionToIntersection<PointTypes>>,
->(data: ArrayBuffer, _PT: PointTypesTypeof = PointXYZ) {
+function loadPCDData<T extends PointTypes = PointXYZ & Partial<UnionToIntersection<PointTypes>>>(
+  data: ArrayBuffer,
+  _PT: PointTypesTypeof = PointXYZ,
+) {
   if (!FS) {
     FS = fs();
   }

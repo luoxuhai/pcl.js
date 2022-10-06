@@ -11,9 +11,7 @@ describe('MinCutSegmentation', () => {
     );
     const cloud = pcl.io.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
 
-    const mcSeg = new pcl.segmentation.MinCutSegmentation<PCL.PointXYZ>(
-      PCL.PointXYZ,
-    );
+    const mcSeg = new pcl.segmentation.MinCutSegmentation<PCL.PointXYZ>(PCL.PointXYZ);
     const objectCenter: PCL.PointXYZ = new PCL.PointXYZ(68.97, -18.55, 0.57);
 
     const radius = 3.0433856;

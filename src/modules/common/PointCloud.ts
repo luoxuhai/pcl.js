@@ -1,10 +1,4 @@
-import {
-  PointTypes,
-  PointTypesTypeof,
-  PointXYZ,
-  NativeObject,
-  Vector,
-} from './point-types';
+import { PointTypes, PointTypesTypeof, PointXYZ, NativeObject, Vector } from './point-types';
 import { getPointType } from '@/utils';
 
 class Indices extends Vector<number> {
@@ -61,10 +55,7 @@ class PointCloud<T extends PointTypes = PointXYZ> extends NativeObject {
   public _native: Emscripten.NativeAPI;
   private _points?: Points<T>;
 
-  constructor(
-    public readonly _PT: PointTypesTypeof = PointXYZ,
-    _native?: Emscripten.NativeAPI,
-  ) {
+  constructor(public readonly _PT: PointTypesTypeof = PointXYZ, _native?: Emscripten.NativeAPI) {
     super();
     this._native = _native ?? new __PCLCore__[`PointCloud${_PT.name}`]();
   }
@@ -151,12 +142,4 @@ function wrapPoints<T extends PointTypes>(_native: Emscripten.NativeAPI) {
   return new Points<T>(_native);
 }
 
-export {
-  PointCloud,
-  Points,
-  wrapPointCloud,
-  wrapPoints,
-  PointIndices,
-  PCLHeader,
-  Indices,
-};
+export { PointCloud, Points, wrapPointCloud, wrapPoints, PointIndices, PCLHeader, Indices };

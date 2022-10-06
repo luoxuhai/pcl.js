@@ -27,14 +27,7 @@ export class InterestPoint {
 
 export class PointXYZRGB {
   private readonly _PointXYZRGB = 'PointXYZRGB';
-  constructor(
-    public x = 0,
-    public y = 0,
-    public z = 0,
-    public r = 0,
-    public g = 0,
-    public b = 0,
-  ) {}
+  constructor(public x = 0, public y = 0, public z = 0, public r = 0, public g = 0, public b = 0) {}
 }
 
 export class PointXYZRGBA {
@@ -65,12 +58,7 @@ export class PointXYZRGBL {
 
 export class Normal {
   private readonly _Normal = 'Normal';
-  constructor(
-    public normalX = 0,
-    public normalY = 0,
-    public normalZ = 0,
-    public curvature = 0,
-  ) {}
+  constructor(public normalX = 0, public normalY = 0, public normalZ = 0, public curvature = 0) {}
 }
 
 export class PointNormal {

@@ -7,8 +7,7 @@ import {
 } from '@/modules/common/point-types';
 
 function removeNaNFromPointCloud<
-  T extends XYZPointTypes = PointXYZ &
-    Partial<UnionToIntersection<XYZPointTypes>>,
+  T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
 >(cloudIn: PointCloud<T>, cloudOut?: PointCloud<T>, indices?: Indices) {
   const _cloudOut = cloudOut ?? new PointCloud<T>(cloudIn._PT);
   const _indices = indices ?? new Indices();
@@ -23,8 +22,7 @@ function removeNaNFromPointCloud<
 }
 
 function removeNaNNormalsFromPointCloud<
-  T extends NormalPointTypes = PointNormal &
-    Partial<UnionToIntersection<NormalPointTypes>>,
+  T extends NormalPointTypes = PointNormal & Partial<UnionToIntersection<NormalPointTypes>>,
 >(cloudIn: PointCloud<T>, cloudOut?: PointCloud<T>, indices?: Indices) {
   const _cloudOut = cloudOut ?? new PointCloud<T>(cloudIn._PT);
   const _indices = indices ?? new Indices();

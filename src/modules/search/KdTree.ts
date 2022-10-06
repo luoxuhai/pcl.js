@@ -1,15 +1,9 @@
 import Search from './Search';
 import { PointCloud, Indices } from '@/modules/common/PointCloud';
-import {
-  XYZPointTypes,
-  XYZPointTypesTypeof,
-  PointXYZ,
-  Vector,
-} from '@/modules/common/point-types';
+import { XYZPointTypes, XYZPointTypesTypeof, PointXYZ, Vector } from '@/modules/common/point-types';
 
 class KdTree<
-  T extends XYZPointTypes = PointXYZ &
-    Partial<UnionToIntersection<XYZPointTypes>>,
+  T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
 > extends Search<T> {
   constructor(_PT: XYZPointTypesTypeof = PointXYZ, sorted = true) {
     super(new __PCLCore__[`SearchKdTree${_PT.name}`](sorted));
@@ -41,13 +35,7 @@ class KdTree<
   public radiusSearch(point: T, radius: number, maxNN = 0) {
     const indices = new Indices();
     const distances = new Vector<number>(new __PCLCore__.VectorFloat());
-    this._native.radiusSearch(
-      point,
-      radius,
-      indices._native,
-      distances._native,
-      maxNN,
-    );
+    this._native.radiusSearch(point, radius, indices._native, distances._native, maxNN);
 
     return {
       indices,

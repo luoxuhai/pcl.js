@@ -21,8 +21,7 @@ describe('removeNaNFromPointCloud and removeNaNNormalsFromPointCloud', () => {
 
     const cloudIn = pcl.io.loadPCDData<PCL.PointNormal>(data, PCL.PointNormal);
 
-    const { cloud, indices } =
-      pcl.filters.removeNaNNormalsFromPointCloud(cloudIn);
+    const { cloud, indices } = pcl.filters.removeNaNNormalsFromPointCloud(cloudIn);
 
     expect(cloud.size).toBe(6);
     expect(indices.get(2)).toBe(3);

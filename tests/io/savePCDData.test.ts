@@ -40,10 +40,7 @@ describe('savePCDData', () => {
   it('should save a binary_compressed PCD data', () => {
     const pcl = global.pcl as PCL.PCLInstance;
 
-    const status = pcl.io.savePCDFileBinaryCompressed(
-      'binary_compressed.pcd',
-      cloud,
-    );
+    const status = pcl.io.savePCDFileBinaryCompressed('binary_compressed.pcd', cloud);
 
     expect(status).toBe(true);
     expect(pcl.fs.stat('binary_compressed.pcd').isFile).toBe(true);

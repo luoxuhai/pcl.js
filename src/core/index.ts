@@ -47,14 +47,7 @@ interface PCLInstance {
    */
   fs: Pick<
     Emscripten.FS,
-    | 'readdir'
-    | 'readFile'
-    | 'writeFile'
-    | 'stat'
-    | 'mkdir'
-    | 'rmdir'
-    | 'rename'
-    | 'unlink'
+    'readdir' | 'readFile' | 'writeFile' | 'stat' | 'mkdir' | 'rmdir' | 'rename' | 'unlink'
   >;
   /**
    * Base info

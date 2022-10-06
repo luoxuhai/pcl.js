@@ -1,8 +1,4 @@
-import {
-  PointCloud,
-  wrapPointCloud,
-  wrapPoints,
-} from '@/modules/common/PointCloud';
+import { PointCloud, wrapPointCloud, wrapPoints } from '@/modules/common/PointCloud';
 import {
   XYZPointTypes,
   XYZPointTypesTypeof,
@@ -12,8 +8,7 @@ import {
 } from '@/modules/common/point-types';
 
 class MinCutSegmentation<
-  T extends XYZPointTypes = PointXYZ &
-    Partial<UnionToIntersection<XYZPointTypes>>,
+  T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
 > {
   public _native: Emscripten.NativeAPI;
 

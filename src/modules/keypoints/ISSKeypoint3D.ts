@@ -1,13 +1,8 @@
 import Keypoint from './Keypoint';
-import {
-  XYZPointTypes,
-  XYZPointTypesTypeof,
-  PointXYZ,
-} from '@/modules/common/point-types';
+import { XYZPointTypes, XYZPointTypesTypeof, PointXYZ } from '@/modules/common/point-types';
 
 class ISSKeypoint3D<
-  T extends XYZPointTypes = PointXYZ &
-    Partial<UnionToIntersection<XYZPointTypes>>,
+  T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
 > extends Keypoint<T> {
   constructor(_PT: XYZPointTypesTypeof = PointXYZ, salientRadius = 0.0001) {
     super(new __PCLCore__[`ISSKeypoint3D${_PT.name}`](salientRadius));
