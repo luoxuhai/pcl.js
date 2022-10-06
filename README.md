@@ -191,7 +191,7 @@ Please make sure to read the [Contributing Guide](CONTRIBUTING.md) before making
 
 Thank you to all the people who already contributed to pcl.js!
 
-[![Contributors](https://contrib.rocks/image?repo=luoxuhai/pcl.js)](https://github.com/luoxuhai/pcl.js/graphs/contributors)
+![Contributors](https://opencollective.com/pcljs/contributors.svg?button=false)
 
 ## License
 

@@ -134,7 +134,9 @@ async function main() {
 main();
 </script>
 ```
+
 ### 简单示例
+
 ```typescript
 // TypeScript
 
@@ -187,7 +189,7 @@ pcl.js 已采用 [贡献者公约](https://www.contributor-covenant.org/) 作为
 
 感谢所有为 pcl.js 做出贡献的人！
 
-[![贡献者](https://contrib.rocks/image?repo=luoxuhai/pcl.js)](https://github.com/luoxuhai/pcl.js/graphs/contributors)
+![贡献者](https://opencollective.com/pcljs/contributors.svg?button=false)
 
 ## 协议
 
