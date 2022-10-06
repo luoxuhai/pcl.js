@@ -57,16 +57,8 @@ function collectTypeDefinition(moduleName) {
           });
         });
       },
-    };
-  };
-
-  const addExtra = (moduleName) => {
-    return {
       renderChunk(code) {
         return `
-/// <reference path="../../src/emscripten.d.ts" />
-/// <reference path="../../src/global.d.ts" />
-  
 ${code}
   
 export as namespace ${moduleName};`;
@@ -74,7 +66,7 @@ export as namespace ${moduleName};`;
     };
   };
 
-  return [tscAlias(), dts(), addExtra(moduleName)];
+  return [tscAlias(), dts()];
 }
 
 const constants = {

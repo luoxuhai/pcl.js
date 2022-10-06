@@ -3,39 +3,30 @@
  * https://nodejs.org/api/fs.html#file-system
  */
 
-export type FileSystem = Pick<
-  Emscripten.FS,
-  'readdir' | 'readFile' | 'writeFile' | 'stat' | 'mkdir' | 'rmdir' | 'rename' | 'unlink'
->;
+export const writeFile = (
+  path: string,
+  data: string | ArrayBufferView,
+  opts?: { flags?: string | undefined },
+) => __PCLCore__.FS.writeFile(path, data, opts);
 
-export default (): FileSystem => {
+export function readFile(
+  path: string,
+  opts?: { encoding: 'binary' | 'utf8'; flags?: string },
+): string | Uint8Array {
+  return __PCLCore__.FS.readFile(path, opts);
+}
+export const unlink = (path: string) => __PCLCore__.FS.unlink(path);
+export const rename = (oldPath: string, newPath: string) => __PCLCore__.FS.rename(oldPath, newPath);
+export const mkdir = (path: string, mode?: number) => __PCLCore__.FS.mkdir(path, mode);
+export const rmdir = (path: string) => __PCLCore__.FS.rmdir(path);
+export const readdir = (path: string) => __PCLCore__.FS.readdir(path);
+
+export function stat(path: string, dontFollow?: boolean) {
   const { FS } = __PCLCore__;
-
-  const writeFile = FS.writeFile;
-  const readFile = FS.readFile;
-  const unlink = FS.unlink;
-  const rename = FS.rename;
-  const mkdir = FS.mkdir;
-  const rmdir = FS.rmdir;
-  const readdir = FS.readdir;
-
-  function stat(path: string, dontFollow?: boolean) {
-    const info = FS.stat(path, dontFollow);
-    return {
-      ...info,
-      isDir: FS.isDir(info.mode),
-      isFile: FS.isFile(info.mode),
-    };
-  }
-
+  const info = FS.stat(path, dontFollow);
   return {
-    mkdir,
-    rmdir,
-    rename,
-    unlink,
-    stat,
-    writeFile,
-    readFile,
-    readdir,
+    ...info,
+    isDir: FS.isDir(info.mode),
+    isFile: FS.isFile(info.mode),
   };
-};
+}

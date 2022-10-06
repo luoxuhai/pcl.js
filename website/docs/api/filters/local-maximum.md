@@ -7,7 +7,7 @@
 ## Constructor
 
 ```ts
-new pcl.filters.LocalMaximum(pointType, extractRemovedIndices);
+new PCL.LocalMaximum(pointType, extractRemovedIndices);
 ```
 
 **Parameters:**

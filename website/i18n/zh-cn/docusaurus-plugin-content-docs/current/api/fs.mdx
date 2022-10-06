@@ -6,24 +6,34 @@ sidebar_position: 3
 
 > https://emscripten.org/docs/api_reference/Filesystem-API.html#id2
 
+示例
+
+```ts showLineNumbers
+import { init, fs } from 'pcl.js';
+
+await init();
+
+fs.writeFile('file', 'foobar');
+```
+
 ## 方法
 
 ### writeFile
 
 ```ts
-writeFile(path, data, options);
+fs.writeFile(path, data, options);
 ```
 
 将数据的全部内容写入路径中的文件。 例如：
 
-```ts showLineNumbers
-pcl.fs.writeFile('file', 'foobar');
+```ts
+fs.writeFile('file', 'foobar');
 ```
 
 ### readFile
 
 ```ts
-readFile(path, options);
+fs.readFile(path, options);
 ```
 
 读取 `path` 处的整个文件并将其作为字符串（编码为 utf8）或作为新的 `Uint8Array` 缓冲区（编码为二进制）返回。
@@ -37,7 +47,7 @@ readFile(path, options);
 ### unlink
 
 ```ts
-unlink(path);
+fs.unlink(path);
 ```
 
 这会从文件系统中删除一个名称。 如果该名称是文件的最后一个链接（并且没有进程打开该文件），则该文件将被删除。
@@ -45,7 +55,7 @@ unlink(path);
 ### rename
 
 ```ts
-rename(oldPath, newPath);
+fs.rename(oldPath, newPath);
 ```
 
 将 `oldpath` 处的节点重命名为 `newpath。`
@@ -53,7 +63,7 @@ rename(oldPath, newPath);
 ### mkdir
 
 ```ts
-mkdir(path, mode);
+fs.mkdir(path, mode);
 ```
 
 在文件系统中创建一个新的目录节点。
@@ -61,7 +71,7 @@ mkdir(path, mode);
 ### rmdir
 
 ```ts
-rmdir(path);
+fs.rmdir(path);
 ```
 
 删除位于 `path` 的空目录。
@@ -69,12 +79,12 @@ rmdir(path);
 ### readdir
 
 ```ts
-readdir(path);
+fs.readdir(path);
 ```
 
 读取 `path` 处的整个文件并将其作为数组返回。 例如：
 
 ```ts showLineNumbers
-const result = pcl.fs.readdir('/)
+const result = PCL.fs.readdir('/)
 console.log(result) // ['dev', 'temp']
 ```

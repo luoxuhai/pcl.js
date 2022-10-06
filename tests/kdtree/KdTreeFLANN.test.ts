@@ -3,15 +3,13 @@ import * as PCL from '../../';
 
 describe('KdTreeFLANN', () => {
   it('should find the K nearest neighbors of a specific point', () => {
-    const pcl = global.pcl as PCL.PCLInstance;
-
     const filename = 'table_scene_lms400.pcd';
-    writeFile(filename, pcl);
-    const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>(filename, PCL.PointXYZ);
+    writeFile(filename, PCL.fs);
+    const cloud = PCL.loadPCDFile<PCL.PointXYZ>(filename, PCL.PointXYZ);
     const point = new PCL.PointXYZ();
     const k = 10;
 
-    const kdtree = new pcl.kdtree.KdTreeFLANN(PCL.PointXYZ);
+    const kdtree = new PCL.KdTreeFLANN(PCL.PointXYZ);
     kdtree.setInputCloud(cloud);
     const result = kdtree.nearestKSearch(point, k);
 
@@ -20,14 +18,12 @@ describe('KdTreeFLANN', () => {
   });
 
   it('should find all neighbors within some radius specified', () => {
-    const pcl = global.pcl as PCL.PCLInstance;
-
     const filename = 'room_scan1.pcd';
-    writeFile(filename, pcl);
-    const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>(filename, PCL.PointXYZ);
+    writeFile(filename, PCL.fs);
+    const cloud = PCL.loadPCDFile<PCL.PointXYZ>(filename, PCL.PointXYZ);
     const point = new PCL.PointXYZ();
 
-    const kdtree = new pcl.kdtree.KdTreeFLANN(PCL.PointXYZ);
+    const kdtree = new PCL.KdTreeFLANN(PCL.PointXYZ);
     kdtree.setInputCloud(cloud);
     const result = kdtree.radiusSearch(point, 1);
 

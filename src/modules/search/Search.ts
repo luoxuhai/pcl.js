@@ -1,5 +1,6 @@
 import { wrapPointCloud } from '@/modules/common/PointCloud';
 import { XYZPointTypes } from '@/modules/common/point-types';
+import { Emscripten } from '@/types';
 
 class Search<T extends XYZPointTypes> {
   constructor(public _native: Emscripten.NativeAPI) {}

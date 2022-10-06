@@ -1,5 +1,3 @@
 import KdTreeFLANN from './KdTreeFLANN';
 
-export default {
-  KdTreeFLANN,
-};
+export { KdTreeFLANN };

@@ -7,7 +7,7 @@
 ## Constructor
 
 ```ts
-new pcl.search.KdTree(pointType, sorted);
+new PCL.SearchKdTree(pointType, sorted);
 ```
 
 **Parameters:**
@@ -58,13 +58,13 @@ For Exmaple:
 ```ts
 import * as PCL from 'pcl.js'
 
-const pcl = await PCL.init();
+await PCL.init();
 
 // highlight-next-line
 const point = new PCL.PointXYZ(1, 2, 3);
 // highlight-next-line
 const k = 5
-const kdtree = new pcl.search.KdTree(pointType, sorted);
+const kdtree = new PCL.SearchKdTree(pointType, sorted);
 // highlight-next-line
 kdtree.nearestKSearch(point, k);
 ```

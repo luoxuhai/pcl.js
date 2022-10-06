@@ -2,8 +2,6 @@ import * as PCL from '../../';
 
 describe('IterativeClosestPoint', () => {
   it('should to return a registered point cloud', () => {
-    const pcl = global.pcl as PCL.PCLInstance;
-
     const source = [
       [0.352222, -0.151883, -0.106395],
       [-0.397406, -0.473106, 0.292602],
@@ -19,16 +17,16 @@ describe('IterativeClosestPoint', () => {
       [0.2393, -0.277468, -0.916762],
     ];
 
-    const cloudIn = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
-    const cloudOut = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
-    const final = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+    const cloudIn = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+    const cloudOut = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+    const final = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
     for (let i = 0; i < source.length; i++) {
       cloudIn.addPoint(new PCL.PointXYZ(...source[i]));
       cloudOut.addPoint(new PCL.PointXYZ(...target[i]));
     }
 
-    const icp = new pcl.registration.IterativeClosestPoint<PCL.PointXYZ>(PCL.PointXYZ);
+    const icp = new PCL.IterativeClosestPoint<PCL.PointXYZ>(PCL.PointXYZ);
     icp.setInputSource(cloudIn);
     icp.setInputTarget(cloudOut);
     icp.align(final);

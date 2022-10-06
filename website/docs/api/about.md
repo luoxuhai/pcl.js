@@ -10,8 +10,8 @@ The api of pcl.js(except [Visualization](/docs/category/visualization)) must be 
 import * as PCL from 'pcl.js'
 
 // highlight-next-line
-const pcl = await PCL.init();
+await PCL.init();
 
 // call api
-pcl.io.PointCloud();
+PCL.PointCloud();
 ```

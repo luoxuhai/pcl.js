@@ -1,5 +1,6 @@
 import { PointCloud, wrapPointCloud } from './PointCloud';
 import { PointTypes } from './point-types';
+import { Emscripten } from '@/types';
 
 class PCLBase<T extends PointTypes> {
   constructor(public _native: Emscripten.NativeAPI) {}

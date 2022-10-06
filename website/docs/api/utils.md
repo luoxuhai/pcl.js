@@ -7,7 +7,7 @@ sidebar_position: 2
 ## computeCloudResolution
 
 ```ts
-pcl.common.computeCloudResolution(cloud)
+computeCloudResolution(cloud)
 ```
 
 ### Type Definitions

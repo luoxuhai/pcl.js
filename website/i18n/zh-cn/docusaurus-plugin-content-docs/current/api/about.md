@@ -10,8 +10,8 @@ pcl.js 的 api 必须在初始化成功后调用，例如：
 import * as PCL from 'pcl.js'
 
 // highlight-next-line
-const pcl = await PCL.init();
+await PCL.init();
 
 // 调用 api
-pcl.io.PointCloud();
+new PCL.PointCloud();
 ```

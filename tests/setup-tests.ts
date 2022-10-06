@@ -8,5 +8,5 @@ if (!window.TextDecoder) {
 global.ROOT_DIR = process.env.PWD;
 
 beforeAll(async () => {
-  global.pcl = await initPCL();
+  await initPCL();
 });

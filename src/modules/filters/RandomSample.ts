@@ -1,5 +1,6 @@
 import FilterIndices from './FilterIndices';
 import { XYZPointTypes, XYZPointTypesTypeof, PointXYZ } from '@/modules/common/point-types';
+import { UnionToIntersection } from '@/types/utils';
 
 class RandomSample<
   T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,

@@ -4,14 +4,12 @@ import * as PCL from '../../';
 
 describe('LocalMaximum', () => {
   it('should downsampling a PointCloud using a LocalMaximum filter', () => {
-    const pcl = global.pcl as PCL.PCLInstance;
-
     const filename = 'table_scene_lms400.pcd';
     const pcd = fs.readFileSync(path.join(global.ROOT_DIR, `data/${filename}`));
-    pcl.fs.writeFile(filename, new Uint8Array(pcd));
-    const cloud = pcl.io.loadPCDFile<PCL.PointXYZ>(filename, PCL.PointXYZ);
+    PCL.fs.writeFile(filename, new Uint8Array(pcd));
+    const cloud = PCL.loadPCDFile<PCL.PointXYZ>(filename, PCL.PointXYZ);
 
-    const lm = new pcl.filters.LocalMaximum<PCL.PointXYZ>(PCL.PointXYZ);
+    const lm = new PCL.LocalMaximum<PCL.PointXYZ>(PCL.PointXYZ);
     lm.setInputCloud(cloud);
     lm.setRadius(0.025);
     const cloudFiltered = lm.filter();

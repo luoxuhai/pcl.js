@@ -5,11 +5,16 @@ import * as PCL from '../../';
 describe('InitializePCL', () => {
   it('should initialize pcl.js via ArrayBuffer', async () => {
     const wasm = fs.readFileSync(path.join(global.ROOT_DIR, 'dist/pcl-core.wasm'));
-    const pcl = await PCL.init({
+    await PCL.init({
       arrayBuffer: wasm,
-      log: false,
     });
 
-    expect(pcl?.info.PCL_VERSION).toBe('1.12.1');
+    expect(PCL.isInitialized).toBe(true);
+  });
+
+  it('should destroy a pcl.js instance', async () => {
+    expect(PCL.isInitialized).toBe(true);
+    PCL.destroy();
+    expect(PCL.isInitialized).toBe(false);
   });
 });

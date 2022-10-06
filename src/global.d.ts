@@ -1,9 +1,9 @@
-declare const __PCLCore__: Emscripten.Module;
+import { Emscripten } from '@/types';
 
-interface Window {
-  __PCLCore__: Emscripten.Module;
+declare global {
+  declare const __PCLCore__: Emscripten.Module;
+
+  interface Window {
+    __PCLCore__: Emscripten.Module | null;
+  }
 }
-
-type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void
-  ? I
-  : never;

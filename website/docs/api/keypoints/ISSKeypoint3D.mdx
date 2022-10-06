@@ -10,15 +10,16 @@ More: https://pointclouds.org/documentation/classpcl_1_1_i_s_s_keypoint3_d.html
 ```ts title="TypeScript" showLineNumbers
 import * as PCl from 'pcl'
 
-const pcl = await PCL.init();
+await PCL.init();
 
 // data: pcd file data (ArrayBuffer)
-const cloud = pcl.io.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
+const cloud = PCL.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
 // Get point cloud resolution
-const resolution = pcl.common.computeCloudResolution(cloud);
-const tree = new pcl.search.KdTree<PCL.PointXYZ>(PCL.PointXYZ);
-const keypoints = new pcl.common.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
-const iss = new pcl.keypoints.ISSKeypoint3D<PCL.PointXYZ>(PCL.PointXYZ);
+// highlight-start
+const resolution = PCL.computeCloudResolution(cloud);
+const tree = new PCL.SearchKdTree<PCL.PointXYZ>(PCL.PointXYZ);
+const keypoints = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+const iss = new PCL.ISSKeypoint3D<PCL.PointXYZ>(PCL.PointXYZ);
 
 iss.setSearchMethod(tree);
 iss.setSalientRadius(6 * resolution);
@@ -28,6 +29,7 @@ iss.setThreshold32(0.975);
 iss.setMinNeighbors(5);
 iss.setInputCloud(cloud);
 iss.compute(keypoints);
+// highlight-end
 ```
 
 ## Type Definitions

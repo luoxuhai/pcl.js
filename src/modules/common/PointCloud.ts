@@ -1,5 +1,6 @@
 import { PointTypes, PointTypesTypeof, PointXYZ, NativeObject, Vector } from './point-types';
 import { getPointType } from '@/utils';
+import { Emscripten } from '@/types';
 
 class Indices extends Vector<number> {
   constructor(native?: Emscripten.NativeAPI) {

@@ -1,5 +1,6 @@
 import FilterBase from './FilterBase';
 import { XYZPointTypes, XYZPointTypesTypeof, PointXYZ } from '@/modules/common/point-types';
+import { UnionToIntersection } from '@/types/utils';
 
 class ApproximateVoxelGrid<
   T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,

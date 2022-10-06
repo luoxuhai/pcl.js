@@ -5,6 +5,7 @@ import {
   PointNormal,
   PointXYZ,
 } from '@/modules/common/point-types';
+import { UnionToIntersection } from '@/types/utils';
 
 function removeNaNFromPointCloud<
   T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
