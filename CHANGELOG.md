@@ -1,25 +1,11 @@
 # Changelog
 
-## [1.10.0-rc.0](https://github.com/luoxuhai/pcl.js/compare/v1.9.0...v1.10.0-rc.0) (2022-10-06)
+## [1.10.0](https://github.com/luoxuhai/pcl.js/compare/v1.9.0...v1.10.0) (2022-10-06)
 
 
 ### ✨ Features
 
-* export visualization module separately ([1739204](https://github.com/luoxuhai/pcl.js/commit/173920475ccd0d567389a0332552e1aff21b9118))
-
-## [1.10.0-beta.0](https://github.com/luoxuhai/pcl.js/compare/v1.9.0...v1.10.0-beta.0) (2022-10-06)
-
-
-### ✨ Features
-
-* export visualization module separately ([fe8f784](https://github.com/luoxuhai/pcl.js/commit/fe8f7848f8332f39f1c43c08429770daadba9172))
-
-## [1.10.0-alpha.0](https://github.com/luoxuhai/pcl.js/compare/v1.9.0...v1.10.0-alpha.0) (2022-10-05)
-
-
-### ✨ Features
-
-* export visualization module separately ([db7c7b3](https://github.com/luoxuhai/pcl.js/commit/db7c7b326b71d39c51c2584d90a26a67aa8b43c5))
+* export visualization module separately ([ca0dc48](https://github.com/luoxuhai/pcl.js/commit/ca0dc48cbed8ff7433b1755f6a1e724c75456498))
 
 ## [1.9.0](https://github.com/luoxuhai/pcl.js/compare/v1.8.0...v1.9.0) (2022-10-05)
 
