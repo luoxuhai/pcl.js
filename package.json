@@ -7,11 +7,17 @@
   "module": "dist/pcl.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/pcl.esm.js",
-      "require": "./dist/pcl.cjs.js",
-      "types": "./dist/pcl.d.ts"
+      "browser": {
+        "import": "./dist/pcl.esm.js",
+        "require": "./dist/pcl.cjs.js"
+      },
+      "node": {
+        "import": "./dist/node/pcl.esm.js",
+        "require": "./dist/node/pcl.cjs.js"
+      }
     },
     "./pcl-core.wasm": "./dist/pcl-core.wasm",
+    "./pcl-core.node.wasm": "./dist/node/pcl-core.wasm",
     "./PointCloudViewer": "./dist/visualization/PointCloudViewer.esm.js"
   },
   "typesVersions": {
