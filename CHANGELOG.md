@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/luoxuhai/pcl.js/compare/v1.10.0...v1.11.0) (2022-10-07)
+
+
+### ✨ Features
+
+* export Apis at the top level ([5479c3d](https://github.com/luoxuhai/pcl.js/commit/5479c3db477db09a41d5013d359310aa445a9cad))
+
 ## [1.10.0](https://github.com/luoxuhai/pcl.js/compare/v1.9.0...v1.10.0) (2022-10-06)
 
 
