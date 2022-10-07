@@ -1,14 +1,10 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const nightOwlTheme = require('prism-react-renderer/themes/nightOwl');
 
 const github = 'https://github.com/luoxuhai/pcl.js';
-const url =
-  process.env.NODE_ENV !== 'development'
-    ? 'https://pcljs.org'
-    : 'http://localhost:3000';
+const url = process.env.NODE_ENV !== 'development' ? 'https://pcljs.org' : 'http://localhost:3000';
 const title = 'pcl.js';
 
 /** @type {import('@docusaurus/types').Config} */
@@ -47,6 +43,10 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/luoxuhai/pcl.js/tree/master/website',
+          remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
+        },
+        pages: {
+          remarkPlugins: [require('@docusaurus/remark-plugin-npm2yarn')],
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -152,8 +152,8 @@ const config = {
         copyright: `© ${new Date().getFullYear()} · Darkce · All rights reserved`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        theme: nightOwlTheme,
+        darkTheme: nightOwlTheme,
       },
       docs: {
         sidebar: {

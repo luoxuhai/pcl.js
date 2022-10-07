@@ -4,9 +4,9 @@ sidebar_position: 1
 
 # 介绍
 
-**pcl.js** 是在浏览器中运行的 [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。[Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) 是一个独立、大型、开源的 2D/3D 图像和点云处理库。
+**pcl.js** 是在浏览器中运行的 [Point Cloud Library (PCL)](https://pointclouds.org/)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。
 
-**pcl.js** 在使用了与 PCL 相同的 API，并针对 JavaScript 进行优化，提供了 TypeScript 类型，使用方便。
+**PCL（Point Cloud Library）** 是在吸收了前人点云相关研究基础上建立起来的大型跨平台开源 C++ 编程库，它实现了大量点云相关的通用算法和高效数据结构，涉及到点云**获取、滤波、分割、配准、检索、特征提取、识别、追踪、曲面重建、可视化**等。支持多种操作系统平台，可在Windows、Linux、Android、Mac OS X、部分嵌入式实时系统上运行。如果说 OpenCV 是 2D 信息获取与处理的结晶，那么 PCL 就在 3D 信息获取与处理上具有同等地位，PCL 是 BSD 授权方式，可以免费进行商业和学术应用。
 
 ## 简单示例
 

@@ -68,12 +68,14 @@ function BackgroundCanvas() {
   });
 
   const addPCDToScene = useCallback(async () => {
-    const _cloudWolf = (await new PCDLoader().loadAsync(
-      'https://3l6tfj.csb.app/ism_test_wolf.pcd',
-    )) as Points<BufferGeometry, PointsMaterial>;
-    const _cloudHorse = (await new PCDLoader().loadAsync(
-      'https://3l6tfj.csb.app/ism_train_horse.pcd',
-    )) as Points<BufferGeometry, PointsMaterial>;
+    const _cloudWolf = (await new PCDLoader().loadAsync('/wolf.pcd')) as Points<
+      BufferGeometry,
+      PointsMaterial
+    >;
+    const _cloudHorse = (await new PCDLoader().loadAsync('/horse.pcd')) as Points<
+      BufferGeometry,
+      PointsMaterial
+    >;
 
     cloudWolf.current = _cloudWolf;
     cloudHorse.current = _cloudHorse;
@@ -87,10 +89,9 @@ function BackgroundCanvas() {
       cloud.rotation.z = Math.PI / 4;
     });
 
-    _cloudWolf.position.x = 150;
-    _cloudHorse.position.x = -250;
     _cloudHorse.position.z = -200;
     camera.current.position.z = 250;
+    onResize();
     timer = setInterval(() => {
       [_cloudWolf, _cloudHorse].forEach((cloud) => {
         cloud.material.color.setHex(Math.random() * 0xffffff);
@@ -99,6 +100,16 @@ function BackgroundCanvas() {
   }, []);
 
   const onResize = useCallback(() => {
+    if (cloudWolf.current) {
+      if (window.innerWidth < 700) {
+        cloudWolf.current.position.x = 80;
+        cloudHorse.current.position.x = -80;
+      } else {
+        cloudWolf.current.position.x = 150;
+        cloudHorse.current.position.x = -250;
+      }
+    }
+
     camera.current.aspect = window.innerWidth / h;
     camera.current.updateProjectionMatrix();
     renderer.current.setSize(window.innerWidth, h);
@@ -111,29 +122,39 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header
-      className={clsx('hero hero--primary', styles.heroBanner)}
+      className={clsx('hero', styles.heroBanner)}
       style={{
         height: h,
       }}
     >
       <div className={clsx('container', styles.container)}>
-        <h1 className={clsx('hero__title', styles.title)}>
-          {siteConfig.title}
-        </h1>
+        <h1 className={clsx('hero__title', styles.title)}>{siteConfig.title}</h1>
         <p className={clsx('hero__subtitle', styles.desc)}>
           {translate({
             message: 'home.tagline',
           })}
         </p>
         <div className={styles.buttons}>
-          <Link
-            className={clsx('button button--secondary button--lg', styles.button)}
-            to="/docs/tutorials/intro"
-          >
+          <Link className={clsx('button button--lg', styles.button)} to="/docs/tutorials/intro">
             {translate({
               message: 'home.getting-started',
             })}
           </Link>
+          <a
+            style={{
+              width: 240,
+              height: 45,
+            }}
+            href="https://www.producthunt.com/posts/pcl-js?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-pcl&#0045;js"
+            target="_blank"
+          >
+            <img
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=361683&theme=light"
+              alt="pcl&#0046;js - Point&#0032;Cloud&#0032;Library&#0032;for&#0032;browser&#0044;&#0032;powered&#0032;by&#0032;WebAssembly&#0046; | Product Hunt"
+              width="100%"
+              height="100%"
+            />
+          </a>
         </div>
       </div>
       <BackgroundCanvas />
