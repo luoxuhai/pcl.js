@@ -27,5 +27,6 @@ EMFLAGS=(
 emcmake cmake ${EMFLAGS[@]} ..
 emmake make -j
 
-mkdir -p ${WASM_OUT_DIR}
+mkdir -p ${WASM_OUT_DIR} ${WASM_OUT_DIR}/node
 cp pcl-core.wasm ${WASM_OUT_DIR}
+cp pcl-core.node.wasm ${WASM_OUT_DIR}/node

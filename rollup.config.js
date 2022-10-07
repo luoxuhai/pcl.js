@@ -29,15 +29,7 @@ ${code}`;
 function replaceCode() {
   return {
     renderChunk(code) {
-      return (
-        code
-          .replace('assert(!flags, flags);', '')
-          // test environment
-          .replace(
-            "ENVIRONMENT_IS_NODE = typeof process == 'object' && typeof process.versions == 'object' && typeof process.versions.node == 'string'",
-            'ENVIRONMENT_IS_NODE = false',
-          )
-      );
+      return code.replace('assert(!flags, flags);', '');
     },
   };
 }
@@ -81,8 +73,8 @@ const commonPlugins = [
   banner(),
 ];
 
-const coreConfig = {
-  input: 'src/core/index.ts',
+const browserCoreConfig = {
+  input: 'src/core/browser.ts',
   output: [
     {
       file: pkg.main,
@@ -127,6 +119,36 @@ const coreConfig = {
           'Access-Control-Allow-Origin': '*',
         },
       }),
+  ],
+};
+
+const nodeCoreConfig = {
+  input: 'src/core/node.ts',
+  output: [
+    {
+      file: pkg.exports['.'].node.require,
+      format: 'cjs',
+    },
+    {
+      file: pkg.exports['.'].node.import,
+      format: 'esm',
+    },
+  ],
+  plugins: [
+    ...commonPlugins,
+    replaceCode(),
+    replace(constants),
+    typescript({
+      useTsconfigDeclarationDir: true,
+    }),
+    copy({
+      targets: [
+        {
+          src: 'src/bind/build/pcl-core.node.wasm',
+          dest: 'dist/node',
+        },
+      ],
+    }),
   ],
 };
 
@@ -178,10 +200,11 @@ const visualizationConfig = visualizationModules.map((name) => {
 });
 
 const config = [
-  coreConfig,
+  browserCoreConfig,
+  nodeCoreConfig,
   ...visualizationConfig,
   {
-    input: './dist/.types/core/index.d.ts',
+    input: './dist/.types/core/browser.d.ts',
     output: [{ file: 'dist/pcl.d.ts', format: 'es' }],
     plugins: collectTypeDefinition('PCL'),
   },
