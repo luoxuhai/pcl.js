@@ -107,7 +107,7 @@ import * as PCL from 'pcl.js';
 
 async function main() {
   // Initialization
-  const pcl = await PCL.init({
+  await PCL.init({
     /**
      * Recommend, optional configuration, custom WebAssembly file link.
      * @default js file dir + pcl-core.wasm
