@@ -4,10 +4,8 @@ Simple point cloud visualization class.
 
 Install Dependencies:
 
-```bash
-yarn add three
-or 
-npm install three --save
+```bash npm2yarn
+npm install three
 ```
 
 :::caution

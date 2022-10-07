@@ -4,9 +4,9 @@ sidebar_position: 1
 
 # Introduction
 
-**pcl.js** is a [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/). [Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl) is a standalone, large scale, open project for 2D/3D image and point cloud processing.
+**pcl.js** is a [Point Cloud Library (PCL)](https://pointclouds.org/) that runs in the browser, powered by [Emscripten](https://emscripten.org/index.html) and [WebAssembly](https://webassembly.org/).
 
-**pcl.js** uses the same API as PCL, is optimized for JavaScript, and provides TypeScript types, which are easy to use.
+**The Point Cloud Library (or PCL)** is a large scale, open project for 2D/3D image and point cloud processing. The PCL framework contains numerous state-of-the art algorithms including **filtering, feature estimation, surface reconstruction, registration, model fitting and segmentation**. These algorithms can be used, for example, to filter outliers from noisy data, stitch 3D point clouds together, segment relevant parts of a scene, extract keypoints and compute descriptors to recognize objects in the world based on their geometric appearance, and create surfaces from point clouds and visualize them – to name a few.
 
 ## Basic Usage Example
 
