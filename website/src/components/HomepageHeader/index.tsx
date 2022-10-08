@@ -138,13 +138,10 @@ function HomepageHeader() {
           <Link className={clsx('button button--lg', styles.button)} to="/docs/tutorials/intro">
             {translate({
               message: 'home.getting-started',
-            })}
+            })} →
           </Link>
           <a
-            style={{
-              width: 240,
-              height: 45,
-            }}
+            className={styles.productHunt}
             href="https://www.producthunt.com/posts/pcl-js?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-pcl&#0045;js"
             target="_blank"
           >
@@ -155,6 +152,17 @@ function HomepageHeader() {
               height="100%"
             />
           </a>
+          <iframe
+            style={{
+              marginTop: 10,
+              width: 150,
+              height: 30,
+            }}
+            src="https://ghbtns.com/github-btn.html?user=luoxuhai&repo=pcl.js&type=star&count=true"
+            frameBorder="0"
+            scrolling="0"
+            title="GitHub"
+          ></iframe>
         </div>
       </div>
       <BackgroundCanvas />
