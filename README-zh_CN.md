@@ -36,7 +36,11 @@
 
 ## 简介
 
-**pcl.js** 是在浏览器中运行的 [Point Cloud Library (PCL)](https://pointclouds.org)，由 [Emscripten](https://emscripten.org/index.html) 和 [WebAssembly](https://webassembly.org/) 提供支持。[Point Cloud Library (PCL)](https://pointclouds.org) 是一个独立、大型、开源的 2D/3D 图像和点云处理库。
+**pcl.js** 是在浏览器中运行的 [点云库（PCL）](https://pointclouds.org)，由 [Emscripten](https://emscripten.org) 和 [WebAssembly](https://webassembly.org) 提供支持。
+
+[点云库（PCL）](https://pointclouds.org)是一个用于 2D/3D 图像和点云处理的大型开放项目。 PCL 框架包含许多最先进的算法，包括过滤、特征估计、表面重建、配准、模型拟合和分割。PCL 有自己的数据格式用于存储点云 - [PCD](https://pointclouds.org/documentation/tutorials/pcd_file_format.html)，还允许以其他格式加载和保存数据集。
+
+[点云](https://en.wikipedia.org/wiki/Point_cloud) 是空间中的一组数据点。 这些点可以表示 3D 形状或对象。 每个点位置都有其一组笛卡尔坐标 (X, Y, Z)。 点云通常由激光雷达或摄影测量软件生成，它们测量物体外表面上的许多点。
 
 ## 示例
 
@@ -49,10 +53,10 @@
 
 ## 特性
 
-- 提供与 PCL(C++) 相似的 API，简单易用
-- 支持所有现代浏览器，未来将提供对 Nodejs 的支持
-- 用 TypeScript 编写，具有可预测的静态类型
-- 还有很多很多！🚀
+- 💌 提供与 PCL(C++) 相似的 API，简单易用
+- 🌍 支持所有现代浏览器，未来将提供对 Nodejs 的支持
+- 💪 使用 TypeScript 编写，具有可预测的静态类型
+- 🚀 还有很多很多！
 
 ## 资源
 
