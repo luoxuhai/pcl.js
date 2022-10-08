@@ -4,8 +4,9 @@ import { Emscripten } from '@/types';
 
 export * from '@/constants';
 export * as fs from '@/modules/fs';
-export * from '@/modules/io';
 export * from '@/modules/common';
+export * from '@/modules/io';
+export * from '@/modules/sample-consensus';
 export * from '@/modules/kdtree';
 export * from '@/modules/search';
 export * from '@/modules/filters';

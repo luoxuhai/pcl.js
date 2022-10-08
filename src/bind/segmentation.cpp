@@ -1,5 +1,6 @@
 #include <pcl/pcl_config.h>
 #include <pcl/segmentation/min_cut_segmentation.h>
+#include <pcl/segmentation/sac_segmentation.h>
 
 #include "embind.hpp"
 
@@ -33,6 +34,20 @@ using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(segmentation) {
   BOOST_PP_SEQ_FOR_EACH(BIND_MinCutSegmentation, , XYZ_POINT_TYPES);
+
+  class_<pcl::SACSegmentation<pcl::PointXYZ>, base<pcl::PCLBase<pcl::PointXYZ>>>("SACSegmentation")
+      .constructor<bool>()
+      .function("setModelType", &pcl::SACSegmentation<pcl::PointXYZ>::setModelType)
+      .function("setMethodType", &pcl::SACSegmentation<pcl::PointXYZ>::setMethodType)
+      .function("setDistanceThreshold", &pcl::SACSegmentation<pcl::PointXYZ>::setDistanceThreshold)
+      .function("setMaxIterations", &pcl::SACSegmentation<pcl::PointXYZ>::setMaxIterations)
+      .function("setProbability", &pcl::SACSegmentation<pcl::PointXYZ>::setProbability)
+      .function("setRadiusLimits", &pcl::SACSegmentation<pcl::PointXYZ>::setRadiusLimits)
+      .function("setSamplesMaxDist", &pcl::SACSegmentation<pcl::PointXYZ>::setSamplesMaxDist)
+      .function("setEpsAngle", &pcl::SACSegmentation<pcl::PointXYZ>::setEpsAngle)
+      .function("setOptimizeCoefficients",
+                &pcl::SACSegmentation<pcl::PointXYZ>::setOptimizeCoefficients)
+      .function("segment", &pcl::SACSegmentation<pcl::PointXYZ>::segment);
 
   register_vector<PointIndices>("VectorPointIndices");
 }

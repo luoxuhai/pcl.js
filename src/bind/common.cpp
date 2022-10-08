@@ -1,4 +1,6 @@
+#include <pcl/ModelCoefficients.h>
 #include <pcl/impl/pcl_base.hpp>
+#include <pcl/io/pcd_io.h>
 #include <pcl/pcl_config.h>
 #include <pcl/search/kdtree.h>
 
@@ -63,6 +65,15 @@ double computeCloudResolution(const typename PointCloud<PointT>::ConstPtr &cloud
   return resolution;
 }
 
+template <typename PointInT>
+void toXYZPointCloud(const pcl::PointCloud<PointInT> &cloud_in,
+                     pcl::PointCloud<pcl::PointXYZ> &cloud_out) {
+  pcl::copyPointCloud(cloud_in, cloud_out);
+}
+
+#define BIND_toXYZPointCloud(r, data, PointT) \
+  function("toXYZPointCloud" BOOST_PP_STRINGIZE(PointT), &toXYZPointCloud<PointT>);
+
 EMSCRIPTEN_BINDINGS(common) {
   constant("PCL_VERSION", VERSION);
 
@@ -89,4 +100,13 @@ EMSCRIPTEN_BINDINGS(common) {
       .property("stamp", &PCLHeader::stamp)
       .property("frame_id", &PCLHeader::frame_id)
       .smart_ptr<PCLHeader::ConstPtr>("PCLHeaderConstPtr");
+
+  class_<ModelCoefficients>("ModelCoefficients")
+      .smart_ptr_constructor<ModelCoefficients::Ptr>("ModelCoefficients",
+                                                     &std::make_shared<ModelCoefficients>)
+      .property("header", &ModelCoefficients::header)
+      .property("values", &ModelCoefficients::values)
+      .smart_ptr<ModelCoefficients::ConstPtr>("ModelCoefficientsConstPtr");
+
+  BOOST_PP_SEQ_FOR_EACH(BIND_toXYZPointCloud, , XYZ_POINT_TYPES);
 }

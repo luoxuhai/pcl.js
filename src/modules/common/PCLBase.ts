@@ -8,8 +8,8 @@ class PCLBase<T extends PointTypes> {
 
   constructor(public _native: Emscripten.NativeAPI) {}
 
-  public setInputCloud(cloud: PointCloud<T>): null {
-    return this._native.setInputCloud(cloud._native);
+  public setInputCloud(cloud: PointCloud<T>) {
+    this._native.setInputCloud(cloud._native);
   }
 
   public getInputCloud() {
