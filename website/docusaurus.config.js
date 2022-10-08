@@ -1,7 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const nightOwlTheme = require('prism-react-renderer/themes/nightOwl');
+const draculaTheme = require('prism-react-renderer/themes/dracula');
 
 const github = 'https://github.com/luoxuhai/pcl.js';
 const url = process.env.NODE_ENV !== 'development' ? 'https://pcljs.org' : 'http://localhost:3000';
@@ -152,14 +152,20 @@ const config = {
         copyright: `© ${new Date().getFullYear()} · Darkce · All rights reserved`,
       },
       prism: {
-        theme: nightOwlTheme,
-        darkTheme: nightOwlTheme,
+        theme: draculaTheme,
+        darkTheme: draculaTheme,
       },
       docs: {
         sidebar: {
           hideable: true,
           autoCollapseCategories: true,
         },
+      },
+      algolia: {
+        appId: 'F7LQO2AREK',
+        apiKey: 'ba1ab21f843e0e6895852ddf8d6e13b2',
+        indexName: 'pcl.js',
+        contextualSearch: true,
       },
     }),
 };

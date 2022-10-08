@@ -18,8 +18,9 @@
 
 .buttons {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .container {
@@ -37,6 +38,7 @@
 
 .title {
   color: #fff;
+  font-size: 4.5rem;
 }
 
 .desc {
@@ -47,4 +49,17 @@
   background-color: var(--ifm-color-primary);
   border: none;
   color: #fff;
+}
+
+.productHunt {
+  margin-left: 20px;
+  width: 220px;
+  height: 45px;
+}
+
+@media screen and (max-width: 480px) {
+  .productHunt {
+    margin-top: 10px;
+    margin-left: 0;
+  }
 }
