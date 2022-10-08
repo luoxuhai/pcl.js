@@ -63,13 +63,16 @@ class PCLHeader {
 }
 
 class PointIndices {
-  public manager = new Manager(this._native);
+  public _native: Emscripten.NativeAPI;
+  public manager: Manager;
   public header: PCLHeader;
   public indices: Indices;
 
-  constructor(public _native: Emscripten.NativeAPI) {
+  constructor(native?: Emscripten.NativeAPI) {
+    this._native = native || new __PCLCore__.PointIndices();
     this.header = new PCLHeader(this._native.header);
     this.indices = new Indices(this._native.indices);
+    this.manager = new Manager(this._native);
   }
 }
 
