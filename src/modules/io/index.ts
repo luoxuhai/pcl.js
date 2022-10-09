@@ -5,6 +5,16 @@ import { getRandomArbitrary } from '@/utils';
 import { readPCDHeader, PCDHeader } from './pcd-reader';
 import { UnionToIntersection } from '@/types/utils';
 
+function guard(cloud: PointCloud<PointTypes>) {
+  if (cloud.isEmpty) {
+    throw new Error('Input point cloud has no data!');
+  }
+
+  if (cloud.width * cloud.height !== cloud.size) {
+    throw new Error('Number of points different than width * height!');
+  }
+}
+
 function loadPCDFile<T extends PointTypes = PointXYZ & Partial<UnionToIntersection<PointTypes>>>(
   filename: string,
   _PT: PointTypesTypeof = PointXYZ,
@@ -55,11 +65,10 @@ function loadPCDData<T extends PointTypes = PointXYZ & Partial<UnionToIntersecti
   return cloud;
 }
 
-function savePCDData(cloud: PointCloud<PointTypes>, binaryMode = false) {
-  const filename = `temp-${getRandomArbitrary(0, 10000)}.pcd`;
-  savePCDFile(filename, cloud, binaryMode);
-  const data = fs.readFile(filename);
-  fs.unlink(filename);
+function savePCDData(cloud: PointCloud<PointTypes>, binaryMode = false): Int8Array {
+  guard(cloud);
+
+  const data = __PCLCore__[`savePCDData${cloud._PT.name}`](cloud._native, binaryMode);
 
   return data;
 }
@@ -72,11 +81,10 @@ function savePCDDataBinary(cloud: PointCloud<PointTypes>) {
   return savePCDData(cloud, true);
 }
 
-function savePCDDataBinaryCompressed(cloud: PointCloud<PointTypes>) {
-  const filename = `temp-${getRandomArbitrary(0, 10000)}.pcd`;
-  savePCDFileBinaryCompressed(filename, cloud);
-  const data = fs.readFile(filename);
-  fs.unlink(filename);
+function savePCDDataBinaryCompressed(cloud: PointCloud<PointTypes>): Int8Array {
+  guard(cloud);
+
+  const data = __PCLCore__[`savePCDDataBinaryCompressed${cloud._PT.name}`](cloud._native);
 
   return data;
 }

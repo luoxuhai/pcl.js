@@ -9,7 +9,6 @@
 
 using namespace emscripten;
 
-namespace emscripten {
 /**
  * @brief register_vector_plus. See emscripten/bind.h
  *
@@ -36,7 +35,6 @@ class_<std::vector<T, Allocator>> register_vector_plus(const char *name) {
       .function("get", &internal::VectorAccess<VecType>::get)
       .function("set", &internal::VectorAccess<VecType>::set);
 }
-}  // namespace emscripten
 
 using namespace pcl;
 
