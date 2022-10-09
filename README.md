@@ -38,7 +38,7 @@
 
 **pcl.js** is a [Point Cloud Library (PCL)](https://pointclouds.org) that runs in the browser, powered by [Emscripten](https://emscripten.org) and [WebAssembly](https://webassembly.org)
 
-[The Point Cloud Library (or PCL)](https://pointclouds.org) is a large scale, open project for 2D/3D image and point cloud processing. The PCL framework contains numerous state-of-the art algorithms including filtering, feature estimation, surface reconstruction, registration, model fitting and segmentation.PCL has its own data format for storing point clouds - [PCD (Point Cloud Data)](https://pointclouds.org/documentation/tutorials/pcd_file_format.html), but also allows datasets to be loaded and saved in many other formats.
+The [Point Cloud Library (PCL)](https://pointclouds.org) is a large scale, open project for 2D/3D image and point cloud processing. The PCL framework contains numerous state-of-the art algorithms including **filtering, feature estimation, surface reconstruction, registration, model fitting and segmentation**. PCL has its own data format for storing point clouds - [PCD (Point Cloud Data)](https://pointclouds.org/documentation/tutorials/pcd_file_format.html), but also allows datasets to be loaded and saved in many other formats.
 
 A [point cloud](https://en.wikipedia.org/wiki/Point_cloud) is a set of data points in space. The points may represent a 3D shape or object. Each point position has its set of Cartesian coordinates (X, Y, Z). Point clouds are generally produced by Lidar(light detection and ranging) or by photogrammetry software, which measure many points on the external surfaces of objects around them.
 
