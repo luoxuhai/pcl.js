@@ -1,6 +1,41 @@
-import { PointTypes, PointTypesTypeof, PointXYZ, NativeObject, Vector } from './point-types';
+import { PointTypes, PointTypesTypeof, PointXYZ } from './point-types';
 import { getPointType } from '@/utils';
 import { Emscripten } from '@/types';
+import Manager from './Manager';
+
+export class Vector<T> {
+  public manager = new Manager(this._native);
+
+  constructor(public _native: Emscripten.NativeAPI) {}
+
+  get size(): number {
+    return this._native.size();
+  }
+
+  public set(index: number, value: T): boolean {
+    return this._native.set(index, value);
+  }
+
+  public get(index: number): T {
+    return this._native.get(index);
+  }
+
+  public push(value: T) {
+    this._native.push_back(value);
+  }
+
+  public isEmpty(): boolean {
+    return this._native.empty();
+  }
+
+  public resize(count: number, value?: T) {
+    this._native.resize(count, value ?? null);
+  }
+
+  public clear() {
+    this._native.clear();
+  }
+}
 
 class Indices extends Vector<number> {
   constructor(native?: Emscripten.NativeAPI) {
@@ -9,10 +44,10 @@ class Indices extends Vector<number> {
   }
 }
 
-class PCLHeader extends NativeObject {
-  constructor(public _native: Emscripten.NativeAPI) {
-    super();
-  }
+class PCLHeader {
+  public manager = new Manager(this._native);
+
+  constructor(public _native: Emscripten.NativeAPI) {}
 
   get seq(): number {
     return this._native.seq;
@@ -27,12 +62,12 @@ class PCLHeader extends NativeObject {
   }
 }
 
-class PointIndices extends NativeObject {
+class PointIndices {
+  public manager = new Manager(this._native);
   public header: PCLHeader;
   public indices: Indices;
 
   constructor(public _native: Emscripten.NativeAPI) {
-    super();
     this.header = new PCLHeader(this._native.header);
     this.indices = new Indices(this._native.indices);
   }
@@ -52,13 +87,14 @@ class Points<T extends PointTypes> extends Vector<T> {
   }
 }
 
-class PointCloud<T extends PointTypes = PointXYZ> extends NativeObject {
+class PointCloud<T extends PointTypes = PointXYZ> {
   public _native: Emscripten.NativeAPI;
+  public manager: Manager;
   private _points?: Points<T>;
 
   constructor(public readonly _PT: PointTypesTypeof = PointXYZ, _native?: Emscripten.NativeAPI) {
-    super();
     this._native = _native ?? new __PCLCore__[`PointCloud${_PT.name}`]();
+    this.manager = new Manager(this._native);
   }
 
   get isOrganized(): boolean {
@@ -124,14 +160,6 @@ class PointCloud<T extends PointTypes = PointXYZ> extends NativeObject {
    */
   public addPoint(pt: T | null = null) {
     this._native.push_back(pt);
-  }
-
-  /**
-   * override
-   */
-  public delete() {
-    super.delete();
-    this.points.delete();
   }
 }
 

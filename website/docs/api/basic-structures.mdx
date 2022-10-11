@@ -36,7 +36,23 @@ new PointCloud();
 
 #### addPoint()
 
-#### delete()
+#### manager
+
+```ts
+class Manager {
+  /**
+   * Delete a C ++ object
+   * {@link https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html?highlight=clone#memory-management}
+   */
+  delete(): void;
+  isDeleted(): boolean;
+  /**
+   * {@link https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html?highlight=clone#cloning-and-reference-counting}
+   * @returns A new handle
+   */
+  clone(): void;
+}
+```
 
 ## PointType
 

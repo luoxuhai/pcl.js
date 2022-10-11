@@ -1,4 +1,3 @@
-import { Emscripten } from '@/types';
 export class PointXY {
   // HACK: To distinguish between different types
   private readonly _PointXY = 'PointXY';
@@ -236,57 +235,3 @@ export const pointTypeMap = {
   PointXYZLNormal,
   PointSurfel,
 };
-
-export abstract class NativeObject {
-  abstract _native: Emscripten.NativeAPI;
-
-  public clone() {
-    return this._native.clone();
-  }
-
-  public delete() {
-    return this._native.delete();
-  }
-
-  public deleteLater() {
-    return this._native.deleteLater();
-  }
-
-  public isDeleted() {
-    return this._native.isDeleted();
-  }
-}
-
-export class Vector<T> extends NativeObject {
-  constructor(public _native: Emscripten.NativeAPI) {
-    super();
-  }
-
-  get size(): number {
-    return this._native.size();
-  }
-
-  public set(index: number, value: T): boolean {
-    return this._native.set(index, value);
-  }
-
-  public get(index: number): T {
-    return this._native.get(index);
-  }
-
-  public push(value: T) {
-    this._native.push_back(value);
-  }
-
-  public isEmpty(): boolean {
-    return this._native.empty();
-  }
-
-  public resize(count: number, value?: T) {
-    this._native.resize(count, value ?? null);
-  }
-
-  public clear() {
-    this._native.clear();
-  }
-}

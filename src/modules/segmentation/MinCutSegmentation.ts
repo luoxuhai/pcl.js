@@ -1,24 +1,22 @@
-import { PointCloud, wrapPointCloud, wrapPoints } from '@/modules/common/PointCloud';
+import { PointCloud, Vector, wrapPointCloud, wrapPoints } from '@/modules/common/PointCloud';
 import {
   XYZPointTypes,
   XYZPointTypesTypeof,
   PointXYZ,
   PointXYZRGB,
-  Vector,
 } from '@/modules/common/point-types';
 import { UnionToIntersection, Emscripten } from '@/types';
+import PCLBase from '@/modules/common/PCLBase';
 
 class MinCutSegmentation<
   T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
-> {
+> extends PCLBase<T> {
   public _native: Emscripten.NativeAPI;
 
   constructor(PT: XYZPointTypesTypeof = PointXYZ) {
-    this._native = new __PCLCore__[`MinCutSegmentation${PT.name}`]();
-  }
-
-  public setInputCloud(cloud: PointCloud<T>) {
-    this._native.setInputCloud(cloud._native);
+    const _native = new __PCLCore__[`MinCutSegmentation${PT.name}`]();
+    super(_native);
+    this._native = _native;
   }
 
   public setSigma(sigma: number) {

@@ -1,3 +1,3 @@
-import SearchKdTree from './KdTree';
+import SearchKdTree from './SearchKdTree';
 
 export { SearchKdTree };

@@ -13,7 +13,7 @@ function loadPCDFile<T extends PointTypes = PointXYZ & Partial<UnionToIntersecti
   const status = __PCLCore__[`loadPCDFile${_PT.name}`](filename, cloud._native);
   const isSuccess = status === 0;
   if (!isSuccess) {
-    cloud.delete();
+    cloud.manager.delete();
     throw Error("Couldn't load the pcd data");
   }
   return cloud;

@@ -13,4 +13,12 @@ describe('PointCloud', () => {
     expect(cloud.height).toBe(1);
     expect(cloud.points.get(0)).toEqual(p);
   });
+
+  it('should delete a point cloud C++ object', async () => {
+    const cloud = new PCL.PointCloud();
+
+    expect(cloud.manager.isDeleted()).toBe(false);
+    cloud.manager.delete();
+    expect(cloud.manager.isDeleted()).toBe(true);
+  });
 });
