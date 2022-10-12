@@ -90,7 +90,7 @@ class Points<T extends PointTypes> extends Vector<T> {
 class PointCloud<T extends PointTypes = PointXYZ> {
   public _native: Emscripten.NativeAPI;
   public manager: Manager;
-  private _points?: Points<T>;
+  #_points?: Points<T>;
 
   constructor(public readonly _PT: PointTypesTypeof = PointXYZ, _native?: Emscripten.NativeAPI) {
     this._native = _native ?? new __PCLCore__[`PointCloud${_PT.name}`]();
@@ -130,11 +130,11 @@ class PointCloud<T extends PointTypes = PointXYZ> {
   }
 
   get points() {
-    if (!this._points) {
-      this._points = wrapPoints(this._native.points);
+    if (!this.#_points) {
+      this.#_points = wrapPoints(this._native.points);
     }
 
-    return this._points;
+    return this.#_points;
   }
 
   /**
