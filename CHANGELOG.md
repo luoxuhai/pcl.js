@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.12.0](https://github.com/luoxuhai/pcl.js/compare/v1.11.0...v1.12.0) (2022-10-13)
+
+
+### ✨ Features
+
+* add memory management api ([6ec11bf](https://github.com/luoxuhai/pcl.js/commit/6ec11bfd3c6b59223ffa1667df8459805ba8f390))
+* add SACSegmentation ([bec34e8](https://github.com/luoxuhai/pcl.js/commit/bec34e8a5fbacef3e3cbd125c54f59c3556b2fa9))
+
 ## [1.11.0](https://github.com/luoxuhai/pcl.js/compare/v1.10.0...v1.11.0) (2022-10-07)
 
 
