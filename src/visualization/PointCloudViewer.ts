@@ -17,6 +17,7 @@ import { PCDLoader } from 'three/examples/jsm/loaders/PCDLoader';
 
 import { getCenter } from './utils';
 import { PointCloud } from '@/modules/common/PointCloud';
+import { XYZPointTypes, RGBPointTypes } from '@/modules/common/point-types';
 
 interface CloudProperties {
   sizeAttenuation: boolean;
@@ -71,15 +72,19 @@ class PointCloudViewer {
 
   // public function
 
-  public addPointCloud(cloud: PointCloud, id?: string) {
+  public addPointCloud(cloud: PointCloud<XYZPointTypes>, id?: string) {
     this.removePointCloud(id);
 
     const position: number[] = [];
+    const color: number[] = [];
     const { points } = cloud;
     const size = points.size;
     for (let i = 0; i < size; i++) {
-      const point = points.get(i);
-      position.push(point.x!, point.y!, point.z!);
+      const point = points.get(i) as RGBPointTypes;
+      position.push(point.x, point.y, point.z);
+      if (point.r !== undefined) {
+        color.push(point.r, point.g, point.b);
+      }
     }
 
     const geometry = new BufferGeometry();
@@ -87,6 +92,12 @@ class PointCloudViewer {
 
     if (position.length) {
       geometry.setAttribute('position', new Float32BufferAttribute(position, 3));
+    }
+
+    if (color.length) {
+      geometry.setAttribute('color', new Float32BufferAttribute(color, 3));
+      material.vertexColors = true;
+      material.needsUpdate = true;
     }
 
     this.addPointCloudToScene(new Points(geometry, material), id);
@@ -118,8 +129,9 @@ class PointCloudViewer {
     this.clouds.splice(index, 1);
   }
 
-  public setPointCloudProperties(properties?: Partial<CloudProperties>, id?: string) {
+  public setPointCloudProperties(properties?: Partial<CloudProperties>) {
     this.cloudProperties = { ...this.cloudProperties, ...properties };
+    const { id } = this.cloudProperties;
 
     if (!this.clouds.length) {
       return;
@@ -129,7 +141,7 @@ class PointCloudViewer {
       cloud.material.sizeAttenuation = this.cloudProperties.sizeAttenuation;
       cloud.material.size = this.cloudProperties.size;
       cloud.material.color.set(new Color(this.cloudProperties.color));
-      cloud.name = this.cloudProperties.id;
+      cloud.name = id;
     };
 
     if (id) {
@@ -153,12 +165,13 @@ class PointCloudViewer {
     far: number;
     position?: Pick<Vector3, 'x' | 'y' | 'z'>;
   }) {
-    this.camera.fov = properties.fov;
-    this.camera.aspect = properties.aspect;
-    this.camera.near = properties.near;
-    this.camera.far = properties.far;
-    if (properties.position) {
-      const { x, y, z } = properties.position;
+    const { fov, aspect, near, far, position } = properties;
+    this.camera.fov = fov ?? this.camera.fov;
+    this.camera.aspect = aspect ?? this.camera.aspect;
+    this.camera.near = near ?? this.camera.near;
+    this.camera.far = far ?? this.camera.far;
+    if (position) {
+      const { x, y, z } = position;
       this.camera.position.set(x, y, z);
     }
   }
@@ -174,8 +187,11 @@ class PointCloudViewer {
     target?: Pick<Vector3, 'x' | 'y' | 'z'>;
   }) {
     for (const key in properties) {
-      this.controls[key] = properties[key] ?? true;
+      if (properties[key] !== undefined) {
+        this.controls[key] = properties[key];
+      }
     }
+    this.controls.update();
   }
 
   public setAxesHelper(properties: { visible: boolean; size?: number }) {

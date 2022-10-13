@@ -121,7 +121,7 @@ const coreConfig = {
     }),
     process.env.ENV === 'development' &&
       serve({
-        contentBase: 'dist',
+        contentBase: './',
         port: 4321,
         headers: {
           'Access-Control-Allow-Origin': '*',
