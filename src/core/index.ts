@@ -2,18 +2,6 @@ import initPCLCore from '@/bind/build/pcl-core';
 import { ENVIRONMENT_IS_NODE } from '@/utils';
 import { Emscripten } from '@/types';
 
-export * from '@/constants';
-export * as fs from '@/modules/fs';
-export * from '@/modules/common';
-export * from '@/modules/io';
-export * from '@/modules/sample-consensus';
-export * from '@/modules/kdtree';
-export * from '@/modules/search';
-export * from '@/modules/filters';
-export * from '@/modules/keypoints';
-export * from '@/modules/segmentation';
-export * from '@/modules/registration';
-
 if (window.__PCLCore__) {
   console.warn('Multiple instances of pcl.js being imported.');
 } else {
@@ -75,3 +63,14 @@ function destroy() {
 }
 
 export { InitOptions, init, destroy, isInitialized };
+export * from '@/constants';
+export * as fs from '@/modules/fs';
+export * from '@/modules/common';
+export * from '@/modules/io';
+export * from '@/modules/sample-consensus';
+export * from '@/modules/kdtree';
+export * from '@/modules/search';
+export * from '@/modules/filters';
+export * from '@/modules/keypoints';
+export * from '@/modules/segmentation';
+export * from '@/modules/registration';
