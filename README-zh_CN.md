@@ -45,8 +45,9 @@
 ## 示例
 
 <p>
-  <a href="https://kl2zjs.csb.app"><img src="./website/static/img/examples/StatisticalOutlierRemoval.jpg" width="30%" /></a>
-  <a href="https://3l6tfj.csb.app"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
+  <a href="https://kl2zjs.csb.app" title="移除移除值"><img src="./website/static/img/examples/StatisticalOutlierRemoval.jpg" width="30%" /></a>
+  <a href="https://3l6tfj.csb.app" title="提取关键点"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
+  <a href="https://o4y07f.csb.app" title="最小分割算法"><img src="./website/static/img/examples/MinCutSegmentation.jpg" width="30%" /></a>
 
   <p><a href="https://pcljs.org/zh-cn/examples">查看所有示例</a></p>
 <p>
@@ -69,7 +70,7 @@
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera |
 | --------- | --------- | --------- | --------- | --------- |
-| 16+ | 52+ | 57+ | 11+ | 44+ 
+| 16+ | 52+ | 57+ | 11+ | 44+
 
 ## 资源大小
 

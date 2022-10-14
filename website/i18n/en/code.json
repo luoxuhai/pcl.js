@@ -5,6 +5,9 @@
   "examples.iss-keypoint-3d": {
     "message": "Extract point cloud keypoints using ISSKeypoint3D"
   },
+  "examples.min-cut-segmentation": {
+    "message": "Min-Cut Based Segmentation"
+  },
   "home.getting-started": {
     "message": "Getting Started"
   },
