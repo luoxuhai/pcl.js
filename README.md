@@ -202,4 +202,4 @@ Thank you to all the people who already contributed to pcl.js!
 
 This project is licensed under the terms of the [MIT license](https://github.com/luoxuhai/pcl.js/blob/master/LICENSE).
 
-<a href="https://www.producthunt.com/posts/pcl-js?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-pcl&#0045;js" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=361683&theme=light" alt="pcl&#0046;js - Point&#0032;Cloud&#0032;Library&#0032;for&#0032;browser&#0044;&#0032;powered&#0032;by&#0032;WebAssembly&#0046; | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+[![Star History Chart](https://api.star-history.com/svg?repos=luoxuhai/pcl.js&type=Date)](https://star-history.com/#luoxuhai/pcl.js&Date)

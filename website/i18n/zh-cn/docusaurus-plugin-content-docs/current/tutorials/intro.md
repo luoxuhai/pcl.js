@@ -18,22 +18,22 @@ async function main() {
     url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
   });
 
-  // Get PCD file
+  // 获取 PCD 文件
   const data = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
-  // Load PCD file data, return point cloud object
+  // 加载PCD文件数据，返回点云对象
   const cloud = PCL.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
 
-  // Filtering a PointCloud using a PassThrough filter
-  // See: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
+  // 使用 StatisticalOutlierRemoval 过滤器去除异常值
+  // 参考: https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal
   // highlight-start
-  const pass = new PCL.PassThrough<PCL.PointXYZ>(PCL.PointXYZ);
-  pass.setInputCloud(cloud);
-  pass.setFilterFieldName('z');
-  pass.setFilterLimits(0.0, 1.0);
-  const cloudFiltered = pass.filter();
+  const sor = new PCL.StatisticalOutlierRemoval<PCL.PointXYZ>(PCL.PointXYZ);
+  sor.setInputCloud(cloud);
+  sor.setMeanK(40);
+  sor.setStddevMulThresh(1.0);
+  const cloudFiltered = sor.filter();
   // highlight-end
 
-  // Save filtered point cloud objects as PCD files, the content is ArrayBuffer
+  // 将过滤后的点云对象保存为PCD文件，内容为ArrayBuffer
   const cloudFilteredData = PCL.savePCDDataASCII(cloudFiltered);
 }
 

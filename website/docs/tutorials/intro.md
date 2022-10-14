@@ -24,8 +24,8 @@ async function main() {
   // Load PCD file data, return point cloud object
   const cloud = PCL.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
 
-  // Filtering a PointCloud using a PassThrough filter
-  // See: https://pcl.readthedocs.io/projects/tutorials/en/master/passthrough.html#passthrough
+  // Removing outliers using a StatisticalOutlierRemoval filter
+  // See: https://pcl.readthedocs.io/projects/tutorials/en/master/statistical_outlier.html#statistical-outlier-removal
   // highlight-start
   const sor = new PCL.StatisticalOutlierRemoval<PCL.PointXYZ>(PCL.PointXYZ);
   sor.setInputCloud(cloud);
