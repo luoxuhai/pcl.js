@@ -137,6 +137,10 @@ export class PointSurfel {
   ) {}
 }
 
+export class FPFHSignature33 {
+  constructor(public histogram: number[] = []) {}
+}
+
 // Define all point types
 export type PointTypes =
   | PointXY
@@ -152,7 +156,8 @@ export type PointTypes =
   | PointXYZRGBNormal
   | PointXYZINormal
   | PointXYZLNormal
-  | PointSurfel;
+  | PointSurfel
+  | FPFHSignature33;
 
 export type PointTypesTypeof =
   | typeof PointXY
@@ -168,7 +173,8 @@ export type PointTypesTypeof =
   | typeof PointXYZRGBNormal
   | typeof PointXYZINormal
   | typeof PointXYZLNormal
-  | typeof PointSurfel;
+  | typeof PointSurfel
+  | typeof FPFHSignature33;
 
 // Define all point types that include XYZ data
 export type XYZPointTypes =
@@ -210,6 +216,9 @@ export type RGBPointTypes =
   | PointXYZRGBNormal
   | PointSurfel;
 
+// Define all point types that represent features
+export type FeaturePointTypes = FPFHSignature33;
+
 // Define all point types that include normal data
 export type NormalPointTypes =
   | Normal
@@ -234,4 +243,5 @@ export const pointTypeMap = {
   PointXYZINormal,
   PointXYZLNormal,
   PointSurfel,
+  FPFHSignature33,
 };

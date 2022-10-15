@@ -1,37 +1,23 @@
 import * as PCL from '../../';
+import { getTestPCDFile } from '../utils';
 
 describe('IterativeClosestPoint', () => {
   it('should to return a registered point cloud', () => {
-    const source = [
-      [0.352222, -0.151883, -0.106395],
-      [-0.397406, -0.473106, 0.292602],
-      [-0.731898, 0.667105, 0.441304],
-      [-0.734766, 0.854581, -0.0361733],
-      [-0.4607, -0.277468, -0.916762],
-    ];
-    const target = [
-      [1.05222, -0.151883, -0.106395],
-      [0.302594, -0.473106, 0.292602],
-      [-0.0318983, 0.667105, 0.441304],
-      [-0.0347655, 0.854581, -0.0361733],
-      [0.2393, -0.277468, -0.916762],
-    ];
+    const bun0 = getTestPCDFile('bun0.pcd');
+    const bun4 = getTestPCDFile('bun4.pcd');
 
-    const cloudIn = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
-    const cloudOut = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
+    const source = PCL.loadPCDData<PCL.PointXYZ>(bun0, PCL.PointXYZ);
+    const target = PCL.loadPCDData<PCL.PointXYZ>(bun4, PCL.PointXYZ);
     const final = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
-    for (let i = 0; i < source.length; i++) {
-      cloudIn.addPoint(new PCL.PointXYZ(...source[i]));
-      cloudOut.addPoint(new PCL.PointXYZ(...target[i]));
-    }
-
-    const icp = new PCL.IterativeClosestPoint<PCL.PointXYZ>(PCL.PointXYZ);
-    icp.setInputSource(cloudIn);
-    icp.setInputTarget(cloudOut);
+    const icp = new PCL.IterativeClosestPoint<PCL.PointXYZ>();
+    icp.setInputSource(source);
+    icp.setInputTarget(target);
+    icp.setMaximumIterations(50);
+    icp.setTransformationEpsilon(1e-8);
+    icp.setMaxCorrespondenceDistance(0.05);
     icp.align(final);
 
-    expect(icp.hasConverged()).toBe(true);
-    expect(final.points.size).toBe(5);
+    expect(final.size).toBe(source.size);
   });
 });

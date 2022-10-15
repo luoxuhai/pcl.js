@@ -23,7 +23,7 @@ class SACSegmentation<
   private _maxRadius = Number.MAX_VALUE;
 
   constructor(random = false) {
-    const native = new __PCLCore__.SACSegmentation(random);
+    const native = new __PCLCore__.SACSegmentationPointXYZ(random);
     super(native);
   }
 
@@ -125,15 +125,14 @@ class SACSegmentation<
    * if it is not `PointXYZ` type, it will use `toXYZPointCloud` method to convert to `PointXYZ`
    */
   public setInputCloud(cloud: PointCloud<T>) {
-    let _cloud: PointCloud<PointXYZ>;
     if (cloud._PT === PointXYZ) {
-      _cloud = cloud as PointCloud<PointXYZ>;
+      this._native.setInputCloud(cloud._native);
     } else {
-      _cloud = new PointCloud<PointXYZ>();
-      toXYZPointCloud(cloud, _cloud);
+      const cloudXYZ = new PointCloud<PointXYZ>();
+      toXYZPointCloud(cloud, cloudXYZ);
+      this._native.setInputCloud(cloudXYZ._native);
+      cloudXYZ.manager.delete();
     }
-    this._native.setInputCloud(_cloud._native);
-    _cloud.manager.delete();
   }
 }
 

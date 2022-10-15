@@ -85,8 +85,15 @@ class Points<T extends PointTypes> extends Vector<T> {
   }
 
   public get(index: number) {
-    const args: number[] = Object.values(this._native.get(index) ?? {});
-    return new this._PT(...args) as unknown as T;
+    const PT = this._PT as any;
+    const value = this._native.get(index);
+
+    if (Array.isArray(value)) {
+      return new PT(value) as T;
+    } else {
+      const args: number[] = Object.values(value);
+      return new PT(...args) as T;
+    }
   }
 }
 
