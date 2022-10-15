@@ -118,4 +118,6 @@ EMSCRIPTEN_BINDINGS(point_types) {
       .field("radius", &PointSurfel::radius)
       .field("confidence", &PointSurfel::confidence)
       .field("curvature", &PointSurfel::curvature);
+
+  value_object<FPFHSignature33>("FPFHSignature33").field("histogram", &FPFHSignature33::histogram);
 }

@@ -1,3 +1,4 @@
+#include <pcl/registration/ia_ransac.h>
 #include <pcl/registration/icp.h>
 
 #include "embind.hpp"
@@ -5,48 +6,95 @@
 using namespace pcl;
 using namespace emscripten;
 
-#define BIND_Registration(r, data, PointT)                                            \
-  class_<pcl::Registration<PointT, PointT>>(                                          \
-      "Registration" BOOST_PP_STRINGIZE(PointT))                                      \
-          .function("hasConverged", &pcl::Registration<PointT, PointT>::hasConverged) \
-          .function("getFinalTransformation",                                         \
-                    &pcl::Registration<PointT, PointT>::getFinalTransformation)       \
-          .function("getFitnessScore", &getFitnessScore<PointT>)                      \
-          .function("align", &align<PointT>);
+#define BIND_Registration(PointSource, PointTarget)                                               \
+  class_<pcl::Registration<PointSource, PointTarget>>("Registration" #PointSource #PointTarget)   \
+      .function("hasConverged", &pcl::Registration<PointSource, PointTarget>::hasConverged)       \
+      .function("getInputSource", &pcl::Registration<PointSource, PointTarget>::getInputSource)   \
+      .function("getInputTarget", &pcl::Registration<PointSource, PointTarget>::getInputTarget)   \
+      .function("getFitnessScore",                                                                \
+                select_overload<double(double)>(                                                  \
+                    &pcl::Registration<PointSource, PointTarget>::getFitnessScore))               \
+      .function("setMaximumIterations",                                                           \
+                &pcl::Registration<PointSource, PointTarget>::setMaximumIterations)               \
+      .function("getMaximumIterations",                                                           \
+                &pcl::Registration<PointSource, PointTarget>::getMaximumIterations)               \
+      .function("setRANSACIterations",                                                            \
+                &pcl::Registration<PointSource, PointTarget>::setRANSACIterations)                \
+      .function("getRANSACIterations",                                                            \
+                &pcl::Registration<PointSource, PointTarget>::getRANSACIterations)                \
+      .function("setRANSACOutlierRejectionThreshold",                                             \
+                &pcl::Registration<PointSource, PointTarget>::setRANSACOutlierRejectionThreshold) \
+      .function("getRANSACOutlierRejectionThreshold",                                             \
+                &pcl::Registration<PointSource, PointTarget>::getRANSACOutlierRejectionThreshold) \
+      .function("setMaxCorrespondenceDistance",                                                   \
+                &pcl::Registration<PointSource, PointTarget>::setMaxCorrespondenceDistance)       \
+      .function("getMaxCorrespondenceDistance",                                                   \
+                &pcl::Registration<PointSource, PointTarget>::getMaxCorrespondenceDistance)       \
+      .function("setTransformationEpsilon",                                                       \
+                &pcl::Registration<PointSource, PointTarget>::setTransformationEpsilon)           \
+      .function("getTransformationEpsilon",                                                       \
+                &pcl::Registration<PointSource, PointTarget>::getTransformationEpsilon)           \
+      .function("setTransformationRotationEpsilon",                                               \
+                &pcl::Registration<PointSource, PointTarget>::setTransformationRotationEpsilon)   \
+      .function("getTransformationRotationEpsilon",                                               \
+                &pcl::Registration<PointSource, PointTarget>::getTransformationRotationEpsilon)   \
+      .function("setEuclideanFitnessEpsilon",                                                     \
+                &pcl::Registration<PointSource, PointTarget>::setEuclideanFitnessEpsilon)         \
+      .function("getEuclideanFitnessEpsilon",                                                     \
+                &pcl::Registration<PointSource, PointTarget>::getEuclideanFitnessEpsilon)         \
+      .function("initCompute", &pcl::Registration<PointSource, PointTarget>::initCompute)         \
+      .function("initComputeReciprocal",                                                          \
+                &pcl::Registration<PointSource, PointTarget>::initComputeReciprocal)              \
+      .function(                                                                                  \
+          "align",                                                                                \
+          select_overload<void(pcl::Registration<PointSource, PointTarget>::PointCloudSource &)>( \
+              &pcl::Registration<PointSource, PointTarget>::align));
 
-#define BIND_IterativeClosestPoint(r, data, PointT)                                                \
-  class_<pcl::IterativeClosestPoint<PointT, PointT>, base<pcl::Registration<PointT, PointT>>>(     \
-      "IterativeClosestPoint" BOOST_PP_STRINGIZE(PointT))                                          \
-          .constructor<>()                                                                         \
-          .function("setInputSource", &pcl::IterativeClosestPoint<PointT, PointT>::setInputSource) \
-          .function("setInputTarget", &pcl::IterativeClosestPoint<PointT, PointT>::setInputTarget) \
-          .function("setUseReciprocalCorrespondences",                                             \
-                    &pcl::IterativeClosestPoint<PointT, PointT>::setUseReciprocalCorrespondences)  \
-          .function("getUseReciprocalCorrespondences",                                             \
-                    &pcl::IterativeClosestPoint<PointT, PointT>::getUseReciprocalCorrespondences);
+#define BIND_IterativeClosestPoint(PointSource, PointTarget)                                      \
+  class_<pcl::IterativeClosestPoint<PointSource, PointTarget>,                                    \
+         base<pcl::Registration<PointSource, PointTarget>>>(                                      \
+      "IterativeClosestPoint" #PointSource #PointTarget)                                          \
+      .constructor()                                                                              \
+      .function("setInputSource",                                                                 \
+                &pcl::IterativeClosestPoint<PointSource, PointTarget>::setInputSource)            \
+      .function("setInputTarget",                                                                 \
+                &pcl::IterativeClosestPoint<PointSource, PointTarget>::setInputTarget)            \
+      .function(                                                                                  \
+          "setUseReciprocalCorrespondences",                                                      \
+          &pcl::IterativeClosestPoint<PointSource, PointTarget>::setUseReciprocalCorrespondences) \
+      .function(                                                                                  \
+          "getUseReciprocalCorrespondences",                                                      \
+          &pcl::IterativeClosestPoint<PointSource, PointTarget>::getUseReciprocalCorrespondences);
 
-template <typename PointT>
-auto align(pcl::Registration<PointT, PointT> &registration,
-           typename pcl::PointCloud<PointT>::Ptr &output) {
-  if (output == nullptr) {
-    pcl::PointCloud<PointT> cloud;
-    registration.align(cloud);
-    return cloud.makeShared();
-  } else {
-    registration.align(*output);
-    return output;
-  }
-}
-
-template <typename PointT>
-double getFitnessScore(pcl::Registration<PointT, PointT> &registration) {
-  return registration.getFitnessScore();
-}
+#define BIND_SampleConsensusInitialAlignment(PointSource, PointTarget, FeatureT)                   \
+  class_<pcl::SampleConsensusInitialAlignment<PointSource, PointTarget, FeatureT>,                 \
+         base<pcl::Registration<PointSource, PointTarget>>>(                                       \
+      "SampleConsensusInitialAlignment" #PointSource #PointTarget #FeatureT)                       \
+      .constructor()                                                                               \
+      .function("setInputSource", &pcl::SampleConsensusInitialAlignment<PointSource, PointTarget,  \
+                                                                        FeatureT>::setInputSource) \
+      .function("setInputTarget", &pcl::SampleConsensusInitialAlignment<PointSource, PointTarget,  \
+                                                                        FeatureT>::setInputTarget) \
+      .function("setSourceFeatures",                                                               \
+                &pcl::SampleConsensusInitialAlignment<PointSource, PointTarget,                    \
+                                                      FeatureT>::setSourceFeatures)                \
+      .function("setTargetFeatures",                                                               \
+                &pcl::SampleConsensusInitialAlignment<PointSource, PointTarget,                    \
+                                                      FeatureT>::setTargetFeatures)                \
+      .function("setMinSampleDistance",                                                            \
+                &pcl::SampleConsensusInitialAlignment<PointSource, PointTarget,                    \
+                                                      FeatureT>::setMinSampleDistance)             \
+      .function("setNumberOfSamples",                                                              \
+                &pcl::SampleConsensusInitialAlignment<PointSource, PointTarget,                    \
+                                                      FeatureT>::setNumberOfSamples)               \
+      .function("setCorrespondenceRandomness",                                                     \
+                &pcl::SampleConsensusInitialAlignment<PointSource, PointTarget,                    \
+                                                      FeatureT>::setCorrespondenceRandomness);
 
 EMSCRIPTEN_BINDINGS(registration) {
-  // Bind Registration
-  BOOST_PP_SEQ_FOR_EACH(BIND_Registration, , XYZ_POINT_TYPES);
+  BIND_Registration(PointXYZ, PointXYZ);
 
-  // Bind IterativeClosestPoint
-  BOOST_PP_SEQ_FOR_EACH(BIND_IterativeClosestPoint, , XYZ_POINT_TYPES);
+  BIND_IterativeClosestPoint(PointXYZ, PointXYZ);
+
+  BIND_SampleConsensusInitialAlignment(PointXYZ, PointXYZ, FPFHSignature33)
 }

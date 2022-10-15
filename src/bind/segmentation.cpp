@@ -32,22 +32,26 @@ using namespace emscripten;
           .function("getMaxFlow", &pcl::MinCutSegmentation<PointT>::getMaxFlow)                   \
           .function("getColoredCloud", &pcl::MinCutSegmentation<PointT>::getColoredCloud);
 
+#define BIND_SACSegmentation(r, data, PointT)                                                 \
+  class_<pcl::SACSegmentation<PointT>, base<pcl::PCLBase<PointT>>>(                              \
+      "SACSegmentation" BOOST_PP_STRINGIZE(PointT))                                              \
+          .constructor<bool>()                                                                   \
+          .function("setModelType", &pcl::SACSegmentation<PointT>::setModelType)                 \
+          .function("setMethodType", &pcl::SACSegmentation<PointT>::setMethodType)               \
+          .function("setDistanceThreshold", &pcl::SACSegmentation<PointT>::setDistanceThreshold) \
+          .function("setMaxIterations", &pcl::SACSegmentation<PointT>::setMaxIterations)         \
+          .function("setProbability", &pcl::SACSegmentation<PointT>::setProbability)             \
+          .function("setRadiusLimits", &pcl::SACSegmentation<PointT>::setRadiusLimits)           \
+          .function("setSamplesMaxDist", &pcl::SACSegmentation<PointT>::setSamplesMaxDist)       \
+          .function("setEpsAngle", &pcl::SACSegmentation<PointT>::setEpsAngle)                   \
+          .function("setOptimizeCoefficients",                                                   \
+                    &pcl::SACSegmentation<PointT>::setOptimizeCoefficients)                      \
+          .function("segment", &pcl::SACSegmentation<PointT>::segment);
+
 EMSCRIPTEN_BINDINGS(segmentation) {
   BOOST_PP_SEQ_FOR_EACH(BIND_MinCutSegmentation, , XYZ_POINT_TYPES);
 
-  class_<pcl::SACSegmentation<pcl::PointXYZ>, base<pcl::PCLBase<pcl::PointXYZ>>>("SACSegmentation")
-      .constructor<bool>()
-      .function("setModelType", &pcl::SACSegmentation<pcl::PointXYZ>::setModelType)
-      .function("setMethodType", &pcl::SACSegmentation<pcl::PointXYZ>::setMethodType)
-      .function("setDistanceThreshold", &pcl::SACSegmentation<pcl::PointXYZ>::setDistanceThreshold)
-      .function("setMaxIterations", &pcl::SACSegmentation<pcl::PointXYZ>::setMaxIterations)
-      .function("setProbability", &pcl::SACSegmentation<pcl::PointXYZ>::setProbability)
-      .function("setRadiusLimits", &pcl::SACSegmentation<pcl::PointXYZ>::setRadiusLimits)
-      .function("setSamplesMaxDist", &pcl::SACSegmentation<pcl::PointXYZ>::setSamplesMaxDist)
-      .function("setEpsAngle", &pcl::SACSegmentation<pcl::PointXYZ>::setEpsAngle)
-      .function("setOptimizeCoefficients",
-                &pcl::SACSegmentation<pcl::PointXYZ>::setOptimizeCoefficients)
-      .function("segment", &pcl::SACSegmentation<pcl::PointXYZ>::segment);
+  BOOST_PP_SEQ_FOR_EACH(BIND_SACSegmentation, , (PointXYZ));
 
   register_vector<PointIndices>("VectorPointIndices");
 }

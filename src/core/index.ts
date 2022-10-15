@@ -74,3 +74,4 @@ export * from '@/modules/filters';
 export * from '@/modules/keypoints';
 export * from '@/modules/segmentation';
 export * from '@/modules/registration';
+export * from '@/modules/features';
