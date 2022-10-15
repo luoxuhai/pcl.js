@@ -1,6 +1,6 @@
 {
   "name": "pcl.js",
-  "version": "1.13.0-beta.0",
+  "version": "1.13.0",
   "description": "Point Cloud Library (PCL) for browser, powered by WebAssembly.｜在浏览器运行的点云库 (PCL)，由 WebAssembly 提供支持。",
   "types": "dist/pcl.d.ts",
   "main": "dist/pcl.cjs.js",

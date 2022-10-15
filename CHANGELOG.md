@@ -1,11 +1,11 @@
 # Changelog
 
-## [1.13.0-beta.0](https://github.com/luoxuhai/pcl.js/compare/v1.12.0...v1.13.0-beta.0) (2022-10-15)
+## [1.13.0](https://github.com/luoxuhai/pcl.js/compare/v1.12.0...v1.13.0) (2022-10-15)
 
 
 ### ✨ Features
 
-* the PointCloudViewer supports colored point cloud ([2eddd0e](https://github.com/luoxuhai/pcl.js/commit/2eddd0ed25b4cf64b8387fcaa113a201c611b528))
+* PointCloudViewer supports colored point cloud ([2eddd0e](https://github.com/luoxuhai/pcl.js/commit/2eddd0ed25b4cf64b8387fcaa113a201c611b528))
 
 ## [1.12.0](https://github.com/luoxuhai/pcl.js/compare/v1.11.0...v1.12.0) (2022-10-13)
 
