@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.14.0](https://github.com/luoxuhai/pcl.js/compare/v1.13.0...v1.14.0) (2022-10-16)
+
+
+### ✨ Features
+
+* add SampleConsensusInitialAlignment api ([177999b](https://github.com/luoxuhai/pcl.js/commit/177999bf8ea87a113795c763f0ab3eacc1a6bc6f))
+
+
+### 🐛 Bug Fixes
+
+* `OrbitControls` and `PCDLoader` is not defined ([048ec72](https://github.com/luoxuhai/pcl.js/commit/048ec72a2516a9ddedbb8d46077faad4dba51add))
+
 ## [1.13.0](https://github.com/luoxuhai/pcl.js/compare/v1.12.0...v1.13.0) (2022-10-15)
 
 
