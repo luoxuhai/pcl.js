@@ -131,6 +131,16 @@ const coreConfig = {
 };
 
 const visualizationModules = ['PointCloudViewer'];
+const globals = {
+  three: 'THREE',
+  'three/examples/jsm/controls/OrbitControls': 'THREE',
+  'three/examples/jsm/loaders/PCDLoader': 'THREE',
+};
+const external = [
+  'three',
+  'three/examples/jsm/controls/OrbitControls',
+  'three/examples/jsm/loaders/PCDLoader',
+];
 const visualizationConfig = visualizationModules.map((name) => {
   return {
     input: `src/visualization/${name}.ts`,
@@ -143,17 +153,13 @@ const visualizationConfig = visualizationModules.map((name) => {
         file: `dist/visualization/${name}.js`,
         format: 'iife',
         name,
-        globals: {
-          three: 'THREE',
-        },
+        globals,
       },
       {
         file: `dist/visualization/${name}.min.js`,
         format: 'iife',
         name,
-        globals: {
-          three: 'THREE',
-        },
+        globals,
         plugins: [terser()],
       },
     ],
@@ -167,7 +173,7 @@ const visualizationConfig = visualizationModules.map((name) => {
         },
       }),
     ],
-    external: ['three'],
+    external,
   };
 });
 
