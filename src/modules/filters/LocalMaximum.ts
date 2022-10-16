@@ -1,12 +1,16 @@
 import FilterIndices from './FilterIndices';
-import { XYZPointTypes, XYZPointTypesTypeof, PointXYZ } from '@/modules/common/point-types';
-import { UnionToIntersection } from '@/types/utils';
+import { PointCloud, PointXYZ, XYZPointTypes } from '@/modules/common';
+import { setInputXYZCloud } from '@/utils';
 
-class LocalMaximum<
-  T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
-> extends FilterIndices<T> {
-  constructor(protected _PT: XYZPointTypesTypeof = PointXYZ, extractRemovedIndices = false) {
-    super(new __PCLCore__[`LocalMaximum${_PT.name}`](extractRemovedIndices));
+class LocalMaximum<T extends PointXYZ> extends FilterIndices<T> {
+  protected _PT = PointXYZ;
+
+  constructor(extractRemovedIndices = false) {
+    super(new __PCLCore__.LocalMaximumPointXYZ(extractRemovedIndices));
+  }
+
+  public setInputCloud(cloud: PointCloud<XYZPointTypes>) {
+    setInputXYZCloud(cloud, this._native.setInputCloud);
   }
 
   public setRadius(radius: number) {

@@ -145,7 +145,7 @@ using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(filters) {
   // Bind PassThrough
-  BOOST_PP_SEQ_FOR_EACH(BIND_PassThrough, , XYZ_POINT_TYPES);
+  BOOST_PP_SEQ_FOR_EACH(BIND_PassThrough, , (PointXYZ));
 
   // Bind FilterIndices
   BOOST_PP_SEQ_FOR_EACH(BIND_FilterIndices, , POINT_TYPES);
@@ -154,33 +154,33 @@ EMSCRIPTEN_BINDINGS(filters) {
   BOOST_PP_SEQ_FOR_EACH(BIND_Filter, , POINT_TYPES);
 
   // Bind VoxelGrid
-  BOOST_PP_SEQ_FOR_EACH(BIND_VoxelGrid, , XYZ_POINT_TYPES);
+  BOOST_PP_SEQ_FOR_EACH(BIND_VoxelGrid, , (PointXYZ));
 
   // Bind StatisticalOutlierRemoval
-  BOOST_PP_SEQ_FOR_EACH(BIND_StatisticalOutlierRemoval, , XYZ_POINT_TYPES);
+  BOOST_PP_SEQ_FOR_EACH(BIND_StatisticalOutlierRemoval, , (PointXYZ));
 
   // Bind RadiusOutlierRemoval
-  BOOST_PP_SEQ_FOR_EACH(BIND_RadiusOutlierRemoval, , XYZ_POINT_TYPES);
+  BOOST_PP_SEQ_FOR_EACH(BIND_RadiusOutlierRemoval, , (PointXYZ));
 
   // Bind UniformSampling
-  BOOST_PP_SEQ_FOR_EACH(BIND_UniformSampling, , XYZ_POINT_TYPES);
+  BOOST_PP_SEQ_FOR_EACH(BIND_UniformSampling, , (PointXYZ));
 
   // Bind RandomSample
-  BOOST_PP_SEQ_FOR_EACH(BIND_RandomSample, , XYZ_POINT_TYPES);
+  BOOST_PP_SEQ_FOR_EACH(BIND_RandomSample, , POINT_TYPES);
 
   // Bind GridMinimum
-  BOOST_PP_SEQ_FOR_EACH(BIND_GridMinimum, , XYZ_POINT_TYPES);
+  BOOST_PP_SEQ_FOR_EACH(BIND_GridMinimum, , (PointXYZ));
 
   // Bind LocalMaximum
-  BOOST_PP_SEQ_FOR_EACH(BIND_LocalMaximum, , XYZ_POINT_TYPES);
+  BOOST_PP_SEQ_FOR_EACH(BIND_LocalMaximum, , (PointXYZ));
 
   // Bind ApproximateVoxelGrid
-  BOOST_PP_SEQ_FOR_EACH(BIND_ApproximateVoxelGrid, , XYZ_POINT_TYPES);
+  BOOST_PP_SEQ_FOR_EACH(BIND_ApproximateVoxelGrid, , (PointXYZ));
 
   value_array<FilterLimits>("FilterLimits").element(&FilterLimits::min).element(&FilterLimits::max);
 
   // Bind removeNaNFromPointCloud
-  BOOST_PP_SEQ_FOR_EACH(BIND_removeNaNFromPointCloud, , XYZ_POINT_TYPES);
+  BOOST_PP_SEQ_FOR_EACH(BIND_removeNaNFromPointCloud, , (PointXYZ));
 
   // Bind removeNaNNormalsFromPointCloud
   BOOST_PP_SEQ_FOR_EACH(BIND_removeNaNNormalsFromPointCloud, , NORMAL_POINT_TYPES);

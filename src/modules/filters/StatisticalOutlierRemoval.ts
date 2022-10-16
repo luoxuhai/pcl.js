@@ -1,12 +1,16 @@
 import FilterIndices from './FilterIndices';
-import { PointXYZ, XYZPointTypes, XYZPointTypesTypeof } from '@/modules/common/point-types';
-import { UnionToIntersection } from '@/types/utils';
+import { PointCloud, PointXYZ, XYZPointTypes } from '@/modules/common';
+import { setInputXYZCloud } from '@/utils';
 
-class StatisticalOutlierRemoval<
-  T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
-> extends FilterIndices<T> {
-  constructor(protected _PT: XYZPointTypesTypeof = PointXYZ, extractRemovedIndices = false) {
-    super(new __PCLCore__[`StatisticalOutlierRemoval${_PT.name}`](extractRemovedIndices));
+class StatisticalOutlierRemoval<T extends PointXYZ> extends FilterIndices<T> {
+  protected _PT = PointXYZ;
+
+  constructor(extractRemovedIndices = false) {
+    super(new __PCLCore__.StatisticalOutlierRemovalPointXYZ(extractRemovedIndices));
+  }
+
+  public setInputCloud(cloud: PointCloud<XYZPointTypes>) {
+    setInputXYZCloud(cloud, this._native.setInputCloud);
   }
 
   public setMeanK(nrK: number) {

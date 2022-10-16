@@ -1,12 +1,16 @@
 import FilterIndices from './FilterIndices';
-import { XYZPointTypes, XYZPointTypesTypeof, PointXYZ } from '@/modules/common/point-types';
-import { UnionToIntersection } from '@/types/utils';
+import { PointCloud, PointXYZ, XYZPointTypes } from '@/modules/common';
+import { setInputXYZCloud } from '@/utils';
 
-class RadiusOutlierRemoval<
-  T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
-> extends FilterIndices<T> {
-  constructor(protected _PT: XYZPointTypesTypeof = PointXYZ, extractRemovedIndices = false) {
-    super(new __PCLCore__[`RadiusOutlierRemoval${_PT.name}`](extractRemovedIndices));
+class RadiusOutlierRemoval<T extends PointXYZ> extends FilterIndices<T> {
+  protected _PT = PointXYZ;
+
+  constructor(extractRemovedIndices = false) {
+    super(new __PCLCore__.RadiusOutlierRemovalPointXYZ(extractRemovedIndices));
+  }
+
+  public setInputCloud(cloud: PointCloud<XYZPointTypes>) {
+    setInputXYZCloud(cloud, this._native.setInputCloud);
   }
 
   public setRadiusSearch(radius: number) {

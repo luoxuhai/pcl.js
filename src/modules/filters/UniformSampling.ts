@@ -1,12 +1,16 @@
 import FilterBase from './FilterBase';
-import { PointXYZ, XYZPointTypes, XYZPointTypesTypeof } from '@/modules/common/point-types';
-import { UnionToIntersection } from '@/types/utils';
+import { PointCloud, PointXYZ, XYZPointTypes } from '@/modules/common';
+import { setInputXYZCloud } from '@/utils';
 
-class UniformSampling<
-  T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
-> extends FilterBase<T> {
-  constructor(protected _PT: XYZPointTypesTypeof = PointXYZ, extractRemovedIndices = false) {
-    super(new __PCLCore__[`UniformSampling${_PT.name}`](extractRemovedIndices));
+class UniformSampling<T extends PointXYZ> extends FilterBase<T> {
+  protected _PT = PointXYZ;
+
+  constructor(extractRemovedIndices = false) {
+    super(new __PCLCore__.UniformSamplingPointXYZ(extractRemovedIndices));
+  }
+
+  public setInputCloud(cloud: PointCloud<XYZPointTypes>) {
+    setInputXYZCloud(cloud, this._native.setInputCloud);
   }
 
   public setRadiusSearch(radius: number) {

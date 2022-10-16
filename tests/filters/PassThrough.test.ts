@@ -20,7 +20,7 @@ describe('PassThrough', () => {
       cloud.addPoint(new PCL.PointXYZ(...before[i]));
     }
 
-    const pass = new PCL.PassThrough<PCL.PointXYZ>(PCL.PointXYZ);
+    const pass = new PCL.PassThrough();
     pass.setInputCloud(cloud);
     pass.setFilterFieldName('z');
     pass.setFilterLimits(0, 2);

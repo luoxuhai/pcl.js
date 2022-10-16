@@ -18,7 +18,7 @@ describe('RadiusOutlierRemoval', () => {
       cloud.addPoint(new PCL.PointXYZ(...before[i]));
     }
 
-    const ror = new PCL.RadiusOutlierRemoval<PCL.PointXYZ>(PCL.PointXYZ);
+    const ror = new PCL.RadiusOutlierRemoval();
     ror.setInputCloud(cloud);
     ror.setRadiusSearch(100);
     ror.setMinNeighborsInRadius(2);

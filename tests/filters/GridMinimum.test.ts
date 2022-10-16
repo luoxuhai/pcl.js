@@ -8,9 +8,9 @@ describe('GridMinimum', () => {
     const pcd = fs.readFileSync(path.join(global.ROOT_DIR, `data/${filename}`));
     PCL.fs.writeFile(filename, new Uint8Array(pcd));
     const cloud = PCL.loadPCDFile<PCL.PointXYZI>(filename, PCL.PointXYZI);
-    const cloudFiltered = new PCL.PointCloud<PCL.PointXYZI>(PCL.PointXYZI);
+    const cloudFiltered = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
-    const gm = new PCL.GridMinimum<PCL.PointXYZI>(PCL.PointXYZI);
+    const gm = new PCL.GridMinimum();
     gm.setInputCloud(cloud);
     gm.setResolution(0.025);
     gm.filter(cloudFiltered);

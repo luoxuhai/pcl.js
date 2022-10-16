@@ -1,12 +1,16 @@
 import FilterIndices from './FilterIndices';
-import { XYZPointTypes, XYZPointTypesTypeof, PointXYZ } from '@/modules/common/point-types';
-import { UnionToIntersection } from '@/types/utils';
+import { PointXYZ, XYZPointTypes, PointCloud } from '@/modules/common';
+import { setInputXYZCloud } from '@/utils';
 
-class GridMinimum<
-  T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
-> extends FilterIndices<T> {
-  constructor(protected _PT: XYZPointTypesTypeof = PointXYZ, resolution = 0) {
-    super(new __PCLCore__[`GridMinimum${_PT.name}`](resolution));
+class GridMinimum<T extends PointXYZ> extends FilterIndices<T> {
+  protected _PT = PointXYZ;
+
+  constructor(resolution = 0) {
+    super(new __PCLCore__.GridMinimumPointXYZ(resolution));
+  }
+
+  public setInputCloud(cloud: PointCloud<XYZPointTypes>) {
+    setInputXYZCloud(cloud, this._native.setInputCloud);
   }
 
   public setResolution(resolution: number) {

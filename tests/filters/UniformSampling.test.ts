@@ -8,9 +8,9 @@ describe('UniformSampling', () => {
     const pcd = fs.readFileSync(path.join(global.ROOT_DIR, `data/${filename}`));
     PCL.fs.writeFile(filename, new Uint8Array(pcd));
     const cloud = PCL.loadPCDFile<PCL.PointXYZI>(filename, PCL.PointXYZI);
-    const cloudFiltered = new PCL.PointCloud<PCL.PointXYZI>(PCL.PointXYZI);
+    const cloudFiltered = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
-    const us = new PCL.UniformSampling<PCL.PointXYZI>(PCL.PointXYZI);
+    const us = new PCL.UniformSampling();
     us.setInputCloud(cloud);
     us.setRadiusSearch(0.005);
     us.filter(cloudFiltered);

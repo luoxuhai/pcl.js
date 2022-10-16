@@ -8,9 +8,9 @@ describe('VoxelGrid', () => {
     const pcd = fs.readFileSync(path.join(global.ROOT_DIR, `data/${filename}`));
     PCL.fs.writeFile(filename, new Uint8Array(pcd));
     const cloud = PCL.loadPCDFile<PCL.PointXYZI>(filename, PCL.PointXYZI);
-    const cloudFiltered = new PCL.PointCloud<PCL.PointXYZI>(PCL.PointXYZI);
+    const cloudFiltered = new PCL.PointCloud<PCL.PointXYZ>(PCL.PointXYZ);
 
-    const vg = new PCL.VoxelGrid<PCL.PointXYZI>(PCL.PointXYZI);
+    const vg = new PCL.VoxelGrid();
     vg.setInputCloud(cloud);
     vg.setLeafSize(0.01, 0.01, 0.01);
     vg.filter(cloudFiltered);

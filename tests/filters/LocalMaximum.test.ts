@@ -9,7 +9,7 @@ describe('LocalMaximum', () => {
     PCL.fs.writeFile(filename, new Uint8Array(pcd));
     const cloud = PCL.loadPCDFile<PCL.PointXYZ>(filename, PCL.PointXYZ);
 
-    const lm = new PCL.LocalMaximum<PCL.PointXYZ>(PCL.PointXYZ);
+    const lm = new PCL.LocalMaximum();
     lm.setInputCloud(cloud);
     lm.setRadius(0.025);
     const cloudFiltered = lm.filter();

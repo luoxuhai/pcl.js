@@ -1,12 +1,16 @@
 import FilterBase from './FilterBase';
-import { XYZPointTypes, XYZPointTypesTypeof, PointXYZ } from '@/modules/common/point-types';
-import { UnionToIntersection } from '@/types/utils';
+import { PointXYZ, XYZPointTypes, PointCloud } from '@/modules/common';
+import { setInputXYZCloud } from '@/utils';
 
-class ApproximateVoxelGrid<
-  T extends XYZPointTypes = PointXYZ & Partial<UnionToIntersection<XYZPointTypes>>,
-> extends FilterBase<T> {
-  constructor(protected _PT: XYZPointTypesTypeof = PointXYZ) {
-    super(new __PCLCore__[`ApproximateVoxelGrid${_PT.name}`]());
+class ApproximateVoxelGrid<T extends PointXYZ> extends FilterBase<T> {
+  protected _PT = PointXYZ;
+
+  constructor() {
+    super(new __PCLCore__.ApproximateVoxelGridPointXYZ());
+  }
+
+  public setInputCloud(cloud: PointCloud<XYZPointTypes>): void {
+    setInputXYZCloud(cloud, this._native.setInputCloud);
   }
 
   public setLeafSize(lx: number, ly: number, lz: number) {
