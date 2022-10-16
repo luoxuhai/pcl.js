@@ -8,6 +8,9 @@
   "examples.min-cut-segmentation": {
     "message": "Min-Cut Based Segmentation"
   },
+  "examples.icp": {
+    "message": "Iterative Closest Point algorithm"
+  },
   "home.getting-started": {
     "message": "Getting Started"
   },

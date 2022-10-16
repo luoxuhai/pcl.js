@@ -29,6 +29,13 @@ const exampleList = [
     cover: require('@site/static/img/examples/MinCutSegmentation.jpg').default,
     code_url: 'https://o4y07f.csb.app',
   },
+  {
+    title: translate({
+      message: 'examples.icp',
+    }),
+    cover: require('@site/static/img/examples/IterativeClosestPoint.jpg').default,
+    code_url: 'https://1t72c1.csb.app/',
+  },
 ];
 
 export default function Examples() {

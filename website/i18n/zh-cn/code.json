@@ -8,6 +8,9 @@
   "examples.min-cut-segmentation": {
     "message": "最小切割-MinCutSegmentation"
   },
+  "examples.icp": {
+    "message": "使用迭代最近点算法(ICP)"
+  },
   "home.getting-started": {
     "message": "开始"
   },

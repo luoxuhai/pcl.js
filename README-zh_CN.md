@@ -46,8 +46,9 @@
 
 <p>
   <a href="https://kl2zjs.csb.app" title="移除移除值"><img src="./website/static/img/examples/StatisticalOutlierRemoval.jpg" width="30%" /></a>
-  <a href="https://3l6tfj.csb.app" title="提取关键点"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
+  <a href="https://1t72c1.csb.app/" title="使用迭代最近点算法(ICP)"><img src="./website/static/img/examples/IterativeClosestPoint.jpg" width="30%" /></a>
   <a href="https://o4y07f.csb.app" title="最小分割算法"><img src="./website/static/img/examples/MinCutSegmentation.jpg" width="30%" /></a>
+  <a href="https://3l6tfj.csb.app" title="提取关键点"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
 
   <p><a href="https://pcljs.org/zh-cn/examples">查看所有示例</a></p>
 <p>

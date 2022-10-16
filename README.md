@@ -46,9 +46,10 @@ A [point cloud](https://en.wikipedia.org/wiki/Point_cloud) is a set of data poin
 
 <p>
   <a href="https://kl2zjs.csb.app" title="Removing outliers from point cloud data"><img src="./website/static/img/examples/StatisticalOutlierRemoval.jpg" width="30%" /></a>
-  <a href="https://3l6tfj.csb.app" title="Extract point cloud keypoints"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
+  <a href="https://1t72c1.csb.app/" title="Iterative Closest Point algorithm"><img src="./website/static/img/examples/IterativeClosestPoint.jpg" width="30%" /></a>
   <a href="https://o4y07f.csb.app" title="Min-Cut Based Segmentation"><img src="./website/static/img/examples/MinCutSegmentation.jpg" width="30%" /></a>
-
+  <a href="https://3l6tfj.csb.app" title="Extract point cloud keypoints"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
+  
   <p><a href="https://pcljs.org/examples">See all demos</a></p>
 <p>
 
