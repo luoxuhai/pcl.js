@@ -30,13 +30,13 @@ type PointsObject3D = Points<BufferGeometry, PointsMaterial>;
 
 class PointCloudViewer {
   public scene = new Scene();
+  public clouds: PointsObject3D[] = [];
 
   private camera = new PerspectiveCamera();
   private renderer: WebGLRenderer;
   private axesHelper?: AxesHelper;
   private gridHelper?: GridHelper;
   private controls: OrbitControls;
-  private clouds: PointsObject3D[] = [];
   private cloudProperties: CloudProperties = {
     sizeAttenuation: false,
     size: 1,
@@ -141,7 +141,6 @@ class PointCloudViewer {
       cloud.material.sizeAttenuation = this.cloudProperties.sizeAttenuation;
       cloud.material.size = this.cloudProperties.size;
       cloud.material.color.set(new Color(this.cloudProperties.color));
-      cloud.name = id;
     };
 
     if (id) {
@@ -247,9 +246,10 @@ class PointCloudViewer {
   }
 
   private addPointCloudToScene(cloud: PointsObject3D, id?: string) {
+    cloud.name = id ?? this.cloudProperties.id;
     this.scene.add(cloud);
     this.clouds.push(cloud);
-    this.setPointCloudProperties({ id });
+    this.setPointCloudProperties();
     this.setOrbitControls({ target: getCenter(cloud.geometry) });
   }
 }
