@@ -88,8 +88,8 @@ class Points<T extends PointTypes> extends Vector<T> {
     const PT = this._PT as any;
     const value = this._native.get(index);
 
-    if (Array.isArray(value)) {
-      return new PT(value) as T;
+    if (value instanceof __PCLCore__.FPFHSignature33) {
+      return new PT(Array.from(value.getHistogram())) as T;
     } else {
       const args: number[] = Object.values(value);
       return new PT(...args) as T;

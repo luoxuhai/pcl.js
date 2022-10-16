@@ -138,7 +138,22 @@ export class PointSurfel {
 }
 
 export class FPFHSignature33 {
-  constructor(public histogram: number[] = []) {}
+  public static descriptorSize = 33;
+  private _native = new __PCLCore__.FPFHSignature33();
+
+  constructor(histogram?: number[]) {
+    if (histogram) {
+      this.histogram = histogram;
+    }
+  }
+
+  set histogram(histogram: number[]) {
+    this._native.setHistogram(histogram);
+  }
+
+  get histogram(): number[] {
+    return Array.from(this._native.getHistogram());
+  }
 }
 
 // Define all point types

@@ -5,6 +5,15 @@
 using namespace pcl;
 using namespace emscripten;
 
+void setHistogram(FPFHSignature33 &fpfh_signature, val const &histogram) {
+  std::vector<float> histogramVector = convertJSArrayToNumberVector<float>(histogram);
+  std::copy(histogramVector.begin(), histogramVector.end(), fpfh_signature.histogram);
+}
+
+val getHistogram(FPFHSignature33 &fpfh_signature) {
+  return val(typed_memory_view(33, fpfh_signature.histogram));
+}
+
 EMSCRIPTEN_BINDINGS(point_types) {
   value_object<PointXY>("PointXY").field("x", &PointXY::x).field("y", &PointXY::y);
 
@@ -119,5 +128,8 @@ EMSCRIPTEN_BINDINGS(point_types) {
       .field("confidence", &PointSurfel::confidence)
       .field("curvature", &PointSurfel::curvature);
 
-  value_object<FPFHSignature33>("FPFHSignature33").field("histogram", &FPFHSignature33::histogram);
+  class_<FPFHSignature33>("FPFHSignature33")
+      .constructor()
+      .function("setHistogram", &setHistogram)
+      .function("getHistogram", &getHistogram);
 }
