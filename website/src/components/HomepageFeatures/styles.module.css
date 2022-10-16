@@ -3,15 +3,27 @@
   align-items: center;
   padding: 2rem 0;
   width: 100%;
+  margin-top: 50px;
+  margin-bottom: 100px;
 }
 
 .featureSvg {
-  height: 150px;
-  width: 150px;
+  height: 50px;
+  width: 50px;
   object-fit: contain;
 }
 
 .description {
   line-height: 1.3;
   color: #888;
+}
+
+.example {
+  cursor: pointer;
+}
+
+.example:hover {
+  color: var(--ifm-color-primary);
+  transform: scale(1.02);
+  transition: all 0.3s ease-in;
 }

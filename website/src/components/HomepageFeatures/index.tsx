@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 type FeatureItem = {
@@ -10,54 +11,45 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Filters',
-    cover: require('@site/static/img/filters_small.jpg').default,
-    description: (
-      <>
-        Some of these outliers can be filtered by performing a statistical
-        analysis on each point’s neighborhood.
-      </>
-    ),
+    title: 'TypeScript 类型支持',
+    cover:
+      'https://ionicframework.com/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fionicframeworkcom%2F79d0bc82-4833-4efc-9902-91ba30d3e767_framework-homepage-top-0.png&w=96&q=75',
+    description: <>使用 TypeScript 编写，具有可预测的静态类型</>,
   },
   {
-    title: 'Keypoints',
-    cover: require('@site/static/img/keypoints_small.jpg').default,
-    description: (
-      <>
-        The keypoints library contains implementations of two point cloud
-        keypoint detection algorithms.
-      </>
-    ),
+    title: '支持所有现代浏览器',
+    cover:
+      'https://ionicframework.com/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fionicframeworkcom%2Fb77c801b-a779-4cf6-9851-a92faf0c977d_framework-homepage-top-1.png&w=96&q=75',
+    description: <>支持所有现代浏览器，未来将提供对 Nodejs 的支持</>,
   },
   {
-    title: 'Registration',
-    cover: require('@site/static/img/registration_small.jpg').default,
-    description: (
-      <>
-        Combining several datasets into a global consistent model is usually
-        performed using a technique called registration.
-      </>
-    ),
+    title: '方便移植',
+    cover:
+      'https://ionicframework.com/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fionicframeworkcom%2Ff42e2b98-8ed8-45d2-b790-d0dd2dd49ec8_framework-homepage-top-2.png&w=96&q=75',
+    description: <>提供与 PCL(C++) 相似的 API，简单易用</>,
+  },
+];
+
+const examples = [
+  {
+    title: '点云预处理',
+    cover: require('@site/static/img/examples/StatisticalOutlierRemoval.jpg').default,
+    url: 'https://kl2zjs.csb.app/',
   },
   {
-    title: 'Kdtree',
-    cover: require('@site/static/img/kdtree_mug.jpg').default,
-    description: (
-      <>
-        A Kd-tree (k-dimensional tree) is a space-partitioning data structure that
-        enables efficient range searches and nearest neighbor searches.
-      </>
-    ),
+    title: '配准点云',
+    cover: require('@site/static/img/examples/IterativeClosestPoint.jpg').default,
+    url: 'https://1t72c1.csb.app/',
   },
   {
-    title: 'Octree',
-    cover: require('@site/static/img/octree_bunny.jpg').default,
-    description: (
-      <>
-        The octree library provides efficient methods for creating a
-        hierarchical tree data structure from point cloud data.
-      </>
-    ),
+    title: '分割物体',
+    cover: require('@site/static/img/examples/MinCutSegmentation.jpg').default,
+    url: 'https://o4y07f.csb.app/',
+  },
+  {
+    title: '提取关键点',
+    cover: require('@site/static/img/examples/ISSKeypoint3D.jpg').default,
+    url: 'https://3l6tfj.csb.app/',
   },
 ];
 
@@ -75,6 +67,25 @@ function Feature({ title, cover, description }: FeatureItem) {
   );
 }
 
+function Example({ title, cover, url }) {
+  return (
+    <div className={clsx('col col--3', styles.example)} to={url}>
+      <Link className="text--center" to={url}>
+        <img className={clsx('card shadow--sx', styles.exampleImg)} src={cover} />
+      </Link>
+      <div className="text--center padding-horiz--md">
+        <h3
+          style={{
+            marginTop: 20,
+          }}
+        >
+          {title}
+        </h3>
+      </div>
+    </div>
+  );
+}
+
 export default function HomepageFeatures(): JSX.Element {
   return (
     <section className={styles.features}>
@@ -82,6 +93,22 @@ export default function HomepageFeatures(): JSX.Element {
         <div className="row">
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
+          ))}
+        </div>
+
+        <h3
+          style={{
+            textAlign: 'center',
+            marginTop: 80,
+            marginBottom: 80,
+            fontSize: 38,
+          }}
+        >
+          展示
+        </h3>
+        <div className="row">
+          {examples.map((props, idx) => (
+            <Example key={idx} {...props} />
           ))}
         </div>
       </div>

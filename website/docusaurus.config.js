@@ -51,6 +51,11 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        sitemap: {
+          changefreq: 'daily',
+          priority: 0.5,
+          filename: 'sitemap.xml',
+        },
       }),
     ],
   ],
@@ -63,6 +68,11 @@ const config = {
         logo: {
           alt: 'Logo',
           src: 'img/pcljs-logo.png',
+          width: 32,
+          height: 32,
+          style: {
+            borderRadius: 4,
+          },
         },
         title,
         items: [
@@ -79,6 +89,11 @@ const config = {
             label: 'API',
           },
           { label: 'Examples', position: 'left', to: '/examples' },
+          {
+            label: 'Changelog',
+            href: `https://github.com/luoxuhai/pcl.js/releases`,
+            position: 'left',
+          },
           {
             href: github,
             position: 'right',
