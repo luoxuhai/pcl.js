@@ -1,3 +1,5 @@
+import { translate } from '@docusaurus/Translate';
+
 export function getQueryString(name) {
   let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
   if (typeof window !== 'undefined') {
@@ -8,4 +10,10 @@ export function getQueryString(name) {
   }
 
   return null;
+}
+
+export function translateMsg(message: string) {
+  return translate({
+    message,
+  });
 }

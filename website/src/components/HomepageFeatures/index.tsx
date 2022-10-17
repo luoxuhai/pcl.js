@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
+import { translateMsg } from '@site/src/utils/common';
 
 type FeatureItem = {
   title: string;
@@ -11,43 +12,43 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'TypeScript 类型支持',
+    title: translateMsg('home.feature.title.typescript'),
     cover:
       'https://ionicframework.com/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fionicframeworkcom%2F79d0bc82-4833-4efc-9902-91ba30d3e767_framework-homepage-top-0.png&w=96&q=75',
-    description: <>使用 TypeScript 编写，具有可预测的静态类型</>,
+    description: <>{translateMsg('home.feature.description.typescript')}</>,
   },
   {
-    title: '支持所有现代浏览器',
+    title: translateMsg('home.feature.title.support'),
     cover:
       'https://ionicframework.com/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fionicframeworkcom%2Fb77c801b-a779-4cf6-9851-a92faf0c977d_framework-homepage-top-1.png&w=96&q=75',
-    description: <>支持所有现代浏览器，未来将提供对 Nodejs 的支持</>,
+    description: <>{translateMsg('home.feature.description.support')}</>,
   },
   {
-    title: '方便移植',
+    title: translateMsg('home.feature.title.api'),
     cover:
       'https://ionicframework.com/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fionicframeworkcom%2Ff42e2b98-8ed8-45d2-b790-d0dd2dd49ec8_framework-homepage-top-2.png&w=96&q=75',
-    description: <>提供与 PCL(C++) 相似的 API，简单易用</>,
+    description: <>{translateMsg('home.feature.description.api')}</>,
   },
 ];
 
 const examples = [
   {
-    title: '点云预处理',
+    title: translateMsg('home.example.preprocess'),
     cover: require('@site/static/img/examples/StatisticalOutlierRemoval.jpg').default,
     url: 'https://kl2zjs.csb.app/',
   },
   {
-    title: '配准点云',
+    title: translateMsg('home.example.register'),
     cover: require('@site/static/img/examples/IterativeClosestPoint.jpg').default,
     url: 'https://1t72c1.csb.app/',
   },
   {
-    title: '分割物体',
+    title: translateMsg('home.example.segmentation'),
     cover: require('@site/static/img/examples/MinCutSegmentation.jpg').default,
     url: 'https://o4y07f.csb.app/',
   },
   {
-    title: '提取关键点',
+    title: translateMsg('home.example.keypoints'),
     cover: require('@site/static/img/examples/ISSKeypoint3D.jpg').default,
     url: 'https://3l6tfj.csb.app/',
   },
@@ -69,7 +70,7 @@ function Feature({ title, cover, description }: FeatureItem) {
 
 function Example({ title, cover, url }) {
   return (
-    <div className={clsx('col col--3', styles.example)} to={url}>
+    <div className={clsx('col col--3', styles.example)}>
       <Link className="text--center" to={url}>
         <img className={clsx('card shadow--sx', styles.exampleImg)} src={cover} />
       </Link>
@@ -96,17 +97,12 @@ export default function HomepageFeatures(): JSX.Element {
           ))}
         </div>
 
-        <h3
+        <div
+          className="row"
           style={{
-            textAlign: 'center',
-            marginTop: 80,
-            marginBottom: 80,
-            fontSize: 38,
+            marginTop: 120,
           }}
         >
-          展示
-        </h3>
-        <div className="row">
           {examples.map((props, idx) => (
             <Example key={idx} {...props} />
           ))}

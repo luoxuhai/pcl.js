@@ -16,5 +16,35 @@
   },
   "home.tagline": {
     "message": "运行在浏览器中的点云库 (PCL)，由 WebAssembly 提供支持。"
+  },
+  "home.feature.title.typescript": {
+    "message": "TypeScript 类型支持"
+  },
+  "home.feature.description.typescript": {
+    "message": "使用 TypeScript 编写，具有可预测的静态类型"
+  },
+  "home.feature.title.support": {
+    "message": "支持所有现代浏览器"
+  },
+  "home.feature.description.support": {
+    "message": "支持所有现代浏览器，未来将提供对 Nodejs 的支持"
+  },
+  "home.feature.title.api": {
+    "message": "方便移植"
+  },
+  "home.feature.description.api": {
+    "message": "提供与 PCL(C++) 相似的 API，简单易用"
+  },
+  "home.example.preprocess": {
+    "message": "点云预处理"
+  },
+  "home.example.register": {
+    "message": "配准点云"
+  },
+  "home.example.segmentation": {
+    "message": "分割物体"
+  },
+  "home.example.keypoints": {
+    "message": "提取关键点"
   }
 }

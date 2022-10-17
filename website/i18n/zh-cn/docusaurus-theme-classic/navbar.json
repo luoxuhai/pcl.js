@@ -4,5 +4,8 @@
   },
   "item.label.Examples": {
     "message": "示例"
+  },
+  "item.label.Changelog": {
+    "message": "更新记录"
   }
 }

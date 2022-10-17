@@ -16,5 +16,35 @@
   },
   "home.tagline": {
     "message": "☁️ Point Cloud Library (PCL) for browser, powered by WebAssembly."
+  },
+  "home.feature.title.typescript": {
+    "message": "TypeScript Type Support"
+  },
+  "home.feature.description.typescript": {
+    "message": "Written in TypeScript, with predictable static typing"
+  },
+  "home.feature.title.support": {
+    "message": "Supports All Modern Browsers"
+  },
+  "home.feature.description.support": {
+    "message": "All modern browsers are supported, support for Nodejs will be provided in the future"
+  },
+  "home.feature.title.api": {
+    "message": "Easy To Port"
+  },
+  "home.feature.description.api": {
+    "message": "Provide an API similar to PCL(C++), easy to use"
+  },
+  "home.example.preprocess": {
+    "message": "Point Cloud Preprocessing"
+  },
+  "home.example.register": {
+    "message": "Register Point Cloud"
+  },
+  "home.example.segmentation": {
+    "message": "Split Object"
+  },
+  "home.example.keypoints": {
+    "message": "Extract Key Points"
   }
 }
