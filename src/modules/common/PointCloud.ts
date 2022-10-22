@@ -28,6 +28,17 @@ export class Vector<T> {
     return this._native.empty();
   }
 
+  get data() {
+    const size = this.size;
+    const _data: T[] = [];
+
+    for (let i = 0; i < size; i++) {
+      _data.push(this._native.get(i));
+    }
+
+    return _data;
+  }
+
   public resize(count: number, value?: T) {
     this._native.resize(count, value ?? null);
   }
@@ -145,6 +156,14 @@ class PointCloud<T extends PointTypes = PointXYZ> {
     }
 
     return this._points;
+  }
+
+  get isEmpty() {
+    return this.points.isEmpty();
+  }
+
+  get data() {
+    return this.points.data;
   }
 
   /**

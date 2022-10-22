@@ -12,31 +12,41 @@ sidebar_position: 2
 new PointCloud();
 ```
 
-### Members
+```ts showLineNumbers
+class PointCloud<T extends PointTypes = PointXYZ> {
+  manager: Manager;
+  constructor(_PT?: PointTypesTypeof, _native?: NativeAPI);
+  get isOrganized(): boolean;
+  get isDense(): boolean;
+  set width(v: number);
+  get width(): number;
+  set height(v: number);
+  get height(): number;
+  get header(): PCLHeader;
+  get size(): number;
+  get points(): Points<T>;
+  get isEmpty(): boolean;
+  get data(): T[];
+  /**
+   * Removes all points in a cloud and sets the width and height to 0.
+   */
+  clear(): void;
+  /**
+   * Resizes the container to contain `count` elements
+   * @params count - New size of the point cloud
+   * @params pt - The value to initialize the new points with
+   */
+  resize(count: number, pt?: T): void;
+  /**
+   * Insert a new point in the cloud, at the end of the container.
+   * @description This breaks the organized structure of the cloud by setting the height to 1!
+   * @params pt - The point to insert
+   */
+  addPoint(pt?: T | null): void;
+}
+```
 
-#### isDense
-
-#### isOrganized
-
-#### points
-
-#### width
-
-#### height
-
-#### header
-
-#### size
-
-### Methods
-
-#### clear()
-
-#### resize()
-
-#### addPoint()
-
-#### manager
+## Manager
 
 ```ts
 class Manager {

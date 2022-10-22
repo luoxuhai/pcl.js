@@ -1,4 +1,5 @@
 import * as PCL from '../../';
+import { getTestPCDFile } from '../utils';
 
 describe('PointCloud', () => {
   it('should create a point cloud data with XYZ fields, `width` = 5, `height` = 1', async () => {
@@ -20,5 +21,13 @@ describe('PointCloud', () => {
     expect(cloud.manager.isDeleted()).toBe(false);
     cloud.manager.delete();
     expect(cloud.manager.isDeleted()).toBe(true);
+  });
+
+  it('should get `size` and `data`', () => {
+    const data = getTestPCDFile('bun4.pcd');
+    const cloud = PCL.loadPCDData(data);
+
+    expect(cloud.size).toBe(361);
+    expect(cloud.data.length).toBe(361);
   });
 });
