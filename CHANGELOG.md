@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.15.0](https://github.com/luoxuhai/pcl.js/compare/v1.14.0...v1.15.0) (2022-10-24)
+
+
+### ✨ Features
+
+* add size and data to PointCloud ([b9d32d9](https://github.com/luoxuhai/pcl.js/commit/b9d32d9c19f3d720b2f227c7f96283eaec765103))
+* add support for Node.js environment ([c52850f](https://github.com/luoxuhai/pcl.js/commit/c52850f3f89222f6d889bef5c704cd667c2b4ce8))
+
 ## [1.14.0](https://github.com/luoxuhai/pcl.js/compare/v1.13.0...v1.14.0) (2022-10-16)
 
 
