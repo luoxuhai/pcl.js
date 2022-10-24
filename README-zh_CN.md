@@ -56,7 +56,7 @@
 ## 特性
 
 - 💌 提供与 PCL(C++) 相似的 API，简单易用
-- 🌍 支持所有现代浏览器，未来将提供对 Nodejs 的支持
+- 🌍 支持所有现代浏览器和 Node.js 环境
 - 💪 使用 TypeScript 编写，具有可预测的静态类型
 - 🚀 还有很多很多！
 
@@ -69,9 +69,9 @@
 
 ## 支持的环境
 
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera |
-| --------- | --------- | --------- | --------- | --------- |
-| 16+ | 52+ | 57+ | 11+ | 44+
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/node.js/node.js_128x128.png" alt="Node.js" width="48px" height="48px" /><br/>Node.js |
+| --------- | --------- | --------- | --------- | --------- | --------- | 
+| 16+ | 52+ | 57+ | 11+ | 44+ | 14+
 
 ## 资源大小
 
@@ -108,6 +108,8 @@ yarn add pcl.js
 
 ### NPM
 
+#### 浏览器
+
 ```typescript
 import * as PCL from 'pcl.js';
 
@@ -121,6 +123,20 @@ async function main() {
     url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
   });
 
+  // ...
+}
+
+main();
+```
+
+#### Node.js
+
+```js
+const PCL = require("pcl.js");
+
+async function main() {
+  // 初始化
+  await PCL.init();
   // ...
 }
 

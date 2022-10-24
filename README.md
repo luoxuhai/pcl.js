@@ -56,7 +56,7 @@ A [point cloud](https://en.wikipedia.org/wiki/Point_cloud) is a set of data poin
 ## Features
 
 - 💌 Provides an API similar to PCL(C++), easy to use
-- 🌍 Supports all modern browsers, will improve Nodejs support
+- 🌍 Supports all modern browsers and Node.js 14+
 - 💪 Written in TypeScript, with predictable static typing
 - 🚀 And many, many more!
 
@@ -69,9 +69,9 @@ A [point cloud](https://en.wikipedia.org/wiki/Point_cloud) is a set of data poin
 
 ## Environment Support
 
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera |
-| --------- | --------- | --------- | --------- | --------- |
-| 16+ | 52+ | 57+ | 11+ | 44+ 
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_128x128.png" alt="Edge" width="48px" height="48px" /><br/> Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_128x128.png" alt="Firefox" width="48px" height="48px" /><br/>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_128x128.png" alt="Chrome" width="48px" height="48px" /><br/>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_128x128.png" alt="Safari" width="48px" height="48px" /><br/>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_128x128.png" alt="Opera" width="48px" height="48px" /><br/>Opera | <img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/node.js/node.js_128x128.png" alt="Node.js" width="48px" height="48px" /><br/>Node.js |
+| --------- | --------- | --------- | --------- | --------- | --------- | 
+| 16+ | 52+ | 57+ | 11+ | 44+ | 14+
 
 ## Bundle Size
 
@@ -108,6 +108,8 @@ yarn add pcl.js
 
 ### NPM
 
+#### Browser
+
 ```typescript
 import * as PCL from 'pcl.js';
 
@@ -123,6 +125,20 @@ async function main() {
     // arrayBuffer: ArrayBuffer
   });
 
+  // ...
+}
+
+main();
+```
+
+#### Node.js
+
+```js
+const PCL = require("pcl.js");
+
+async function main() {
+  // Initialization
+  await PCL.init();
   // ...
 }
 
