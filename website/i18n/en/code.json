@@ -24,10 +24,10 @@
     "message": "Written in TypeScript, with predictable static typing"
   },
   "home.feature.title.support": {
-    "message": "Supports All Modern Browsers"
+    "message": "Cross-platform"
   },
   "home.feature.description.support": {
-    "message": "All modern browsers are supported, support for Nodejs will be provided in the future"
+    "message": "Supports all modern browsers and Node.js 14+"
   },
   "home.feature.title.api": {
     "message": "Easy To Port"
@@ -42,7 +42,7 @@
     "message": "Register Point Cloud"
   },
   "home.example.segmentation": {
-    "message": "Split Object"
+    "message": "Segmentation Object"
   },
   "home.example.keypoints": {
     "message": "Extract Key Points"

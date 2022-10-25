@@ -6,17 +6,33 @@ sidebar_position: 2
 
 ## NPM
 
+### 浏览器
+
 ```typescript showLineNumbers
 import * as PCL from 'pcl.js';
 
 async function main() {
-  // Initialization
+  // 初始化
   await PCL.init({
-    // Recommend, optional configuration, custom WebAssembly file link.
+    // 推荐，可选配置，自定义 WebAssembly 文件链接。
     url: 'https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm',
-    // You can also pass an ArrayBuffer of WebAssembly files.
+    // 你也可以传递一个 WebAssembly 文件的 ArrayBuffer。
     // arrayBuffer: ArrayBuffer
   });
+}
+
+main();
+```
+
+### Node.js
+
+```js showLineNumbers
+const PCL = require('pcl.js');
+
+async function main() {
+  // 初始化
+  await PCL.init();
+  // ...
 }
 
 main();
@@ -38,7 +54,7 @@ main();
 
 :::tip 提示
 
-推荐使用CDN加载`pcl-core.wasm`
+推荐使用 CDN 加载`pcl-core.wasm`
 
 jsdelivr: https://cdn.jsdelivr.net/npm/pcl.js/dist/pcl-core.wasm  
 unpkg: https://unpkg.com/pcl.js/dist/pcl-core.wasm
@@ -58,7 +74,9 @@ async function main() {
   });
 
   // 获取 PCD 文件
-  const data = await fetch('https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd').then(res => res.arrayBuffer());
+  const data = await fetch(
+    'https://cdn.jsdelivr.net/gh/luoxuhai/pcl.js@master/data/rops_tutorial/points.pcd',
+  ).then((res) => res.arrayBuffer());
   // 加载 PCD 数据，返回点云对象
   const cloud = PCL.loadPCDData<PCL.PointXYZ>(data, PCL.PointXYZ);
 

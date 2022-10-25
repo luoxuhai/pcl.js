@@ -24,10 +24,10 @@
     "message": "使用 TypeScript 编写，具有可预测的静态类型"
   },
   "home.feature.title.support": {
-    "message": "支持所有现代浏览器"
+    "message": "跨平台"
   },
   "home.feature.description.support": {
-    "message": "支持所有现代浏览器，未来将提供对 Nodejs 的支持"
+    "message": "支持所有现代浏览器和 Node.js 14+"
   },
   "home.feature.title.api": {
     "message": "方便移植"
