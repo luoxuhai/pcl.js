@@ -16,8 +16,14 @@
         "require": "./dist/node/pcl.cjs.js"
       }
     },
-    "./pcl-core.wasm": "./dist/pcl-core.wasm",
-    "./pcl-core.node.wasm": "./dist/node/pcl-core.wasm",
+    "./pcl-core.wasm": {
+      "browser": {
+        "default": "./dist/pcl-core.wasm"
+      },
+      "node": {
+        "default": "./dist/node/pcl-core.node.wasm"
+      }
+    },
     "./PointCloudViewer": "./dist/visualization/PointCloudViewer.esm.js"
   },
   "typesVersions": {
