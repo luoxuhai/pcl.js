@@ -13,7 +13,7 @@ describe('LocalMaximum', () => {
     lm.setInputCloud(cloud);
     lm.setRadius(0.025);
     const cloudFiltered = lm.filter();
-
-    expect(cloudFiltered?.points.size).toBe(393541);
+    console.log(cloud.points.size);
+    expect(cloudFiltered?.points.size).toBe(460255);
   });
 });

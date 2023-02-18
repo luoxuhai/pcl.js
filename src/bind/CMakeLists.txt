@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(TARGET_NAME_BROWSER pcl-core)
 set(TARGET_NAME_NODE pcl-core.node)
 
-set(PCL_INCLUDE ${PCL_ROOT}/build/include/pcl-1.12)
+set(PCL_INCLUDE ${PCL_ROOT}/build/include/pcl-1.13)
 set(BOOST_INCLUDE ${PCL_ROOT}/wasm/deps/boost/build/include)
 set(EIGEN_INCLUDE ${PCL_ROOT}/wasm/deps/eigen)
 set(FLANN_INCLUDE ${PCL_ROOT}/wasm/deps/flann/build/include)

@@ -20,10 +20,10 @@ describe('SACSegmentation', () => {
     seg.setInputCloud(cloud);
     seg.segment(inliers, coefficients);
 
-    expect(coefficients.values.get(0)).toBe(0.9987797141075134);
-    expect(coefficients.values.get(1)).toBe(0.7519828081130981);
-    expect(coefficients.values.get(2)).toBe(1.2455064058303833);
-    expect(coefficients.values.get(3)).toBe(0.05349602922797203);
+    expect(coefficients.values.get(0)).toBe(1.002759575843811);
+    expect(coefficients.values.get(1)).toBe(0.7498407959938049);
+    expect(coefficients.values.get(2)).toBe(1.25296151638031);
+    expect(coefficients.values.get(3)).toBe(0.04926368594169617);
   });
 
   it('should segment a PointNormal type point cloud using SACSegmentation', () => {
@@ -43,7 +43,7 @@ describe('SACSegmentation', () => {
     seg.setInputCloud(cloud);
     seg.segment(inliers, coefficients);
 
-    expect(coefficients.values.get(0)).toBe(-0.006689361296594143);
-    expect(coefficients.values.get(1)).toBe(0.08215627074241638);
+    expect(coefficients.values.get(0)).toBe(-0.00008459305536234751);
+    expect(coefficients.values.get(1)).toBe(0.08575006574392319);
   });
 });
