@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.16.0](https://github.com/luoxuhai/pcl.js/compare/v1.15.0...v1.16.0) (2023-02-18)
+
+### ✨ Features
+
+* update pcl version to 1.13.0 ([abb085f](https://github.com/luoxuhai/pcl.js/commit/abb085fd3897c68bc35c2b126f0dfec36241605d))
+
 ## [1.15.0](https://github.com/luoxuhai/pcl.js/compare/v1.14.0...v1.15.0) (2022-10-24)
 
 
