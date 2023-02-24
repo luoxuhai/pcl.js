@@ -9,7 +9,7 @@ Thanks for the help! We welcome all contributions to it.
 ## Project Layout
 
 - [`src`](/src) All the source code for pcl.js, if you want to edit a api or just see how it works this is where you'll find it.
-- [`website`](/website) The source code for <https://pcljs.org>
+- [`website`](/website) The source code for <https://pcl.js.org>
 - [`tests`](/tests) You'll do most of your testing in here.
 - [`core`](/core) Point Cloud Library (PCL) project source code.
 

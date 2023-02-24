@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://pcljs.org" target="_blank"><img style="height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
+  <a href="https://pcl.js.org" target="_blank"><img style="height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
   <p align="center"><a href="https://pointclouds.org" target="_blank">Point Cloud Library (PCL)</a> for browser, powered by WebAssembly.</p>
 </p>
 
@@ -50,7 +50,7 @@ A [point cloud](https://en.wikipedia.org/wiki/Point_cloud) is a set of data poin
   <a href="https://o4y07f.csb.app" title="Min-Cut Based Segmentation"><img src="./website/static/img/examples/MinCutSegmentation.jpg" width="30%" /></a>
   <a href="https://3l6tfj.csb.app" title="Extract point cloud keypoints"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
   
-  <p><a href="https://pcljs.org/examples">See all demos</a></p>
+  <p><a href="https://pcl.js.org/examples">See all demos</a></p>
 <p>
 
 ## Features
@@ -62,9 +62,9 @@ A [point cloud](https://en.wikipedia.org/wiki/Point_cloud) is a set of data poin
 
 ## Resources
 
-- [Documentation](https://pcljs.org/docs/tutorials/intro)
-- [API Reference](https://pcljs.org/docs/api/about)
-- [Examples](https://pcljs.org/examples)
+- [Documentation](https://pcl.js.org/docs/tutorials/intro)
+- [API Reference](https://pcl.js.org/docs/api/about)
+- [Examples](https://pcl.js.org/examples)
 - [Discussions](https://github.com/luoxuhai/pcl.js/discussions)
 
 ## Environment Support

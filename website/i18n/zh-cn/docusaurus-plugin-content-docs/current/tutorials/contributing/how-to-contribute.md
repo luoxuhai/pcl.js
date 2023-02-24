@@ -9,7 +9,7 @@ sidebar_position: 1
 ## 项目结构
 
 - [`src`](/src) pcl.js 的所有源代码
-- [`website`](/website) <https://pcljs.org> 网站的源代码
+- [`website`](/website) <https://pcl.js.org> 网站的源代码
 - [`tests`](/tests) 测试代码目录
 - [`core`](/core) 点云库 (PCL) 源代码
 

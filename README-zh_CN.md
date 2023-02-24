@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://pcljs.org/zh-cn" target="_blank"><img style="height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
+  <a href="https://pcl.js.org/zh-cn" target="_blank"><img style="height: 100px" src="./logo.svg" title="pcl.js" alt="title="pcl.js"></a>
   <p align="center">在浏览器运行的<a href="https://pointclouds.org" target="_blank">点云库 (PCL)</a>，由 WebAssembly 提供支持。</p>
 </p>
 
@@ -50,7 +50,7 @@
   <a href="https://o4y07f.csb.app" title="最小分割算法"><img src="./website/static/img/examples/MinCutSegmentation.jpg" width="30%" /></a>
   <a href="https://3l6tfj.csb.app" title="提取关键点"><img src="./website/static/img/examples/ISSKeypoint3D.jpg" width="30%" /></a>
 
-  <p><a href="https://pcljs.org/zh-cn/examples">查看所有示例</a></p>
+  <p><a href="https://pcl.js.org/zh-cn/examples">查看所有示例</a></p>
 <p>
 
 ## 特性
@@ -62,9 +62,9 @@
 
 ## 资源
 
-- [文档](https://pcljs.org/zh-cn/docs/tutorials/intro)
-- [API](https://pcljs.org/zh-cn/docs/api/about)
-- [示例](https://pcljs.org/zh-cn/examples)
+- [文档](https://pcl.js.org/zh-cn/docs/tutorials/intro)
+- [API](https://pcl.js.org/zh-cn/docs/api/about)
+- [示例](https://pcl.js.org/zh-cn/examples)
 - [讨论](https://github.com/luoxuhai/pcl.js/discussions)
 
 ## 支持的环境

@@ -1,6 +1,6 @@
 # Website
 
-This website is built using [Docusaurus 2](https://docusaurus.io/) and you can access it online at <https://pcljs.org>.
+This website is built using [Docusaurus 2](https://docusaurus.io/) and you can access it online at <https://pcl.js.org>.
 
 ### Installation
 

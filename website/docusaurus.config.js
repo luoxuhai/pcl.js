@@ -4,7 +4,7 @@
 const draculaTheme = require('prism-react-renderer/themes/dracula');
 
 const github = 'https://github.com/luoxuhai/pcl.js';
-const url = process.env.NODE_ENV !== 'development' ? 'https://pcljs.org' : 'http://localhost:3000';
+const url = process.env.NODE_ENV !== 'development' ? 'https://pcl.js.org' : 'http://localhost:3000';
 const title = 'pcl.js';
 
 /** @type {import('@docusaurus/types').Config} */
