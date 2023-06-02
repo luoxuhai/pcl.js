@@ -81,6 +81,11 @@ function savePCDDataBinaryCompressed(cloud: PointCloud<PointTypes>) {
   return data;
 }
 
+function loadPointByArrayXYZ(floatArray: []){
+  let fn = __PCLCore__['loadPointByArrayXYZ'];
+  return fn(floatArray);
+}
+
 export {
   loadPCDFile,
   savePCDFile,
@@ -94,5 +99,6 @@ export {
   savePCDDataBinary,
   savePCDDataBinaryCompressed,
   readPCDHeader,
+  loadPointByArrayXYZ,
   PCDHeader,
 };

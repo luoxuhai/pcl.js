@@ -119,8 +119,12 @@ class Registration<T extends XYZPointTypes> extends PCLBase<T> {
     return this._native.initComputeReciprocal();
   }
 
-  public align(output: PointCloud<T>) {
-    this._native.align(output._native);
+  public align(output: PointCloud<T>,matrix: [] = []) {
+    this._native.align(output._native,matrix);
+  }
+
+  public getFinalTransformation(){
+    return this._native.getFinalTransformation();
   }
 }
 

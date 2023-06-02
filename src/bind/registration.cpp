@@ -1,10 +1,50 @@
 #include <pcl/registration/ia_ransac.h>
 #include <pcl/registration/icp.h>
+#include <emscripten/val.h>
+#include <Eigen/Dense>
 
 #include "embind.hpp"
 
 using namespace pcl;
 using namespace emscripten;
+thread_local const val Float32Array = emscripten::val::global("Float32Array");
+
+
+template <typename PointSource,typename PointTarget>
+val getFinalTransformation(pcl::IterativeClosestPoint<PointSource,PointTarget> &icp) {
+    Eigen::Matrix4f transformation = icp.getFinalTransformation();
+    auto js_result = val::null();
+    std::array<float, 16> array;
+    int idx = 0;
+    for (int col = 0; col < transformation.cols(); ++col) {
+        for (int row = 0; row < transformation.rows(); ++row) {
+            array[idx++] = transformation(row, col);
+        }
+    }
+    js_result = val(typed_memory_view(array.size(), array.data()));
+    return js_result;
+}
+
+template <typename PointSource,typename PointTarget>
+void align(pcl::IterativeClosestPoint<PointSource,PointTarget> &icp,PointCloud<PointTarget> &aligned,val array) {
+    unsigned int length = array["length"].as<float>();
+    if (length != 16) {
+        icp.align(aligned);
+        return;
+    }else{
+        Eigen::Matrix4f mat;
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                mat(i, j) =  array[i * 4 + j].as<float>();
+            }
+        }
+        icp.align(aligned,mat);
+        return;
+    }
+}
+
+
+
 
 #define BIND_Registration(PointSource, PointTarget)                                               \
   class_<pcl::Registration<PointSource, PointTarget>>("Registration" #PointSource #PointTarget)   \
@@ -47,8 +87,8 @@ using namespace emscripten;
                 &pcl::Registration<PointSource, PointTarget>::initComputeReciprocal)              \
       .function(                                                                                  \
           "align",                                                                                \
-          select_overload<void(pcl::Registration<PointSource, PointTarget>::PointCloudSource &)>( \
-              &pcl::Registration<PointSource, PointTarget>::align));
+          &align<PointSource, PointTarget>)                                                       \
+      .function("getFinalTransformation",&getFinalTransformation<PointSource, PointTarget>);
 
 #define BIND_IterativeClosestPoint(PointSource, PointTarget)                                      \
   class_<pcl::IterativeClosestPoint<PointSource, PointTarget>,                                    \
@@ -64,7 +104,7 @@ using namespace emscripten;
           &pcl::IterativeClosestPoint<PointSource, PointTarget>::setUseReciprocalCorrespondences) \
       .function(                                                                                  \
           "getUseReciprocalCorrespondences",                                                      \
-          &pcl::IterativeClosestPoint<PointSource, PointTarget>::getUseReciprocalCorrespondences);
+          &pcl::IterativeClosestPoint<PointSource, PointTarget>::getUseReciprocalCorrespondences);\
 
 #define BIND_SampleConsensusInitialAlignment(PointSource, PointTarget, FeatureT)                   \
   class_<pcl::SampleConsensusInitialAlignment<PointSource, PointTarget, FeatureT>,                 \
@@ -96,5 +136,7 @@ EMSCRIPTEN_BINDINGS(registration) {
 
   BIND_IterativeClosestPoint(PointXYZ, PointXYZ);
 
-  BIND_SampleConsensusInitialAlignment(PointXYZ, PointXYZ, FPFHSignature33)
+  BIND_SampleConsensusInitialAlignment(PointXYZ, PointXYZ, FPFHSignature33);
+
+
 }

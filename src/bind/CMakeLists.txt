@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.21.3)
 
 project(PCL_BIND_WASM)
 set(CMAKE_CXX_STANDARD 14)

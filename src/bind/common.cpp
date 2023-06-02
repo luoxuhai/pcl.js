@@ -10,6 +10,7 @@ using namespace pcl;
 
 const std::string VERSION = PCL_VERSION_PRETTY;
 
+
 #define BIND_PointCloud(r, data, PointT)                                                      \
   class_<PointCloud<PointT>>(                                                                 \
       "PointCloud" BOOST_PP_STRINGIZE(PointT))                                                \
