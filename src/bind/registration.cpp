@@ -11,7 +11,7 @@ thread_local const val Float32Array = emscripten::val::global("Float32Array");
 
 
 template <typename PointSource,typename PointTarget>
-val getFinalTransformation(pcl::IterativeClosestPoint<PointSource,PointTarget> &icp) {
+val getFinalTransformation(pcl::Registration<PointSource,PointTarget> &icp) {
     Eigen::Matrix4f transformation = icp.getFinalTransformation();
     auto js_result = val::null();
     std::array<float, 16> array;
